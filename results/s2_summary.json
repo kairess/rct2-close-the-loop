@@ -1,24 +1,75 @@
 [
  {
-  "layout": "twister@hills24",
+  "layout": "twister_24",
   "seed": 21,
-  "evals": 1401,
-  "minutes": 0.8,
+  "evals": 12433,
+  "minutes": 15.0,
   "goal": false,
   "first_goal_min": null,
   "first_goal_eval": null,
   "best_goal": null,
   "best_any": [
-   7.35,
-   8.28,
-   4.78
+   7.55,
+   7.13,
+   4.68
   ],
-  "rated_share": 0.835,
+  "rated_share": 0.7,
   "stages": {
-   "rated": 1170,
-   "stalled": 178,
-   "build": 53
+   "rated": 8700,
+   "stalled": 3062,
+   "build": 669,
+   "timeout": 2
   },
-  "run": "20261019-180227-twister@hills24"
+  "run": "20261019-180531-twister_24"
+ },
+ {
+  "layout": "twister@hills24",
+  "seed": 21,
+  "evals": 15821,
+  "minutes": 15.0,
+  "goal": true,
+  "first_goal_min": 6.86,
+  "first_goal_eval": 7892,
+  "best_goal": [
+   7.89,
+   7.27,
+   5.09
+  ],
+  "best_any": [
+   7.89,
+   7.27,
+   5.09
+  ],
+  "rated_share": 0.72,
+  "stages": {
+   "rated": 11396,
+   "stalled": 3799,
+   "build": 595,
+   "timeout": 31
+  },
+  "run": "20261019-182035-twister@hills24"
+ },
+ {
+  "layout": "twister@trees24",
+  "seed": 21,
+  "evals": 3417,
+  "minutes": 3.8,
+  "goal": false,
+  "first_goal_min": null,
+  "first_goal_eval": null,
+  "best_goal": null,
+  "best_any": [
+   7.08,
+   7.02,
+   3.93
+  ],
+  "rated_share": 0.75,
+  "stages": {
+   "rated": 2563,
+   "stalled": 738,
+   "build": 99,
+   "timeout": 17
+  },
+  "run": "20261019-183538-twister@trees24"
  }
 ]
