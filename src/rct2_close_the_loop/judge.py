@@ -131,35 +131,35 @@ class JudgePool:
         self._jobs: queue.Queue = queue.Queue()
         self._threads = []
         self._judges: list[Judge] = []
-        lock = threading.Lock()
-        errors: list[Exception] = []
-
-        def start(i: int) -> None:
-            try:
-                j = Judge(layout)
-                with lock:
-                    self._judges.append(j)
-            except Exception as e:  # noqa: BLE001 - surfaced below
-                errors.append(e)
-
-        starters = [threading.Thread(target=start, args=(i,)) for i in range(workers)]
-        for t in starters:
-            t.start()
-        for t in starters:
-            t.join()
-        if errors:
-            self.close()
-            raise errors[0]
-        for j in self._judges:
-            t = threading.Thread(target=self._run, args=(j,), daemon=True)
+        self._lock = threading.Lock()
+        self._errors: list[Exception] = []
+        self._started = threading.Semaphore(0)
+        # Each worker thread launches and owns its game for the pool's lifetime:
+        # PR_SET_PDEATHSIG fires when the *thread* that spawned the game exits.
+        for _ in range(workers):
+            t = threading.Thread(target=self._run, daemon=True)
             t.start()
             self._threads.append(t)
+        for _ in range(workers):
+            self._started.acquire()
+        if self._errors:
+            self.close()
+            raise self._errors[0]
 
     @property
     def size(self) -> int:
         return len(self._judges)
 
-    def _run(self, judge: Judge) -> None:
+    def _run(self) -> None:
+        try:
+            judge = Judge(self.layout)
+            with self._lock:
+                self._judges.append(judge)
+        except Exception as e:  # noqa: BLE001 - surfaced in __init__
+            self._errors.append(e)
+            return
+        finally:
+            self._started.release()
         while True:
             job = self._jobs.get()
             if job is None:
