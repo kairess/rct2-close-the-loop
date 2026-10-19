@@ -193,6 +193,41 @@ function cmdInstalledRides(args, reply) {
     reply(true, out);
 }
 
+// Clearance of every element of each track piece, measured by placing the piece in the air:
+// args = {rideType, rideObject, types: [...], x, y, z} -> {type: [[dx, dy, baseDz, clearanceDz]]}.
+// (The plugin's track segment API gives element offsets but not their clearance heights.)
+function cmdMeasureClearance(args, reply) {
+    var out = {};
+    sequence(args.types.length, function (i, next) {
+        var t = args.types[i];
+        createRide(args, function (err, rideId) {
+            if (err) { out[t] = 'create: ' + err; return next(null); }
+            context.executeAction('trackplace', trackArgs(rideId, args.rideType, [t, args.x * 32, args.y * 32, args.z, 0, 0, 0]), function (res) {
+                if (res.error) {
+                    out[t] = errText(res);
+                } else {
+                    var els = [];
+                    for (var dx = -6; dx <= 6; dx++) {
+                        for (var dy = -6; dy <= 6; dy++) {
+                            var tile = map.getTile(args.x + dx, args.y + dy);
+                            for (var k = 0; k < tile.numElements; k++) {
+                                var e = tile.getElement(k);
+                                if (e.type === 'track' && e.ride === rideId) {
+                                    els.push([dx, dy, e.baseZ - args.z, e.clearanceZ - args.z]);
+                                }
+                            }
+                        }
+                    }
+                    out[t] = els;
+                }
+                demolish(rideId, function () { next(null); });
+            });
+        });
+    }, function () {
+        reply(true, out);
+    });
+}
+
 // Rating multipliers and train specs of every installed ride object (args.prefix filters identifiers).
 // Objects not already in the park are loaded only to read them, then unloaded again.
 function cmdRideObjects(args, reply) {
@@ -739,6 +774,7 @@ var COMMANDS = {
     load_object: cmdLoadObject,
     installed_rides: cmdInstalledRides,
     ride_objects: cmdRideObjects,
+    measure_clearance: cmdMeasureClearance,
     allowed: cmdAllowed,
     evaluate: cmdEvaluate,
     capture: cmdCapture,

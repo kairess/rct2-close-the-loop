@@ -74,22 +74,23 @@ class Env:
         return (info is not None and not info.edge and not info.water and not info.blocked
                 and (self.sandbox or info.owned))
 
-    def free_at(self, tile: tuple[int, int], z: int) -> bool:
-        """No other element occupies [z, z + TRACK_CLEARANCE) on the tile."""
+    def free_at(self, tile: tuple[int, int], z: int, clear: int = TRACK_CLEARANCE) -> bool:
+        """No other element occupies [z, z + clear) on the tile."""
         info = self.tiles[tile]
-        return all(not (z < b1 and b0 < z + TRACK_CLEARANCE) for b0, b1 in info.blocked)
+        return all(not (z < b1 and b0 < z + clear) for b0, b1 in info.blocked)
 
-    def classify(self, tile: tuple[int, int], z: int) -> str:
+    def classify(self, tile: tuple[int, int], z: int, clear: int = TRACK_CLEARANCE) -> str:
         """'above' (rests on or over the land), 'under' (fully below the surface),
         'cut' (intersects the land; possible only by lowering this tile), or 'no'."""
-        if not self.buildable(tile) or not self.free_at(tile, z) or z < MIN_TRACK_Z:
+        if not self.buildable(tile) or not self.free_at(tile, z, clear) or z < MIN_TRACK_Z:
             return "no"
         info = self.tiles[tile]
         if z >= info.floor:
             return "above"
         if info.water and z < info.water:
             return "no"  # the game refuses track under water
-        if z + TRACK_CLEARANCE <= info.base:
+        # Underground: the surface's base is at or above the element's clearance (ConstructionClearance.cpp).
+        if z + clear <= info.base:
             return "under" if self.tunnels else ("cut" if self.terraform and self.landscapable(tile) else "no")
         return "cut" if self.terraform and self.landscapable(tile) else "no"
 

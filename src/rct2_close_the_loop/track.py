@@ -92,6 +92,16 @@ EXCLUDED_TYPES = {
 
 
 @cache
+def ride_groups(ride_type_name: str) -> frozenset[int]:
+    """Track groups the ride type enables (without the cheat-only extra groups)."""
+    rtd = json.loads((DATA / "track_groups_rtd.json").read_text())
+    if ride_type_name in rtd:
+        return frozenset(rtd[ride_type_name])
+    tables = json.loads((DATA / "track_groups_from_bridge.json").read_text())
+    return frozenset(tables["groupsByRideType"][ride_type_name])
+
+
+@cache
 def piece_set(ride_type_name: str) -> frozenset[int]:
     """Buildable, orthogonal, parameter-free pieces for a ride type.
 
@@ -101,13 +111,8 @@ def piece_set(ride_type_name: str) -> frozenset[int]:
     pieces with no group of their own (covered/maze/vertical variants) and is
     never offered by the in-game builder, so it is excluded.
     """
-    rtd = json.loads((DATA / "track_groups_rtd.json").read_text())
-    if ride_type_name in rtd:
-        # Extracted from the C++ ride type descriptors by scripts/extract_track_groups.py.
-        groups = set(rtd[ride_type_name]) - {0}
-    else:
-        tables = json.loads((DATA / "track_groups_from_bridge.json").read_text())
-        groups = set(tables["groupsByRideType"][ride_type_name]) - {0}
+    # Extracted from the C++ ride type descriptors by scripts/extract_track_groups.py.
+    groups = set(ride_groups(ride_type_name)) - {0}
     out = set()
     for t, s in segments().items():
         if s.group not in groups or t in EXCLUDED_TYPES or t == STATION:
@@ -165,6 +170,24 @@ def piece_tiles(x: int, y: int, zb: int, d: int, t: int):
     for ex, ey, ez in segments()[t].elements:
         rx, ry = rot(ex, ey, d)
         yield (x + rx) // TILE, (y + ry) // TILE, zb + ez
+
+
+_CLEARANCE: dict | None = None
+
+
+def element_clearances(ride_type_name: str, t: int) -> list[int] | None:
+    """Clearance above its base z of each element of piece t, in segment element order
+    (measured in the game by scripts/measure_clearance.py), or None if not measured."""
+    global _CLEARANCE
+    if _CLEARANCE is None:
+        path = DATA / "track_clearance.json"
+        _CLEARANCE = json.loads(path.read_text()) if path.exists() else {}
+    measured = _CLEARANCE.get(ride_type_name, {}).get(str(t))
+    if not measured:
+        return None
+    by_pos = {(dx, dy, bz): cz - bz for dx, dy, bz, cz in measured}
+    out = [by_pos.get((ex // TILE, ey // TILE, ez)) for ex, ey, ez in segments()[t].elements]
+    return None if None in out else out
 
 
 @dataclass
@@ -279,28 +302,32 @@ def check_space_env(layout: Layout, placed: list[Placed]) -> tuple[list[str], di
     from .env import cut_units
 
     env = layout.env
-    occupied: dict[tuple[int, int], list[tuple[int, int]]] = {}
+    # Vertical extent [z0, z1) of every element on a tile; elements may touch but not overlap.
+    sep = layout.min_separation
+    occupied: dict[tuple[int, int], list[tuple[int, int, int]]] = {}
     for (ax, ay, _) in layout.access_tiles():
-        occupied[(ax, ay)] = [(layout.ground_z, -1)]
+        occupied[(ax, ay)] = [(layout.ground_z - sep + 1, layout.ground_z + sep, -1)]
     cuts: dict[tuple[int, int], int] = {}
     for i, p in enumerate(placed):
         s = segments()[p.type]
         span = max(abs(s.end_z - s.begin_z), 0) if len(s.elements) == 1 else 0
         tiles = list(piece_tiles(p.x, p.y, p.z, p.d, p.type))
+        clears = element_clearances(layout.ride_type_name, p.type) or [None] * len(tiles)
         kinds = []
-        for tx, ty, z in tiles:
+        for (tx, ty, z), clear in zip(tiles, clears):
             t = (tx, ty)
             if not layout.in_area(tx, ty):
                 return [f"piece {i} leaves area at tile {t}"], {}
-            kind = env.classify(t, z)
+            kind = env.classify(t, z) if clear is None else env.classify(t, z, clear)
             if kind == "no":
                 return [f"piece {i} cannot sit on tile {t} at z={z}"], {}
             if z + span - env.tiles[t].base > layout.max_height:
                 return [f"piece {i} too high (z={z})"], {}
-            for oz, oi in occupied.get(t, ()):
-                if oi != i and abs(oz - z) < layout.min_separation:
+            z1 = z + max(clear or 0, sep)
+            for oz0, oz1, oi in occupied.get(t, ()):
+                if oi != i and z < oz1 and oz0 < z1:
                     return [f"piece {i} overlaps piece {oi} at tile {t}"], {}
-            occupied.setdefault(t, []).append((z, i))
+            occupied.setdefault(t, []).append((z, z1, i))
             kinds.append(kind)
             if kind == "cut":
                 cuts[t] = min(cuts.get(t, 1 << 30), cut_units(z))

@@ -17,11 +17,13 @@ from collections import defaultdict
 from dataclasses import dataclass
 from functools import cache
 
-from .track import DATA, Layout, State, rot, segments, step, trace
+from .track import DATA, Layout, State, ride_groups, rot, segments, step, trace
 
 COMPLETION_DEPTH = 4
 MAX_PER_KEY = 48
 UP_SLOPES = {2, 4, 10}
+STEEP_UP = {4, 10}  # 60 and 90 degrees up
+LIFT_HILL_STEEP_GROUP = 4  # TrackGroup::liftHillSteep
 
 Piece = tuple[int, bool]
 
@@ -75,6 +77,9 @@ class EditGenerator:
         # that they only add intensity and nausea, so such candidates are not worth a test.
         self.max_inversions = max_inversions
         self.max_helix = max_helix
+        # A chain lift on a steep-up piece needs the ride's liftHillSteep group (TrackPlaceAction:
+        # "Too steep for lift hill"); Twister and Hyper-Twister lack it.
+        self.steep_lift = LIFT_HILL_STEEP_GROUP in ride_groups(layout.ride_type_name)
         self.by_entry: dict[tuple[int, int], list[int]] = defaultdict(list)
         for t in sorted(pieces):
             s = segments()[t]
@@ -120,13 +125,14 @@ class EditGenerator:
             out.append(state)
         return out
 
+    def can_lift(self, t: int) -> bool:
+        s = segments().get(t)
+        if s is None or not s.allows_lift or not (s.begin_slope in UP_SLOPES or s.end_slope in UP_SLOPES):
+            return False
+        return self.steep_lift or not (s.begin_slope in STEEP_UP or s.end_slope in STEEP_UP)
+
     def _lifts(self, run: list[int], chain: bool) -> list[Piece]:
-        out = []
-        for t in run:
-            s = segments()[t]
-            up = s.begin_slope in UP_SLOPES or s.end_slope in UP_SLOPES
-            out.append((t, chain and up and s.allows_lift))
-        return out
+        return [(t, chain and self.can_lift(t)) for t in run]
 
     def segment(self, track: list[Piece], tries: int = 200, laps: int = 1):
         max_window, max_walk = self.max_window, self.max_walk
@@ -180,8 +186,7 @@ class EditGenerator:
         runs = []
         start = None
         for k, (t, _) in enumerate(track + [(-1, False)]):
-            s = segments().get(t)
-            ok = s is not None and s.allows_lift and (s.begin_slope in UP_SLOPES or s.end_slope in UP_SLOPES)
+            ok = self.can_lift(t)
             if ok and start is None:
                 start = k
             elif not ok and start is not None:

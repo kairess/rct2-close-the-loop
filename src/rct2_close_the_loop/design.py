@@ -11,8 +11,10 @@ from __future__ import annotations
 
 import dataclasses
 import json
+import shutil
 from pathlib import Path
 
+from .game import RUNTIME, Game, wait_ready
 from .layouts import BASES
 from .search import SearchConfig, run
 from .site import bbox, find_start, scan_env
@@ -40,6 +42,7 @@ FIXED = {
     "n_cap": 5.0,
     "cars": None,  # None: the game's default train length
     "station_len": None,  # None: the ride's base layout
+    "lake": 0.0,  # share of the area dug into a lake before designing (landscape_lake)
 }
 
 # Phase 3: one coaster as exciting as possible (Extreme = 10.24). Intensity stays under the
@@ -61,6 +64,38 @@ def load_condition(path: Path) -> dict:
     park = Path(cond["park"])
     cond["park_path"] = park if park.is_absolute() else ROOT / park
     return cond
+
+
+def landscape_lake(cond: dict, fraction: float, log=print) -> Path:
+    """Dig a lake into the middle of the area: the owned, dry, unobstructed tiles nearest the area's
+    centroid, `fraction` of the area, lowered two land steps with water at the old ground level.
+
+    Track can then skim the water and the land at the same height: pieces over water score
+    WATER_OVER/TOUCH/LOW/HIGH proximity (up to 135 points, about +0.41 excitement) on top of the
+    ground-touch points (120) the land still gives. Returns the new park file."""
+    area = cond["area"]
+    x0, y0, x1, y1 = bbox(area)
+    env = scan_env(cond["park_path"], (x0, y0, x1, y1), sandbox=cond.get("sandbox", False), terraform=True, tunnels=False)
+    cx = sum(t[0] for t in area) / len(area)
+    cy = sum(t[1] for t in area) / len(area)
+    ok = [t for t in area if env.landscapable(t) and env.tiles[t].ground == env.tiles[t].base]
+    ok.sort(key=lambda t: (t[0] - cx) ** 2 + (t[1] - cy) ** 2)
+    lake = ok[: int(len(area) * fraction)]
+    heights = [[x, y, env.tiles[(x, y)].base // 8 - 4] for x, y in lake]
+    water = [[x, y, env.tiles[(x, y)].base // 8] for x, y in lake]
+    name = f"{cond['name']}_lake{int(fraction * 100)}"
+    with Game(park=cond["park_path"]) as g:
+        wait_ready(g)
+        g.call("setup", {"sandbox": cond.get("sandbox", False)})
+        r = g.call("terraform", {"tiles": heights, "water": water}, timeout=600)
+        if r["errors"]:
+            log(f"lake: {len(r['errors'])} tiles refused, e.g. {r['errors'][:3]}")
+        g.call("save", {"filename": name})
+    dest = ROOT / "data" / "extreme" / "parks" / f"{name}.park"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(RUNTIME / "save" / f"{name}.park", dest)
+    log(f"lake: {len(lake)} of {len(area)} tiles -> {dest.relative_to(ROOT)}")
+    return dest
 
 
 def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | None = None,
@@ -86,6 +121,8 @@ def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, l
            config: str = "fixed") -> Path:
     cfg_values = {**CONFIGS[config], **(overrides or {})}
     cond = load_condition(condition_path)
+    if cfg_values.get("lake"):
+        cond["park_path"] = landscape_lake(cond, cfg_values["lake"], log=log)
     layout, track, v0 = prepare(cond, cfg_values["ride"], log=log, decor=cfg_values.get("decor"),
                                 cars=cfg_values.get("cars"), station_len=cfg_values.get("station_len"))
     log(f"start: station {layout.station_tile} dir {layout.station_dir} z {layout.ground_z}, "
