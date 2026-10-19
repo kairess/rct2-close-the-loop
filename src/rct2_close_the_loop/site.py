@@ -113,11 +113,14 @@ def fly_height(env: Env, area: frozenset, tile: tuple[int, int], d: int, turn: i
 
 
 def rectangle_loops(layout: Layout, hill: int, turn: int, max_side: int = 40):
-    """Closed rectangles from the station, largest first; yields piece lists passing the pre-filter."""
+    """Closed rectangles from the station, largest first; yields piece lists passing the pre-filter.
+    Short sides without a straight (b = 0) come last, for areas too narrow for anything else."""
     L = layout.station_len
     n_hill = hill + 2 if hill else 0
     pairs = sorted(((a, b) for a in range(max(n_hill, 1), max_side) for b in range(1, max_side)),
                    key=lambda ab: -(ab[0] + ab[1]))
+    # Narrow areas (a strip 4 tiles wide): turn straight into the next turn on the short sides.
+    pairs += sorted(((a, 0) for a in range(max(n_hill, 1), max_side)), key=lambda ab: -ab[0])
     for a, b in pairs:
         c = a + L
         side_a = (_hill(True, hill) if hill else []) + [(FLAT, False)] * (a - n_hill)
