@@ -9,6 +9,7 @@ from concurrent.futures import Future
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from . import decor
 from .game import Game, GameError, wait_ready
 from .track import Layout, pieces_payload, trace
 
@@ -31,6 +32,7 @@ class Verdict:
     wall: float = 0.0
     build_index: int | None = None
     speed_before: int | None = None
+    decor: int = 0  # trees planted for the rating (removed again unless kept)
 
     @property
     def rated(self) -> bool:
@@ -48,6 +50,7 @@ class Verdict:
             "wall": round(self.wall, 3),
             "build_index": self.build_index,
             "speed_before": self.speed_before,
+            "decor": self.decor,
         }
 
 
@@ -113,12 +116,14 @@ class Judge:
             args["sceneryRect"] = list(self.layout.area)
         if tr.cuts:
             args["cuts"] = [[x, y, units] for (x, y), units in sorted(tr.cuts.items())]
+        if self.layout.decor and self.layout.env is not None:
+            args["decor"] = {"identifier": self.layout.decor, "tiles": decor.plan(self.layout, tr.placed, tr.cuts)}
         try:
             r = self.game.call("evaluate", args, timeout=EVALUATE_TIMEOUT)
         except (GameError, OSError) as e:
             return Verdict("error", error=str(e), wall=time.perf_counter() - t0)
         v = Verdict(r["stage"], error=r.get("error"), ticks=r.get("ticks", 0), wall=time.perf_counter() - t0,
-                    speed_before=r.get("speedBefore"))
+                    speed_before=r.get("speedBefore"), decor=r.get("decor", 0))
         if r.get("sceneryLost"):
             return Verdict("scenery", error=f"build removed {r['sceneryLost']} scenery items", wall=v.wall)
         if "index" in r:

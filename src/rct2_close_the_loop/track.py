@@ -188,6 +188,7 @@ class Layout:
     obstacles: dict | None = None  # {(tile_x, tile_y): top z} of trees; track must pass above
     env: object | None = None  # env.Env read from the game; when set it replaces ground_map/obstacles
     area_tiles: frozenset | None = None  # arbitrary-shape area; None = the `area` rectangle
+    decor: str | None = None  # small scenery object planted around the track before rating (decor.py)
 
     def to_record(self) -> dict:
         """JSON-safe description for run configs (terrain maps keyed "x,y")."""

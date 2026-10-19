@@ -341,12 +341,16 @@ function evaluate(args, reply) {
 function evaluateOnLand(args, t0, timing, reply) {
     createRide(args, function (err, rideId) {
         if (err) return reply({ stage: 'create', error: err });
+        var planted = [];
         var finish = function (result) {
             result.ride = rideId;
             result.timing = timing;
+            result.decor = planted.length;
             if (args.keep) return reply(result);
-            demolish(rideId, function () {
-                reply(result);
+            removeDecor(args.decor, planted, function () {
+                demolish(rideId, function () {
+                    reply(result);
+                });
             });
         };
         sequence(args.pieces.length, function (i, next) {
@@ -370,11 +374,53 @@ function evaluateOnLand(args, t0, timing, reply) {
                     if (err) return finish({ stage: 'cars', error: err });
                     setCircuits(rideId, args.circuits, function (err) {
                         if (err) return finish({ stage: 'circuits', error: err });
-                        startTest(rideId, args, timing, t0, finish);
+                        plantDecor(args.decor, planted, function () {
+                            startTest(rideId, args, timing, t0, finish);
+                        });
                     });
                 });
             });
         });
+    });
+}
+
+// Theme the ride before it is rated: a tree on each planned tile the game accepts
+// (args.decor = {identifier, tiles: [[tileX, tileY]]}). Scenery around the station
+// and beside the track adds excitement only. `planted` collects [x, y, z] to undo.
+var decorObjects = {};
+
+function plantDecor(decor, planted, cb) {
+    if (!decor || !decor.tiles || !decor.tiles.length) return cb();
+    var index = decorObjects[decor.identifier];
+    if (index === undefined) {
+        var obj = objectManager.load(decor.identifier);
+        index = decorObjects[decor.identifier] = obj ? obj.index : null;
+    }
+    if (index === null) return cb();
+    sequence(decor.tiles.length, function (i, next) {
+        var p = decor.tiles[i];
+        context.executeAction('smallsceneryplace', {
+            x: p[0] * 32, y: p[1] * 32, z: 0, direction: 0, object: index, quadrant: 0,
+            primaryColour: 0, secondaryColour: 0, tertiaryColour: 0
+        }, function (res) {
+            if (!res.error) planted.push([p[0] * 32, p[1] * 32, res.position ? res.position.z : surfaceZ(p[0], p[1])]);
+            next(null);
+        });
+    }, function () {
+        cb();
+    });
+}
+
+function removeDecor(decor, planted, cb) {
+    if (!planted.length) return cb();
+    var index = decorObjects[decor.identifier];
+    sequence(planted.length, function (i, next) {
+        var p = planted[i];
+        context.executeAction('smallsceneryremove', { x: p[0], y: p[1], z: p[2], object: index, quadrant: 0 }, function () {
+            next(null);
+        });
+    }, function () {
+        cb();
     });
 }
 

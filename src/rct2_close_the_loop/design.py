@@ -9,6 +9,7 @@ at which condition it is running.
 
 from __future__ import annotations
 
+import dataclasses
 import json
 from pathlib import Path
 
@@ -32,6 +33,7 @@ FIXED = {
     "i_price_start": 0.0,
     "i_price_end": 0.0,
     "circuits": "1",
+    "decor": "rct2.scenery_small.tco",  # trees around the station and beside the track (decor.py)
     "batch": 28,
     "workers": 14,
 }
@@ -45,7 +47,7 @@ def load_condition(path: Path) -> dict:
     return cond
 
 
-def prepare(cond: dict, ride: str, log=print, judge_factory=None):
+def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | None = None):
     """Scan the land and find a starting loop. Returns (layout, track, verdict)."""
     area = cond["area"]
     x0, y0, x1, y1 = bbox(area)
@@ -53,7 +55,7 @@ def prepare(cond: dict, ride: str, log=print, judge_factory=None):
     env = scan_env(cond["park_path"], (x0 - 6, y0 - 6, x1 + 6, y1 + 6), sandbox=cond.get("sandbox", False),
                    terraform=cond.get("terraform", True), tunnels=cond.get("tunnels", False))
     log(f"land: {env.summary(area)}")
-    base = BASES[ride]
+    base = dataclasses.replace(BASES[ride], decor=decor)
     if judge_factory is None:
         from .judge import Judge
 
@@ -64,7 +66,7 @@ def prepare(cond: dict, ride: str, log=print, judge_factory=None):
 def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, log=print) -> Path:
     cfg_values = {**FIXED, **(overrides or {})}
     cond = load_condition(condition_path)
-    layout, track, v0 = prepare(cond, cfg_values["ride"], log=log)
+    layout, track, v0 = prepare(cond, cfg_values["ride"], log=log, decor=cfg_values.get("decor"))
     log(f"start: station {layout.station_tile} dir {layout.station_dir} z {layout.ground_z}, "
         f"{len(track)} pieces, E{v0.excitement}/I{v0.intensity}/N{v0.nausea}")
     cfg = SearchConfig(
