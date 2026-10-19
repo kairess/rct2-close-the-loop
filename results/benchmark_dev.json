@@ -1,7 +1,7 @@
 {
  "split": "dev",
  "success": 4,
- "n": 4,
+ "n": 6,
  "rows": [
   {
    "condition": "real_africaoasis",
@@ -90,6 +90,56 @@
    ],
    "best_goal_eval": 12177,
    "run": "20261019-220703-twister@real_luckylake"
+  },
+  {
+   "condition": "syn100",
+   "kind": "synthetic",
+   "params": {
+    "size": 16,
+    "shape": "L",
+    "relief": 6,
+    "water": 0.0,
+    "trees": 0.2,
+    "unowned": 0.1
+   },
+   "tiles": 192,
+   "seed": 1,
+   "evals": 22821,
+   "goal": false,
+   "first_goal_min": null,
+   "best_goal": null,
+   "best_feasible": [
+    7.53,
+    7.0,
+    4.49
+   ],
+   "best_goal_eval": null,
+   "run": "20261019-222207-twister@syn100"
+  },
+  {
+   "condition": "syn101",
+   "kind": "synthetic",
+   "params": {
+    "size": 28,
+    "shape": "rect",
+    "relief": 8,
+    "water": 0.1,
+    "trees": 0.2,
+    "unowned": 0.0
+   },
+   "tiles": 784,
+   "seed": 1,
+   "evals": 3725,
+   "goal": false,
+   "first_goal_min": null,
+   "best_goal": null,
+   "best_feasible": [
+    7.47,
+    7.08,
+    4.52
+   ],
+   "best_goal_eval": null,
+   "run": "20261019-211650-twister@syn101"
   }
  ]
 }

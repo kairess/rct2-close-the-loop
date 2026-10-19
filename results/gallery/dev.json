@@ -118,5 +118,29 @@
    "I": 7.54,
    "N": 4.88
   }
+ },
+ "dev_syn100": {
+  "condition": "syn100",
+  "kind": "synthetic",
+  "run": "20261019-222207-twister@syn100",
+  "eval": 19164,
+  "park": "dev_syn100.park",
+  "screenshots": [
+   "dev_syn100_r0.png",
+   "dev_syn100_r1.png",
+   "dev_syn100_r2.png",
+   "dev_syn100_r3.png"
+  ],
+  "verdict": {
+   "E": 7.53,
+   "I": 7.0,
+   "N": 4.49,
+   "decor": 38
+  },
+  "without_trees": {
+   "E": 7.4,
+   "I": 7.0,
+   "N": 4.49
+  }
  }
 }
