@@ -212,6 +212,7 @@ class Layout:
     env: object | None = None  # env.Env read from the game; when set it replaces ground_map/obstacles
     area_tiles: frozenset | None = None  # arbitrary-shape area; None = the `area` rectangle
     decor: str | None = None  # small scenery object planted around the track before rating (decor.py)
+    paths: bool = False  # route the ride's exit path and queue line past the track before rating (paths.py)
 
     def to_record(self) -> dict:
         """JSON-safe description for run configs (terrain maps keyed "x,y")."""

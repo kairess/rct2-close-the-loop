@@ -410,14 +410,20 @@ function evaluateOnLand(args, t0, timing, reply) {
     createRide(args, function (err, rideId) {
         if (err) return reply({ stage: 'create', error: err });
         var planted = [];
+        var paved = [];
+        var pathErrors = [];
         var finish = function (result) {
             result.ride = rideId;
             result.timing = timing;
             result.decor = planted.length;
+            result.paths = paved.length;
+            if (pathErrors.length) result.pathErrors = pathErrors.slice(0, 5);
             if (args.keep) return reply(result);
             removeDecor(args.decor, planted, function () {
-                demolish(rideId, function () {
-                    reply(result);
+                removePaths(paved, function () {
+                    demolish(rideId, function () {
+                        reply(result);
+                    });
                 });
             });
         };
@@ -442,8 +448,11 @@ function evaluateOnLand(args, t0, timing, reply) {
                     if (err) return finish({ stage: 'cars', error: err });
                     setCircuits(rideId, args.circuits, function (err) {
                         if (err) return finish({ stage: 'circuits', error: err });
-                        plantDecor(args.decor, planted, function () {
-                            startTest(rideId, args, timing, t0, finish);
+                        placePaths(args.paths, paved, function (errs) {
+                            pathErrors = errs;
+                            plantDecor(args.decor, planted, function () {
+                                startTest(rideId, args, timing, t0, finish);
+                            });
                         });
                     });
                 });
@@ -474,6 +483,54 @@ function plantDecor(decor, planted, cb) {
             if (!res.error) planted.push([p[0] * 32, p[1] * 32, res.position ? res.position.z : surfaceZ(p[0], p[1])]);
             next(null);
         });
+    }, function () {
+        cb();
+    });
+}
+
+// Footpaths the planner routed past the track (args.paths = {tiles: [[tileX, tileY, z, slopeDir, queue]]},
+// slopeDir -1 for flat). Real queue and exit paths that touch the track earn proximity points.
+// `placed` collects [x, y, z] to undo.
+function pathObjects() {
+    var surfaces = objectManager.getAllObjects('footpath_surface');
+    var railings = objectManager.getAllObjects('footpath_railings');
+    var normal = null, queue = null;
+    for (var i = 0; i < surfaces.length; i++) {
+        if (surfaces[i].flags & 8) { if (queue === null) queue = surfaces[i].index; }
+        else if (normal === null) normal = surfaces[i].index;
+    }
+    if (normal === null) { var o = objectManager.load('rct2.footpath_surface.tarmac'); if (o) normal = o.index; }
+    if (queue === null) { var q = objectManager.load('rct2.footpath_surface.queue_blue'); if (q) queue = q.index; }
+    var rail = railings.length ? railings[0].index : null;
+    if (rail === null) { var r = objectManager.load('rct2.footpath_railings.wood'); if (r) rail = r.index; }
+    return { normal: normal, queue: queue, railings: rail };
+}
+
+function placePaths(paths, placed, cb) {
+    if (!paths || !paths.tiles || !paths.tiles.length) return cb([]);
+    var objs = pathObjects();
+    var errors = [];
+    sequence(paths.tiles.length, function (i, next) {
+        var t = paths.tiles[i];
+        var sloped = t[3] >= 0;
+        context.executeAction('footpathplace', {
+            x: t[0] * 32, y: t[1] * 32, z: t[2], direction: 255,
+            object: t[4] ? objs.queue : objs.normal, railingsObject: objs.railings,
+            slopeType: sloped ? 1 : 0, slopeDirection: sloped ? t[3] : 0, constructFlags: t[4] ? 1 : 0
+        }, function (res) {
+            if (res.error) errors.push(t + ': ' + errText(res));
+            else placed.push([t[0] * 32, t[1] * 32, t[2]]);
+            next(null);
+        });
+    }, function () {
+        cb(errors);
+    });
+}
+
+function removePaths(placed, cb) {
+    sequence(placed.length, function (i, next) {
+        var p = placed[i];
+        context.executeAction('footpathremove', { x: p[0], y: p[1], z: p[2] }, function () { next(null); });
     }, function () {
         cb();
     });

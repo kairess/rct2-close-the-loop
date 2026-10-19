@@ -45,6 +45,7 @@ FIXED = {
     "lake": 0.0,  # share of the area dug into a lake before designing (landscape)
     "mounds": 0,  # 3x3 hills raised before designing, for tunnels (landscape)
     "tunnels": False,  # allow track fully below the surface
+    "paths": False,  # route the exit path and queue line past the track in every evaluation (paths.py)
 }
 
 # Phase 3: one coaster as exciting as possible (Extreme = 10.24). Intensity stays under the
@@ -120,7 +121,7 @@ def landscape(cond: dict, lake: float = 0.0, mounds: int = 0, log=print) -> Path
 
 
 def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | None = None,
-            cars: int | None = None, station_len: int | None = None):
+            cars: int | None = None, station_len: int | None = None, paths: bool = False):
     """Scan the land and find a starting loop. Returns (layout, track, verdict)."""
     area = cond["area"]
     x0, y0, x1, y1 = bbox(area)
@@ -128,7 +129,7 @@ def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | N
     env = scan_env(cond["park_path"], (x0 - 6, y0 - 6, x1 + 6, y1 + 6), sandbox=cond.get("sandbox", False),
                    terraform=cond.get("terraform", True), tunnels=cond.get("tunnels", False))
     log(f"land: {env.summary(area)}")
-    base = dataclasses.replace(BASES[ride], decor=decor, cars=cars)
+    base = dataclasses.replace(BASES[ride], decor=decor, cars=cars, paths=paths)
     if station_len:
         base = dataclasses.replace(base, station_len=station_len)
     if judge_factory is None:
@@ -147,7 +148,8 @@ def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, l
     if cfg_values.get("tunnels"):
         cond["tunnels"] = True
     layout, track, v0 = prepare(cond, cfg_values["ride"], log=log, decor=cfg_values.get("decor"),
-                                cars=cfg_values.get("cars"), station_len=cfg_values.get("station_len"))
+                                cars=cfg_values.get("cars"), station_len=cfg_values.get("station_len"),
+                                paths=cfg_values.get("paths", False))
     log(f"start: station {layout.station_tile} dir {layout.station_dir} z {layout.ground_z}, "
         f"{len(track)} pieces, E{v0.excitement}/I{v0.intensity}/N{v0.nausea}")
     cfg = SearchConfig(
@@ -161,7 +163,8 @@ def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, l
     )
     run_dir = run(cfg, layout, initial=track, log_print=log)
     meta = {"condition": str(condition_path), "condition_name": cond["name"], "kind": cond.get("kind"),
-            "config": cfg_values, "seed": seed, "station": [*layout.station_tile, layout.station_dir, layout.ground_z]}
+            "config": cfg_values, "seed": seed, "station": [*layout.station_tile, layout.station_dir, layout.ground_z],
+            "park": str(cond["park_path"]), "tunnels": bool(cond.get("tunnels"))}
     (run_dir / "design.json").write_text(json.dumps(meta, indent=1))
     return run_dir
 
@@ -171,12 +174,18 @@ def layout_from_run(run_dir: Path):
     """Rebuild the layout a design run used (land re-scanned from its park). Returns (layout, meta)."""
     meta = json.loads((Path(run_dir) / "design.json").read_text())
     cond = load_condition(ROOT / meta["condition"] if not Path(meta["condition"]).is_absolute() else meta["condition"])
+    if meta.get("park"):  # the landscaped park the run designed on
+        cond["park_path"] = Path(meta["park"])
+    cond["tunnels"] = meta.get("tunnels", cond.get("tunnels", False))
     area = cond["area"]
     x0, y0, x1, y1 = bbox(area)
     env = scan_env(cond["park_path"], (x0 - 6, y0 - 6, x1 + 6, y1 + 6), sandbox=cond.get("sandbox", False),
                    terraform=cond.get("terraform", True), tunnels=cond.get("tunnels", False))
     sx, sy, sd, sz = meta["station"]
-    layout = dataclasses.replace(BASES[meta["config"]["ride"]], station_tile=(sx, sy), station_dir=sd, ground_z=sz,
+    cfg = meta["config"]
+    layout = dataclasses.replace(BASES[cfg["ride"]], station_tile=(sx, sy), station_dir=sd, ground_z=sz,
                                  env=env, area_tiles=area, area=bbox(area), park=str(cond["park_path"]),
-                                 decor=meta["config"].get("decor"))
+                                 decor=cfg.get("decor"), cars=cfg.get("cars"), paths=cfg.get("paths", False))
+    if cfg.get("station_len"):
+        layout = dataclasses.replace(layout, station_len=cfg["station_len"])
     return layout, meta
