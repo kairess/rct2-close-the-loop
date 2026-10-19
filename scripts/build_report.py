@@ -26,6 +26,8 @@ def main() -> None:
     ap.add_argument("--anim-caption", default="")
     ap.add_argument("--posthoc", type=Path, help="summary of re-runs made after a fix found on this split")
     ap.add_argument("--posthoc-note", default="")
+    ap.add_argument("--extra-split", help="a second held-out split measured with code changed after the first")
+    ap.add_argument("--extra-note", default="")
     args = ap.parse_args()
 
     out = args.out_dir
@@ -66,6 +68,26 @@ def main() -> None:
                 entry["gallery"] = {"img": f"img/{key}", "verdict": g["verdict"], "without_trees": g["without_trees"]}
             posthoc[r["condition"]] = entry
 
+    extra = None
+    if args.extra_split:
+        xb = json.loads((RESULTS / f"benchmark_{args.extra_split}.json").read_text())
+        xg = json.loads((RESULTS / "gallery" / f"{args.extra_split}.json").read_text())
+        for r in xb["rows"]:
+            name = r["condition"]
+            c = json.loads((ROOT / "data" / "bench" / args.extra_split / f"{name}.json").read_text())
+            c["tiles"] = len(c.pop("area_tiles"))
+            c.pop("park", None)
+            conds[name] = c
+            key = f"{args.extra_split}_{name}"
+            g = xg.get(key)
+            if g:
+                for k in range(4):
+                    shutil.copyfile(RESULTS / "gallery" / key / f"thumb_r{k}.jpg", img / f"{key}_r{k}.jpg")
+                gallery[name] = {"img": f"img/{key}", "verdict": g["verdict"], "without_trees": g["without_trees"]}
+                if g["verdict"].get("E") is not None:
+                    r["best_goal" if r["goal"] else "best_feasible"] = [g["verdict"][k] for k in ("E", "I", "N")]
+        extra = {"bench": xb, "note": args.extra_note}
+
     anim = None
     if args.anim:
         shutil.copyfile(args.anim, img / "evolution.webp")
@@ -96,6 +118,7 @@ def main() -> None:
         "conds": conds,
         "gallery": gallery,
         "posthoc": posthoc,
+        "extra": extra,
         "anim": anim,
         "lead": (f"공원 파일과 영역만 주면 땅을 읽고, 역을 놓고, 게임이 매긴 레이팅만 보고 코스터를 설계한다. "
                  + (f"개발에 쓰지 않은 {n}개 조건" if args.split == "heldout" else f"설정을 고를 때 쓴 개발 조건 {n}개")

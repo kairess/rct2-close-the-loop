@@ -127,6 +127,14 @@ li strong { color: var(--ink); }
     <div class="cards" id="cards"></div>
   </section>
 
+  <section id="extra-section" hidden>
+    <div class="narrow" style="display:flex;flex-direction:column;gap:12px">
+      <h2 id="extra-title"></h2>
+      <p id="extra-intro"></p>
+    </div>
+    <div class="cards" id="extra-cards"></div>
+  </section>
+
   <section class="narrow" id="anim-section">
     <h2>타원에서 코스터까지</h2>
     <figure class="shot">
@@ -226,13 +234,6 @@ function render() {
 
   const order = [...rows].sort((a, z) => (a.kind === z.kind ? a.condition.localeCompare(z.condition) : a.kind === 'real' ? -1 : 1));
   document.getElementById('cards').innerHTML = order.map(r => card(r)).join('');
-  document.querySelectorAll('.card .pic button').forEach(btn => btn.addEventListener('click', () => {
-    const img = btn.parentElement.querySelector('img');
-    const k = (Number(img.dataset.rot) + 1) % 4;
-    img.dataset.rot = k;
-    img.src = img.dataset.base + `_r${k}.jpg`;
-    btn.textContent = `방향 ${k + 1}/4`;
-  }));
   const rowHtml = (r, label) => {
     const c = DATA.conds[r.condition];
     const best = r.best_goal || r.best_feasible;
@@ -242,10 +243,29 @@ function render() {
       <td class="num">${r.goal ? r.first_goal_min.toFixed(1) + '분' : '–'}</td>
       <td class="num">${best ? best.map(f2).join(' / ') : '–'}</td><td class="num">${r.evals.toLocaleString('ko-KR')}</td></tr>`;
   };
+  if (DATA.extra) {
+    const xb = DATA.extra.bench;
+    document.getElementById('extra-section').hidden = false;
+    document.getElementById('extra-title').textContent = `새 보류 조건 ${xb.n}곳: ${xb.success}/${xb.n}`;
+    document.getElementById('extra-intro').innerHTML = DATA.extra.note;
+    const xorder = [...xb.rows].sort((a, z) => (a.kind === z.kind ? a.condition.localeCompare(z.condition) : a.kind === 'real' ? -1 : 1));
+    document.getElementById('extra-cards').innerHTML = xorder.map(r => card(r)).join('');
+  }
   document.getElementById('rows').innerHTML = order.map(r => {
     const ph = (DATA.posthoc || {})[r.condition];
     return rowHtml(r) + (ph ? rowHtml(ph.row, `↳ 사후 재실행(공식 집계 제외)`) : '');
   }).join('');
+  bindRotation();
+}
+
+function bindRotation() {
+  document.querySelectorAll('.card .pic button').forEach(btn => btn.addEventListener('click', () => {
+    const img = btn.parentElement.querySelector('img');
+    const k = (Number(img.dataset.rot) + 1) % 4;
+    img.dataset.rot = k;
+    img.src = img.dataset.base + `_r${k}.jpg`;
+    btn.textContent = `방향 ${k + 1}/4`;
+  }));
 }
 
 function card(r) {
