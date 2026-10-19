@@ -23,12 +23,14 @@ def main() -> None:
     m = sub.add_parser("mapelites", help="MAP-Elites over intensity x nausea, fitness = excitement")
     m.add_argument("--layout", default="wooden_24")
     m.add_argument("--workers", type=int, default=14)
-    m.add_argument("--batch", type=int, default=28)
+    m.add_argument("--inflight", type=int, default=28)
     m.add_argument("--evals", type=int, default=30000)
     m.add_argument("--minutes", type=float, default=60)
     m.add_argument("--hill", type=int, default=6)
     m.add_argument("--seed", type=int, default=1)
     m.add_argument("--goal-bias", type=float, default=0.5)
+    m.add_argument("--max-window", type=int, default=12)
+    m.add_argument("--max-walk", type=int, default=8)
     m.add_argument("--init", type=Path, nargs="*", help="JSON files with a 'track' (best.json) or archive.json")
     m.add_argument("--stop-on-goal", action="store_true")
 
@@ -76,9 +78,9 @@ def main() -> None:
         from .mapelites import MapElitesConfig, run as run_me
 
         cfg = MapElitesConfig(
-            layout_name=args.layout, workers=args.workers, batch=args.batch, max_evals=args.evals,
+            layout_name=args.layout, workers=args.workers, inflight=args.inflight, max_evals=args.evals,
             max_minutes=args.minutes, hill=args.hill, seed=args.seed, goal_bias=args.goal_bias,
-            stop_on_goal=args.stop_on_goal,
+            max_window=args.max_window, max_walk=args.max_walk, stop_on_goal=args.stop_on_goal,
         )
         seeds = []
         for f in args.init or []:

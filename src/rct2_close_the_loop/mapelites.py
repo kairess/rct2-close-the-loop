@@ -1,10 +1,12 @@
 """MAP-Elites over (intensity, nausea) with excitement as fitness.
 
 The archive keeps, for every intensity x nausea cell, the most exciting track
-found so far. Each round picks parents from the archive (biased toward cells
-inside the goal's intensity/nausea limits), applies one circuit-preserving
-edit to each, and lets the game rate the children in parallel. Low-intensity
-designs stay in the archive as stepping stones instead of being annealed away.
+found so far. Parents come from the archive (biased toward cells inside the
+goal's intensity/nausea limits), each gets one circuit-preserving edit, and
+the game rates the children. Evaluation is steady-state: whenever one result
+comes back it is filed and a new child is submitted, so no worker waits for
+the slowest member of a batch. Low-intensity designs stay in the archive as
+stepping stones instead of being annealed away.
 Logging matches search.py: one row per evaluation in evals.jsonl.
 """
 
@@ -13,6 +15,7 @@ from __future__ import annotations
 import json
 import random
 import time
+from concurrent.futures import FIRST_COMPLETED, wait
 from dataclasses import dataclass
 
 from .edits import EditGenerator
@@ -31,12 +34,15 @@ GOAL_N = 5.12
 class MapElitesConfig:
     layout_name: str
     workers: int = 14
-    batch: int = 28
+    inflight: int = 28
     max_evals: int = 30000
     max_minutes: float = 60.0
     hill: int = 6
     seed: int = 1
     goal_bias: float = 0.5  # share of parents drawn from cells that satisfy the I/N limits
+    max_window: int = 12
+    max_walk: int = 8
+    progress_every: int = 200
     stop_on_goal: bool = False
 
 
@@ -51,7 +57,7 @@ def in_goal_box(cell: tuple[int, int]) -> bool:
 def run(cfg: MapElitesConfig, layout: Layout, initial: list[list[tuple[int, bool]]] | None = None, log_print=print):
     rng = random.Random(cfg.seed)
     pieces = piece_set(layout.ride_type_name)
-    gen = EditGenerator(layout, pieces, seed=cfg.seed)
+    gen = EditGenerator(layout, pieces, seed=cfg.seed, max_window=cfg.max_window, max_walk=cfg.max_walk)
     seeds = initial or [oval(layout, hill=cfg.hill)]
 
     log = RunLog(f"{cfg.layout_name}-me", {"mapelites": cfg.__dict__, "layout": layout.__dict__, "git": git_rev(), "pieces": sorted(pieces)})
@@ -60,6 +66,11 @@ def run(cfg: MapElitesConfig, layout: Layout, initial: list[list[tuple[int, bool
     started = time.monotonic()
     archive: dict[tuple[int, int], dict] = {}
     best: dict | None = None
+    stages: dict[str, int] = {}
+    improved = 0
+
+    def minutes() -> float:
+        return (time.monotonic() - started) / 60
 
     def consider(track, v: Verdict, eid: int) -> bool:
         nonlocal best
@@ -67,14 +78,32 @@ def run(cfg: MapElitesConfig, layout: Layout, initial: list[list[tuple[int, bool
             return False
         c = cell_of(v)
         old = archive.get(c)
-        improved = old is None or v.excitement > old["v"].excitement
-        if improved:
+        better = old is None or v.excitement > old["v"].excitement
+        if better:
             archive[c] = {"track": track, "v": v, "eval": eid}
         if in_goal_box(c) and (best is None or v.excitement > best["v"].excitement):
             best = {"track": track, "v": v, "eval": eid}
             log.best({"eval": eid, "score": v.excitement, "verdict": v.to_dict(), "track": track})
-            log_print(f"[e{log.n}] new best in goal box {summarize(v)} pieces={len(track)} goal={'YES' if meets_goal(v) else 'no'}")
-        return improved
+            log_print(f"[e{log.n} {minutes():.1f}m] new best in goal box {summarize(v)} pieces={len(track)} "
+                      f"goal={'YES' if meets_goal(v) else 'no'}")
+        return better
+
+    def pick_parent() -> dict:
+        cells = list(archive)
+        goal_cells = [c for c in cells if in_goal_box(c)]
+        pool_cells = goal_cells if goal_cells and rng.random() < cfg.goal_bias else cells
+        return archive[rng.choice(pool_cells)]
+
+    inflight: dict = {}
+
+    def submit_one() -> None:
+        for _ in range(20):
+            parent = pick_parent()
+            prop = gen.propose(parent["track"])
+            if prop:
+                child, edit = prop
+                inflight[pool.submit(child)] = (parent, child, edit)
+                return
 
     try:
         for track, v in zip(seeds, pool.map(seeds)):
@@ -83,43 +112,39 @@ def run(cfg: MapElitesConfig, layout: Layout, initial: list[list[tuple[int, bool
         if not archive:
             raise RuntimeError("no seed track was rated")
 
-        rnd = 0
-        while log.n < cfg.max_evals and (time.monotonic() - started) / 60 < cfg.max_minutes:
-            rnd += 1
-            cells = list(archive)
-            goal_cells = [c for c in cells if in_goal_box(c)]
-            parents = []
-            for _ in range(cfg.batch):
-                pool_cells = goal_cells if goal_cells and rng.random() < cfg.goal_bias else cells
-                parents.append(archive[rng.choice(pool_cells)])
-            children = []
-            for p in parents:
-                prop = gen.propose(p["track"])
-                if prop:
-                    children.append((p, *prop))
-            verdicts = pool.map([c for _, c, _ in children])
-            added = 0
-            stages: dict[str, int] = {}
-            for (parent, child, edit), v in zip(children, verdicts):
+        for _ in range(cfg.inflight):
+            submit_one()
+        next_progress = log.n + cfg.progress_every
+        while inflight:
+            done, _ = wait(list(inflight), return_when=FIRST_COMPLETED)
+            for fut in done:
+                parent, child, edit = inflight.pop(fut)
+                v = fut.result()
                 stages[v.stage] = stages.get(v.stage, 0) + 1
                 eid = log.eval({
                     "before": parent["eval"], "edit": edit.to_dict(), "track": child,
-                    "verdict": v.to_dict(), "score": v.excitement if v.rated else None, "round": rnd,
+                    "verdict": v.to_dict(), "score": v.excitement if v.rated else None, "round": None,
                 })
-                added += consider(child, v, eid)
-            log.progress({
-                "round": rnd, "evals": log.n, "minutes": round((time.monotonic() - started) / 60, 2),
-                "cells": len(archive), "goal_cells": len(goal_cells), "improved": added, "stages": stages,
-                "best": summarize(best["v"]) if best else None,
-                "max_E_any": round(max(a["v"].excitement for a in archive.values()), 2),
-            })
-            if rnd % 25 == 0:
-                top = sorted(archive.items(), key=lambda kv: -kv[1]["v"].excitement)[:3]
-                log_print(f"[r{rnd} e{log.n} {(time.monotonic()-started)/60:.1f}m] cells={len(archive)} goal_cells={len(goal_cells)} "
-                          f"best={summarize(best['v']) if best else None} top_any={[summarize(a['v']) for _, a in top]}")
-            if cfg.stop_on_goal and best and meets_goal(best["v"]):
-                log_print("goal met; stopping")
-                break
+                improved += consider(child, v, eid)
+                stop = (log.n >= cfg.max_evals or minutes() >= cfg.max_minutes
+                        or (cfg.stop_on_goal and best is not None and meets_goal(best["v"])))
+                if not stop:
+                    submit_one()
+            if log.n >= next_progress:
+                next_progress += cfg.progress_every
+                goal_cells = sum(1 for c in archive if in_goal_box(c))
+                top = sorted(archive.values(), key=lambda a: -a["v"].excitement)[:3]
+                rec = {
+                    "evals": log.n, "minutes": round(minutes(), 2), "cells": len(archive), "goal_cells": goal_cells,
+                    "improved": improved, "stages": dict(stages), "best": summarize(best["v"]) if best else None,
+                    "top_any": [summarize(a["v"]) for a in top],
+                }
+                log.progress(rec)
+                if log.n % (cfg.progress_every * 10) < cfg.progress_every:
+                    log_print(f"[e{log.n} {minutes():.1f}m] cells={len(archive)} goal_cells={goal_cells} "
+                              f"best={rec['best']} top_any={rec['top_any']} stages={dict(stages)}")
+                stages.clear()
+                improved = 0
     finally:
         pool.close()
         snapshot = [

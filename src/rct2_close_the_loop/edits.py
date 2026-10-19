@@ -17,7 +17,7 @@ from dataclasses import dataclass
 
 from .track import Layout, State, rot, segments, step, trace
 
-COMPLETION_DEPTH = 3
+COMPLETION_DEPTH = 4
 MAX_PER_KEY = 48
 UP_SLOPES = {2, 4, 10}
 
@@ -49,9 +49,12 @@ def relative(a: State, b: State) -> tuple[int, int, int, int, int, int]:
 
 
 class EditGenerator:
-    def __init__(self, layout: Layout, pieces: frozenset[int], seed: int | None = None):
+    def __init__(self, layout: Layout, pieces: frozenset[int], seed: int | None = None,
+                 max_window: int = 8, max_walk: int = 6):
         self.layout = layout
         self.rng = random.Random(seed)
+        self.max_window = max_window
+        self.max_walk = max_walk
         self.by_entry: dict[tuple[int, int], list[int]] = defaultdict(list)
         for t in sorted(pieces):
             s = segments()[t]
@@ -105,7 +108,8 @@ class EditGenerator:
             out.append((t, chain and up and s.allows_lift))
         return out
 
-    def segment(self, track: list[Piece], max_window: int = 8, max_walk: int = 6, tries: int = 200):
+    def segment(self, track: list[Piece], tries: int = 200):
+        max_window, max_walk = self.max_window, self.max_walk
         n = len(track)
         sts = self.states(track)
         for _ in range(tries):
