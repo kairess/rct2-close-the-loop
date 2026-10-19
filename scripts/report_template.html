@@ -1,0 +1,271 @@
+<title>닫힌 회로 코스터 탐색</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+KR:wght@400;600;700&display=swap">
+<style>
+/* Layout: a reading column for the argument, widening to a card grid for the per-park gallery; a ride-window rating readout opens the page. */
+:root {
+  --bg: #f6f7f3;
+  --panel: #ffffff;
+  --ink: #1b1f1a;
+  --ink-2: #4b5248;
+  --ink-3: #6f776b;
+  --rule: #dfe3da;
+  --grass: #2f5a23;
+  --track: #c8312c;
+  --series-1: #2a78d6;
+  --good: #1f7a3a;
+  --warn: #9a5b00;
+  --shot-bg: #2a4a1f;
+  --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141713; --panel: #1c201b; --ink: #ecefe8; --ink-2: #bfc6ba; --ink-3: #959e90; --rule: #30362e;
+    --grass: #7fb26b; --track: #ff6b5e; --series-1: #3987e5; --good: #58c27a; --warn: #e0a24a; --shot-bg: #22381b;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141713; --panel: #1c201b; --ink: #ecefe8; --ink-2: #bfc6ba; --ink-3: #959e90; --rule: #30362e;
+  --grass: #7fb26b; --track: #ff6b5e; --series-1: #3987e5; --good: #58c27a; --warn: #e0a24a; --shot-bg: #22381b;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 72px;
+}
+main { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+section, header { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.narrow { max-width: 760px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; line-height: 1.25; }
+h1 { font-size: clamp(1.9rem, 4.8vw, 2.6rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.35rem; font-weight: 700; }
+h3 { font-size: 1rem; font-weight: 700; }
+p { margin: 0; max-width: 65ch; color: var(--ink-2); }
+p strong { color: var(--ink); }
+.eyebrow { font-family: var(--font-data); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--grass); }
+.lead { font-size: 1.08rem; color: var(--ink); }
+code { font-family: var(--font-data); font-size: 0.86em; background: color-mix(in srgb, var(--rule) 55%, transparent); padding: 0.1em 0.35em; border-radius: 4px; overflow-wrap: anywhere; }
+
+.readout { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; max-width: 760px; }
+.meter { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.meter .label { font-size: 0.82rem; color: var(--ink-3); }
+.meter .value { font-family: var(--font-data); font-size: clamp(1.6rem, 6vw, 2.2rem); font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.meter .grade { font-size: 0.86rem; color: var(--ink-2); }
+
+.shot { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.shot img { width: 100%; height: auto; border-radius: 8px; display: block; background: var(--shot-bg); }
+.shot figcaption { font-size: 0.86rem; color: var(--ink-3); }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button { font: inherit; font-size: 0.86rem; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--rule); background: var(--panel); color: var(--ink-2); cursor: pointer; }
+.filters button[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); font-weight: 600; }
+.filters button:focus-visible, .card button:focus-visible, details summary:focus-visible { outline: 2px solid var(--series-1); outline-offset: 2px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr)); gap: 18px; }
+.card { background: var(--panel); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.card .pic { position: relative; background: var(--shot-bg); aspect-ratio: 16 / 10; max-width: 100%; }
+.card .pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card .pic button { position: absolute; right: 8px; bottom: 8px; font: inherit; font-size: 0.76rem; padding: 4px 9px; border-radius: 6px; border: 0; background: rgb(0 0 0 / 0.55); color: #fff; cursor: pointer; }
+.card .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; }
+.card .sub { font-size: 0.8rem; color: var(--ink-3); }
+.card .eni { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+.card .eni span { display: flex; flex-direction: column; font-size: 1.05rem; font-weight: 600; }
+.card .eni small { font-family: var(--font-body); font-size: 0.72rem; font-weight: 400; color: var(--ink-3); }
+.card .note { font-size: 0.8rem; color: var(--ink-2); }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
+.pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.pill.ok { color: var(--good); }
+.pill.miss { color: var(--warn); }
+.pill.miss::before { border-radius: 1px; transform: rotate(45deg); }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-weight: 600; color: var(--ink-2); font-size: 0.8rem; white-space: nowrap; }
+td.num { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-space: nowrap; }
+details { font-size: 0.9rem; color: var(--ink-2); }
+details summary { cursor: pointer; }
+ol, ul { margin: 0; padding-left: 1.3em; color: var(--ink-2); max-width: 65ch; display: flex; flex-direction: column; gap: 6px; }
+li strong { color: var(--ink); }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 560px) {
+  .readout { grid-template-columns: 1fr; }
+  .pair { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<main>
+  <header class="narrow">
+    <div class="eyebrow" id="eyebrow">OpenRCT2 · 트위스터 코스터</div>
+    <h1>닫힌 회로 코스터 탐색</h1>
+    <p class="lead" id="lead"></p>
+  </header>
+
+  <section aria-label="요약">
+    <div class="readout" id="readout"></div>
+  </section>
+
+  <section>
+    <div class="narrow" style="display:flex;flex-direction:column;gap:12px">
+      <h2 id="gallery-title">공원마다 지은 코스터</h2>
+      <p id="gallery-intro"></p>
+    </div>
+    <div class="filters" role="group" aria-label="조건 종류">
+      <button type="button" id="f-all" data-kind="all" aria-pressed="true">전체</button>
+      <button type="button" id="f-real" data-kind="real" aria-pressed="false">실제 시나리오 맵</button>
+      <button type="button" id="f-syn" data-kind="synthetic" aria-pressed="false">무작위 지형</button>
+    </div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section class="narrow" id="anim-section">
+    <h2>타원에서 코스터까지</h2>
+    <figure class="shot">
+      <img id="anim" alt="" width="960" height="600">
+      <figcaption id="anim-caption"></figcaption>
+    </figure>
+  </section>
+
+  <section class="narrow">
+    <h2>조건별 결과</h2>
+    <p id="table-intro"></p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>조건</th><th>영역</th><th>판정</th><th>첫 달성</th><th>최고 E / I / N</th><th>평가 수</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="narrow">
+    <h2>사람이 만든 설계와 비교</h2>
+    <p id="human"></p>
+  </section>
+
+  <section class="narrow">
+    <h2>방법</h2>
+    <p>입력은 공원 파일과 영역(타일 목록)뿐이다. 모든 조건에 같은 설정과 같은 시간(15분)을 썼다.</p>
+    <ol>
+      <li><strong>땅을 읽는다.</strong> 게임 플러그인이 칸마다 지면 높이와 경사, 수면, 소유권과 건설권, 길·경치·다른 탈것을 읽는다.</li>
+      <li><strong>역과 첫 회로를 찾는다.</strong> 역이 들어갈 자리와 방향에 앞으로 뻗을 공간과 주변 경치로 순위를 매긴다. 체인 리프트 언덕이 있는 직사각형 회로를 맞춘다. 땅이 울퉁불퉁하면 지형과 나무 위로 역을 띄운다.</li>
+      <li><strong>회로를 깨지 않는 편집만 한다.</strong> 구간 하나를 진입·진출 상태가 같은 다른 조각열로 바꾼다. 사전 검사는 읽어 온 땅으로 영역, 소유권, 물, 구조물, 높이를 확인한다. 트랙이 땅에 걸리면 그 칸만 깎고, 평가가 끝나면 되돌린다.</li>
+      <li><strong>나무를 심고 게임이 채점한다.</strong> 트랙 옆과 역 주변의 소유한 빈 땅에 나무를 심는다(입구·출구 앞은 비운다). 게임이 시험 운행해 레이팅을 매기고, 담금질 사슬 4개가 결과를 보고 다음 편집을 고른다.</li>
+    </ol>
+    <p>레이팅 규칙은 OpenRCT2 v0.5.6 소스에서 조사해 <code>docs/RATINGS.md</code>에 정리했다. 치트, 차종에 맞지 않는 열차 같은 게임 허점은 쓰지 않았다. 경치를 꾸미면 흥미도가 오르는 것은 게임이 의도한 규칙이다. 그래도 카드마다 나무 없이 매긴 흥미도를 함께 적었다.</p>
+  </section>
+
+  <section class="narrow">
+    <h2>1단계: 평지 24×24</h2>
+    <p>처음 목표는 평평한 빈 24×24 영역 하나였다. 기가 코스터로 <strong>E 8.18 / I 5.92 / N 4.24</strong>를 냈다. 여기서 쓴 직사각형 영역, 손으로 정한 역 위치, 조건별 언덕 높이를 모두 걷어 낸 것이 지금의 범용 파이프라인이다.</p>
+    <figure class="shot">
+      <img src="img/final_r0.png" alt="1단계 최종 기가 코스터. 평평한 24×24 영역을 채운 붉은 트랙" width="1920" height="1200">
+      <figcaption>1단계 결과(198조각, 길이 1556 m, 탑승 168초).</figcaption>
+    </figure>
+  </section>
+
+  <section class="narrow">
+    <h2>한계</h2>
+    <ul id="limits"></ul>
+  </section>
+</main>
+
+<script>
+const DATA = /*DATA*/null;
+const GOAL = { E: 7.68, I: 7.68, N: 5.12 };
+const f2 = x => (x == null ? '–' : x.toFixed(2));
+
+function condTitle(c) {
+  if (c.kind === 'real') return c.scenario.replace(/\.SC6$/i, '');
+  return `무작위 지형 #${c.seed}`;
+}
+function condSub(c) {
+  if (c.kind === 'real') return `${c.window[2]}×${c.window[2]} 창 · 영역 ${c.tiles}칸 · 짓기 가능 ${c.free_tiles}칸`;
+  const p = c.params;
+  const shape = { rect: '직사각형', L: 'L자', cross: '십자' }[p.shape] || p.shape;
+  const bits = [`${p.size}×${p.size} ${shape}`, `${c.tiles}칸`, `기복 ${p.relief}단`];
+  if (p.water) bits.push(`물 ${Math.round(p.water * 100)}%`);
+  if (p.trees) bits.push(`나무 ${Math.round(p.trees * 100)}%`);
+  if (p.unowned) bits.push(`미소유 ${Math.round(p.unowned * 100)}%`);
+  return bits.join(' · ');
+}
+
+function render() {
+  const b = DATA.bench;
+  const rows = b.rows;
+  const rated = rows.filter(r => r.best_feasible).length;
+  const goalEs = rows.map(r => (r.best_goal || r.best_feasible || [0])[0]).sort((a, z) => a - z);
+  const median = goalEs.length ? (goalEs[(goalEs.length - 1) >> 1] + goalEs[goalEs.length >> 1]) / 2 : 0;
+  document.getElementById('eyebrow').textContent = `OpenRCT2 · ${DATA.split_label} ${b.n}개 · 트위스터 코스터`;
+  document.getElementById('lead').innerHTML = DATA.lead;
+  document.getElementById('readout').innerHTML = `
+    <div class="meter"><span class="label">목표 달성</span><span class="value">${b.success}/${b.n}</span><span class="grade">E ≥ 7.68, I &lt; 7.68, N &lt; 5.12</span></div>
+    <div class="meter"><span class="label">흥미도 중앙값</span><span class="value">${f2(median)}</span><span class="grade">조건별 최고 기록</span></div>
+    <div class="meter"><span class="label">시험 운행한 코스터</span><span class="value">${rated}/${b.n}</span><span class="grade">닫힌 회로, 게임이 레이팅함</span></div>`;
+  document.getElementById('gallery-intro').innerHTML = DATA.gallery_intro;
+  document.getElementById('table-intro').innerHTML = DATA.table_intro;
+  document.getElementById('human').innerHTML = DATA.human;
+  document.getElementById('limits').innerHTML = DATA.limits.map(x => `<li>${x}</li>`).join('');
+
+  const anim = document.getElementById('anim');
+  if (DATA.anim) {
+    anim.src = DATA.anim.src;
+    anim.alt = DATA.anim.alt;
+    document.getElementById('anim-caption').textContent = DATA.anim.caption;
+  } else {
+    document.getElementById('anim-section').hidden = true;
+  }
+
+  const order = [...rows].sort((a, z) => (a.kind === z.kind ? a.condition.localeCompare(z.condition) : a.kind === 'real' ? -1 : 1));
+  document.getElementById('cards').innerHTML = order.map(r => card(r)).join('');
+  document.querySelectorAll('.card .pic button').forEach(btn => btn.addEventListener('click', () => {
+    const img = btn.parentElement.querySelector('img');
+    const k = (Number(img.dataset.rot) + 1) % 4;
+    img.dataset.rot = k;
+    img.src = img.dataset.base + `_r${k}.jpg`;
+    btn.textContent = `방향 ${k + 1}/4`;
+  }));
+  document.getElementById('rows').innerHTML = order.map(r => {
+    const c = DATA.conds[r.condition];
+    const best = r.best_goal || r.best_feasible;
+    const status = r.goal ? '<span class="pill ok">달성</span>' : '<span class="pill miss">미달</span>';
+    return `<tr><td>${condTitle(c)}</td><td class="num">${r.tiles}칸</td><td>${status}</td>
+      <td class="num">${r.goal ? r.first_goal_min.toFixed(1) + '분' : '–'}</td>
+      <td class="num">${best ? best.map(f2).join(' / ') : '–'}</td><td class="num">${r.evals.toLocaleString('ko-KR')}</td></tr>`;
+  }).join('');
+}
+
+function card(r) {
+  const c = DATA.conds[r.condition];
+  const g = DATA.gallery[r.condition];
+  const v = g ? g.verdict : null;
+  const status = r.goal
+    ? `<span class="pill ok">목표 달성 · ${r.first_goal_min.toFixed(1)}분</span>`
+    : '<span class="pill miss">목표 미달</span>';
+  const pic = g
+    ? `<img src="${g.img}_r0.jpg" data-base="${g.img}" data-rot="0" alt="${condTitle(c)}에 지은 코스터" loading="lazy" width="960" height="600"><button type="button" aria-label="다른 방향에서 보기">방향 1/4</button>`
+    : '';
+  const eni = v
+    ? `<div class="eni"><span>${f2(v.E)}<small>흥미도</small></span><span>${f2(v.I)}<small>강도</small></span><span>${f2(v.N)}<small>멀미도</small></span></div>`
+    : '';
+  const note = g ? `<div class="note">나무 ${v.decor}그루 · 나무 없이 E ${f2(g.without_trees.E)}</div>` : '';
+  return `<article class="card" data-kind="${c.kind}"><div class="pic">${pic}</div><div class="body">
+    <h3>${condTitle(c)}</h3><div class="sub">${condSub(c)}</div>${eni}${status}${note}</div></article>`;
+}
+
+document.querySelectorAll('.filters button').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.filters button').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+  const kind = btn.dataset.kind;
+  document.querySelectorAll('.card').forEach(el => { el.hidden = kind !== 'all' && el.dataset.kind !== kind; });
+}));
+
+render();
+</script>
