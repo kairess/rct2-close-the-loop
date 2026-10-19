@@ -194,3 +194,31 @@ def generate_all(log=print) -> None:
         (BENCH / split / f"{name}.json").write_text(json.dumps(cond))
         made[split] += 1
         log(f"{split} {name}: {f.name} window {cond['window']} free {cond['free_tiles']}")
+
+
+def generate_heldout_b(n_syn: int = 3, n_real: int = 3, log=print) -> None:
+    """A second held-out split, frozen before any run, for measuring code changed after the first one.
+    Synthetic seeds 300+; real maps from scenarios not used by dev or heldout, in a Random(2027) order."""
+    out = BENCH / "heldout_b"
+    out.mkdir(parents=True, exist_ok=True)
+    for s in range(300, 300 + n_syn):
+        cond = make_synthetic(f"syn{s}", s)
+        (out / f"syn{s}.json").write_text(json.dumps(cond))
+        log(f"heldout_b syn{s}: {cond['params']}")
+    used = {json.loads(p.read_text()).get("scenario") for split in ("dev", "heldout") for p in (BENCH / split).glob("real_*.json")}
+    rng = random.Random(2027)
+    files = [f for f in scenario_files() if f.name not in used]
+    rng.shuffle(files)
+    made = 0
+    for f in files:
+        if made >= n_real:
+            break
+        size = rng.choice((16, 20, 24))
+        name = "real_" + "".join(c for c in f.stem.lower() if c.isalnum())[:28]
+        cond = make_real(name, f, size)
+        if cond is None:
+            log(f"skip {f.name}: not enough free buildable land for {size}x{size}")
+            continue
+        (out / f"{name}.json").write_text(json.dumps(cond))
+        made += 1
+        log(f"heldout_b {name}: {f.name} window {cond['window']} free {cond['free_tiles']}")
