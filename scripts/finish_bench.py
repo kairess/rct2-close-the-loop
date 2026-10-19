@@ -46,7 +46,9 @@ def main() -> None:
     title = cond["scenario"].removesuffix(".SC6") if cond["kind"] == "real" else f"무작위 지형 #{cond['seed']}"
     caption = (f"{title}: 첫 회로에서 15분 탐색 끝까지, 목표 조건을 지키며 흥미도가 오를 때마다 찍은 장면이다. "
                f"최종 E {best[0]:.2f} / I {best[1]:.2f} / N {best[2]:.2f}.")
-    subprocess.run(py + ["scripts/build_report.py", split, str(report_dir), "--anim", str(RESULTS / name / f"{name}.webp"),
+    anim = {"path": str(RESULTS / name / f"{name}.webp"), "caption": caption}
+    (RESULTS / f"anim_{split}.json").write_text(json.dumps(anim, ensure_ascii=False, indent=1))
+    subprocess.run(py + ["scripts/build_report.py", split, str(report_dir), "--anim", anim["path"],
                          "--anim-caption", caption], check=True, cwd=ROOT)
 
 
