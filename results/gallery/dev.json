@@ -214,5 +214,29 @@
    "I": 7.53,
    "N": 4.89
   }
+ },
+ "dev_syn105": {
+  "condition": "syn105",
+  "kind": "synthetic",
+  "run": "20261019-233733-twister@syn105",
+  "eval": 10360,
+  "park": "dev_syn105.park",
+  "screenshots": [
+   "dev_syn105_r0.png",
+   "dev_syn105_r1.png",
+   "dev_syn105_r2.png",
+   "dev_syn105_r3.png"
+  ],
+  "verdict": {
+   "E": 8.28,
+   "I": 7.5,
+   "N": 4.95,
+   "decor": 89
+  },
+  "without_trees": {
+   "E": 7.89,
+   "I": 7.5,
+   "N": 4.95
+  }
  }
 }
