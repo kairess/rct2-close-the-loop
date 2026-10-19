@@ -46,5 +46,77 @@
    "I": 7.53,
    "N": 4.88
   }
+ },
+ "dev_real_europeeuropeanculturalfestiv": {
+  "condition": "real_europeeuropeanculturalfestiv",
+  "kind": "real",
+  "run": "20261019-213645-twister@real_europeeuropeanculturalfestiv",
+  "eval": 6210,
+  "park": "dev_real_europeeuropeanculturalfestiv.park",
+  "screenshots": [
+   "dev_real_europeeuropeanculturalfestiv_r0.png",
+   "dev_real_europeeuropeanculturalfestiv_r1.png",
+   "dev_real_europeeuropeanculturalfestiv_r2.png",
+   "dev_real_europeeuropeanculturalfestiv_r3.png"
+  ],
+  "verdict": {
+   "E": 8.08,
+   "I": 7.22,
+   "N": 4.4,
+   "decor": 55
+  },
+  "without_trees": {
+   "E": 7.9,
+   "I": 7.22,
+   "N": 4.4
+  }
+ },
+ "dev_real_futurefutureworld": {
+  "condition": "real_futurefutureworld",
+  "kind": "real",
+  "run": "20261019-215152-twister@real_futurefutureworld",
+  "eval": 18313,
+  "park": "dev_real_futurefutureworld.park",
+  "screenshots": [
+   "dev_real_futurefutureworld_r0.png",
+   "dev_real_futurefutureworld_r1.png",
+   "dev_real_futurefutureworld_r2.png",
+   "dev_real_futurefutureworld_r3.png"
+  ],
+  "verdict": {
+   "E": 8.46,
+   "I": 7.08,
+   "N": 4.38,
+   "decor": 92
+  },
+  "without_trees": {
+   "E": 8.06,
+   "I": 7.08,
+   "N": 4.38
+  }
+ },
+ "dev_real_luckylake": {
+  "condition": "real_luckylake",
+  "kind": "real",
+  "run": "20261019-220703-twister@real_luckylake",
+  "eval": 12177,
+  "park": "dev_real_luckylake.park",
+  "screenshots": [
+   "dev_real_luckylake_r0.png",
+   "dev_real_luckylake_r1.png",
+   "dev_real_luckylake_r2.png",
+   "dev_real_luckylake_r3.png"
+  ],
+  "verdict": {
+   "E": 7.82,
+   "I": 7.54,
+   "N": 4.88,
+   "decor": 2
+  },
+  "without_trees": {
+   "E": 7.81,
+   "I": 7.54,
+   "N": 4.88
+  }
  }
 }

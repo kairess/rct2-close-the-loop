@@ -1,7 +1,7 @@
 {
  "split": "dev",
- "success": 1,
- "n": 1,
+ "success": 4,
+ "n": 4,
  "rows": [
   {
    "condition": "real_africaoasis",
@@ -24,6 +24,72 @@
    ],
    "best_goal_eval": 11483,
    "run": "20261019-212140-twister@real_africaoasis"
+  },
+  {
+   "condition": "real_europeeuropeanculturalfestiv",
+   "kind": "real",
+   "params": "Europe - European Cultural Festival.SC6",
+   "tiles": 248,
+   "seed": 1,
+   "evals": 18901,
+   "goal": true,
+   "first_goal_min": 2.25,
+   "best_goal": [
+    8.08,
+    7.22,
+    4.4
+   ],
+   "best_feasible": [
+    8.08,
+    7.22,
+    4.4
+   ],
+   "best_goal_eval": 6210,
+   "run": "20261019-213645-twister@real_europeeuropeanculturalfestiv"
+  },
+  {
+   "condition": "real_futurefutureworld",
+   "kind": "real",
+   "params": "Future - Future World.SC6",
+   "tiles": 400,
+   "seed": 1,
+   "evals": 18341,
+   "goal": true,
+   "first_goal_min": 1.47,
+   "best_goal": [
+    8.46,
+    7.08,
+    4.38
+   ],
+   "best_feasible": [
+    8.46,
+    7.08,
+    4.38
+   ],
+   "best_goal_eval": 18313,
+   "run": "20261019-215152-twister@real_futurefutureworld"
+  },
+  {
+   "condition": "real_luckylake",
+   "kind": "real",
+   "params": "Lucky Lake.SC6",
+   "tiles": 576,
+   "seed": 1,
+   "evals": 12433,
+   "goal": true,
+   "first_goal_min": 6.99,
+   "best_goal": [
+    7.82,
+    7.54,
+    4.88
+   ],
+   "best_feasible": [
+    7.82,
+    7.54,
+    4.88
+   ],
+   "best_goal_eval": 12177,
+   "run": "20261019-220703-twister@real_luckylake"
   }
  ]
 }

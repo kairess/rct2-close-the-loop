@@ -1,0 +1,545 @@
+{
+ "name": "dev_real_luckylake",
+ "verdict": {
+  "stage": "rated",
+  "E": 7.82,
+  "I": 7.54,
+  "N": 4.88,
+  "stats": {
+   "excitement": 782,
+   "intensity": 754,
+   "nausea": 488,
+   "maxSpeed": 34,
+   "averageSpeed": 18,
+   "rideTime": 103,
+   "rideLength": 1110,
+   "maxPositiveVerticalGs": 3.52,
+   "maxNegativeVerticalGs": -0.99,
+   "maxLateralGs": 2.26,
+   "totalAirTime": 3.33,
+   "numDrops": 10,
+   "numLiftHills": 3,
+   "highestDropHeight": 8,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 3371,
+  "wall": 0.742,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 2
+ },
+ "track": [
+  [
+   6,
+   true
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   225,
+   false
+  ],
+  [
+   110,
+   false
+  ],
+  [
+   227,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   53,
+   false
+  ],
+  [
+   54,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   94,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   94,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   87,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   6,
+   true
+  ],
+  [
+   276,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   59,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   275,
+   false
+  ],
+  [
+   61,
+   false
+  ],
+  [
+   58,
+   false
+  ],
+  [
+   176,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   29,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   115,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   177,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   29,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   42,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "dev_real_luckylake.park",
+ "screenshots": [
+  "dev_real_luckylake_r0.png",
+  "dev_real_luckylake_r1.png",
+  "dev_real_luckylake_r2.png",
+  "dev_real_luckylake_r3.png"
+ ],
+ "condition": "real_luckylake",
+ "kind": "real",
+ "run": "20261019-220703-twister@real_luckylake",
+ "eval": 12177,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 7.82,
+  "I": 7.54,
+  "N": 4.88,
+  "stats": {
+   "excitement": 782,
+   "intensity": 754,
+   "nausea": 488,
+   "maxSpeed": 34,
+   "averageSpeed": 18,
+   "rideTime": 103,
+   "rideLength": 1110,
+   "maxPositiveVerticalGs": 3.52,
+   "maxNegativeVerticalGs": -0.99,
+   "maxLateralGs": 2.26,
+   "totalAirTime": 3.33,
+   "numDrops": 10,
+   "numLiftHills": 3,
+   "highestDropHeight": 8,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 3368,
+  "wall": 0.738,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 2
+ },
+ "without_trees": {
+  "stage": "rated",
+  "E": 7.81,
+  "I": 7.54,
+  "N": 4.88,
+  "stats": {
+   "excitement": 781,
+   "intensity": 754,
+   "nausea": 488,
+   "maxSpeed": 34,
+   "averageSpeed": 18,
+   "rideTime": 103,
+   "rideLength": 1110,
+   "maxPositiveVerticalGs": 3.52,
+   "maxNegativeVerticalGs": -0.99,
+   "maxLateralGs": 2.26,
+   "totalAirTime": 3.33,
+   "numDrops": 10,
+   "numLiftHills": 3,
+   "highestDropHeight": 8,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 3371,
+  "wall": 0.74,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}

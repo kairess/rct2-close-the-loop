@@ -1,0 +1,277 @@
+{
+ "name": "dev_real_europeeuropeanculturalfestiv",
+ "verdict": {
+  "stage": "rated",
+  "E": 8.08,
+  "I": 7.22,
+  "N": 4.4,
+  "stats": {
+   "excitement": 808,
+   "intensity": 722,
+   "nausea": 440,
+   "maxSpeed": 35,
+   "averageSpeed": 13,
+   "rideTime": 96,
+   "rideLength": 711,
+   "maxPositiveVerticalGs": 3.16,
+   "maxNegativeVerticalGs": -0.96,
+   "maxLateralGs": 2.53,
+   "totalAirTime": 3.78,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 8,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 3143,
+  "wall": 0.685,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 55
+ },
+ "track": [
+  [
+   6,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   174,
+   false
+  ],
+  [
+   55,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   27,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   23,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   41,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   42,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "dev_real_europeeuropeanculturalfestiv.park",
+ "screenshots": [
+  "dev_real_europeeuropeanculturalfestiv_r0.png",
+  "dev_real_europeeuropeanculturalfestiv_r1.png",
+  "dev_real_europeeuropeanculturalfestiv_r2.png",
+  "dev_real_europeeuropeanculturalfestiv_r3.png"
+ ],
+ "condition": "real_europeeuropeanculturalfestiv",
+ "kind": "real",
+ "run": "20261019-213645-twister@real_europeeuropeanculturalfestiv",
+ "eval": 6210,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 8.08,
+  "I": 7.22,
+  "N": 4.4,
+  "stats": {
+   "excitement": 808,
+   "intensity": 722,
+   "nausea": 440,
+   "maxSpeed": 35,
+   "averageSpeed": 13,
+   "rideTime": 96,
+   "rideLength": 711,
+   "maxPositiveVerticalGs": 3.16,
+   "maxNegativeVerticalGs": -0.96,
+   "maxLateralGs": 2.53,
+   "totalAirTime": 3.78,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 8,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 3145,
+  "wall": 0.693,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 55
+ },
+ "without_trees": {
+  "stage": "rated",
+  "E": 7.9,
+  "I": 7.22,
+  "N": 4.4,
+  "stats": {
+   "excitement": 790,
+   "intensity": 722,
+   "nausea": 440,
+   "maxSpeed": 35,
+   "averageSpeed": 13,
+   "rideTime": 96,
+   "rideLength": 711,
+   "maxPositiveVerticalGs": 3.16,
+   "maxNegativeVerticalGs": -0.96,
+   "maxLateralGs": 2.53,
+   "totalAirTime": 3.78,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 8,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 3144,
+  "wall": 0.691,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}
