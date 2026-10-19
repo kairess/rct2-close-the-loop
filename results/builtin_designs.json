@@ -1,0 +1,2455 @@
+{
+ "designs": [
+  {
+   "file": "Aerial Cycles.TD6",
+   "ride_type": "monorail_cycles",
+   "vehicle": "MONBK",
+   "E": 2.1,
+   "I": 0.2,
+   "N": 0.0,
+   "space": [
+    12,
+    11
+   ]
+  },
+  {
+   "file": "Atomizer.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMSD",
+   "E": 7.0,
+   "I": 7.8,
+   "N": 4.3,
+   "space": [
+    13,
+    27
+   ]
+  },
+  {
+   "file": "Automania.TD6",
+   "ride_type": "mini_rc",
+   "vehicle": "WCATC",
+   "E": 5.4,
+   "I": 5.7,
+   "N": 4.0,
+   "space": [
+    18,
+    11
+   ]
+  },
+  {
+   "file": "Automobile Antics.TD6",
+   "ride_type": "go_karts",
+   "vehicle": "1920RACR",
+   "E": 2.9,
+   "I": 2.6,
+   "N": 0.5,
+   "space": [
+    14,
+    11
+   ]
+  },
+  {
+   "file": "Bat Flight.TD6",
+   "ride_type": "mini_suspended_rc",
+   "vehicle": "BATFL",
+   "E": 4.8,
+   "I": 5.8,
+   "N": 4.2,
+   "space": [
+    21,
+    5
+   ]
+  },
+  {
+   "file": "Batty Bikers.TD6",
+   "ride_type": "steeplechase",
+   "vehicle": "STEEP2",
+   "E": 5.1,
+   "I": 5.4,
+   "N": 3.9,
+   "space": [
+    19,
+    20
+   ]
+  },
+  {
+   "file": "Bear Circle.TD6",
+   "ride_type": "compact_inverted_rc",
+   "vehicle": "POLARBER",
+   "E": 5.9,
+   "I": 8.4,
+   "N": 6.4,
+   "space": [
+    18,
+    11
+   ]
+  },
+  {
+   "file": "Big Twister.TD6",
+   "ride_type": "heartline_twister_rc",
+   "vehicle": "UTCARR",
+   "E": 3.3,
+   "I": 8.3,
+   "N": 5.4,
+   "space": [
+    37,
+    3
+   ]
+  },
+  {
+   "file": "Black Panther.TD6",
+   "ride_type": "looping_rc",
+   "vehicle": "SCHT1",
+   "E": 6.6,
+   "I": 6.4,
+   "N": 3.2,
+   "space": [
+    20,
+    12
+   ]
+  },
+  {
+   "file": "Black Widow.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "MFT",
+   "E": 7.6,
+   "I": 8.2,
+   "N": 4.8,
+   "space": [
+    23,
+    14
+   ]
+  },
+  {
+   "file": "Blue Hurricane.TD6",
+   "ride_type": "corkscrew_rc",
+   "vehicle": "ARRT2",
+   "E": 7.7,
+   "I": 6.7,
+   "N": 3.4,
+   "space": [
+    44,
+    10
+   ]
+  },
+  {
+   "file": "Boulder-mobile.TD6",
+   "ride_type": "go_karts",
+   "vehicle": "CAVMNCAR",
+   "E": 5.9,
+   "I": 2.4,
+   "N": 0.5,
+   "space": [
+    12,
+    11
+   ]
+  },
+  {
+   "file": "Brainstorm.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 7.6,
+   "I": 8.2,
+   "N": 4.9,
+   "space": [
+    22,
+    35
+   ]
+  },
+  {
+   "file": "Bumble Bee.TD6",
+   "ride_type": "looping_rc",
+   "vehicle": "SCHT1",
+   "E": 6.0,
+   "I": 5.1,
+   "N": 2.4,
+   "space": [
+    12,
+    15
+   ]
+  },
+  {
+   "file": "Cairngorm Bobsleds.TD6",
+   "ride_type": "mini_rc",
+   "vehicle": "JSTAR1",
+   "E": 4.7,
+   "I": 5.3,
+   "N": 3.5,
+   "space": [
+    16,
+    10
+   ]
+  },
+  {
+   "file": "Calamity Mine.TD6",
+   "ride_type": "mine_train_rc",
+   "vehicle": "AMT1",
+   "E": 7.4,
+   "I": 7.1,
+   "N": 5.4,
+   "space": [
+    23,
+    23
+   ]
+  },
+  {
+   "file": "Castaway.TD6",
+   "ride_type": "river_rapids",
+   "vehicle": "OAKBAREL",
+   "E": 5.6,
+   "I": 1.7,
+   "N": 1.2,
+   "space": [
+    13,
+    12
+   ]
+  },
+  {
+   "file": "Castle Karts.TD6",
+   "ride_type": "go_karts",
+   "vehicle": "KART1",
+   "E": 5.3,
+   "I": 2.6,
+   "N": 0.4,
+   "space": [
+    8,
+    14
+   ]
+  },
+  {
+   "file": "Catseyes.TD6",
+   "ride_type": "car_ride",
+   "vehicle": "CTCAR",
+   "E": 4.1,
+   "I": 0.6,
+   "N": 0.1,
+   "space": [
+    13,
+    12
+   ]
+  },
+  {
+   "file": "Cheesy Mice.TD6",
+   "ride_type": "wooden_wild_mouse",
+   "vehicle": "WMOUSE",
+   "E": 3.5,
+   "I": 4.0,
+   "N": 2.3,
+   "space": [
+    7,
+    12
+   ]
+  },
+  {
+   "file": "Chocolate Log.TD6",
+   "ride_type": "junior_rc",
+   "vehicle": "ZLOG",
+   "E": 5.5,
+   "I": 5.3,
+   "N": 3.7,
+   "space": [
+    13,
+    19
+   ]
+  },
+  {
+   "file": "Circulator.TD6",
+   "ride_type": "inverted_impulse_rc",
+   "vehicle": "INTINV",
+   "E": 6.1,
+   "I": 7.4,
+   "N": 5.4,
+   "space": [
+    13,
+    3
+   ]
+  },
+  {
+   "file": "Cobra.TD6",
+   "ride_type": "corkscrew_rc",
+   "vehicle": "ARRT1",
+   "E": 6.1,
+   "I": 8.1,
+   "N": 3.6,
+   "space": [
+    16,
+    5
+   ]
+  },
+  {
+   "file": "Colossus (Track 1).TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 7.5,
+   "I": 9.7,
+   "N": 5.4,
+   "space": [
+    56,
+    22
+   ]
+  },
+  {
+   "file": "Colossus (Track 2).TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 7.3,
+   "I": 9.2,
+   "N": 5.2,
+   "space": [
+    51,
+    21
+   ]
+  },
+  {
+   "file": "Contortion.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMSD",
+   "E": 7.1,
+   "I": 6.8,
+   "N": 3.8,
+   "space": [
+    9,
+    22
+   ]
+  },
+  {
+   "file": "Crazy Cabs.TD6",
+   "ride_type": "mini_rc",
+   "vehicle": "WCATC",
+   "E": 5.1,
+   "I": 6.0,
+   "N": 4.1,
+   "space": [
+    23,
+    9
+   ]
+  },
+  {
+   "file": "Crazy Castle.TD6",
+   "ride_type": "maze",
+   "vehicle": "HMAZE",
+   "E": 1.7,
+   "I": 0.6,
+   "N": 0.0,
+   "space": [
+    10,
+    6
+   ]
+  },
+  {
+   "file": "Crazy Caterpillar.TD6",
+   "ride_type": "junior_rc",
+   "vehicle": "ZLDB",
+   "E": 5.8,
+   "I": 6.2,
+   "N": 5.1,
+   "space": [
+    22,
+    17
+   ]
+  },
+  {
+   "file": "Crazy Knights.TD6",
+   "ride_type": "virginia_reel",
+   "vehicle": "VREEL",
+   "E": 6.0,
+   "I": 5.7,
+   "N": 6.1,
+   "space": [
+    13,
+    4
+   ]
+  },
+  {
+   "file": "Creaky Dips.TD6",
+   "ride_type": "side_friction_rc",
+   "vehicle": "SFRIC1",
+   "E": 4.8,
+   "I": 5.9,
+   "N": 3.3,
+   "space": [
+    8,
+    18
+   ]
+  },
+  {
+   "file": "Crush Hour.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMSU",
+   "E": 7.3,
+   "I": 7.3,
+   "N": 3.6,
+   "space": [
+    28,
+    14
+   ]
+  },
+  {
+   "file": "Danglefeet.TD6",
+   "ride_type": "inverted_rc",
+   "vehicle": "NEMT",
+   "E": 6.5,
+   "I": 8.5,
+   "N": 6.8,
+   "space": [
+    31,
+    8
+   ]
+  },
+  {
+   "file": "Deep Freeze.TD6",
+   "ride_type": "looping_rc",
+   "vehicle": "SCHT1",
+   "E": 6.5,
+   "I": 5.2,
+   "N": 2.4,
+   "space": [
+    23,
+    15
+   ]
+  },
+  {
+   "file": "Deja Vu.TD6",
+   "ride_type": "compact_inverted_rc",
+   "vehicle": "VEKDV",
+   "E": 6.6,
+   "I": 9.4,
+   "N": 7.5,
+   "space": [
+    15,
+    5
+   ]
+  },
+  {
+   "file": "Demon Drop.TD6",
+   "ride_type": "dinghy_slide",
+   "vehicle": "DING1",
+   "E": 4.7,
+   "I": 5.7,
+   "N": 3.5,
+   "space": [
+    20,
+    7
+   ]
+  },
+  {
+   "file": "Dizzymouse.TD6",
+   "ride_type": "steel_wild_mouse",
+   "vehicle": "WMSPIN",
+   "E": 6.6,
+   "I": 6.5,
+   "N": 5.4,
+   "space": [
+    18,
+    7
+   ]
+  },
+  {
+   "file": "Doubledrop.TD6",
+   "ride_type": "splash_boats",
+   "vehicle": "SPBOAT",
+   "E": 4.2,
+   "I": 2.0,
+   "N": 1.1,
+   "space": [
+    15,
+    14
+   ]
+  },
+  {
+   "file": "Dragster.TD6",
+   "ride_type": "air_powered_vertical_rc",
+   "vehicle": "HOTRODXX",
+   "E": 8.3,
+   "I": 9.0,
+   "N": 7.0,
+   "space": [
+    26,
+    22
+   ]
+  },
+  {
+   "file": "Dream Chariots.TD6",
+   "ride_type": "mini_rc",
+   "vehicle": "JSTAR1",
+   "E": 5.2,
+   "I": 5.8,
+   "N": 3.8,
+   "space": [
+    19,
+    13
+   ]
+  },
+  {
+   "file": "Driftwood.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 6.8,
+   "I": 8.5,
+   "N": 5.0,
+   "space": [
+    30,
+    7
+   ]
+  },
+  {
+   "file": "Drive-by.TD6",
+   "ride_type": "lim_launched_rc",
+   "vehicle": "GANSTRCR",
+   "E": 6.5,
+   "I": 9.4,
+   "N": 5.5,
+   "space": [
+    13,
+    21
+   ]
+  },
+  {
+   "file": "El Condor.TD6",
+   "ride_type": "compact_inverted_rc",
+   "vehicle": "SLCT",
+   "E": 6.5,
+   "I": 8.2,
+   "N": 6.8,
+   "space": [
+    22,
+    9
+   ]
+  },
+  {
+   "file": "Empire Express.TD6",
+   "ride_type": "inverted_rc",
+   "vehicle": "NEMT",
+   "E": 6.8,
+   "I": 9.0,
+   "N": 7.1,
+   "space": [
+    21,
+    23
+   ]
+  },
+  {
+   "file": "Escape Hatch.TD6",
+   "ride_type": "launched_freefall",
+   "vehicle": "SSC1",
+   "E": 4.1,
+   "I": 9.4,
+   "N": 5.6,
+   "space": [
+    4,
+    3
+   ]
+  },
+  {
+   "file": "Evil Vultures.TD6",
+   "ride_type": "lay_down_rc",
+   "vehicle": "VEKST",
+   "E": 6.6,
+   "I": 6.6,
+   "N": 5.4,
+   "space": [
+    16,
+    18
+   ]
+  },
+  {
+   "file": "Exterminator.TD6",
+   "ride_type": "looping_rc",
+   "vehicle": "SCHT1",
+   "E": 6.9,
+   "I": 6.8,
+   "N": 3.7,
+   "space": [
+    24,
+    10
+   ]
+  },
+  {
+   "file": "Firetrap.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "MFT",
+   "E": 6.9,
+   "I": 7.2,
+   "N": 4.4,
+   "space": [
+    12,
+    15
+   ]
+  },
+  {
+   "file": "Fizzly.TD6",
+   "ride_type": "looping_rc",
+   "vehicle": "SCHT1",
+   "E": 6.2,
+   "I": 5.5,
+   "N": 2.6,
+   "space": [
+    19,
+    11
+   ]
+  },
+  {
+   "file": "Flashback.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMSD",
+   "E": 7.2,
+   "I": 7.3,
+   "N": 3.8,
+   "space": [
+    23,
+    8
+   ]
+  },
+  {
+   "file": "Flight of the Phoenix.TD6",
+   "ride_type": "suspended_swinging_rc",
+   "vehicle": "ARRSW1",
+   "E": 6.2,
+   "I": 6.4,
+   "N": 7.0,
+   "space": [
+    23,
+    8
+   ]
+  },
+  {
+   "file": "Flying Dutchman Gold Mine.TD6",
+   "ride_type": "steel_wild_mouse",
+   "vehicle": "SMC2",
+   "E": 6.8,
+   "I": 7.7,
+   "N": 4.8,
+   "space": [
+    6,
+    11
+   ]
+  },
+  {
+   "file": "Force Nine.TD6",
+   "ride_type": "reverse_freefall_rc",
+   "vehicle": "REVF1",
+   "E": 4.8,
+   "I": 7.4,
+   "N": 5.3,
+   "space": [
+    3,
+    27
+   ]
+  },
+  {
+   "file": "Fossil Folly.TD6",
+   "ride_type": "water_coaster",
+   "vehicle": "TRILOBTE",
+   "E": 4.8,
+   "I": 5.8,
+   "N": 4.1,
+   "space": [
+    20,
+    10
+   ]
+  },
+  {
+   "file": "Fright Flight.TD6",
+   "ride_type": "mini_suspended_rc",
+   "vehicle": "SKYTR",
+   "E": 5.1,
+   "I": 6.8,
+   "N": 4.7,
+   "space": [
+    11,
+    16
+   ]
+  },
+  {
+   "file": "Frightmare.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMFL",
+   "E": 8.1,
+   "I": 7.9,
+   "N": 4.8,
+   "space": [
+    17,
+    24
+   ]
+  },
+  {
+   "file": "Fungicide.TD6",
+   "ride_type": "steel_wild_mouse",
+   "vehicle": "SMC1",
+   "E": 6.1,
+   "I": 7.1,
+   "N": 4.1,
+   "space": [
+    8,
+    8
+   ]
+  },
+  {
+   "file": "Garden Explorer.TD6",
+   "ride_type": "river_rafts",
+   "vehicle": "RFTBOAT",
+   "E": 2.7,
+   "I": 0.4,
+   "N": 0.4,
+   "space": [
+    15,
+    15
+   ]
+  },
+  {
+   "file": "Garden Golf.TD6",
+   "ride_type": "mini_golf",
+   "vehicle": "GOLF1",
+   "E": 3.7,
+   "I": 0.9,
+   "N": 0.0,
+   "space": [
+    12,
+    9
+   ]
+  },
+  {
+   "file": "Getaway.TD6",
+   "ride_type": "looping_rc",
+   "vehicle": "POLCHASE",
+   "E": 6.2,
+   "I": 5.6,
+   "N": 2.8,
+   "space": [
+    19,
+    10
+   ]
+  },
+  {
+   "file": "Ghost Train.TD6",
+   "ride_type": "ghost_train",
+   "vehicle": "GTC",
+   "E": 3.3,
+   "I": 0.3,
+   "N": 0.2,
+   "space": [
+    5,
+    9
+   ]
+  },
+  {
+   "file": "Glow-Worm.TD6",
+   "ride_type": "looping_rc",
+   "vehicle": "SCHT1",
+   "E": 7.6,
+   "I": 7.3,
+   "N": 3.8,
+   "space": [
+    24,
+    12
+   ]
+  },
+  {
+   "file": "Glowing Embers.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT2",
+   "E": 6.7,
+   "I": 7.4,
+   "N": 4.6,
+   "space": [
+    16,
+    25
+   ]
+  },
+  {
+   "file": "Gold Rush.TD6",
+   "ride_type": "mine_train_rc",
+   "vehicle": "AMT1",
+   "E": 6.1,
+   "I": 7.0,
+   "N": 4.7,
+   "space": [
+    10,
+    20
+   ]
+  },
+  {
+   "file": "Golden Eagle.TD6",
+   "ride_type": "inverted_rc",
+   "vehicle": "NEMT",
+   "E": 6.5,
+   "I": 8.0,
+   "N": 6.7,
+   "space": [
+    13,
+    24
+   ]
+  },
+  {
+   "file": "Goliath.1.TD6",
+   "ride_type": "giga_rc",
+   "vehicle": "INTST",
+   "E": 7.8,
+   "I": 5.4,
+   "N": 2.8,
+   "space": [
+    82,
+    32
+   ]
+  },
+  {
+   "file": "Goliath.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "GOLTR",
+   "E": 8.1,
+   "I": 6.9,
+   "N": 3.4,
+   "space": [
+    69,
+    29
+   ]
+  },
+  {
+   "file": "Gravity Gale.TD6",
+   "ride_type": "vertical_drop_rc",
+   "vehicle": "BMVD",
+   "E": 7.6,
+   "I": 7.9,
+   "N": 3.8,
+   "space": [
+    23,
+    14
+   ]
+  },
+  {
+   "file": "Great American Scream Machine.TD6",
+   "ride_type": "corkscrew_rc",
+   "vehicle": "ARRT1",
+   "E": 7.2,
+   "I": 9.4,
+   "N": 4.7,
+   "space": [
+    32,
+    23
+   ]
+  },
+  {
+   "file": "Great White Wail.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 8.4,
+   "I": 8.7,
+   "N": 4.8,
+   "space": [
+    23,
+    16
+   ]
+  },
+  {
+   "file": "Hairyplanes.TD6",
+   "ride_type": "suspended_swinging_rc",
+   "vehicle": "ARRSW2",
+   "E": 6.5,
+   "I": 7.0,
+   "N": 7.1,
+   "space": [
+    19,
+    24
+   ]
+  },
+  {
+   "file": "Hardwood.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "MFT",
+   "E": 6.6,
+   "I": 7.6,
+   "N": 4.5,
+   "space": [
+    19,
+    9
+   ]
+  },
+  {
+   "file": "Haunted Mansion.TD6",
+   "ride_type": "ghost_train",
+   "vehicle": "HMCAR",
+   "E": 3.9,
+   "I": 0.4,
+   "N": 0.2,
+   "space": [
+    9,
+    10
+   ]
+  },
+  {
+   "file": "Hawksnest.TD6",
+   "ride_type": "inverted_hairpin_rc",
+   "vehicle": "IVMC1",
+   "E": 6.6,
+   "I": 7.6,
+   "N": 4.6,
+   "space": [
+    14,
+    6
+   ]
+  },
+  {
+   "file": "Hedgehog.TD6",
+   "ride_type": "looping_rc",
+   "vehicle": "SCHT1",
+   "E": 6.0,
+   "I": 5.6,
+   "N": 2.6,
+   "space": [
+    12,
+    12
+   ]
+  },
+  {
+   "file": "Helixius.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMSD",
+   "E": 6.3,
+   "I": 6.2,
+   "N": 3.6,
+   "space": [
+    13,
+    20
+   ]
+  },
+  {
+   "file": "Hell Hound.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "CERBERUS",
+   "E": 6.8,
+   "I": 5.3,
+   "N": 2.7,
+   "space": [
+    11,
+    27
+   ]
+  },
+  {
+   "file": "Hover Bother.TD6",
+   "ride_type": "car_ride",
+   "vehicle": "HOVERCAR",
+   "E": 3.6,
+   "I": 0.5,
+   "N": 0.0,
+   "space": [
+    12,
+    9
+   ]
+  },
+  {
+   "file": "Ice Chaser.TD6",
+   "ride_type": "giga_rc",
+   "vehicle": "INTST",
+   "E": 7.8,
+   "I": 5.0,
+   "N": 3.1,
+   "space": [
+    17,
+    32
+   ]
+  },
+  {
+   "file": "Ice Flow.TD6",
+   "ride_type": "dinghy_slide",
+   "vehicle": "DING1",
+   "E": 2.5,
+   "I": 2.7,
+   "N": 1.6,
+   "space": [
+    23,
+    9
+   ]
+  },
+  {
+   "file": "Icicle Bob.TD6",
+   "ride_type": "bobsleigh_rc",
+   "vehicle": "BOB1",
+   "E": 6.0,
+   "I": 5.5,
+   "N": 4.8,
+   "space": [
+    21,
+    13
+   ]
+  },
+  {
+   "file": "Ignition.TD6",
+   "ride_type": "bobsleigh_rc",
+   "vehicle": "BOB1",
+   "E": 6.1,
+   "I": 6.3,
+   "N": 4.4,
+   "space": [
+    9,
+    22
+   ]
+  },
+  {
+   "file": "Impulsive.TD6",
+   "ride_type": "inverted_impulse_rc",
+   "vehicle": "INTINV",
+   "E": 5.7,
+   "I": 7.1,
+   "N": 5.6,
+   "space": [
+    13,
+    3
+   ]
+  },
+  {
+   "file": "Insecticide.TD6",
+   "ride_type": "mini_suspended_rc",
+   "vehicle": "DRAGNFLY",
+   "E": 5.8,
+   "I": 6.1,
+   "N": 4.6,
+   "space": [
+    17,
+    11
+   ]
+  },
+  {
+   "file": "Ionizer.TD6",
+   "ride_type": "corkscrew_rc",
+   "vehicle": "ARRT1",
+   "E": 6.5,
+   "I": 6.8,
+   "N": 3.2,
+   "space": [
+    28,
+    18
+   ]
+  },
+  {
+   "file": "Jellycopters.TD6",
+   "ride_type": "mini_helicopters",
+   "vehicle": "HELICAR",
+   "E": 3.3,
+   "I": 0.5,
+   "N": 0.0,
+   "space": [
+    10,
+    9
+   ]
+  },
+  {
+   "file": "Jellyfish.TD6",
+   "ride_type": "looping_rc",
+   "vehicle": "SCHT1",
+   "E": 6.2,
+   "I": 6.6,
+   "N": 3.2,
+   "space": [
+    7,
+    30
+   ]
+  },
+  {
+   "file": "Judge Roy Scream.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT2",
+   "E": 6.3,
+   "I": 7.9,
+   "N": 4.6,
+   "space": [
+    73,
+    13
+   ]
+  },
+  {
+   "file": "Jungle Racers.TD6",
+   "ride_type": "car_ride",
+   "vehicle": "RCR",
+   "E": 3.3,
+   "I": 0.6,
+   "N": 0.0,
+   "space": [
+    12,
+    8
+   ]
+  },
+  {
+   "file": "King Rapids.TD6",
+   "ride_type": "river_rapids",
+   "vehicle": "RAPBOAT",
+   "E": 4.0,
+   "I": 1.3,
+   "N": 0.8,
+   "space": [
+    9,
+    13
+   ]
+  },
+  {
+   "file": "Krypton Dips.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMRB",
+   "E": 7.2,
+   "I": 5.8,
+   "N": 3.1,
+   "space": [
+    9,
+    25
+   ]
+  },
+  {
+   "file": "La Vibora.TD6",
+   "ride_type": "bobsleigh_rc",
+   "vehicle": "INTBOB",
+   "E": 5.2,
+   "I": 5.6,
+   "N": 4.0,
+   "space": [
+    29,
+    13
+   ]
+  },
+  {
+   "file": "Lava Launch.TD6",
+   "ride_type": "lim_launched_rc",
+   "vehicle": "PREMT1",
+   "E": 6.5,
+   "I": 9.4,
+   "N": 5.5,
+   "space": [
+    27,
+    7
+   ]
+  },
+  {
+   "file": "Liberty Loop.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMSD",
+   "E": 6.3,
+   "I": 4.3,
+   "N": 2.3,
+   "space": [
+    13,
+    11
+   ]
+  },
+  {
+   "file": "Lobotomizer.TD6",
+   "ride_type": "compact_inverted_rc",
+   "vehicle": "SLCT",
+   "E": 5.9,
+   "I": 8.2,
+   "N": 6.6,
+   "space": [
+    14,
+    19
+   ]
+  },
+  {
+   "file": "Loop-the-Loop.TD6",
+   "ride_type": "inverted_impulse_rc",
+   "vehicle": "BARNSTRM",
+   "E": 6.8,
+   "I": 8.4,
+   "N": 6.0,
+   "space": [
+    23,
+    8
+   ]
+  },
+  {
+   "file": "Loup-Garou.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT2",
+   "E": 6.9,
+   "I": 7.9,
+   "N": 4.5,
+   "space": [
+    35,
+    31
+   ]
+  },
+  {
+   "file": "Lunar Launcher.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMSD",
+   "E": 7.7,
+   "I": 8.6,
+   "N": 4.6,
+   "space": [
+    23,
+    19
+   ]
+  },
+  {
+   "file": "Mango Muncher.TD6",
+   "ride_type": "junior_rc",
+   "vehicle": "ZLDB",
+   "E": 5.1,
+   "I": 5.5,
+   "N": 3.8,
+   "space": [
+    15,
+    8
+   ]
+  },
+  {
+   "file": "Manic Miner.TD6",
+   "ride_type": "mine_train_rc",
+   "vehicle": "AMT1",
+   "E": 6.1,
+   "I": 6.5,
+   "N": 4.1,
+   "space": [
+    18,
+    15
+   ]
+  },
+  {
+   "file": "Medusa.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMFL",
+   "E": 7.9,
+   "I": 9.0,
+   "N": 4.9,
+   "space": [
+    34,
+    34
+   ]
+  },
+  {
+   "file": "Megatrucks.TD6",
+   "ride_type": "car_ride",
+   "vehicle": "4X4",
+   "E": 4.6,
+   "I": 0.7,
+   "N": 0.0,
+   "space": [
+    5,
+    12
+   ]
+  },
+  {
+   "file": "Microfobia.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 6.2,
+   "I": 6.8,
+   "N": 3.8,
+   "space": [
+    16,
+    14
+   ]
+  },
+  {
+   "file": "Mine Mania.TD6",
+   "ride_type": "mine_ride",
+   "vehicle": "PMT1",
+   "E": 6.4,
+   "I": 4.5,
+   "N": 3.8,
+   "space": [
+    9,
+    14
+   ]
+  },
+  {
+   "file": "Mini Maze.TD6",
+   "ride_type": "maze",
+   "vehicle": "HMAZE",
+   "E": 1.5,
+   "I": 0.6,
+   "N": 0.0,
+   "space": [
+    5,
+    6
+   ]
+  },
+  {
+   "file": "Mini Miner.TD6",
+   "ride_type": "wooden_wild_mouse",
+   "vehicle": "WMMINE",
+   "E": 7.1,
+   "I": 8.1,
+   "N": 4.5,
+   "space": [
+    8,
+    13
+   ]
+  },
+  {
+   "file": "Minidiver.TD6",
+   "ride_type": "vertical_drop_rc",
+   "vehicle": "BMVD",
+   "E": 6.2,
+   "I": 6.1,
+   "N": 2.7,
+   "space": [
+    8,
+    21
+   ]
+  },
+  {
+   "file": "Mouse Towers.TD6",
+   "ride_type": "wooden_wild_mouse",
+   "vehicle": "WMOUSE",
+   "E": 7.1,
+   "I": 7.7,
+   "N": 4.6,
+   "space": [
+    12,
+    6
+   ]
+  },
+  {
+   "file": "Multidiver.TD6",
+   "ride_type": "inverted_impulse_rc",
+   "vehicle": "INTINV",
+   "E": 6.1,
+   "I": 7.7,
+   "N": 5.5,
+   "space": [
+    18,
+    8
+   ]
+  },
+  {
+   "file": "Mummy's Curse.TD6",
+   "ride_type": "stand_up_rc",
+   "vehicle": "TOGST",
+   "E": 5.7,
+   "I": 8.9,
+   "N": 6.0,
+   "space": [
+    20,
+    9
+   ]
+  },
+  {
+   "file": "Mutant Mouse.TD6",
+   "ride_type": "steel_wild_mouse",
+   "vehicle": "WMSPIN",
+   "E": 6.5,
+   "I": 6.7,
+   "N": 5.4,
+   "space": [
+    6,
+    12
+   ]
+  },
+  {
+   "file": "Mystic Flight.TD6",
+   "ride_type": "lay_down_rc",
+   "vehicle": "VEKST",
+   "E": 7.2,
+   "I": 8.2,
+   "N": 6.0,
+   "space": [
+    17,
+    20
+   ]
+  },
+  {
+   "file": "Neptune's Knot.TD6",
+   "ride_type": "giga_rc",
+   "vehicle": "INTST",
+   "E": 7.7,
+   "I": 5.4,
+   "N": 3.0,
+   "space": [
+    19,
+    17
+   ]
+  },
+  {
+   "file": "Nitro.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMRB",
+   "E": 8.8,
+   "I": 7.3,
+   "N": 3.8,
+   "space": [
+    96,
+    50
+   ]
+  },
+  {
+   "file": "Octivator.TD6",
+   "ride_type": "corkscrew_rc",
+   "vehicle": "ARRT1",
+   "E": 6.8,
+   "I": 9.0,
+   "N": 4.3,
+   "space": [
+    12,
+    27
+   ]
+  },
+  {
+   "file": "Oil Derrick.TD6",
+   "ride_type": "lift",
+   "vehicle": "LIFT1",
+   "E": 5.6,
+   "I": 0.3,
+   "N": 1.0,
+   "space": [
+    4,
+    4
+   ]
+  },
+  {
+   "file": "Old Timers.TD6",
+   "ride_type": "car_ride",
+   "vehicle": "VCR",
+   "E": 0.3,
+   "I": 0.2,
+   "N": 0.0,
+   "space": [
+    9,
+    7
+   ]
+  },
+  {
+   "file": "Pegasus.TD6",
+   "ride_type": "car_ride",
+   "vehicle": "PEGASUSX",
+   "E": 3.2,
+   "I": 0.6,
+   "N": 0.0,
+   "space": [
+    15,
+    9
+   ]
+  },
+  {
+   "file": "Pendulator.TD6",
+   "ride_type": "suspended_swinging_rc",
+   "vehicle": "ARRSW1",
+   "E": 6.2,
+   "I": 6.7,
+   "N": 6.9,
+   "space": [
+    10,
+    20
+   ]
+  },
+  {
+   "file": "Penguin Paradise.TD6",
+   "ride_type": "bobsleigh_rc",
+   "vehicle": "PENGUINB",
+   "E": 6.1,
+   "I": 6.7,
+   "N": 4.7,
+   "space": [
+    13,
+    21
+   ]
+  },
+  {
+   "file": "Penguin Toboggan.TD6",
+   "ride_type": "bobsleigh_rc",
+   "vehicle": "PENGUINB",
+   "E": 6.5,
+   "I": 6.9,
+   "N": 4.8,
+   "space": [
+    38,
+    17
+   ]
+  },
+  {
+   "file": "Percolator.TD6",
+   "ride_type": "spiral_rc",
+   "vehicle": "SPDRCR",
+   "E": 6.2,
+   "I": 3.7,
+   "N": 2.1,
+   "space": [
+    13,
+    10
+   ]
+  },
+  {
+   "file": "Phantom Spirit.TD6",
+   "ride_type": "lay_down_rc",
+   "vehicle": "HARPIESX",
+   "E": 7.2,
+   "I": 7.3,
+   "N": 5.7,
+   "space": [
+    20,
+    10
+   ]
+  },
+  {
+   "file": "Polar Cap.TD6",
+   "ride_type": "compact_inverted_rc",
+   "vehicle": "POLARBER",
+   "E": 5.8,
+   "I": 8.3,
+   "N": 6.1,
+   "space": [
+    19,
+    2
+   ]
+  },
+  {
+   "file": "Polarity.TD6",
+   "ride_type": "steeplechase",
+   "vehicle": "HOVERBKE",
+   "E": 5.5,
+   "I": 5.0,
+   "N": 3.6,
+   "space": [
+    18,
+    11
+   ]
+  },
+  {
+   "file": "Pony Tales.TD6",
+   "ride_type": "steeplechase",
+   "vehicle": "STEEP1",
+   "E": 5.4,
+   "I": 5.4,
+   "N": 3.9,
+   "space": [
+    9,
+    18
+   ]
+  },
+  {
+   "file": "Production Line.TD6",
+   "ride_type": "steeplechase",
+   "vehicle": "SBOX",
+   "E": 5.2,
+   "I": 4.9,
+   "N": 3.5,
+   "space": [
+    10,
+    17
+   ]
+  },
+  {
+   "file": "Psyclone.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 7.5,
+   "I": 9.6,
+   "N": 5.5,
+   "space": [
+    36,
+    16
+   ]
+  },
+  {
+   "file": "Pylon Peril.TD6",
+   "ride_type": "suspended_swinging_rc",
+   "vehicle": "SEAPLANE",
+   "E": 7.3,
+   "I": 7.2,
+   "N": 7.4,
+   "space": [
+    29,
+    12
+   ]
+  },
+  {
+   "file": "Quantum Thruster.TD6",
+   "ride_type": "lim_launched_rc",
+   "vehicle": "PREMT1",
+   "E": 6.4,
+   "I": 8.4,
+   "N": 5.2,
+   "space": [
+    26,
+    11
+   ]
+  },
+  {
+   "file": "Racer-saurus.TD6",
+   "ride_type": "steeplechase",
+   "vehicle": "RAPTORXX",
+   "E": 7.3,
+   "I": 5.8,
+   "N": 4.3,
+   "space": [
+    13,
+    26
+   ]
+  },
+  {
+   "file": "Radical Air.TD6",
+   "ride_type": "mini_suspended_rc",
+   "vehicle": "HOVRBORD",
+   "E": 5.0,
+   "I": 6.1,
+   "N": 4.4,
+   "space": [
+    16,
+    11
+   ]
+  },
+  {
+   "file": "Rapid Response.TD6",
+   "ride_type": "reverser_rc",
+   "vehicle": "POLICECR",
+   "E": 6.4,
+   "I": 5.9,
+   "N": 4.5,
+   "space": [
+    14,
+    22
+   ]
+  },
+  {
+   "file": "Rat Race.TD6",
+   "ride_type": "steel_wild_mouse",
+   "vehicle": "WMSPIN",
+   "E": 6.8,
+   "I": 7.2,
+   "N": 5.9,
+   "space": [
+    15,
+    9
+   ]
+  },
+  {
+   "file": "Rattlesnake.TD6",
+   "ride_type": "looping_rc",
+   "vehicle": "SCHT1",
+   "E": 5.8,
+   "I": 5.6,
+   "N": 3.2,
+   "space": [
+    13,
+    23
+   ]
+  },
+  {
+   "file": "Raven Racer.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMRB",
+   "E": 7.4,
+   "I": 8.1,
+   "N": 4.8,
+   "space": [
+    11,
+    37
+   ]
+  },
+  {
+   "file": "Raving Rockets.TD6",
+   "ride_type": "mini_rc",
+   "vehicle": "RCKC",
+   "E": 5.1,
+   "I": 5.2,
+   "N": 3.6,
+   "space": [
+    17,
+    18
+   ]
+  },
+  {
+   "file": "Red Baron.TD6",
+   "ride_type": "stand_up_rc",
+   "vehicle": "TOGST",
+   "E": 5.1,
+   "I": 9.4,
+   "N": 6.4,
+   "space": [
+    22,
+    12
+   ]
+  },
+  {
+   "file": "Regurgitator.TD6",
+   "ride_type": "suspended_swinging_rc",
+   "vehicle": "VEKVAMP",
+   "E": 7.6,
+   "I": 9.0,
+   "N": 10.4,
+   "space": [
+    15,
+    27
+   ]
+  },
+  {
+   "file": "Revertigo.TD6",
+   "ride_type": "compact_inverted_rc",
+   "vehicle": "SLCFO",
+   "E": 6.2,
+   "I": 9.2,
+   "N": 7.2,
+   "space": [
+    5,
+    14
+   ]
+  },
+  {
+   "file": "Ricochet.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "MFT",
+   "E": 6.3,
+   "I": 7.9,
+   "N": 4.4,
+   "space": [
+    20,
+    19
+   ]
+  },
+  {
+   "file": "River Of The Damned.TD6",
+   "ride_type": "river_rafts",
+   "vehicle": "RIVRSTYX",
+   "E": 2.9,
+   "I": 0.4,
+   "N": 0.4,
+   "space": [
+    19,
+    11
+   ]
+  },
+  {
+   "file": "Roadworks.TD6",
+   "ride_type": "car_ride",
+   "vehicle": "TRUCK1",
+   "E": 3.3,
+   "I": 0.5,
+   "N": 0.0,
+   "space": [
+    8,
+    8
+   ]
+  },
+  {
+   "file": "Robin Hood.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT2",
+   "E": 6.8,
+   "I": 8.1,
+   "N": 4.6,
+   "space": [
+    36,
+    24
+   ]
+  },
+  {
+   "file": "Rocket Rush.TD6",
+   "ride_type": "reverse_freefall_rc",
+   "vehicle": "JETPACKX",
+   "E": 5.2,
+   "I": 7.7,
+   "N": 5.5,
+   "space": [
+    33,
+    3
+   ]
+  },
+  {
+   "file": "Rolling Thunder (Track 1).TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT2",
+   "E": 7.0,
+   "I": 8.1,
+   "N": 4.7,
+   "space": [
+    62,
+    26
+   ]
+  },
+  {
+   "file": "Rolling Thunder (Track 2).TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT2",
+   "E": 6.8,
+   "I": 7.7,
+   "N": 4.4,
+   "space": [
+    63,
+    26
+   ]
+  },
+  {
+   "file": "Roman Racers.TD6",
+   "ride_type": "side_friction_rc",
+   "vehicle": "SFRIC1",
+   "E": 5.3,
+   "I": 6.1,
+   "N": 3.5,
+   "space": [
+    16,
+    8
+   ]
+  },
+  {
+   "file": "Rotovator.TD6",
+   "ride_type": "reverser_rc",
+   "vehicle": "REVCAR",
+   "E": 6.4,
+   "I": 5.7,
+   "N": 4.3,
+   "space": [
+    20,
+    13
+   ]
+  },
+  {
+   "file": "Roughrider.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "MFT",
+   "E": 7.0,
+   "I": 7.6,
+   "N": 4.4,
+   "space": [
+    22,
+    15
+   ]
+  },
+  {
+   "file": "Runaway Mine Train.TD6",
+   "ride_type": "mine_train_rc",
+   "vehicle": "AMT1",
+   "E": 2.8,
+   "I": 2.7,
+   "N": 1.8,
+   "space": [
+    11,
+    43
+   ]
+  },
+  {
+   "file": "Sawdust.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 7.5,
+   "I": 7.8,
+   "N": 4.7,
+   "space": [
+    23,
+    12
+   ]
+  },
+  {
+   "file": "Seal Sliding.TD6",
+   "ride_type": "corkscrew_rc",
+   "vehicle": "SEALS",
+   "E": 6.4,
+   "I": 7.0,
+   "N": 3.2,
+   "space": [
+    33,
+    19
+   ]
+  },
+  {
+   "file": "Shimmy.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "MFT",
+   "E": 7.1,
+   "I": 7.7,
+   "N": 4.5,
+   "space": [
+    19,
+    20
+   ]
+  },
+  {
+   "file": "Shockwave.TD6",
+   "ride_type": "looping_rc",
+   "vehicle": "SCHT1",
+   "E": 6.0,
+   "I": 6.0,
+   "N": 3.0,
+   "space": [
+    42,
+    11
+   ]
+  },
+  {
+   "file": "Siege Breaker.TD6",
+   "ride_type": "spiral_rc",
+   "vehicle": "BATTRRAM",
+   "E": 6.3,
+   "I": 4.3,
+   "N": 2.3,
+   "space": [
+    12,
+    14
+   ]
+  },
+  {
+   "file": "Silvertwist.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMSD",
+   "E": 6.1,
+   "I": 5.6,
+   "N": 2.8,
+   "space": [
+    19,
+    9
+   ]
+  },
+  {
+   "file": "Sky Tower.TD6",
+   "ride_type": "lift",
+   "vehicle": "LIFT1",
+   "E": 5.6,
+   "I": 0.3,
+   "N": 1.0,
+   "space": [
+    4,
+    4
+   ]
+  },
+  {
+   "file": "Slippery Seals.TD6",
+   "ride_type": "corkscrew_rc",
+   "vehicle": "SEALS",
+   "E": 6.6,
+   "I": 9.3,
+   "N": 4.3,
+   "space": [
+    47,
+    18
+   ]
+  },
+  {
+   "file": "Soul Stealer.TD6",
+   "ride_type": "vertical_drop_rc",
+   "vehicle": "VALKYRIE",
+   "E": 6.5,
+   "I": 6.0,
+   "N": 2.6,
+   "space": [
+    18,
+    11
+   ]
+  },
+  {
+   "file": "Spiral Hedges.TD6",
+   "ride_type": "maze",
+   "vehicle": "HMAZE",
+   "E": 1.6,
+   "I": 0.6,
+   "N": 0.0,
+   "space": [
+    6,
+    8
+   ]
+  },
+  {
+   "file": "Splash Mine.TD6",
+   "ride_type": "log_flume",
+   "vehicle": "LFB1",
+   "E": 5.3,
+   "I": 2.4,
+   "N": 1.4,
+   "space": [
+    16,
+    10
+   ]
+  },
+  {
+   "file": "Splashtastic.TD6",
+   "ride_type": "water_coaster",
+   "vehicle": "CSTBOAT",
+   "E": 5.9,
+   "I": 5.7,
+   "N": 4.1,
+   "space": [
+    14,
+    16
+   ]
+  },
+  {
+   "file": "Splinter.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 7.0,
+   "I": 7.9,
+   "N": 4.7,
+   "space": [
+    14,
+    19
+   ]
+  },
+  {
+   "file": "Spruce Goose.TD6",
+   "ride_type": "water_coaster",
+   "vehicle": "FLYGBOAT",
+   "E": 7.2,
+   "I": 6.9,
+   "N": 5.0,
+   "space": [
+    35,
+    9
+   ]
+  },
+  {
+   "file": "Squeaky Cycles.TD6",
+   "ride_type": "monorail_cycles",
+   "vehicle": "MONBK",
+   "E": 2.3,
+   "I": 0.2,
+   "N": 0.0,
+   "space": [
+    13,
+    7
+   ]
+  },
+  {
+   "file": "Stampede!.TD6",
+   "ride_type": "stand_up_rc",
+   "vehicle": "STAMPHRD",
+   "E": 5.6,
+   "I": 8.5,
+   "N": 6.0,
+   "space": [
+    13,
+    16
+   ]
+  },
+  {
+   "file": "Steel Squeak.TD6",
+   "ride_type": "steel_wild_mouse",
+   "vehicle": "SMC1",
+   "E": 7.2,
+   "I": 7.8,
+   "N": 4.8,
+   "space": [
+    7,
+    12
+   ]
+  },
+  {
+   "file": "Stingray.TD6",
+   "ride_type": "looping_rc",
+   "vehicle": "SCHT1",
+   "E": 5.9,
+   "I": 5.0,
+   "N": 2.3,
+   "space": [
+    13,
+    16
+   ]
+  },
+  {
+   "file": "Supersonic.TD6",
+   "ride_type": "mini_rc",
+   "vehicle": "JETPLANE",
+   "E": 5.6,
+   "I": 5.6,
+   "N": 4.0,
+   "space": [
+    13,
+    22
+   ]
+  },
+  {
+   "file": "Swither.TD6",
+   "ride_type": "suspended_swinging_rc",
+   "vehicle": "ARRSW1",
+   "E": 5.5,
+   "I": 6.6,
+   "N": 6.7,
+   "space": [
+    12,
+    16
+   ]
+  },
+  {
+   "file": "Terror-dactyl.TD6",
+   "ride_type": "flying_rc",
+   "vehicle": "PTERODAC",
+   "E": 6.9,
+   "I": 7.4,
+   "N": 6.7,
+   "space": [
+    11,
+    18
+   ]
+  },
+  {
+   "file": "Texas Giant.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 8.4,
+   "I": 8.9,
+   "N": 5.5,
+   "space": [
+    41,
+    26
+   ]
+  },
+  {
+   "file": "Texas Tubs.TD6",
+   "ride_type": "virginia_reel",
+   "vehicle": "VREEL",
+   "E": 5.4,
+   "I": 5.5,
+   "N": 5.9,
+   "space": [
+    6,
+    11
+   ]
+  },
+  {
+   "file": "The Plague.TD6",
+   "ride_type": "bobsleigh_rc",
+   "vehicle": "BLCKDETH",
+   "E": 5.9,
+   "I": 6.3,
+   "N": 5.1,
+   "space": [
+    25,
+    16
+   ]
+  },
+  {
+   "file": "Timber Turnaround.TD6",
+   "ride_type": "reverser_rc",
+   "vehicle": "REVCAR",
+   "E": 4.9,
+   "I": 5.2,
+   "N": 3.8,
+   "space": [
+    11,
+    15
+   ]
+  },
+  {
+   "file": "Time Twister.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMSD",
+   "E": 7.0,
+   "I": 6.9,
+   "N": 3.8,
+   "space": [
+    9,
+    21
+   ]
+  },
+  {
+   "file": "Tinder.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 7.0,
+   "I": 7.8,
+   "N": 4.7,
+   "space": [
+    24,
+    18
+   ]
+  },
+  {
+   "file": "Titan.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "GOLTR",
+   "E": 8.1,
+   "I": 7.3,
+   "N": 3.7,
+   "space": [
+    77,
+    29
+   ]
+  },
+  {
+   "file": "To The Death.TD6",
+   "ride_type": "steeplechase",
+   "vehicle": "JOUSTING",
+   "E": 4.7,
+   "I": 5.1,
+   "N": 3.6,
+   "space": [
+    18,
+    18
+   ]
+  },
+  {
+   "file": "Tornado.TD6",
+   "ride_type": "corkscrew_rc",
+   "vehicle": "ARRT1",
+   "E": 5.8,
+   "I": 6.9,
+   "N": 3.2,
+   "space": [
+    24,
+    11
+   ]
+  },
+  {
+   "file": "Touchwood.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT2",
+   "E": 7.5,
+   "I": 8.6,
+   "N": 5.2,
+   "space": [
+    23,
+    11
+   ]
+  },
+  {
+   "file": "Toxic Toboggan.TD6",
+   "ride_type": "bobsleigh_rc",
+   "vehicle": "BOB1",
+   "E": 5.3,
+   "I": 5.7,
+   "N": 4.8,
+   "space": [
+    19,
+    12
+   ]
+  },
+  {
+   "file": "Treetop Choppers.TD6",
+   "ride_type": "mini_helicopters",
+   "vehicle": "HELICAR",
+   "E": 3.1,
+   "I": 0.4,
+   "N": 0.0,
+   "space": [
+    11,
+    10
+   ]
+  },
+  {
+   "file": "Triple Corkscrew.TD6",
+   "ride_type": "corkscrew_rc",
+   "vehicle": "ARRT1",
+   "E": 5.6,
+   "I": 7.4,
+   "N": 3.2,
+   "space": [
+    22,
+    14
+   ]
+  },
+  {
+   "file": "Turbine.TD6",
+   "ride_type": "looping_rc",
+   "vehicle": "SCHT1",
+   "E": 5.0,
+   "I": 4.9,
+   "N": 2.1,
+   "space": [
+    28,
+    2
+   ]
+  },
+  {
+   "file": "Twicky Twister.TD6",
+   "ride_type": "heartline_twister_rc",
+   "vehicle": "UTCARR",
+   "E": 2.8,
+   "I": 6.5,
+   "N": 4.4,
+   "space": [
+    22,
+    3
+   ]
+  },
+  {
+   "file": "Twin Loop.TD6",
+   "ride_type": "compact_inverted_rc",
+   "vehicle": "POLARBER",
+   "E": 6.4,
+   "I": 9.9,
+   "N": 7.4,
+   "space": [
+    27,
+    8
+   ]
+  },
+  {
+   "file": "Twisty Towers.TD6",
+   "ride_type": "spiral_rc",
+   "vehicle": "SPDRCR",
+   "E": 6.8,
+   "I": 4.0,
+   "N": 2.4,
+   "space": [
+    19,
+    17
+   ]
+  },
+  {
+   "file": "Ugly Twisters.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 8.5,
+   "I": 8.3,
+   "N": 5.5,
+   "space": [
+    33,
+    16
+   ]
+  },
+  {
+   "file": "Updraft.TD6",
+   "ride_type": "flying_rc",
+   "vehicle": "BMAIR",
+   "E": 7.6,
+   "I": 6.9,
+   "N": 6.7,
+   "space": [
+    29,
+    13
+   ]
+  },
+  {
+   "file": "Velocerator.TD6",
+   "ride_type": "giga_rc",
+   "vehicle": "INTST",
+   "E": 8.7,
+   "I": 6.2,
+   "N": 3.6,
+   "space": [
+    12,
+    54
+   ]
+  },
+  {
+   "file": "Venomous.TD6",
+   "ride_type": "stand_up_rc",
+   "vehicle": "TOGST",
+   "E": 5.2,
+   "I": 7.9,
+   "N": 5.5,
+   "space": [
+    18,
+    10
+   ]
+  },
+  {
+   "file": "Verticulator.TD6",
+   "ride_type": "twister_rc",
+   "vehicle": "BMRB",
+   "E": 8.1,
+   "I": 7.0,
+   "N": 3.6,
+   "space": [
+    38,
+    16
+   ]
+  },
+  {
+   "file": "Viper.TD6",
+   "ride_type": "corkscrew_rc",
+   "vehicle": "ARRT1",
+   "E": 7.2,
+   "I": 9.3,
+   "N": 4.4,
+   "space": [
+    16,
+    39
+   ]
+  },
+  {
+   "file": "Wheely Reel.TD6",
+   "ride_type": "virginia_reel",
+   "vehicle": "VREEL",
+   "E": 6.1,
+   "I": 4.9,
+   "N": 5.6,
+   "space": [
+    10,
+    8
+   ]
+  },
+  {
+   "file": "Whiteout.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 7.2,
+   "I": 8.1,
+   "N": 4.6,
+   "space": [
+    14,
+    27
+   ]
+  },
+  {
+   "file": "Whitewash.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "MFT",
+   "E": 7.6,
+   "I": 8.1,
+   "N": 4.8,
+   "space": [
+    17,
+    11
+   ]
+  },
+  {
+   "file": "Wicked Whizzer.TD6",
+   "ride_type": "spiral_rc",
+   "vehicle": "SPDRCR",
+   "E": 6.6,
+   "I": 4.6,
+   "N": 2.7,
+   "space": [
+    13,
+    14
+   ]
+  },
+  {
+   "file": "Wings of Apollo.TD6",
+   "ride_type": "air_powered_vertical_rc",
+   "vehicle": "THCAR",
+   "E": 8.0,
+   "I": 8.9,
+   "N": 6.9,
+   "space": [
+    26,
+    6
+   ]
+  },
+  {
+   "file": "Woodchip.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 6.4,
+   "I": 7.6,
+   "N": 4.5,
+   "space": [
+    24,
+    8
+   ]
+  },
+  {
+   "file": "Woodwind.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "PTCT1",
+   "E": 7.5,
+   "I": 7.6,
+   "N": 4.6,
+   "space": [
+    26,
+    19
+   ]
+  },
+  {
+   "file": "Woodworm.TD6",
+   "ride_type": "wooden_rc",
+   "vehicle": "MFT",
+   "E": 7.3,
+   "I": 7.5,
+   "N": 4.6,
+   "space": [
+    13,
+    25
+   ]
+  },
+  {
+   "file": "X.TD6",
+   "ride_type": "multi_dimension_rc",
+   "vehicle": "ARRX",
+   "E": 7.2,
+   "I": 8.5,
+   "N": 8.0,
+   "space": [
+    42,
+    7
+   ]
+  }
+ ],
+ "coasters": 151,
+ "meet_goal": 9,
+ "meet_goal_within_24": 1
+}
