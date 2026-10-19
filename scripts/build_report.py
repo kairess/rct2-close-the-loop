@@ -24,6 +24,8 @@ def main() -> None:
     ap.add_argument("out_dir", type=Path)
     ap.add_argument("--anim", type=Path)
     ap.add_argument("--anim-caption", default="")
+    ap.add_argument("--posthoc", type=Path, help="summary of re-runs made after a fix found on this split")
+    ap.add_argument("--posthoc-note", default="")
     args = ap.parse_args()
 
     out = args.out_dir
@@ -47,6 +49,18 @@ def main() -> None:
                 shutil.copyfile(RESULTS / "gallery" / key / f"thumb_r{k}.jpg", img / f"{key}_r{k}.jpg")
             gallery[name] = {"img": f"img/{key}", "verdict": g["verdict"], "without_trees": g["without_trees"]}
     shutil.copyfile(RESULTS / "report" / "img" / "final_r0.png", img / "final_r0.png")
+
+    posthoc = {}
+    if args.posthoc:
+        for r in json.loads(args.posthoc.read_text())["rows"]:
+            key = f"{args.split}_{r['condition']}_posthoc"
+            g = gallery_index.get(key)
+            entry = {"row": r, "note": args.posthoc_note}
+            if g:
+                for k in range(4):
+                    shutil.copyfile(RESULTS / "gallery" / key / f"thumb_r{k}.jpg", img / f"{key}_r{k}.jpg")
+                entry["gallery"] = {"img": f"img/{key}", "verdict": g["verdict"], "without_trees": g["without_trees"]}
+            posthoc[r["condition"]] = entry
 
     anim = None
     if args.anim:
@@ -77,6 +91,7 @@ def main() -> None:
         "bench": bench,
         "conds": conds,
         "gallery": gallery,
+        "posthoc": posthoc,
         "anim": anim,
         "lead": (f"공원 파일과 영역만 주면 땅을 읽고, 역을 놓고, 게임이 매긴 레이팅만 보고 코스터를 설계한다. "
                  + (f"개발에 쓰지 않은 {n}개 조건" if args.split == "heldout" else f"설정을 고를 때 쓴 개발 조건 {n}개")
@@ -98,6 +113,10 @@ def main() -> None:
                   f"이 알고리즘이 조건별로 낸 최고 흥미도의 중앙값은 {statistics.median(ours):.2f}다. "
                   f"다만 사람 설계는 대부분 훨씬 넓은 땅을 쓰고, 레이팅은 경치 없이 저장된 값이다."),
         "limits": [
+            f"<strong>코스터를 만들지 못한 조건이 있다.</strong> {', '.join(r['condition'] for r in bench['rows'] if r['error'])}: "
+            f"시작 회로 단계에서 멈췄다. {args.posthoc_note}"
+            for _ in [0] if any(r["error"] for r in bench["rows"])
+        ] + [
             f"<strong>나무가 흥미도의 일부다.</strong> 같은 트랙을 나무 없이 매기면 흥미도가 중앙값 {tree_gain:.2f} 낮다. "
             "경치 보너스는 게임이 의도한 규칙이지만, 순수한 트랙 형태만의 점수는 아니다.",
             "<strong>사람이 보기 좋은 모양은 아니다.</strong> 근접·회전·낙하 보너스를 채우려고 낮게 꼬인 트랙이 많다. "

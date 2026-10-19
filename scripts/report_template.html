@@ -233,23 +233,36 @@ function render() {
     img.src = img.dataset.base + `_r${k}.jpg`;
     btn.textContent = `방향 ${k + 1}/4`;
   }));
-  document.getElementById('rows').innerHTML = order.map(r => {
+  const rowHtml = (r, label) => {
     const c = DATA.conds[r.condition];
     const best = r.best_goal || r.best_feasible;
-    const status = r.goal ? '<span class="pill ok">달성</span>' : '<span class="pill miss">미달</span>';
-    return `<tr><td>${condTitle(c)}</td><td class="num">${r.tiles}칸</td><td>${status}</td>
+    const status = r.goal ? '<span class="pill ok">달성</span>'
+      : (r.error ? '<span class="pill miss">코스터 없음</span>' : '<span class="pill miss">미달</span>');
+    return `<tr><td>${label || condTitle(c)}</td><td class="num">${r.tiles}칸</td><td>${status}</td>
       <td class="num">${r.goal ? r.first_goal_min.toFixed(1) + '분' : '–'}</td>
       <td class="num">${best ? best.map(f2).join(' / ') : '–'}</td><td class="num">${r.evals.toLocaleString('ko-KR')}</td></tr>`;
+  };
+  document.getElementById('rows').innerHTML = order.map(r => {
+    const ph = (DATA.posthoc || {})[r.condition];
+    return rowHtml(r) + (ph ? rowHtml(ph.row, `↳ 사후 재실행(공식 집계 제외)`) : '');
   }).join('');
 }
 
 function card(r) {
   const c = DATA.conds[r.condition];
-  const g = DATA.gallery[r.condition];
+  const ph = (DATA.posthoc || {})[r.condition];
+  const g = DATA.gallery[r.condition] || (ph && ph.gallery);
   const v = g ? g.verdict : null;
-  const status = r.goal
+  let status = r.goal
     ? `<span class="pill ok">목표 달성 · ${r.first_goal_min.toFixed(1)}분</span>`
-    : '<span class="pill miss">목표 미달</span>';
+    : (r.error ? '<span class="pill miss">코스터 없음 · 시작 회로 실패</span>' : '<span class="pill miss">목표 미달</span>');
+  if (ph) {
+    const pr = ph.row;
+    status += pr.goal
+      ? `<span class="pill ok">사후 재실행: 목표 달성 · ${pr.first_goal_min.toFixed(1)}분</span>`
+      : '<span class="pill miss">사후 재실행: 목표 미달</span>';
+    if (ph.note) status += `<div class="note">${ph.note}</div>`;
+  }
   const pic = g
     ? `<img src="${g.img}_r0.jpg" data-base="${g.img}" data-rot="0" alt="${condTitle(c)}에 지은 코스터" loading="lazy" width="960" height="600"><button type="button" aria-label="다른 방향에서 보기">방향 1/4</button>`
     : '';

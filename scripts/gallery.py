@@ -1,6 +1,6 @@
 """Build each benchmark run's best coaster in its park, save the park and screenshots.
 
-    uv run python scripts/gallery.py <split> runs/2026*/
+    uv run python scripts/gallery.py <split> [--suffix _posthoc] runs/2026*/
 
 For every run of the split the best goal-meeting track is rebuilt (or, if the
 goal was missed, the best one with I < 7.68 and N < 5.12), with its trees, saved
@@ -35,12 +35,14 @@ def pick(run: Path) -> dict | None:
 
 
 def main() -> None:
-    split = sys.argv[1]
+    split, runs, suffix = sys.argv[1], sys.argv[2:], ""
+    if runs[:1] == ["--suffix"]:
+        suffix, runs = runs[1], runs[2:]
     out = RESULTS / "gallery"
     out.mkdir(parents=True, exist_ok=True)
     index_path = out / f"{split}.json"
     index = json.loads(index_path.read_text()) if index_path.exists() else {}
-    for run in map(Path, sys.argv[2:]):
+    for run in map(Path, runs):
         if not (run / "design.json").exists():
             continue
         layout, meta = layout_from_run(run)
@@ -50,7 +52,7 @@ def main() -> None:
         if best is None:
             print(run.name, "no feasible track")
             continue
-        name = f"{split}_{meta['condition_name']}"
+        name = f"{split}_{meta['condition_name']}{suffix}"
         track = [tuple(p) for p in best["track"]]
         circuits = best.get("circuits", 1)
         summary = render(layout, track, name, zoom=None, circuits=circuits, out=out / name)
