@@ -18,6 +18,7 @@ def main() -> None:
     s.add_argument("--hill", type=int, default=6)
     s.add_argument("--seed", type=int, default=1)
     s.add_argument("--init", type=Path, help="best.json (or any JSON with a 'track') to start from")
+    s.add_argument("--slack", type=float, default=0.0, help="low-I/N tie-breaker weight")
     s.add_argument("--stop-on-goal", action="store_true")
 
     m = sub.add_parser("mapelites", help="MAP-Elites over intensity x nausea, fitness = excitement")
@@ -84,7 +85,7 @@ def main() -> None:
         cfg = SearchConfig(
             layout_name=args.layout, workers=args.workers, batch=args.batch, max_evals=args.evals,
             max_minutes=args.minutes, t0=args.t0, t1=args.t1, hill=args.hill, seed=args.seed,
-            stop_on_goal=args.stop_on_goal,
+            slack=args.slack, stop_on_goal=args.stop_on_goal,
         )
         initial = None
         if args.init:

@@ -32,10 +32,17 @@ N_CAP = 5.00
 PENALTY = 2.0
 
 
-def score(v: Verdict) -> float | None:
+def score(v: Verdict, slack: float = 0.0) -> float | None:
+    """Excitement minus penalties past the I/N caps.
+
+    `slack` > 0 adds a small preference for lower intensity and nausea, so that
+    between near-equal excitements the search keeps the design with headroom
+    (e.g. lateral G just under the 2.80 penalty cliff) instead of a coin flip.
+    """
     if not v.rated:
         return None
-    return v.excitement - PENALTY * max(0.0, v.intensity - I_CAP) - PENALTY * max(0.0, v.nausea - N_CAP)
+    s = v.excitement - PENALTY * max(0.0, v.intensity - I_CAP) - PENALTY * max(0.0, v.nausea - N_CAP)
+    return s - slack * (v.intensity + v.nausea) / 2
 
 
 def meets_goal(v: Verdict) -> bool:
@@ -54,6 +61,7 @@ class SearchConfig:
     hill: int = 6
     seed: int = 1
     reheat_after: int = 60  # rounds without a new best
+    slack: float = 0.0  # weight of the low-I/N tie-breaker in score()
     stop_on_goal: bool = False
 
 
@@ -76,8 +84,8 @@ class RunLog:
     def progress(self, record: dict) -> None:
         self._progress.write(json.dumps(record, separators=(",", ":")) + "\n")
 
-    def best(self, record: dict) -> None:
-        (self.dir / "best.json").write_text(json.dumps(record, indent=1))
+    def best(self, record: dict, name: str = "best.json") -> None:
+        (self.dir / name).write_text(json.dumps(record, indent=1))
 
     def close(self) -> None:
         self._evals.close()
@@ -109,8 +117,8 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
     started = time.monotonic()
     try:
         v0 = pool.map([track])[0]
-        cur_id = log.eval({"before": None, "edit": None, "track": track, "verdict": v0.to_dict(), "score": score(v0), "round": 0})
-        cur, cur_v, cur_s = track, v0, score(v0)
+        cur_id = log.eval({"before": None, "edit": None, "track": track, "verdict": v0.to_dict(), "score": score(v0, cfg.slack), "round": 0})
+        cur, cur_v, cur_s = track, v0, score(v0, cfg.slack)
         if cur_s is None:
             raise RuntimeError(f"initial track not rated: {v0.to_dict()}")
         best, best_v, best_s, best_id = cur, cur_v, cur_s, cur_id
@@ -120,6 +128,7 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
         rnd = 0
         since_best = 0
         goal_hits = 0
+        best_goal: float | None = None
         while log.n < cfg.max_evals and (time.monotonic() - started) / 60 < cfg.max_minutes:
             rnd += 1
             frac = min(1.0, log.n / cfg.max_evals)
@@ -133,7 +142,7 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
             stages: dict[str, int] = {}
             round_best = None
             for (cand, edit), v in zip(proposals, verdicts):
-                s = score(v)
+                s = score(v, cfg.slack)
                 stages[v.stage] = stages.get(v.stage, 0) + 1
                 eid = log.eval({
                     "before": cur_id, "edit": edit.to_dict(), "track": cand,
@@ -141,6 +150,10 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
                 })
                 if meets_goal(v):
                     goal_hits += 1
+                    if best_goal is None or v.excitement > best_goal:
+                        best_goal = v.excitement
+                        log.best({"eval": eid, "score": s, "verdict": v.to_dict(), "track": cand, "round": rnd}, "best_goal.json")
+                        log_print(f"[r{rnd} e{log.n}] GOAL MET {summarize(v)} pieces={len(cand)}")
                 if s is not None and (round_best is None or s > round_best[0]):
                     round_best = (s, cand, v, eid)
             accepted = None
