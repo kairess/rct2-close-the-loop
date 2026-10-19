@@ -83,6 +83,7 @@ EXCLUDED_TYPES = {
     101,  # MAZE
     114,  # ON_RIDE_PHOTO
     117,  # WATER_SPLASH
+    123,  # CABLE_LIFT_HILL (needs the cable lift operating mode)
     216,  # BLOCK_BRAKES
 }
 

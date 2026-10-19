@@ -21,7 +21,20 @@ WOODEN_24 = Layout(
     max_height=320,
 )
 
-LAYOUTS = {"wooden_24": WOODEN_24}
+# Same area and station, Giga Coaster (base ratings E3.85/I0.40/N0.35 vs wooden E3.20/I2.60/N2.00).
+GIGA_24 = Layout(
+    ride_type_name="giga_rc",
+    ride_type=68,
+    ride_object="rct2.ride.intst",
+    station_tile=(104, 102),
+    station_dir=2,
+    station_len=4,
+    ground_z=GROUND_Z,
+    area=(100, 100, 124, 124),
+    max_height=680,
+)
+
+LAYOUTS = {"wooden_24": WOODEN_24, "giga_24": GIGA_24}
 
 LEFT3 = 42
 RIGHT3 = 43
