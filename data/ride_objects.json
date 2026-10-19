@@ -1,0 +1,8503 @@
+[
+ {
+  "identifier": "rct2tt.ride.1920racr",
+  "name": "1920s Racing Cars",
+  "rideType": [
+   22,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 250,
+  "numSeats": 1,
+  "spacing": 209100,
+  "poweredAcceleration": 35,
+  "poweredMaxSpeed": 40,
+  "flags": 0,
+  "vehicleFlags": 5373493248,
+  "rideTypeNames": [
+   "go_karts"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.rocket",
+  "name": "1950s Rockets",
+  "rideType": [
+   2,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 418368,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4298309632,
+  "rideTypeNames": [
+   "suspended_swinging_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.c3d",
+  "name": "3D Cinema",
+  "rideType": [
+   39,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 20,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1025,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "3d_cinema"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.nemt",
+  "name": "4-across Inverted Roller Coaster Trains",
+  "rideType": [
+   3,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 4,
+  "maxCars": 9,
+  "carMass": 570,
+  "numSeats": 132,
+  "spacing": 130740,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "inverted_rc"
+  ]
+ },
+ {
+  "identifier": "rct1ll.ride.4_across_inverted_trains",
+  "name": "4-across Inverted Roller Coaster Trains",
+  "rideType": [
+   3,
+   255,
+   255
+  ],
+  "excitement": 5,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 4,
+  "maxCars": 9,
+  "carMass": 570,
+  "numSeats": 132,
+  "spacing": 130048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "inverted_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.intbob",
+  "name": "6-seater Bobsleds",
+  "rideType": [
+   13,
+   255,
+   255
+  ],
+  "excitement": 5,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 1400,
+  "numSeats": 134,
+  "spacing": 296344,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4432527364,
+  "rideTypeNames": [
+   "bobsleigh_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.atm1",
+  "name": "ATM",
+  "rideType": [
+   45,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "cash_machine"
+  ]
+ },
+ {
+  "identifier": "rct1ll.ride.air_powered_trains",
+  "name": "Air Powered Vertical Coaster Trains",
+  "rideType": [
+   75,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 5,
+  "maxCars": 9,
+  "carMass": 600,
+  "numSeats": 130,
+  "spacing": 95232,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "air_powered_vertical_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.thcar",
+  "name": "Air Powered Vertical Coaster Trains",
+  "rideType": [
+   75,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 5,
+  "maxCars": 9,
+  "carMass": 600,
+  "numSeats": 130,
+  "spacing": 95876,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "air_powered_vertical_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.zeplelin",
+  "name": "Airship Themed Monorail Trains",
+  "rideType": [
+   63,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 4,
+  "carMass": 1100,
+  "numSeats": 136,
+  "spacing": 383504,
+  "poweredAcceleration": 110,
+  "poweredMaxSpeed": 27,
+  "flags": 263169,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "suspended_monorail"
+  ]
+ },
+ {
+  "identifier": "openrct2.ride.alpine_coaster",
+  "name": "Alpine Coaster Cars",
+  "rideType": [
+   98,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 450,
+  "numSeats": 130,
+  "spacing": 150931,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2359296,
+  "vehicleFlags": 4294967296,
+  "rideTypeNames": [
+   98
+  ]
+ },
+ {
+  "identifier": "rct2.ride.aml1",
+  "name": "American Style Steam Trains",
+  "rideType": [
+   5,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 8,
+  "carMass": 600,
+  "numSeats": 134,
+  "spacing": 270196,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 263177,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "miniature_railway"
+  ]
+ },
+ {
+  "identifier": "rct1ll.ride.steam_trains_american",
+  "name": "American Style Steam Trains",
+  "rideType": [
+   5,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 8,
+  "carMass": 620,
+  "numSeats": 134,
+  "spacing": 278528,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 263177,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "miniature_railway"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.anaconda",
+  "name": "Anaconda Trains",
+  "rideType": [
+   91,
+   255,
+   255
+  ],
+  "excitement": 15,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 45,
+  "minCars": 2,
+  "maxCars": 8,
+  "carMass": 610,
+  "numSeats": 134,
+  "spacing": 252764,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "hybrid_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.1920sand",
+  "name": "Art Deco Food Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.wooden_articulated_trains",
+  "name": "Articulated Roller Coaster Trains",
+  "rideType": [
+   102,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 12,
+  "carMass": 290,
+  "numSeats": 130,
+  "spacing": 121856,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   102
+  ]
+ },
+ {
+  "identifier": "rct2.ride.mft",
+  "name": "Articulated Roller Coaster Trains",
+  "rideType": [
+   52,
+   255,
+   255
+  ],
+  "excitement": 4,
+  "intensity": 0,
+  "nausea": 2,
+  "maxHeight": 0,
+  "minCars": 6,
+  "maxCars": 12,
+  "carMass": 290,
+  "numSeats": 130,
+  "spacing": 122024,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "wooden_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.wcatc",
+  "name": "Automobile Cars",
+  "rideType": [
+   87,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 700,
+  "numSeats": 132,
+  "spacing": 235332,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "mini_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.gintspdr",
+  "name": "B-Movie Giant Spider Ride",
+  "rideType": [
+   46,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 146,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 32,
+  "vehicleFlags": 67109888,
+  "rideTypeNames": [
+   "twist"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.balln",
+  "name": "Balloon Stall",
+  "rideType": [
+   32,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "shop"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.barnstrm",
+  "name": "Barnstorming Trains",
+  "rideType": [
+   86,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 4,
+  "maxCars": 9,
+  "carMass": 770,
+  "numSeats": 132,
+  "spacing": 244048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "inverted_impulse_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.battrram",
+  "name": "Battering Ram Trains",
+  "rideType": [
+   0,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 4,
+  "carMass": 1100,
+  "numSeats": 134,
+  "spacing": 383504,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "spiral_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.bnoodles",
+  "name": "Beef Noodles Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.tigrtwst",
+  "name": "Bengal Tiger Cars",
+  "rideType": [
+   66,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 278912,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 1048576,
+  "rideTypeNames": [
+   "heartline_twister_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.monbk",
+  "name": "Bicycles",
+  "rideType": [
+   72,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 150,
+  "numSeats": 1,
+  "spacing": 200468,
+  "poweredAcceleration": 40,
+  "poweredMaxSpeed": 5,
+  "flags": 262144,
+  "vehicleFlags": 4303880192,
+  "rideTypeNames": [
+   "monorail_cycles"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.bicycles",
+  "name": "Bicycles",
+  "rideType": [
+   72,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 150,
+  "numSeats": 1,
+  "spacing": 199680,
+  "poweredAcceleration": 40,
+  "poweredMaxSpeed": 5,
+  "flags": 262144,
+  "vehicleFlags": 4312268800,
+  "rideTypeNames": [
+   "monorail_cycles"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.blackcab",
+  "name": "Black Cabs",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 174320,
+  "poweredAcceleration": 90,
+  "poweredMaxSpeed": 8,
+  "flags": 263168,
+  "vehicleFlags": 524288,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.blckdeth",
+  "name": "Black Death Trains",
+  "rideType": [
+   13,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 600,
+  "numSeats": 130,
+  "spacing": 278912,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4432461828,
+  "rideTypeNames": [
+   "bobsleigh_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.bmvoctps",
+  "name": "Blob from Outer Space",
+  "rideType": [
+   14,
+   255,
+   255
+  ],
+  "excitement": 2,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 2500,
+  "numSeats": 32,
+  "spacing": 862884,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1025,
+  "vehicleFlags": 75498496,
+  "rideTypeNames": [
+   "observation_tower"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.bobsleigh_trains",
+  "name": "Bobsled Trains",
+  "rideType": [
+   13,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 600,
+  "numSeats": 130,
+  "spacing": 199680,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4432527364,
+  "rideTypeNames": [
+   "bobsleigh_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.bob1",
+  "name": "Bobsled Trains",
+  "rideType": [
+   13,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 600,
+  "numSeats": 130,
+  "spacing": 200468,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4432527876,
+  "rideTypeNames": [
+   "bobsleigh_rc"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.bomerang",
+  "name": "Boomerang Trains",
+  "rideType": [
+   75,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 5,
+  "maxCars": 9,
+  "carMass": 600,
+  "numSeats": 130,
+  "spacing": 95876,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "air_powered_vertical_rc"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.bullet",
+  "name": "Bullet Trains",
+  "rideType": [
+   19,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 10,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 9,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 226616,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "corkscrew_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.bumper_boats",
+  "name": "Bumper Boats",
+  "rideType": [
+   8,
+   255,
+   255
+  ],
+  "excitement": 40,
+  "intensity": 32,
+  "nausea": 30,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 140,
+  "numSeats": 130,
+  "spacing": 182272,
+  "poweredAcceleration": 220,
+  "poweredMaxSpeed": 9,
+  "flags": 0,
+  "vehicleFlags": 4299751424,
+  "rideTypeNames": [
+   "boat_hire"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.bboat",
+  "name": "Bumper Boats",
+  "rideType": [
+   8,
+   255,
+   255
+  ],
+  "excitement": 30,
+  "intensity": 15,
+  "nausea": 15,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 140,
+  "numSeats": 130,
+  "spacing": 183036,
+  "poweredAcceleration": 220,
+  "poweredMaxSpeed": 9,
+  "flags": 0,
+  "vehicleFlags": 4299751424,
+  "rideTypeNames": [
+   "boat_hire"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.dodgems",
+  "name": "Bumper Cars",
+  "rideType": [
+   25,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 1,
+  "spacing": 139264,
+  "poweredAcceleration": 7,
+  "poweredMaxSpeed": 10,
+  "flags": 0,
+  "vehicleFlags": 6455623808,
+  "rideTypeNames": [
+   "dodgems"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.dodg1",
+  "name": "Bumper Cars",
+  "rideType": [
+   25,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 1,
+  "spacing": 139456,
+  "poweredAcceleration": 7,
+  "poweredMaxSpeed": 15,
+  "flags": 0,
+  "vehicleFlags": 6455623808,
+  "rideTypeNames": [
+   "dodgems"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.burgb",
+  "name": "Burger Bar",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.mktstal1",
+  "name": "Candy Apple Market Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.toffs",
+  "name": "Candy Apple Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.cboat",
+  "name": "Canoes",
+  "rideType": [
+   8,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 180,
+  "numSeats": 130,
+  "spacing": 278912,
+  "poweredAcceleration": 8,
+  "poweredMaxSpeed": 5,
+  "flags": 16384,
+  "vehicleFlags": 4316528640,
+  "rideTypeNames": [
+   "boat_hire"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.crnvbfly",
+  "name": "Carnival Butterfly Cars",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 174320,
+  "poweredAcceleration": 90,
+  "poweredMaxSpeed": 8,
+  "flags": 262144,
+  "vehicleFlags": 4295557632,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.crnvfrog",
+  "name": "Carnival Frog Cars",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 174320,
+  "poweredAcceleration": 90,
+  "poweredMaxSpeed": 8,
+  "flags": 262144,
+  "vehicleFlags": 4295557632,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.crnvlzrd",
+  "name": "Carnival Lizard Cars",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 174320,
+  "poweredAcceleration": 90,
+  "poweredMaxSpeed": 8,
+  "flags": 262144,
+  "vehicleFlags": 4295557632,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.cavmncar",
+  "name": "Caveman Cars",
+  "rideType": [
+   22,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 250,
+  "numSeats": 1,
+  "spacing": 152888,
+  "poweredAcceleration": 35,
+  "poweredMaxSpeed": 40,
+  "flags": 0,
+  "vehicleFlags": 5373493248,
+  "rideTypeNames": [
+   "go_karts"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.cerberus",
+  "name": "Cerberus Trains",
+  "rideType": [
+   92,
+   255,
+   255
+  ],
+  "excitement": 15,
+  "intensity": 3,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 4,
+  "maxCars": 10,
+  "carMass": 680,
+  "numSeats": 132,
+  "spacing": 148172,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "single_rail_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.chairlift_cars",
+  "name": "Chairlift Cars",
+  "rideType": [
+   18,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 147456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1024,
+  "vehicleFlags": 4563468288,
+  "rideTypeNames": [
+   "chairlift"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.clift1",
+  "name": "Chairlift Cars",
+  "rideType": [
+   18,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 148172,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1024,
+  "vehicleFlags": 4563468288,
+  "rideTypeNames": [
+   "chairlift"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.ctcar",
+  "name": "Cheshire Cats",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 148172,
+  "poweredAcceleration": 70,
+  "poweredMaxSpeed": 7,
+  "flags": 262144,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.cat_cars",
+  "name": "Cheshire Cats",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 148172,
+  "poweredAcceleration": 70,
+  "poweredMaxSpeed": 7,
+  "flags": 262144,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.chknug",
+  "name": "Chicken Nuggets Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.dragdodg",
+  "name": "Chinese Dragonhead Bumper Cars",
+  "rideType": [
+   70,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 190,
+  "numSeats": 1,
+  "spacing": 139456,
+  "poweredAcceleration": 7,
+  "poweredMaxSpeed": 10,
+  "flags": 0,
+  "vehicleFlags": 6447235072,
+  "rideTypeNames": [
+   "flying_saucers"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.junkswng",
+  "name": "Chinese Junk Swing Ride",
+  "rideType": [
+   27,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 12,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 17,
+  "vehicleFlags": 4294968320,
+  "rideTypeNames": [
+   "swinging_inverter_ship"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.circus1",
+  "name": "Circus",
+  "rideType": [
+   49,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 3000,
+  "numSeats": 30,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1025,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "circus"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.cstboat",
+  "name": "Coaster Boats",
+  "rideType": [
+   74,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 950,
+  "numSeats": 134,
+  "spacing": 191752,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 512,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "water_coaster"
+  ]
+ },
+ {
+  "identifier": "rct1ll.ride.coaster_boats",
+  "name": "Coaster Boats",
+  "rideType": [
+   74,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 950,
+  "numSeats": 134,
+  "spacing": 191488,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 512,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "water_coaster"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.coffeecu",
+  "name": "Coffee Cup Ride",
+  "rideType": [
+   46,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 146,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 32,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "twist"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.coffs",
+  "name": "Coffee Shop",
+  "rideType": [
+   30,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "drink_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.slct",
+  "name": "Compact Inverted Coaster Trains",
+  "rideType": [
+   73,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 8,
+  "carMass": 560,
+  "numSeats": 130,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "compact_inverted_rc"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.condorrd",
+  "name": "Condor Trains",
+  "rideType": [
+   57,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 8,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 183036,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296089664,
+  "rideTypeNames": [
+   "flying_rc"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.congaeel",
+  "name": "Conger Eel Trains",
+  "rideType": [
+   19,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 10,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 9,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 226616,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "corkscrew_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.cookst",
+  "name": "Cookie Shop",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.arrt1",
+  "name": "Corkscrew Roller Coaster Trains",
+  "rideType": [
+   19,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 10,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 9,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 226616,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "corkscrew_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.corkscrew_trains",
+  "name": "Corkscrew Roller Coaster Trains",
+  "rideType": [
+   19,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 525,
+  "numSeats": 132,
+  "spacing": 208896,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "corkscrew_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.cndyf",
+  "name": "Cotton Candy Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.crocflum",
+  "name": "Crocodile Boats",
+  "rideType": [
+   23,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 250,
+  "numSeats": 132,
+  "spacing": 278912,
+  "poweredAcceleration": 100,
+  "poweredMaxSpeed": 6,
+  "flags": 262400,
+  "vehicleFlags": 4833476608,
+  "rideTypeNames": [
+   "log_flume"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.chbuild",
+  "name": "Crooked House",
+  "rideType": [
+   71,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 3000,
+  "numSeats": 5,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1025,
+  "vehicleFlags": 4362077184,
+  "rideTypeNames": [
+   "crooked_house"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.cyclopsx",
+  "name": "Cyclops Bumper Cars",
+  "rideType": [
+   70,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 190,
+  "numSeats": 1,
+  "spacing": 139456,
+  "poweredAcceleration": 7,
+  "poweredMaxSpeed": 10,
+  "flags": 0,
+  "vehicleFlags": 6447235072,
+  "rideTypeNames": [
+   "flying_saucers"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.dhowwatr",
+  "name": "Dhow Boats",
+  "rideType": [
+   8,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 180,
+  "numSeats": 130,
+  "spacing": 278912,
+  "poweredAcceleration": 8,
+  "poweredMaxSpeed": 5,
+  "flags": 16384,
+  "vehicleFlags": 21495808,
+  "rideTypeNames": [
+   "boat_hire"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.diamondr",
+  "name": "Diamond Ride",
+  "rideType": [
+   46,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 146,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 32,
+  "vehicleFlags": 67109888,
+  "rideTypeNames": [
+   "twist"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.ding1",
+  "name": "Dinghies",
+  "rideType": [
+   16,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 200468,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 262144,
+  "vehicleFlags": 4430430212,
+  "rideTypeNames": [
+   "dinghy_slide"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.dinghies",
+  "name": "Dinghies",
+  "rideType": [
+   16,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 199680,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 262144,
+  "vehicleFlags": 4430430212,
+  "rideTypeNames": [
+   "dinghy_slide"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.dinoeggs",
+  "name": "Dinosaur Egg Ride",
+  "rideType": [
+   46,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 146,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 32,
+  "vehicleFlags": 4362077184,
+  "rideTypeNames": [
+   "twist"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.dolphinr",
+  "name": "Dolphin Boats",
+  "rideType": [
+   8,
+   255,
+   255
+  ],
+  "excitement": 75,
+  "intensity": 75,
+  "nausea": 40,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 160,
+  "numSeats": 1,
+  "spacing": 278912,
+  "poweredAcceleration": 220,
+  "poweredMaxSpeed": 25,
+  "flags": 0,
+  "vehicleFlags": 4299751424,
+  "rideTypeNames": [
+   "boat_hire"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.dough",
+  "name": "Donut Shop",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.mgr2",
+  "name": "Double Deck Carousel",
+  "rideType": [
+   33,
+   255,
+   255
+  ],
+  "excitement": 11,
+  "intensity": 3,
+  "nausea": 1,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 160,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1025,
+  "vehicleFlags": 67109888,
+  "rideTypeNames": [
+   "merry_go_round"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.obs2",
+  "name": "Double-deck Cabin",
+  "rideType": [
+   14,
+   255,
+   255
+  ],
+  "excitement": 2,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 2500,
+  "numSeats": 32,
+  "spacing": 862884,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1025,
+  "vehicleFlags": 4370531840,
+  "rideTypeNames": [
+   "observation_tower"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.dragon",
+  "name": "Dragon Trains",
+  "rideType": [
+   19,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 10,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 9,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 226616,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "corkscrew_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.dragnfly",
+  "name": "Dragonfly Cars",
+  "rideType": [
+   7,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 320,
+  "numSeats": 130,
+  "spacing": 313776,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296212480,
+  "rideTypeNames": [
+   "mini_suspended_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.drnks",
+  "name": "Drinks Stall",
+  "rideType": [
+   30,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "drink_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.enterp",
+  "name": "Enterprise",
+  "rideType": [
+   81,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 16,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 65,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "enterprise"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.faberge",
+  "name": "Faberg\u00e9 Egg Ride",
+  "rideType": [
+   46,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 146,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 32,
+  "vehicleFlags": 67109888,
+  "rideTypeNames": [
+   "twist"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.slcfo",
+  "name": "Face-off Cars",
+  "rideType": [
+   73,
+   255,
+   255
+  ],
+  "excitement": 8,
+  "intensity": 12,
+  "nausea": 10,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 7,
+  "carMass": 580,
+  "numSeats": 132,
+  "spacing": 200468,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "compact_inverted_rc"
+  ]
+ },
+ {
+  "identifier": "rct1ll.ride.face_off_cars",
+  "name": "Face-off Cars",
+  "rideType": [
+   73,
+   255,
+   255
+  ],
+  "excitement": 6,
+  "intensity": 2,
+  "nausea": 9,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 7,
+  "carMass": 580,
+  "numSeats": 132,
+  "spacing": 199680,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "compact_inverted_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.fwh1",
+  "name": "Ferris Wheel",
+  "rideType": [
+   37,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 3000,
+  "numSeats": 160,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "ferris_wheel"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.fightkit",
+  "name": "Fighting Kite Ride",
+  "rideType": [
+   46,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 146,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 33,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "twist"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.figtknit",
+  "name": "Fighting Knights Bumper Cars",
+  "rideType": [
+   25,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 1,
+  "spacing": 139456,
+  "poweredAcceleration": 7,
+  "poweredMaxSpeed": 15,
+  "flags": 0,
+  "vehicleFlags": 6455623808,
+  "rideTypeNames": [
+   "dodgems"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.firecrak",
+  "name": "Fire Cracker Ride",
+  "rideType": [
+   81,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 16,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 65,
+  "vehicleFlags": 67109888,
+  "rideTypeNames": [
+   "enterprise"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.faid1",
+  "name": "First Aid Room",
+  "rideType": [
+   48,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "first_aid"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.bmfl",
+  "name": "Floorless Twister Trains",
+  "rideType": [
+   51,
+   255,
+   255
+  ],
+  "excitement": 10,
+  "intensity": 5,
+  "nausea": 10,
+  "maxHeight": 34,
+  "minCars": 4,
+  "maxCars": 8,
+  "carMass": 710,
+  "numSeats": 132,
+  "spacing": 130740,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "twister_rc"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.floorless_twister_trains",
+  "name": "Floorless Twister Trains",
+  "rideType": [
+   51,
+   255,
+   255
+  ],
+  "excitement": 3,
+  "intensity": 6,
+  "nausea": 8,
+  "maxHeight": 34,
+  "minCars": 4,
+  "maxCars": 8,
+  "carMass": 710,
+  "numSeats": 132,
+  "spacing": 130048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "twister_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.flwrpowr",
+  "name": "Flower Power Bumper Cars",
+  "rideType": [
+   70,
+   255,
+   255
+  ],
+  "excitement": 75,
+  "intensity": 40,
+  "nausea": 10,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 190,
+  "numSeats": 1,
+  "spacing": 139456,
+  "poweredAcceleration": 9,
+  "poweredMaxSpeed": 20,
+  "flags": 0,
+  "vehicleFlags": 6447235584,
+  "rideTypeNames": [
+   "flying_saucers"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.1960tsrt",
+  "name": "Flower Power T-Shirts",
+  "rideType": [
+   32,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "shop"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.bmair",
+  "name": "Flying Roller Coaster Trains",
+  "rideType": [
+   57,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 8,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 183036,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296090176,
+  "rideTypeNames": [
+   "flying_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.fsauc",
+  "name": "Flying Saucers",
+  "rideType": [
+   70,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 190,
+  "numSeats": 1,
+  "spacing": 139456,
+  "poweredAcceleration": 7,
+  "poweredMaxSpeed": 10,
+  "flags": 0,
+  "vehicleFlags": 6447235072,
+  "rideTypeNames": [
+   "flying_saucers"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.flying_saucers",
+  "name": "Flying Saucers",
+  "rideType": [
+   70,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 190,
+  "numSeats": 1,
+  "spacing": 139264,
+  "poweredAcceleration": 7,
+  "poweredMaxSpeed": 10,
+  "flags": 0,
+  "vehicleFlags": 6447235072,
+  "rideTypeNames": [
+   "flying_saucers"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.flygboat",
+  "name": "Flying boats",
+  "rideType": [
+   74,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 25,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 950,
+  "numSeats": 134,
+  "spacing": 244048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 512,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "water_coaster"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.ivmc1",
+  "name": "Four-seater Cars",
+  "rideType": [
+   76,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 570,
+  "numSeats": 132,
+  "spacing": 156888,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "inverted_hairpin_rc"
+  ]
+ },
+ {
+  "identifier": "rct1ll.ride.inverted_hairpin_cars",
+  "name": "Four-seater Cars",
+  "rideType": [
+   76,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 570,
+  "numSeats": 132,
+  "spacing": 156672,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "inverted_hairpin_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.chcks",
+  "name": "Fried Chicken Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.frnood",
+  "name": "Fried Rice Noodles Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.chpsh",
+  "name": "Fries Shop",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.chpsh2",
+  "name": "Fries Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.icecr1",
+  "name": "Fruity Ices Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.fruity_ices_stall",
+  "name": "Fruity Ices Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.funhouse",
+  "name": "Fun House",
+  "rideType": [
+   71,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 3000,
+  "numSeats": 5,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1025,
+  "vehicleFlags": 4362077184,
+  "rideTypeNames": [
+   "crooked_house"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.funcake",
+  "name": "Funnel Cake Shop",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.ganstrcr",
+  "name": "Gangster Cars",
+  "rideType": [
+   90,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 7,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 296344,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "lim_launched_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.gtc",
+  "name": "Ghost Train Cars",
+  "rideType": [
+   50,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 148172,
+  "poweredAcceleration": 80,
+  "poweredMaxSpeed": 9,
+  "flags": 262144,
+  "vehicleFlags": 4296606215,
+  "rideTypeNames": [
+   "ghost_train"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.ghost_train_cars",
+  "name": "Ghost Train Cars",
+  "rideType": [
+   50,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 174080,
+  "poweredAcceleration": 80,
+  "poweredMaxSpeed": 9,
+  "flags": 262144,
+  "vehicleFlags": 4296605703,
+  "rideTypeNames": [
+   "ghost_train"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.intst",
+  "name": "Giga Coaster Trains",
+  "rideType": [
+   68,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 4,
+  "maxCars": 9,
+  "carMass": 550,
+  "numSeats": 132,
+  "spacing": 191752,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "giga_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.kart1",
+  "name": "Go-Karts",
+  "rideType": [
+   22,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 250,
+  "numSeats": 1,
+  "spacing": 152888,
+  "poweredAcceleration": 35,
+  "poweredMaxSpeed": 40,
+  "flags": 0,
+  "vehicleFlags": 5373427712,
+  "rideTypeNames": [
+   "go_karts"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.go_karts",
+  "name": "Go-Karts (with helmets)",
+  "rideType": [
+   22,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 250,
+  "numSeats": 1,
+  "spacing": 152576,
+  "poweredAcceleration": 35,
+  "poweredMaxSpeed": 40,
+  "flags": 0,
+  "vehicleFlags": 5373427712,
+  "rideTypeNames": [
+   "go_karts"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.gorilla",
+  "name": "Gorilla Trains",
+  "rideType": [
+   2,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 287628,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4298310144,
+  "rideTypeNames": [
+   "suspended_swinging_rc"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.gratwhte",
+  "name": "Great White Shark Trains",
+  "rideType": [
+   19,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 10,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 9,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 244048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "corkscrew_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.halofmrs",
+  "name": "Hall of Mirrors",
+  "rideType": [
+   71,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 3000,
+  "numSeats": 5,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1025,
+  "vehicleFlags": 4362077184,
+  "rideTypeNames": [
+   "crooked_house"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.harpiesx",
+  "name": "Harpies Trains",
+  "rideType": [
+   62,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 6,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 209184,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296089664,
+  "rideTypeNames": [
+   "lay_down_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.hatst",
+  "name": "Hat Stall",
+  "rideType": [
+   32,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "shop"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.hhbuild",
+  "name": "Haunted House",
+  "rideType": [
+   47,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 3000,
+  "numSeats": 15,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1025,
+  "vehicleFlags": 4362077184,
+  "rideTypeNames": [
+   "haunted_house"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.spokprsn",
+  "name": "Haunted Jail House",
+  "rideType": [
+   71,
+   255,
+   255
+  ],
+  "excitement": 75,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 3000,
+  "numSeats": 16,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1025,
+  "vehicleFlags": 4362077184,
+  "rideTypeNames": [
+   "crooked_house"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.hmcar",
+  "name": "Haunted Mansion Cars",
+  "rideType": [
+   50,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 87160,
+  "poweredAcceleration": 80,
+  "poweredMaxSpeed": 9,
+  "flags": 262144,
+  "vehicleFlags": 4296605703,
+  "rideTypeNames": [
+   "ghost_train"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.hipporid",
+  "name": "Hippo Submarines",
+  "rideType": [
+   78,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 300,
+  "numSeats": 5,
+  "spacing": 278912,
+  "poweredAcceleration": 40,
+  "poweredMaxSpeed": 6,
+  "flags": 263168,
+  "vehicleFlags": 528384,
+  "rideTypeNames": [
+   "submarine_ride"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.horses",
+  "name": "Horses",
+  "rideType": [
+   10,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 800,
+  "numSeats": 130,
+  "spacing": 243712,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "steeplechase"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.steep1",
+  "name": "Horses",
+  "rideType": [
+   10,
+   255,
+   255
+  ],
+  "excitement": 5,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 800,
+  "numSeats": 130,
+  "spacing": 244048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "steeplechase"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.hchoc",
+  "name": "Hot Chocolate Stall",
+  "rideType": [
+   30,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "drink_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.hotds",
+  "name": "Hot Dog Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.hotrodxx",
+  "name": "Hot Rod Trains",
+  "rideType": [
+   75,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 5,
+  "maxCars": 9,
+  "carMass": 600,
+  "numSeats": 130,
+  "spacing": 95876,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "air_powered_vertical_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.hoverbke",
+  "name": "Hover Bikes",
+  "rideType": [
+   10,
+   255,
+   255
+  ],
+  "excitement": 5,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 800,
+  "numSeats": 130,
+  "spacing": 244048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "steeplechase"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.hovercar",
+  "name": "Hover Cars",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 330,
+  "numSeats": 1,
+  "spacing": 217900,
+  "poweredAcceleration": 80,
+  "poweredMaxSpeed": 8,
+  "flags": 263168,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.hovrbord",
+  "name": "Hoverboards",
+  "rideType": [
+   7,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 320,
+  "numSeats": 130,
+  "spacing": 313776,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296212480,
+  "rideTypeNames": [
+   "mini_suspended_rc"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.huskie",
+  "name": "Huskie Car",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 3000,
+  "numSeats": 130,
+  "spacing": 244048,
+  "poweredAcceleration": 60,
+  "poweredMaxSpeed": 7,
+  "flags": 262144,
+  "vehicleFlags": 8912896,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "openrct2.ride.hybrid_coaster",
+  "name": "Hybrid Coaster Trains",
+  "rideType": [
+   96,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 6,
+  "carMass": 480,
+  "numSeats": 132,
+  "spacing": 170790,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "lsm_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.goltr",
+  "name": "Hyper-Twister Trains",
+  "rideType": [
+   92,
+   255,
+   255
+  ],
+  "excitement": 10,
+  "intensity": 3,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 4,
+  "maxCars": 6,
+  "carMass": 1400,
+  "numSeats": 134,
+  "spacing": 296344,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "single_rail_rc"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.hyper_twister_trains",
+  "name": "Hyper-Twister Trains (wide cars)",
+  "rideType": [
+   92,
+   255,
+   255
+  ],
+  "excitement": 22,
+  "intensity": 5,
+  "nausea": 5,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 10,
+  "carMass": 680,
+  "numSeats": 132,
+  "spacing": 130048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "single_rail_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.bmrb",
+  "name": "Hyper-Twister Trains (wide cars)",
+  "rideType": [
+   92,
+   255,
+   255
+  ],
+  "excitement": 15,
+  "intensity": 3,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 5,
+  "maxCars": 10,
+  "carMass": 680,
+  "numSeats": 132,
+  "spacing": 130740,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "single_rail_rc"
+  ]
+ },
+ {
+  "identifier": "rct1ll.ride.hypercoaster_trains",
+  "name": "Hypercoaster Trains",
+  "rideType": [
+   91,
+   255,
+   255
+  ],
+  "excitement": 10,
+  "intensity": -6,
+  "nausea": -6,
+  "maxHeight": 45,
+  "minCars": 2,
+  "maxCars": 8,
+  "carMass": 610,
+  "numSeats": 134,
+  "spacing": 226304,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "hybrid_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.arrt2",
+  "name": "Hypercoaster Trains",
+  "rideType": [
+   91,
+   255,
+   255
+  ],
+  "excitement": 15,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 45,
+  "minCars": 2,
+  "maxCars": 8,
+  "carMass": 610,
+  "numSeats": 134,
+  "spacing": 252764,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "hybrid_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.icecr2",
+  "name": "Ice Cream Cone Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.icetst",
+  "name": "Iced Tea Stall",
+  "rideType": [
+   30,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "drink_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.intinv",
+  "name": "Impulse Trains",
+  "rideType": [
+   86,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 4,
+  "maxCars": 9,
+  "carMass": 770,
+  "numSeats": 132,
+  "spacing": 244048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "inverted_impulse_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.infok",
+  "name": "Information Kiosk",
+  "rideType": [
+   35,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "information_kiosk"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.inverted_trains",
+  "name": "Inverted Coaster Trains",
+  "rideType": [
+   73,
+   3,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 8,
+  "carMass": 560,
+  "numSeats": 130,
+  "spacing": 139264,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "compact_inverted_rc",
+   "inverted_rc"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.italypor",
+  "name": "Italian Police Ride",
+  "rideType": [
+   46,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 146,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 32,
+  "vehicleFlags": 67175424,
+  "rideTypeNames": [
+   "twist"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.jaguarrd",
+  "name": "Jaguar Cars",
+  "rideType": [
+   87,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 790,
+  "numSeats": 132,
+  "spacing": 235332,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "mini_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.jetpackx",
+  "name": "Jet Pack Booster",
+  "rideType": [
+   42,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 5500,
+  "numSeats": 136,
+  "spacing": 366072,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "reverse_freefall_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.jetplane",
+  "name": "Jet Plane Cars",
+  "rideType": [
+   87,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 700,
+  "numSeats": 132,
+  "spacing": 278912,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "mini_rc"
+  ]
+ },
+ {
+  "identifier": "rct1ll.ride.jet_skis",
+  "name": "Jet Skis",
+  "rideType": [
+   8,
+   255,
+   255
+  ],
+  "excitement": 44,
+  "intensity": 96,
+  "nausea": -5,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 160,
+  "numSeats": 1,
+  "spacing": 182272,
+  "poweredAcceleration": 220,
+  "poweredMaxSpeed": 25,
+  "flags": 0,
+  "vehicleFlags": 4299751424,
+  "rideTypeNames": [
+   "boat_hire"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.jski",
+  "name": "Jet Skis",
+  "rideType": [
+   8,
+   255,
+   255
+  ],
+  "excitement": 75,
+  "intensity": 75,
+  "nausea": 40,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 160,
+  "numSeats": 1,
+  "spacing": 183036,
+  "poweredAcceleration": 220,
+  "poweredMaxSpeed": 25,
+  "flags": 0,
+  "vehicleFlags": 4299751424,
+  "rideTypeNames": [
+   "boat_hire"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.jousting",
+  "name": "Jousting Knights",
+  "rideType": [
+   10,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 800,
+  "numSeats": 130,
+  "spacing": 278912,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "steeplechase"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.killwhal",
+  "name": "Killer Whale Submarines",
+  "rideType": [
+   78,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 300,
+  "numSeats": 5,
+  "spacing": 278912,
+  "poweredAcceleration": 40,
+  "poweredMaxSpeed": 6,
+  "flags": 263168,
+  "vehicleFlags": 4295561216,
+  "rideTypeNames": [
+   "submarine_ride"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.kolaride",
+  "name": "Koala Car",
+  "rideType": [
+   42,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 5500,
+  "numSeats": 136,
+  "spacing": 348640,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "reverse_freefall_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.premt1",
+  "name": "LIM Launched Roller Coaster Trains",
+  "rideType": [
+   90,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 7,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 244048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "lim_launched_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.zldb",
+  "name": "Ladybird Trains",
+  "rideType": [
+   4,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 5,
+  "maxCars": 15,
+  "carMass": 220,
+  "numSeats": 130,
+  "spacing": 122024,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "junior_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.ladybird_trains",
+  "name": "Ladybird Trains",
+  "rideType": [
+   95,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 10,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 130048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "classic_stand_up_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.ssc1",
+  "name": "Launched Freefall Car",
+  "rideType": [
+   12,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 1500,
+  "numSeats": 136,
+  "spacing": 862884,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4363191296,
+  "rideTypeNames": [
+   "launched_freefall"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.swinging_lay_down_cars",
+  "name": "Lay-down Cars",
+  "rideType": [
+   7,
+   255,
+   255
+  ],
+  "excitement": 13,
+  "intensity": 20,
+  "nausea": 12,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 2,
+  "carMass": 300,
+  "numSeats": 1,
+  "spacing": 164864,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296212480,
+  "rideTypeNames": [
+   "mini_suspended_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.skytr",
+  "name": "Lay-down Cars",
+  "rideType": [
+   7,
+   255,
+   255
+  ],
+  "excitement": 10,
+  "intensity": 25,
+  "nausea": 15,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 2,
+  "carMass": 300,
+  "numSeats": 1,
+  "spacing": 165604,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296212480,
+  "rideTypeNames": [
+   "mini_suspended_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.vekst",
+  "name": "Lay-down Roller Coaster Trains",
+  "rideType": [
+   62,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 6,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 209184,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296090176,
+  "rideTypeNames": [
+   "lay_down_rc"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.lay_down_trains",
+  "name": "Lay-down Roller Coaster Trains",
+  "rideType": [
+   62,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 6,
+  "carMass": 850,
+  "numSeats": 132,
+  "spacing": 191488,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296089664,
+  "rideTypeNames": [
+   "lay_down_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.mktstal2",
+  "name": "Lemonade Market Stall",
+  "rideType": [
+   30,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "drink_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.lemst",
+  "name": "Lemonade Stall",
+  "rideType": [
+   30,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "drink_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.lift1",
+  "name": "Lift Cabin",
+  "rideType": [
+   43,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 1000,
+  "numSeats": 144,
+  "spacing": 862884,
+  "poweredAcceleration": 255,
+  "poweredMaxSpeed": 15,
+  "flags": 17409,
+  "vehicleFlags": 4362698752,
+  "rideTypeNames": [
+   "lift"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.caddilac",
+  "name": "Limousine Trains",
+  "rideType": [
+   19,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 10,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 9,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 226616,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "corkscrew_rc"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.lionride",
+  "name": "Lion Cars",
+  "rideType": [
+   87,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 790,
+  "numSeats": 132,
+  "spacing": 235332,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 1048576,
+  "rideTypeNames": [
+   "mini_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.log_trains",
+  "name": "Log Trains",
+  "rideType": [
+   95,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 10,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 139264,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "classic_stand_up_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.zlog",
+  "name": "Log Trains",
+  "rideType": [
+   4,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 5,
+  "maxCars": 15,
+  "carMass": 220,
+  "numSeats": 130,
+  "spacing": 122024,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "junior_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.lfb1",
+  "name": "Logs",
+  "rideType": [
+   23,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 250,
+  "numSeats": 132,
+  "spacing": 252764,
+  "poweredAcceleration": 100,
+  "poweredMaxSpeed": 6,
+  "flags": 262400,
+  "vehicleFlags": 4833411072,
+  "rideTypeNames": [
+   "log_flume"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.logs",
+  "name": "Logs",
+  "rideType": [
+   23,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 250,
+  "numSeats": 132,
+  "spacing": 251904,
+  "poweredAcceleration": 100,
+  "poweredMaxSpeed": 4,
+  "flags": 262400,
+  "vehicleFlags": 4833411072,
+  "rideTypeNames": [
+   "log_flume"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.scht1",
+  "name": "Looping Roller Coaster Trains",
+  "rideType": [
+   15,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 8,
+  "carMass": 525,
+  "numSeats": 132,
+  "spacing": 183036,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "looping_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.flalmace",
+  "name": "Mace Ride",
+  "rideType": [
+   41,
+   255,
+   255
+  ],
+  "excitement": 75,
+  "intensity": 75,
+  "nausea": 20,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 1000,
+  "numSeats": 1,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 33,
+  "vehicleFlags": 67109888,
+  "rideTypeNames": [
+   "space_rings"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.mcarpet1",
+  "name": "Magic Carpet",
+  "rideType": [
+   77,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 140,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1048593,
+  "vehicleFlags": 4295033856,
+  "rideTypeNames": [
+   "magic_carpet"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.steamtrn",
+  "name": "Maharaja Steam Trains",
+  "rideType": [
+   5,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 8,
+  "carMass": 600,
+  "numSeats": 134,
+  "spacing": 270196,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 263177,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "miniature_railway"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.mandarin",
+  "name": "Mandarin Duck Boats",
+  "rideType": [
+   8,
+   255,
+   255
+  ],
+  "excitement": 5,
+  "intensity": 2,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 350,
+  "numSeats": 130,
+  "spacing": 278912,
+  "poweredAcceleration": 8,
+  "poweredMaxSpeed": 5,
+  "flags": 0,
+  "vehicleFlags": 4316528640,
+  "rideTypeNames": [
+   "boat_hire"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.mantaray",
+  "name": "Manta Ray Boats",
+  "rideType": [
+   74,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 950,
+  "numSeats": 134,
+  "spacing": 191752,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 512,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "water_coaster"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.hmaze",
+  "name": "Maze",
+  "rideType": [
+   20,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4294968320,
+  "rideTypeNames": [
+   "maze"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.mbsoup",
+  "name": "Meatball Soup Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.mgr1",
+  "name": "Merry-Go-Round",
+  "rideType": [
+   33,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 144,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1025,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "merry_go_round"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.microbus",
+  "name": "MicroBus Ride",
+  "rideType": [
+   38,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 3000,
+  "numSeats": 8,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "motion_simulator"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.wmmine",
+  "name": "Mine Cars",
+  "rideType": [
+   9,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 3,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 4,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 183036,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4329701376,
+  "rideTypeNames": [
+   "wooden_wild_mouse"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.mine_cars",
+  "name": "Mine Cars",
+  "rideType": [
+   9,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 2,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 4,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 183036,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4329701376,
+  "rideTypeNames": [
+   "wooden_wild_mouse"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.smc2",
+  "name": "Mine Cars",
+  "rideType": [
+   54,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 440,
+  "numSeats": 132,
+  "spacing": 174320,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "steel_wild_mouse"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.minecart",
+  "name": "Mine Cart Trains",
+  "rideType": [
+   52,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 7,
+  "carMass": 540,
+  "numSeats": 132,
+  "spacing": 209184,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 1048576,
+  "rideTypeNames": [
+   "wooden_rc"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.minelift",
+  "name": "Mine Lift Cabin",
+  "rideType": [
+   43,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 1000,
+  "numSeats": 144,
+  "spacing": 862884,
+  "poweredAcceleration": 255,
+  "poweredMaxSpeed": 15,
+  "flags": 17409,
+  "vehicleFlags": 67665920,
+  "rideTypeNames": [
+   "lift"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.amt1",
+  "name": "Mine Trains",
+  "rideType": [
+   17,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 9,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 209184,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "mine_train_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.mine_trains",
+  "name": "Mine Trains",
+  "rideType": [
+   17,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 9,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 208896,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "mine_train_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.golf1",
+  "name": "Mini Golf",
+  "rideType": [
+   67,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 2,
+  "carMass": 100,
+  "numSeats": 1,
+  "spacing": 17432,
+  "poweredAcceleration": 40,
+  "poweredMaxSpeed": 6,
+  "flags": 4194304,
+  "vehicleFlags": 4295492616,
+  "rideTypeNames": [
+   "mini_golf"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.mini_helicopters",
+  "name": "Mini Helicopters",
+  "rideType": [
+   61,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 270,
+  "numSeats": 130,
+  "spacing": 148172,
+  "poweredAcceleration": 40,
+  "poweredMaxSpeed": 5,
+  "flags": 263168,
+  "vehicleFlags": 4303945728,
+  "rideTypeNames": [
+   "mini_helicopters"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.helicar",
+  "name": "Mini Helicopters",
+  "rideType": [
+   61,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 270,
+  "numSeats": 130,
+  "spacing": 148172,
+  "poweredAcceleration": 40,
+  "poweredMaxSpeed": 5,
+  "flags": 263168,
+  "vehicleFlags": 4303945728,
+  "rideTypeNames": [
+   "mini_helicopters"
+  ]
+ },
+ {
+  "identifier": "openrct2.ride.modern_twister",
+  "name": "Modern Twister Trains",
+  "rideType": [
+   101,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 6,
+  "carMass": 580,
+  "numSeats": 132,
+  "spacing": 211296,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   101
+  ]
+ },
+ {
+  "identifier": "rct2.ride.4x4",
+  "name": "Monster Trucks",
+  "rideType": [
+   93,
+   255,
+   255
+  ],
+  "excitement": 35,
+  "intensity": 20,
+  "nausea": 10,
+  "maxHeight": 18,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 500,
+  "numSeats": 130,
+  "spacing": 165604,
+  "poweredAcceleration": 80,
+  "poweredMaxSpeed": 8,
+  "flags": 262144,
+  "vehicleFlags": 4295557632,
+  "rideTypeNames": [
+   "alpine_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.moonjuce",
+  "name": "Moon Juice",
+  "rideType": [
+   30,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "drink_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.simpod",
+  "name": "Motion Simulator",
+  "rideType": [
+   38,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 3000,
+  "numSeats": 8,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "motion_simulator"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.steep2",
+  "name": "Motorbikes",
+  "rideType": [
+   10,
+   255,
+   255
+  ],
+  "excitement": 3,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 800,
+  "numSeats": 130,
+  "spacing": 209184,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "steeplechase"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.motorbikes",
+  "name": "Motorbikes",
+  "rideType": [
+   10,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 800,
+  "numSeats": 130,
+  "spacing": 208896,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "steeplechase"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.mouse_cars",
+  "name": "Mouse Cars",
+  "rideType": [
+   9,
+   255,
+   255
+  ],
+  "excitement": 2,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 148172,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4329766912,
+  "rideTypeNames": [
+   "wooden_wild_mouse"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.steel_wild_mouse_cars",
+  "name": "Mouse Cars",
+  "rideType": [
+   54,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 440,
+  "numSeats": 132,
+  "spacing": 174320,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "steel_wild_mouse"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.wmouse",
+  "name": "Mouse Cars",
+  "rideType": [
+   9,
+   255,
+   255
+  ],
+  "excitement": 3,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 148172,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4329767424,
+  "rideTypeNames": [
+   "wooden_wild_mouse"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.smc1",
+  "name": "Mouse Cars",
+  "rideType": [
+   54,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 440,
+  "numSeats": 132,
+  "spacing": 174320,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "steel_wild_mouse"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.arrx",
+  "name": "Multi-Dimension Coaster Trains",
+  "rideType": [
+   55,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 4,
+  "maxCars": 7,
+  "carMass": 1000,
+  "numSeats": 132,
+  "spacing": 174320,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4304482880,
+  "rideTypeNames": [
+   "multi_dimension_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.neptunex",
+  "name": "Neptune Ride",
+  "rideType": [
+   46,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 146,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 32,
+  "vehicleFlags": 67109888,
+  "rideTypeNames": [
+   "twist"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.mythosea",
+  "name": "Neptune\u2019s Seafood Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.oakbarel",
+  "name": "Oak Barrels",
+  "rideType": [
+   24,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 450,
+  "numSeats": 136,
+  "spacing": 296344,
+  "poweredAcceleration": 100,
+  "poweredMaxSpeed": 6,
+  "flags": 262400,
+  "vehicleFlags": 4833673216,
+  "rideTypeNames": [
+   "river_rapids"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.ostrich",
+  "name": "Ostrich Trains",
+  "rideType": [
+   1,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 9,
+  "carMass": 730,
+  "numSeats": 132,
+  "spacing": 174320,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296015872,
+  "rideTypeNames": [
+   "stand_up_rc"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.outriggr",
+  "name": "Outrigger Canoes",
+  "rideType": [
+   8,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 180,
+  "numSeats": 130,
+  "spacing": 278912,
+  "poweredAcceleration": 8,
+  "poweredMaxSpeed": 5,
+  "flags": 16384,
+  "vehicleFlags": 4316528640,
+  "rideTypeNames": [
+   "boat_hire"
+  ]
+ },
+ {
+  "identifier": "rct2dlc.ride.zpanda",
+  "name": "Panda Trains",
+  "rideType": [
+   4,
+   255,
+   255
+  ],
+  "excitement": 15,
+  "intensity": 5,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 4,
+  "maxCars": 15,
+  "carMass": 240,
+  "numSeats": 1,
+  "spacing": 148172,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "junior_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.pegasusx",
+  "name": "Pegasus Cars",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 3000,
+  "numSeats": 130,
+  "spacing": 244048,
+  "poweredAcceleration": 60,
+  "poweredMaxSpeed": 7,
+  "flags": 262144,
+  "vehicleFlags": 4303945728,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.penguinb",
+  "name": "Penguin Trains",
+  "rideType": [
+   13,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 600,
+  "numSeats": 130,
+  "spacing": 200468,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4432461828,
+  "rideTypeNames": [
+   "bobsleigh_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.pickup_trucks",
+  "name": "Pickup Trucks",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 330,
+  "numSeats": 1,
+  "spacing": 130740,
+  "poweredAcceleration": 80,
+  "poweredMaxSpeed": 8,
+  "flags": 263168,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.truck1",
+  "name": "Pickup Trucks",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 330,
+  "numSeats": 1,
+  "spacing": 130740,
+  "poweredAcceleration": 80,
+  "poweredMaxSpeed": 8,
+  "flags": 263168,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.swsh1",
+  "name": "Pirate Ship",
+  "rideType": [
+   26,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 144,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4295033856,
+  "rideTypeNames": [
+   "swinging_ship"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.pizzs",
+  "name": "Pizza Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.polarber",
+  "name": "Polar Bear Trains",
+  "rideType": [
+   73,
+   255,
+   255
+  ],
+  "excitement": 8,
+  "intensity": 12,
+  "nausea": 10,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 7,
+  "carMass": 580,
+  "numSeats": 132,
+  "spacing": 200468,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 1048576,
+  "rideTypeNames": [
+   "compact_inverted_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.polchase",
+  "name": "Police Car Trains",
+  "rideType": [
+   15,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 8,
+  "carMass": 600,
+  "numSeats": 132,
+  "spacing": 261480,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1024,
+  "vehicleFlags": 4296015872,
+  "rideTypeNames": [
+   "looping_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.policecr",
+  "name": "Police Cars",
+  "rideType": [
+   65,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 900,
+  "numSeats": 134,
+  "spacing": 104592,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296082468,
+  "rideTypeNames": [
+   "reverser_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.popcs",
+  "name": "Popcorn Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.pmt1",
+  "name": "Powered Mine Trains",
+  "rideType": [
+   88,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 4,
+  "maxCars": 10,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 191752,
+  "poweredAcceleration": 130,
+  "poweredMaxSpeed": 65,
+  "flags": 0,
+  "vehicleFlags": 4296606209,
+  "rideTypeNames": [
+   "mine_ride"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.pretst",
+  "name": "Pretzel Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.pterodac",
+  "name": "Pterodactyl Trains",
+  "rideType": [
+   57,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 8,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 183036,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296089664,
+  "rideTypeNames": [
+   "flying_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.rcr",
+  "name": "Racing Cars",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 3,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 270,
+  "numSeats": 1,
+  "spacing": 139456,
+  "poweredAcceleration": 110,
+  "poweredMaxSpeed": 9,
+  "flags": 262144,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.racing_cars",
+  "name": "Racing Cars",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 270,
+  "numSeats": 1,
+  "spacing": 139456,
+  "poweredAcceleration": 110,
+  "poweredMaxSpeed": 9,
+  "flags": 262144,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.raptorxx",
+  "name": "Racing Raptors",
+  "rideType": [
+   10,
+   255,
+   255
+  ],
+  "excitement": 3,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 800,
+  "numSeats": 130,
+  "spacing": 209184,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 1048576,
+  "rideTypeNames": [
+   "steeplechase"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.rftboat",
+  "name": "Rafts",
+  "rideType": [
+   79,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 244048,
+  "poweredAcceleration": 255,
+  "poweredMaxSpeed": 5,
+  "flags": 263168,
+  "vehicleFlags": 4832428544,
+  "rideTypeNames": [
+   "river_rafts"
+  ]
+ },
+ {
+  "identifier": "rct1ll.ride.rafts",
+  "name": "Rafts",
+  "rideType": [
+   79,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 243712,
+  "poweredAcceleration": 255,
+  "poweredMaxSpeed": 5,
+  "flags": 263169,
+  "vehicleFlags": 4832428032,
+  "rideTypeNames": [
+   "river_rafts"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.tlt1",
+  "name": "Restroom",
+  "rideType": [
+   36,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "toilets"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.toilets",
+  "name": "Restroom",
+  "rideType": [
+   36,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "toilets"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.tlt2",
+  "name": "Restroom",
+  "rideType": [
+   36,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "toilets"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.mono3",
+  "name": "Retro-style Monorail Trains",
+  "rideType": [
+   6,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 12,
+  "carMass": 800,
+  "numSeats": 132,
+  "spacing": 191752,
+  "poweredAcceleration": 190,
+  "poweredMaxSpeed": 27,
+  "flags": 263169,
+  "vehicleFlags": 4295033344,
+  "rideTypeNames": [
+   "monorail"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.revf1",
+  "name": "Reverse Freefall Car",
+  "rideType": [
+   42,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 5500,
+  "numSeats": 136,
+  "spacing": 348640,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "reverse_freefall_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.reverse_freefall_car",
+  "name": "Reverse Freefall Car",
+  "rideType": [
+   42,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 5500,
+  "numSeats": 136,
+  "spacing": 348160,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 8388609,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "reverse_freefall_rc"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.reverser_cars",
+  "name": "Reverser Cars",
+  "rideType": [
+   65,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 900,
+  "numSeats": 134,
+  "spacing": 87040,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296082468,
+  "rideTypeNames": [
+   "reverser_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.revcar",
+  "name": "Reverser Cars",
+  "rideType": [
+   65,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 900,
+  "numSeats": 134,
+  "spacing": 87160,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296082468,
+  "rideTypeNames": [
+   "reverser_rc"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.rhinorid",
+  "name": "Rhino Trains",
+  "rideType": [
+   0,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 4,
+  "carMass": 1100,
+  "numSeats": 134,
+  "spacing": 357356,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "spiral_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.river_rapids_boats",
+  "name": "River Rapids Boats",
+  "rideType": [
+   24,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 450,
+  "numSeats": 136,
+  "spacing": 243712,
+  "poweredAcceleration": 100,
+  "poweredMaxSpeed": 6,
+  "flags": 262401,
+  "vehicleFlags": 4833673216,
+  "rideTypeNames": [
+   "river_rapids"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.rapboat",
+  "name": "River Rapids Boats",
+  "rideType": [
+   24,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 450,
+  "numSeats": 136,
+  "spacing": 244048,
+  "poweredAcceleration": 100,
+  "poweredMaxSpeed": 6,
+  "flags": 262400,
+  "vehicleFlags": 4833738752,
+  "rideTypeNames": [
+   "river_rapids"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.rivrstyx",
+  "name": "River Styx boats",
+  "rideType": [
+   79,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 313776,
+  "poweredAcceleration": 255,
+  "poweredMaxSpeed": 5,
+  "flags": 262144,
+  "vehicleFlags": 537395200,
+  "rideTypeNames": [
+   "river_rafts"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.rsaus",
+  "name": "Roast Sausage Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.rocket_cars",
+  "name": "Rocket Cars",
+  "rideType": [
+   95,
+   255,
+   255
+  ],
+  "excitement": 2,
+  "intensity": -2,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 3,
+  "carMass": 750,
+  "numSeats": 130,
+  "spacing": 286720,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "classic_stand_up_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.rckc",
+  "name": "Rocket Cars",
+  "rideType": [
+   87,
+   255,
+   255
+  ],
+  "excitement": 5,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 790,
+  "numSeats": 132,
+  "spacing": 322492,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "mini_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.steel_rc_trains",
+  "name": "Roller Coaster Trains",
+  "rideType": [
+   15,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 8,
+  "carMass": 525,
+  "numSeats": 132,
+  "spacing": 208896,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "looping_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.steel_rc_trains_reversed",
+  "name": "Roller Coaster Trains (Reversed)",
+  "rideType": [
+   15,
+   255,
+   255
+  ],
+  "excitement": 2,
+  "intensity": 15,
+  "nausea": 30,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 8,
+  "carMass": 525,
+  "numSeats": 132,
+  "spacing": 208896,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 8388608,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "looping_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.gdrop1",
+  "name": "Roto-Drop",
+  "rideType": [
+   69,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 1800,
+  "numSeats": 16,
+  "spacing": 174320,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4363191296,
+  "rideTypeNames": [
+   "roto_drop"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.londonbs",
+  "name": "Routemaster Buses",
+  "rideType": [
+   5,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 2,
+  "carMass": 3000,
+  "numSeats": 138,
+  "spacing": 278912,
+  "poweredAcceleration": 250,
+  "poweredMaxSpeed": 19,
+  "flags": 263177,
+  "vehicleFlags": 524288,
+  "rideTypeNames": [
+   "miniature_railway"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.rboat",
+  "name": "Rowing Boats",
+  "rideType": [
+   8,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 110,
+  "numSeats": 130,
+  "spacing": 235332,
+  "poweredAcceleration": 8,
+  "poweredMaxSpeed": 5,
+  "flags": 16384,
+  "vehicleFlags": 4316528640,
+  "rideTypeNames": [
+   "boat_hire"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.sanftram",
+  "name": "San Francisco Trams",
+  "rideType": [
+   5,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 4,
+  "carMass": 3000,
+  "numSeats": 138,
+  "spacing": 357356,
+  "poweredAcceleration": 250,
+  "poweredMaxSpeed": 19,
+  "flags": 263177,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "miniature_railway"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.schoolbs",
+  "name": "School Bus Trams",
+  "rideType": [
+   5,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 2,
+  "carMass": 3000,
+  "numSeats": 134,
+  "spacing": 278912,
+  "poweredAcceleration": 250,
+  "poweredMaxSpeed": 19,
+  "flags": 263177,
+  "vehicleFlags": 4295491584,
+  "rideTypeNames": [
+   "miniature_railway"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.sqdst",
+  "name": "Sea Food Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.seals",
+  "name": "Seal Trains",
+  "rideType": [
+   19,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 10,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 9,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 226616,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "corkscrew_rc"
+  ]
+ },
+ {
+  "identifier": "openrct2.ride.single_rail_coaster",
+  "name": "Single Rail Roller Coaster Trains",
+  "rideType": [
+   97,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 5,
+  "maxCars": 12,
+  "carMass": 200,
+  "numSeats": 1,
+  "spacing": 99296,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "classic_wooden_twister_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.single_person_swinging_cars",
+  "name": "Single-Person Swinging Cars",
+  "rideType": [
+   7,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 3,
+  "carMass": 250,
+  "numSeats": 1,
+  "spacing": 147456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296146944,
+  "rideTypeNames": [
+   "mini_suspended_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.obs1",
+  "name": "Single-deck Cabin",
+  "rideType": [
+   14,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 2500,
+  "numSeats": 20,
+  "spacing": 862884,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1025,
+  "vehicleFlags": 4370531328,
+  "rideTypeNames": [
+   "observation_tower"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.bmvd",
+  "name": "Six-seater Twister Trains",
+  "rideType": [
+   44,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 3,
+  "carMass": 2000,
+  "numSeats": 134,
+  "spacing": 156888,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "vertical_drop_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.vertical_drop_trains",
+  "name": "Six-seater Twister Trains",
+  "rideType": [
+   44,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 3,
+  "carMass": 2000,
+  "numSeats": 134,
+  "spacing": 174080,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "vertical_drop_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.clift2",
+  "name": "Ski-lift Chairs",
+  "rideType": [
+   18,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 3,
+  "nausea": 4,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 270,
+  "numSeats": 130,
+  "spacing": 148172,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4563468288,
+  "rideTypeNames": [
+   "chairlift"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.ski_lift_cars",
+  "name": "Ski-lift Chairs",
+  "rideType": [
+   18,
+   255,
+   255
+  ],
+  "excitement": 4,
+  "intensity": 36,
+  "nausea": 18,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 270,
+  "numSeats": 130,
+  "spacing": 147456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4563468288,
+  "rideTypeNames": [
+   "chairlift"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.sloth",
+  "name": "Sloth Trains",
+  "rideType": [
+   2,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 313776,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4298309632,
+  "rideTypeNames": [
+   "suspended_swinging_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.small_monorail_cars",
+  "name": "Small Monorail Cars",
+  "rideType": [
+   6,
+   255,
+   255
+  ],
+  "excitement": 6,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 6,
+  "carMass": 900,
+  "numSeats": 132,
+  "spacing": 199680,
+  "poweredAcceleration": 170,
+  "poweredMaxSpeed": 27,
+  "flags": 263169,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "monorail"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.mono2",
+  "name": "Small Monorail Cars",
+  "rideType": [
+   6,
+   255,
+   255
+  ],
+  "excitement": 3,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 6,
+  "carMass": 900,
+  "numSeats": 132,
+  "spacing": 200468,
+  "poweredAcceleration": 170,
+  "poweredMaxSpeed": 27,
+  "flags": 263168,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "monorail"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.twist2",
+  "name": "Snow Cups",
+  "rideType": [
+   46,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 146,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 33,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "twist"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.skidoo",
+  "name": "Snowmobile Bumper Cars",
+  "rideType": [
+   70,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 190,
+  "numSeats": 1,
+  "spacing": 139456,
+  "poweredAcceleration": 7,
+  "poweredMaxSpeed": 10,
+  "flags": 0,
+  "vehicleFlags": 6447235072,
+  "rideTypeNames": [
+   "flying_saucers"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.sbox",
+  "name": "Soap Boxes",
+  "rideType": [
+   10,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 800,
+  "numSeats": 132,
+  "spacing": 278912,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "steeplechase"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.football",
+  "name": "Soccer Ball Trains",
+  "rideType": [
+   2,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 331208,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4298309632,
+  "rideTypeNames": [
+   "suspended_swinging_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.softoyst",
+  "name": "Soft Toy Stall",
+  "rideType": [
+   32,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "shop"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.souvs",
+  "name": "Souvenir Stall",
+  "rideType": [
+   32,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "shop"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.soybean",
+  "name": "Soybean Milk Stall",
+  "rideType": [
+   30,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "drink_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.srings",
+  "name": "Space Rings",
+  "rideType": [
+   41,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 1000,
+  "numSeats": 1,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "space_rings"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.spinning_cars",
+  "name": "Spinning Cars",
+  "rideType": [
+   95,
+   255,
+   255
+  ],
+  "excitement": 5,
+  "intensity": 16,
+  "nausea": 50,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 4,
+  "carMass": 600,
+  "numSeats": 132,
+  "spacing": 209184,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 8390660,
+  "vehicleFlags": 4296343552,
+  "rideTypeNames": [
+   "classic_stand_up_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.wmspin",
+  "name": "Spinning Mouse Cars",
+  "rideType": [
+   94,
+   255,
+   255
+  ],
+  "excitement": 7,
+  "intensity": 5,
+  "nausea": 43,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 209184,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296360448,
+  "rideTypeNames": [
+   "classic_wooden_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.spdrcr",
+  "name": "Spiral Roller Coaster Trains",
+  "rideType": [
+   0,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 4,
+  "carMass": 1100,
+  "numSeats": 134,
+  "spacing": 357356,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "spiral_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.hskelt",
+  "name": "Spiral Slide",
+  "rideType": [
+   21,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4294968320,
+  "rideTypeNames": [
+   "spiral_slide"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.spboat",
+  "name": "Splash Boats",
+  "rideType": [
+   60,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 1250,
+  "numSeats": 144,
+  "spacing": 191752,
+  "poweredAcceleration": 255,
+  "poweredMaxSpeed": 5,
+  "flags": 262401,
+  "vehicleFlags": 4833476608,
+  "rideTypeNames": [
+   "splash_boats"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.splash_boats",
+  "name": "Splash Boats",
+  "rideType": [
+   60,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 1250,
+  "numSeats": 144,
+  "spacing": 191488,
+  "poweredAcceleration": 255,
+  "poweredMaxSpeed": 5,
+  "flags": 262401,
+  "vehicleFlags": 4833476608,
+  "rideTypeNames": [
+   "splash_boats"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.sports_cars",
+  "name": "Sports Cars",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 174320,
+  "poweredAcceleration": 90,
+  "poweredMaxSpeed": 8,
+  "flags": 262144,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.spcar",
+  "name": "Sports Cars",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 300,
+  "numSeats": 130,
+  "spacing": 174320,
+  "poweredAcceleration": 90,
+  "poweredMaxSpeed": 8,
+  "flags": 262144,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.sputnikr",
+  "name": "Sputnik Cars",
+  "rideType": [
+   7,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 320,
+  "numSeats": 130,
+  "spacing": 165604,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296212480,
+  "rideTypeNames": [
+   "mini_suspended_rc"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.stgccstr",
+  "name": "Stage Coaches",
+  "rideType": [
+   52,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 2160,
+  "numSeats": 132,
+  "spacing": 209184,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1024,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "wooden_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.stamphrd",
+  "name": "Stampeding Herd Trains",
+  "rideType": [
+   1,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 9,
+  "carMass": 730,
+  "numSeats": 132,
+  "spacing": 200468,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "stand_up_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.togst",
+  "name": "Stand-up Roller Coaster Trains",
+  "rideType": [
+   1,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 9,
+  "carMass": 730,
+  "numSeats": 132,
+  "spacing": 174320,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "stand_up_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.stand_up_trains",
+  "name": "Stand-up Roller Coaster Trains",
+  "rideType": [
+   100,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 6,
+  "carMass": 750,
+  "numSeats": 132,
+  "spacing": 226304,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   100
+  ]
+ },
+ {
+  "identifier": "rct2.ride.bmsu",
+  "name": "Stand-up Twister Trains",
+  "rideType": [
+   51,
+   255,
+   255
+  ],
+  "excitement": 2,
+  "intensity": 15,
+  "nausea": 10,
+  "maxHeight": 40,
+  "minCars": 5,
+  "maxCars": 9,
+  "carMass": 740,
+  "numSeats": 132,
+  "spacing": 130740,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "twister_rc"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.stand_up_twister_trains",
+  "name": "Stand-up Twister Trains",
+  "rideType": [
+   51,
+   255,
+   255
+  ],
+  "excitement": 1,
+  "intensity": 24,
+  "nausea": 22,
+  "maxHeight": 40,
+  "minCars": 3,
+  "maxCars": 9,
+  "carMass": 740,
+  "numSeats": 132,
+  "spacing": 130048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "twister_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.starfrdr",
+  "name": "Star Fruit Drink Stall",
+  "rideType": [
+   30,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "drink_stall"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.steam_trains",
+  "name": "Steam Trains",
+  "rideType": [
+   5,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 8,
+  "carMass": 600,
+  "numSeats": 134,
+  "spacing": 278528,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 262153,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "miniature_railway"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.nrl",
+  "name": "Steam Trains",
+  "rideType": [
+   5,
+   255,
+   255
+  ],
+  "excitement": 3,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 8,
+  "carMass": 600,
+  "numSeats": 134,
+  "spacing": 270196,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 262153,
+  "vehicleFlags": 4295557632,
+  "rideTypeNames": [
+   "miniature_railway"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.steam_trains_covered",
+  "name": "Steam Trains with Covered Cars",
+  "rideType": [
+   5,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 8,
+  "carMass": 620,
+  "numSeats": 134,
+  "spacing": 278528,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 263177,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "miniature_railway"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.nrl2",
+  "name": "Steam Trains with Covered Cars",
+  "rideType": [
+   5,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 8,
+  "carMass": 600,
+  "numSeats": 134,
+  "spacing": 270196,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 263177,
+  "vehicleFlags": 4295557632,
+  "rideTypeNames": [
+   "miniature_railway"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.mono1",
+  "name": "Streamlined Monorail Trains",
+  "rideType": [
+   6,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 8,
+  "carMass": 1100,
+  "numSeats": 10,
+  "spacing": 313776,
+  "poweredAcceleration": 180,
+  "poweredMaxSpeed": 44,
+  "flags": 263169,
+  "vehicleFlags": 4295033344,
+  "rideTypeNames": [
+   "monorail"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.streamlined_monorail_trains",
+  "name": "Streamlined Monorail Trains",
+  "rideType": [
+   6,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 20,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 8,
+  "carMass": 1100,
+  "numSeats": 10,
+  "spacing": 313344,
+  "poweredAcceleration": 180,
+  "poweredMaxSpeed": 44,
+  "flags": 263169,
+  "vehicleFlags": 4295032832,
+  "rideTypeNames": [
+   "monorail"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.substl",
+  "name": "Sub Sandwich Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.submar",
+  "name": "Submarines",
+  "rideType": [
+   78,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 300,
+  "numSeats": 5,
+  "spacing": 278912,
+  "poweredAcceleration": 40,
+  "poweredMaxSpeed": 6,
+  "flags": 263168,
+  "vehicleFlags": 4295561216,
+  "rideTypeNames": [
+   "submarine_ride"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.cindr",
+  "name": "Sujeonggwa Stall",
+  "rideType": [
+   30,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "drink_stall"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.sungst",
+  "name": "Sunglasses Stall",
+  "rideType": [
+   32,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "shop"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.surfbrdc",
+  "name": "Surfing Trains",
+  "rideType": [
+   51,
+   255,
+   255
+  ],
+  "excitement": 2,
+  "intensity": 15,
+  "nausea": 10,
+  "maxHeight": 40,
+  "minCars": 4,
+  "maxCars": 9,
+  "carMass": 740,
+  "numSeats": 132,
+  "spacing": 130740,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "twister_rc"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.suspended_monorail_trains",
+  "name": "Suspended Monorail Trains",
+  "rideType": [
+   63,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 4,
+  "carMass": 1100,
+  "numSeats": 136,
+  "spacing": 330752,
+  "poweredAcceleration": 110,
+  "poweredMaxSpeed": 27,
+  "flags": 263169,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "suspended_monorail"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.smono",
+  "name": "Suspended Monorail Trains",
+  "rideType": [
+   63,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 4,
+  "carMass": 1100,
+  "numSeats": 136,
+  "spacing": 331208,
+  "poweredAcceleration": 110,
+  "poweredMaxSpeed": 27,
+  "flags": 263169,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "suspended_monorail"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.seaplane",
+  "name": "Suspended Seaplane Cars",
+  "rideType": [
+   2,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 348640,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4298309632,
+  "rideTypeNames": [
+   "suspended_swinging_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.arrsw2",
+  "name": "Suspended Swinging Airplane Cars",
+  "rideType": [
+   2,
+   255,
+   255
+  ],
+  "excitement": 5,
+  "intensity": 0,
+  "nausea": 3,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 287628,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4298310144,
+  "rideTypeNames": [
+   "suspended_swinging_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.suspended_swinging_aeroplane_cars",
+  "name": "Suspended Swinging Airplane Cars",
+  "rideType": [
+   2,
+   255,
+   255
+  ],
+  "excitement": 2,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 990,
+  "numSeats": 132,
+  "spacing": 330752,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4298309632,
+  "rideTypeNames": [
+   "suspended_swinging_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.arrsw1",
+  "name": "Suspended Swinging Cars",
+  "rideType": [
+   2,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 287628,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4298310144,
+  "rideTypeNames": [
+   "suspended_swinging_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.suspended_swinging_cars",
+  "name": "Suspended Swinging Cars",
+  "rideType": [
+   2,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 8,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 286720,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 4298309632,
+  "rideTypeNames": [
+   "suspended_swinging_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.swans",
+  "name": "Swans",
+  "rideType": [
+   8,
+   255,
+   255
+  ],
+  "excitement": 5,
+  "intensity": 2,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 350,
+  "numSeats": 132,
+  "spacing": 278912,
+  "poweredAcceleration": 8,
+  "poweredMaxSpeed": 5,
+  "flags": 0,
+  "vehicleFlags": 4316463104,
+  "rideTypeNames": [
+   "boat_hire"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.batfl",
+  "name": "Swinging Cars",
+  "rideType": [
+   7,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 320,
+  "numSeats": 130,
+  "spacing": 165604,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296212480,
+  "rideTypeNames": [
+   "mini_suspended_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.vekvamp",
+  "name": "Swinging Floorless Cars",
+  "rideType": [
+   2,
+   255,
+   255
+  ],
+  "excitement": 8,
+  "intensity": 4,
+  "nausea": 7,
+  "maxHeight": 0,
+  "minCars": 5,
+  "maxCars": 12,
+  "carMass": 500,
+  "numSeats": 130,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4298310144,
+  "rideTypeNames": [
+   "suspended_swinging_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.swsh2",
+  "name": "Swinging Inverter Ship",
+  "rideType": [
+   27,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 12,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 17,
+  "vehicleFlags": 4295033856,
+  "rideTypeNames": [
+   "swinging_inverter_ship"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.tshrt",
+  "name": "T-Shirt Stall",
+  "rideType": [
+   32,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "shop"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.tgvtrain",
+  "name": "TGV Trains",
+  "rideType": [
+   90,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 8,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 244048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "lim_launched_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.telepter",
+  "name": "Teleporter Cabin",
+  "rideType": [
+   43,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 1000,
+  "numSeats": 144,
+  "spacing": 862884,
+  "poweredAcceleration": 255,
+  "poweredMaxSpeed": 15,
+  "flags": 17409,
+  "vehicleFlags": 67665920,
+  "rideTypeNames": [
+   "lift"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.timemach",
+  "name": "Time Machine",
+  "rideType": [
+   41,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 1000,
+  "numSeats": 1,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1,
+  "vehicleFlags": 67109888,
+  "rideTypeNames": [
+   "space_rings"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.jstar1",
+  "name": "Toboggan Cars",
+  "rideType": [
+   87,
+   255,
+   255
+  ],
+  "excitement": 3,
+  "intensity": 1,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 790,
+  "numSeats": 132,
+  "spacing": 322492,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "mini_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.tommygun",
+  "name": "Tommy Gun Ride",
+  "rideType": [
+   46,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 146,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 32,
+  "vehicleFlags": 67109888,
+  "rideTypeNames": [
+   "twist"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.topsp1",
+  "name": "Top Spin",
+  "rideType": [
+   40,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 3000,
+  "numSeats": 136,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "top_spin"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.rssncrrd",
+  "name": "Trabant Cars",
+  "rideType": [
+   87,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 790,
+  "numSeats": 132,
+  "spacing": 235332,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 1024,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "mini_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.tram1",
+  "name": "Trams",
+  "rideType": [
+   5,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 4,
+  "carMass": 3000,
+  "numSeats": 138,
+  "spacing": 357356,
+  "poweredAcceleration": 250,
+  "poweredMaxSpeed": 19,
+  "flags": 263177,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "miniature_railway"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.trebucht",
+  "name": "Trebuchet Ride",
+  "rideType": [
+   40,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 3000,
+  "numSeats": 136,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "top_spin"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.tricatop",
+  "name": "Triceratops Bumper Cars",
+  "rideType": [
+   25,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 1,
+  "spacing": 139456,
+  "poweredAcceleration": 7,
+  "poweredMaxSpeed": 15,
+  "flags": 0,
+  "vehicleFlags": 6455558272,
+  "rideTypeNames": [
+   "dodgems"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.trilobte",
+  "name": "Trilobite Boats",
+  "rideType": [
+   74,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 950,
+  "numSeats": 134,
+  "spacing": 313776,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 512,
+  "vehicleFlags": 1048576,
+  "rideTypeNames": [
+   "water_coaster"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.tutlboat",
+  "name": "Turtle boats",
+  "rideType": [
+   8,
+   255,
+   255
+  ],
+  "excitement": 30,
+  "intensity": 15,
+  "nausea": 15,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 140,
+  "numSeats": 130,
+  "spacing": 270196,
+  "poweredAcceleration": 220,
+  "poweredMaxSpeed": 9,
+  "flags": 0,
+  "vehicleFlags": 4299751424,
+  "rideTypeNames": [
+   "boat_hire"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.twist1",
+  "name": "Twist",
+  "rideType": [
+   46,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 200,
+  "numSeats": 146,
+  "spacing": 139456,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 33,
+  "vehicleFlags": 4362142720,
+  "rideTypeNames": [
+   "twist"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.utcar",
+  "name": "Twister Cars",
+  "rideType": [
+   66,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 278912,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "heartline_twister_rc"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.heartline_twister_cars",
+  "name": "Twister Cars",
+  "rideType": [
+   66,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 278528,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "heartline_twister_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.utcarr",
+  "name": "Twister Cars (starting reversed)",
+  "rideType": [
+   66,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 950,
+  "numSeats": 132,
+  "spacing": 278912,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 8390656,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "heartline_twister_rc"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.twister_trains",
+  "name": "Twister Trains",
+  "rideType": [
+   51,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 40,
+  "minCars": 3,
+  "maxCars": 9,
+  "carMass": 700,
+  "numSeats": 132,
+  "spacing": 130048,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "twister_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.bmsd",
+  "name": "Twister Trains",
+  "rideType": [
+   51,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 40,
+  "minCars": 5,
+  "maxCars": 9,
+  "carMass": 650,
+  "numSeats": 132,
+  "spacing": 130740,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "twister_rc"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.valkyrie",
+  "name": "Valkyries Trains",
+  "rideType": [
+   44,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 3,
+  "carMass": 2000,
+  "numSeats": 134,
+  "spacing": 174320,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 1048576,
+  "rideTypeNames": [
+   "vertical_drop_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.vekdv",
+  "name": "Vertical Shuttle Cars",
+  "rideType": [
+   73,
+   255,
+   255
+  ],
+  "excitement": 8,
+  "intensity": 12,
+  "nausea": 10,
+  "maxHeight": 0,
+  "minCars": 4,
+  "maxCars": 7,
+  "carMass": 590,
+  "numSeats": 132,
+  "spacing": 174320,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2048,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "compact_inverted_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.vcr",
+  "name": "Vintage Cars",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 330,
+  "numSeats": 130,
+  "spacing": 165604,
+  "poweredAcceleration": 60,
+  "poweredMaxSpeed": 7,
+  "flags": 262144,
+  "vehicleFlags": 4295557120,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.vintage_cars",
+  "name": "Vintage Cars",
+  "rideType": [
+   11,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 3,
+  "carMass": 330,
+  "numSeats": 130,
+  "spacing": 165604,
+  "poweredAcceleration": 60,
+  "poweredMaxSpeed": 7,
+  "flags": 262144,
+  "vehicleFlags": 4295491584,
+  "rideTypeNames": [
+   "car_ride"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.vreel",
+  "name": "Virginia Reel Tubs",
+  "rideType": [
+   59,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 600,
+  "numSeats": 4,
+  "spacing": 209184,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296343552,
+  "rideTypeNames": [
+   "virginia_reel"
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.virginia_reel_tubs",
+  "name": "Virginia Reel Tubs",
+  "rideType": [
+   59,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 600,
+  "numSeats": 4,
+  "spacing": 208896,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296343552,
+  "rideTypeNames": [
+   "virginia_reel"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.trike",
+  "name": "Water Tricycles",
+  "rideType": [
+   8,
+   255,
+   255
+  ],
+  "excitement": 3,
+  "intensity": 0,
+  "nausea": 2,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 1,
+  "carMass": 310,
+  "numSeats": 130,
+  "spacing": 278912,
+  "poweredAcceleration": 8,
+  "poweredMaxSpeed": 5,
+  "flags": 0,
+  "vehicleFlags": 4308144128,
+  "rideTypeNames": [
+   "boat_hire"
+  ]
+ },
+ {
+  "identifier": "rct2tt.ride.medisoup",
+  "name": "Witches Brew Soup",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.whicgrub",
+  "name": "Witchetty Grub Trains",
+  "rideType": [
+   4,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 5,
+  "maxCars": 15,
+  "carMass": 220,
+  "numSeats": 130,
+  "spacing": 122024,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 2,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   "junior_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.wonton",
+  "name": "Wonton Soup Stall",
+  "rideType": [
+   28,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 0,
+  "maxCars": 0,
+  "carMass": 0,
+  "numSeats": 0,
+  "spacing": 544,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 524288,
+  "vehicleFlags": 262144,
+  "rideTypeNames": [
+   "food_stall"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.wooden_rc_trains",
+  "name": "Wooden Roller Coaster Trains",
+  "rideType": [
+   99,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 7,
+  "carMass": 540,
+  "numSeats": 132,
+  "spacing": 208896,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   99
+  ]
+ },
+ {
+  "identifier": "rct2.ride.ptct1",
+  "name": "Wooden Roller Coaster Trains",
+  "rideType": [
+   52,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 7,
+  "carMass": 540,
+  "numSeats": 132,
+  "spacing": 209184,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "wooden_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.ptct2",
+  "name": "Wooden Roller Coaster Trains (6 seater)",
+  "rideType": [
+   52,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 6,
+  "carMass": 800,
+  "numSeats": 134,
+  "spacing": 287628,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "wooden_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.ptct2r",
+  "name": "Wooden Roller Coaster Trains (6 seater, Reversed)",
+  "rideType": [
+   52,
+   255,
+   255
+  ],
+  "excitement": 2,
+  "intensity": 10,
+  "nausea": 15,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 6,
+  "carMass": 800,
+  "numSeats": 134,
+  "spacing": 287628,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 8388608,
+  "vehicleFlags": 4296081920,
+  "rideTypeNames": [
+   "wooden_rc"
+  ]
+ },
+ {
+  "identifier": "rct1.ride.wooden_rc_trains_reversed",
+  "name": "Wooden Roller Coaster Trains (Reversed)",
+  "rideType": [
+   99,
+   255,
+   255
+  ],
+  "excitement": 2,
+  "intensity": 12,
+  "nausea": 22,
+  "maxHeight": 0,
+  "minCars": 2,
+  "maxCars": 7,
+  "carMass": 540,
+  "numSeats": 132,
+  "spacing": 208896,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 8388608,
+  "vehicleFlags": 4296081408,
+  "rideTypeNames": [
+   99
+  ]
+ },
+ {
+  "identifier": "rct1aa.ride.side_friction_cars",
+  "name": "Wooden Side-Friction Cars",
+  "rideType": [
+   53,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 3,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 208896,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081412,
+  "rideTypeNames": [
+   "side_friction_rc"
+  ]
+ },
+ {
+  "identifier": "rct2.ride.sfric1",
+  "name": "Wooden Side-Friction Cars",
+  "rideType": [
+   53,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 1,
+  "maxCars": 3,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 209184,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 0,
+  "vehicleFlags": 4296081412,
+  "rideTypeNames": [
+   "side_friction_rc"
+  ]
+ },
+ {
+  "identifier": "rct2ww.ride.taxicstr",
+  "name": "Yellow Taxi Trains",
+  "rideType": [
+   68,
+   255,
+   255
+  ],
+  "excitement": 0,
+  "intensity": 0,
+  "nausea": 0,
+  "maxHeight": 0,
+  "minCars": 3,
+  "maxCars": 8,
+  "carMass": 500,
+  "numSeats": 132,
+  "spacing": 226616,
+  "poweredAcceleration": 0,
+  "poweredMaxSpeed": 0,
+  "flags": 3072,
+  "vehicleFlags": 1048576,
+  "rideTypeNames": [
+   "giga_rc"
+  ]
+ }
+]

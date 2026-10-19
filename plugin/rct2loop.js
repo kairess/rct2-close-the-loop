@@ -193,6 +193,38 @@ function cmdInstalledRides(args, reply) {
     reply(true, out);
 }
 
+// Rating multipliers and train specs of every installed ride object (args.prefix filters identifiers).
+// Objects not already in the park are loaded only to read them, then unloaded again.
+function cmdRideObjects(args, reply) {
+    var loaded = {};
+    var have = objectManager.getAllObjects('ride');
+    for (var i = 0; i < have.length; i++) loaded[have[i].identifier] = true;
+    var all = objectManager.installedObjects;
+    var out = [];
+    for (var j = 0; j < all.length; j++) {
+        var info = all[j];
+        if (info.type !== 'ride') continue;
+        if (args.prefix && info.identifier.indexOf(args.prefix) !== 0) continue;
+        var obj = loaded[info.identifier] ? null : objectManager.load(info.identifier);
+        var ro = null;
+        var cur = objectManager.getAllObjects('ride');
+        for (var k = 0; k < cur.length; k++) if (cur[k].identifier === info.identifier) ro = cur[k];
+        if (ro) {
+            var v = ro.vehicles[ro.defaultVehicle] || ro.vehicles[0] || {};
+            out.push({
+                identifier: info.identifier, name: ro.name, rideType: ro.rideType,
+                excitement: ro.excitementMultiplier, intensity: ro.intensityMultiplier, nausea: ro.nauseaMultiplier,
+                maxHeight: ro.maxHeight, minCars: ro.minCarsInTrain, maxCars: ro.maxCarsInTrain,
+                carMass: v.carMass, numSeats: v.numSeats, spacing: v.spacing,
+                poweredAcceleration: v.poweredAcceleration, poweredMaxSpeed: v.poweredMaxSpeed,
+                flags: ro.flags, vehicleFlags: v.flags
+            });
+        }
+        if (obj && !loaded[info.identifier]) objectManager.unload(info.identifier);
+    }
+    reply(true, out);
+}
+
 function createRide(args, cb) {
     context.executeAction('ridecreate', {
         rideType: args.rideType,
@@ -706,6 +738,7 @@ var COMMANDS = {
     segments: cmdSegments,
     load_object: cmdLoadObject,
     installed_rides: cmdInstalledRides,
+    ride_objects: cmdRideObjects,
     allowed: cmdAllowed,
     evaluate: cmdEvaluate,
     capture: cmdCapture,

@@ -36,7 +36,23 @@ FIXED = {
     "decor": "rct2.scenery_small.tco",  # trees around the station and beside the track (decor.py)
     "batch": 28,
     "workers": 14,
+    "goal": "very_high",
+    "n_cap": 5.0,
+    "cars": None,  # None: the game's default train length
+    "station_len": None,  # None: the ride's base layout
 }
+
+# Phase 3: one coaster as exciting as possible (Extreme = 10.24). Intensity stays under the
+# game's 10.00 excitement penalty; nausea is free.
+EXTREME = {
+    **FIXED,
+    "goal": "extreme",
+    "i_cap_start": 9.9,
+    "i_cap_end": 9.9,
+    "n_cap": 1000.0,
+    "slack": 0.0,
+}
+CONFIGS = {"fixed": FIXED, "extreme": EXTREME}
 
 
 def load_condition(path: Path) -> dict:
@@ -47,7 +63,8 @@ def load_condition(path: Path) -> dict:
     return cond
 
 
-def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | None = None):
+def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | None = None,
+            cars: int | None = None, station_len: int | None = None):
     """Scan the land and find a starting loop. Returns (layout, track, verdict)."""
     area = cond["area"]
     x0, y0, x1, y1 = bbox(area)
@@ -55,7 +72,9 @@ def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | N
     env = scan_env(cond["park_path"], (x0 - 6, y0 - 6, x1 + 6, y1 + 6), sandbox=cond.get("sandbox", False),
                    terraform=cond.get("terraform", True), tunnels=cond.get("tunnels", False))
     log(f"land: {env.summary(area)}")
-    base = dataclasses.replace(BASES[ride], decor=decor)
+    base = dataclasses.replace(BASES[ride], decor=decor, cars=cars)
+    if station_len:
+        base = dataclasses.replace(base, station_len=station_len)
     if judge_factory is None:
         from .judge import Judge
 
@@ -63,10 +82,12 @@ def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | N
     return find_start(base, env, area, str(cond["park_path"]), judge_factory=judge_factory, log=log)
 
 
-def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, log=print) -> Path:
-    cfg_values = {**FIXED, **(overrides or {})}
+def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, log=print,
+           config: str = "fixed") -> Path:
+    cfg_values = {**CONFIGS[config], **(overrides or {})}
     cond = load_condition(condition_path)
-    layout, track, v0 = prepare(cond, cfg_values["ride"], log=log, decor=cfg_values.get("decor"))
+    layout, track, v0 = prepare(cond, cfg_values["ride"], log=log, decor=cfg_values.get("decor"),
+                                cars=cfg_values.get("cars"), station_len=cfg_values.get("station_len"))
     log(f"start: station {layout.station_tile} dir {layout.station_dir} z {layout.ground_z}, "
         f"{len(track)} pieces, E{v0.excitement}/I{v0.intensity}/N{v0.nausea}")
     cfg = SearchConfig(
@@ -76,7 +97,7 @@ def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, l
         slack=cfg_values["slack"], chains=cfg_values["chains"],
         i_cap_start=cfg_values["i_cap_start"], i_cap_end=cfg_values["i_cap_end"],
         priors=cfg_values["priors"], i_price_start=cfg_values["i_price_start"], i_price_end=cfg_values["i_price_end"],
-        circuits=cfg_values["circuits"],
+        circuits=cfg_values["circuits"], goal=cfg_values["goal"], n_cap=cfg_values["n_cap"],
     )
     run_dir = run(cfg, layout, initial=track, log_print=log)
     meta = {"condition": str(condition_path), "condition_name": cond["name"], "kind": cond.get("kind"),

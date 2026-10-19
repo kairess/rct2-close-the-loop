@@ -34,7 +34,16 @@ N_CAP = 5.00
 PENALTY = 2.0
 
 
-def score(v: Verdict, slack: float = 0.0, i_cap: float = I_CAP, i_price: float = 0.0) -> float | None:
+# Goals: the grade boundaries a design must meet. "extreme" asks only for excitement 10.24
+# and keeps intensity under 10.00, where the game starts cutting excitement by a quarter.
+GOALS = {
+    "very_high": {"E": 7.68, "I": 7.68, "N": 5.12},
+    "extreme": {"E": 10.24, "I": 10.00, "N": float("inf")},
+}
+
+
+def score(v: Verdict, slack: float = 0.0, i_cap: float = I_CAP, i_price: float = 0.0,
+          n_cap: float = N_CAP) -> float | None:
     """Excitement minus penalties past the I/N caps.
 
     `slack` > 0 adds a small preference for lower intensity and nausea, so that
@@ -47,12 +56,13 @@ def score(v: Verdict, slack: float = 0.0, i_cap: float = I_CAP, i_price: float =
     """
     if not v.rated:
         return None
-    s = v.excitement - PENALTY * max(0.0, v.intensity - i_cap) - PENALTY * max(0.0, v.nausea - N_CAP)
+    s = v.excitement - PENALTY * max(0.0, v.intensity - i_cap) - PENALTY * max(0.0, v.nausea - n_cap)
     return s - slack * (v.intensity + v.nausea) / 2 - i_price * v.intensity
 
 
-def meets_goal(v: Verdict) -> bool:
-    return v.rated and v.excitement >= 7.68 and v.intensity < 7.68 and v.nausea < 5.12
+def meets_goal(v: Verdict, goal: str = "very_high") -> bool:
+    g = GOALS[goal]
+    return v.rated and v.excitement >= g["E"] and v.intensity < g["I"] and v.nausea < g["N"]
 
 
 @dataclass
@@ -76,6 +86,8 @@ class SearchConfig:
     i_price_end: float = 0.0
     circuits: str = "1"  # laps per chain, cycled over chains (e.g. "1,1,1,2"): a portfolio, not a per-site choice
     stop_on_goal: bool = False
+    n_cap: float = N_CAP  # nausea cap in score()
+    goal: str = "very_high"  # key of GOALS: what best_goal.json and "GOAL MET" track
 
 
 class RunLog:
@@ -147,7 +159,7 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
     def scorer(v: Verdict, frac: float) -> float | None:
         cap = cfg.i_cap_start + (cfg.i_cap_end - cfg.i_cap_start) * frac
         price = cfg.i_price_start + (cfg.i_price_end - cfg.i_price_start) * frac
-        return score(v, cfg.slack, cap, price)
+        return score(v, cfg.slack, cap, price, cfg.n_cap)
 
     laps = [int(x) for x in str(cfg.circuits).split(",")]
     chain_laps = [laps[i % len(laps)] for i in range(cfg.chains)]
@@ -190,7 +202,7 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
                     "before": chains[ci].eval_id, "edit": edit.to_dict(), "track": cand,
                     "verdict": v.to_dict(), "score": s, "round": rnd, "chain": ci, "circuits": chains[ci].circuits,
                 })
-                if meets_goal(v):
+                if meets_goal(v, cfg.goal):
                     goal_hits += 1
                     if best_goal is None or v.excitement > best_goal:
                         best_goal = v.excitement
@@ -224,7 +236,7 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
                     log.best({"eval": best_id, "score": scorer(best_v, 1.0), "verdict": best_v.to_dict(), "track": best,
                               "round": rnd, "circuits": best_laps})
                     log_print(f"[r{rnd} e{log.n}] new best {summarize(best_v)} chain={ci} pieces={len(best)} "
-                              f"goal={'YES' if meets_goal(best_v) else 'no'}")
+                              f"goal={'YES' if meets_goal(best_v, cfg.goal) else 'no'}")
             log.progress({
                 "round": rnd, "evals": log.n, "minutes": round((time.monotonic() - started) / 60, 2),
                 "temp": round(temp, 4), "i_cap": round(cfg.i_cap_start + (cfg.i_cap_end - cfg.i_cap_start) * frac, 3),

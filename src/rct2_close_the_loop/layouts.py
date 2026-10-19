@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import dataclasses
+
 from itertools import product
 
 from .track import Layout, trace
@@ -67,8 +69,19 @@ TWISTER_24 = Layout(
     min_separation=24,
 )
 
-LAYOUTS = {"wooden_24": WOODEN_24, "giga_24": GIGA_24, "giga_24u": GIGA_24U, "twister_24": TWISTER_24}
-BASES = {"giga": GIGA_24, "twister": TWISTER_24, "wooden": WOODEN_24}
+# Hyper-Twister: the Twister's track without inversions (those are cheat-only extra groups),
+# the same rating table, taller (61 units) and the RCT1 hyper-twister train: excitement x(1 + 22/128), up to 10 cars.
+HYPERTWISTER_24 = dataclasses.replace(TWISTER_24, ride_type_name="HyperTwister", ride_type=92,
+                                      ride_object="rct1aa.ride.hyper_twister_trains", max_height=488)
+
+# Hypercoaster (RCT1 ride type): Arrow hyper train, excitement x(1 + 15/128), up to 8 cars, 55 units tall.
+HYPERCOASTER_24 = dataclasses.replace(TWISTER_24, ride_type_name="Hypercoaster", ride_type=91,
+                                      ride_object="rct2.ride.arrt2", max_height=440)
+
+LAYOUTS = {"wooden_24": WOODEN_24, "giga_24": GIGA_24, "giga_24u": GIGA_24U, "twister_24": TWISTER_24,
+           "hypertwister_24": HYPERTWISTER_24, "hypercoaster_24": HYPERCOASTER_24}
+BASES = {"giga": GIGA_24, "twister": TWISTER_24, "wooden": WOODEN_24, "hypertwister": HYPERTWISTER_24,
+         "hypercoaster": HYPERCOASTER_24}
 
 
 def get_layout(name: str) -> Layout:

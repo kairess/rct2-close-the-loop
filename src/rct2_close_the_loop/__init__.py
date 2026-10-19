@@ -65,6 +65,9 @@ def main() -> None:
     dg.add_argument("--seed", type=int, default=1)
     dg.add_argument("--minutes", type=float, help="override the fixed time budget (development only)")
     dg.add_argument("--ride", help="override the fixed ride type (development only)")
+    dg.add_argument("--config", default="fixed", help="named configuration in design.CONFIGS (fixed, extreme)")
+    dg.add_argument("--set", action="append", default=[], metavar="KEY=VALUE",
+                    help="override a configuration value (JSON value), e.g. --set cars=10 --set circuits='\"1,1,3,3\"'")
 
     rp = sub.add_parser("report", help="collect evidence from runs into results/report.json")
     rp.add_argument("runs", type=Path, nargs="+")
@@ -75,7 +78,13 @@ def main() -> None:
         from .design import design
 
         overrides = {k: v for k, v in (("minutes", args.minutes), ("ride", args.ride)) if v is not None}
-        print(design(args.condition, seed=args.seed, overrides=overrides))
+        for kv in args.set:
+            key, _, value = kv.partition("=")
+            try:
+                overrides[key] = json.loads(value)
+            except json.JSONDecodeError:
+                overrides[key] = value
+        print(design(args.condition, seed=args.seed, overrides=overrides, config=args.config))
         return
     if args.cmd == "report":
         from .report import collect
