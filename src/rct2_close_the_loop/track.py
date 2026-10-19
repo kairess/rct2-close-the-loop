@@ -187,6 +187,14 @@ class Layout:
     ground_map: dict | None = None  # {(tile_x, tile_y): surface z} where it differs from ground_z
     obstacles: dict | None = None  # {(tile_x, tile_y): top z} of trees; track must pass above
 
+    def to_record(self) -> dict:
+        """JSON-safe description for run configs (terrain maps keyed "x,y")."""
+        rec = dict(self.__dict__)
+        for key in ("ground_map", "obstacles"):
+            if rec[key] is not None:
+                rec[key] = {f"{x},{y}": z for (x, y), z in rec[key].items()}
+        return rec
+
     def ground_at(self, tx: int, ty: int) -> int:
         if self.ground_map is None:
             return self.ground_z

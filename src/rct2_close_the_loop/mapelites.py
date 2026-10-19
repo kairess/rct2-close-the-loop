@@ -77,7 +77,7 @@ def run(cfg: MapElitesConfig, layout: Layout, initial: list[list[tuple[int, bool
     gen = EditGenerator(layout, pieces, seed=cfg.seed, max_window=cfg.max_window, max_walk=cfg.max_walk)
     seeds = initial or [oval(layout, hill=cfg.hill)]
 
-    log = RunLog(f"{cfg.layout_name}-me", {"mapelites": cfg.__dict__, "layout": layout.__dict__, "git": git_rev(), "pieces": sorted(pieces)})
+    log = RunLog(f"{cfg.layout_name}-me", {"mapelites": cfg.__dict__, "layout": layout.to_record(), "git": git_rev(), "pieces": sorted(pieces)})
     pool = JudgePool(layout, cfg.workers)
     log_print(f"run dir: {log.dir}  workers={pool.size}")
     started = time.monotonic()

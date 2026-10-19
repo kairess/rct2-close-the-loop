@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # S2: run the same search on every terrain condition with the same budget.
-#   ./scripts/run_s2.sh <ride> <minutes> <seed>     e.g. ./scripts/run_s2.sh twister 12 21
+#   ./scripts/run_s2.sh <ride> <minutes> <seed> [layout regex]
+#   e.g. ./scripts/run_s2.sh twister 12 21 'hills|trees'
 set -uo pipefail
 ride="${1:-twister}"
 minutes="${2:-12}"
 seed="${3:-21}"
+only="${4:-.}"
 cd "$(dirname "$0")/.."
 mkdir -p runs/s2
 # layout, starting hill height (the 16x16 area only fits a 4-step lift on its first side)
@@ -19,6 +21,7 @@ conditions=(
 for c in "${conditions[@]}"; do
   layout="${c%%:*}"
   hill="${c##*:}"
+  [[ "$layout" =~ $only ]] || continue
   out="runs/s2/${layout//@/_}-seed${seed}.out"
   echo "$(date '+%H:%M:%S') start $layout (hill $hill)"
   uv run rct2loop search --layout "$layout" --hill "$hill" --minutes "$minutes" --evals 1000000 \

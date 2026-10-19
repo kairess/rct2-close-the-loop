@@ -111,7 +111,7 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
     gen = EditGenerator(layout, pieces, seed=cfg.seed)
     track = initial or oval(layout, hill=cfg.hill)
 
-    log = RunLog(cfg.layout_name, {"search": cfg.__dict__, "layout": layout.__dict__, "git": git_rev(), "pieces": sorted(pieces)})
+    log = RunLog(cfg.layout_name, {"search": cfg.__dict__, "layout": layout.to_record(), "git": git_rev(), "pieces": sorted(pieces)})
     pool = JudgePool(layout, cfg.workers)
     log_print(f"run dir: {log.dir}  workers={pool.size}")
     started = time.monotonic()
