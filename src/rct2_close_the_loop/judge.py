@@ -100,6 +100,7 @@ class Judge:
             "exit": [exit_[0] * 32, exit_[1] * 32, exit_[2]],
             "maxTicks": max(MIN_TICKS, TICKS_PER_PIECE * len(tr.placed)),
             "keep": keep,
+            "cars": self.layout.cars,
         }
         try:
             r = self.game.call("evaluate", args, timeout=EVALUATE_TIMEOUT)

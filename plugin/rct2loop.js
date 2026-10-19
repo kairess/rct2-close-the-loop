@@ -260,7 +260,9 @@ function rideStats(ride) {
         numLiftHills: ride.numLiftHills,
         highestDropHeight: ride.highestDropHeight,
         lifecycleFlags: ride.lifecycleFlags,
-        status: ride.status
+        status: ride.status,
+        cars: carsPerTrain(ride),
+        trains: ride.vehicles.length
     };
 }
 
@@ -305,14 +307,42 @@ function evaluate(args, reply) {
                 });
             }, function (err, failedIndex) {
                 if (err) return finish({ stage: failedIndex === 0 ? 'entrance' : 'exit', error: err });
-                context.executeAction('ridesetstatus', { ride: rideId, status: STATUS_TESTING }, function (res) {
-                    if (res.error) return finish({ stage: 'test_start', error: errText(res) });
-                    runTest(rideId, args.maxTicks || 20000, function (outcome) {
-                        timing.totalMs = Date.now() - t0;
-                        finish(outcome);
-                    });
+                setCars(rideId, args.cars, function (err) {
+                    if (err) return finish({ stage: 'cars', error: err });
+                    startTest(rideId, args, timing, t0, finish);
                 });
             });
+        });
+    });
+}
+
+// Longer trains earn the train-length bonus ((cars - 1) * 2.86 excitement points).
+function setCars(rideId, cars, cb) {
+    if (!cars) return cb(null);
+    context.executeAction('ridesetvehicle', { ride: rideId, type: 1, value: cars, colour: 0 }, function (res) {
+        cb(res.error ? errText(res) : null);
+    });
+}
+
+function carsPerTrain(ride) {
+    if (!ride.vehicles.length) return 0;
+    var n = 0;
+    var id = ride.vehicles[0];
+    while (id !== null && id !== undefined && n < 100) {
+        var car = map.getEntity(id);
+        if (!car) break;
+        n++;
+        id = car.nextCarOnTrain;
+    }
+    return n;
+}
+
+function startTest(rideId, args, timing, t0, finish) {
+    context.executeAction('ridesetstatus', { ride: rideId, status: STATUS_TESTING }, function (res) {
+        if (res.error) return finish({ stage: 'test_start', error: errText(res) });
+        runTest(rideId, args.maxTicks || 20000, function (outcome) {
+            timing.totalMs = Date.now() - t0;
+            finish(outcome);
         });
     });
 }

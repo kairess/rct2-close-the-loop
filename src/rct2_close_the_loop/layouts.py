@@ -22,6 +22,8 @@ WOODEN_24 = Layout(
 )
 
 # Same area and station, Giga Coaster (base ratings E3.85/I0.40/N0.35 vs wooden E3.20/I2.60/N2.00).
+# min_separation 24: the game checks clearance per quarter tile, and track touching its own
+# track (zero gap) or passing 2-10 height units above it earns proximity points.
 GIGA_24 = Layout(
     ride_type_name="giga_rc",
     ride_type=68,
@@ -32,9 +34,25 @@ GIGA_24 = Layout(
     ground_z=GROUND_Z,
     area=(100, 100, 124, 124),
     max_height=680,
+    min_separation=24,
 )
 
-LAYOUTS = {"wooden_24": WOODEN_24, "giga_24": GIGA_24}
+# Giga with tunnels allowed: track may dip below the land (z 112) down to z 32.
+# Only underground track counts as sheltered in the ratings (Vehicle.cpp shelter check).
+GIGA_24U = Layout(
+    ride_type_name="giga_rc",
+    ride_type=68,
+    ride_object="rct2.ride.intst",
+    station_tile=(104, 102),
+    station_dir=2,
+    station_len=4,
+    ground_z=GROUND_Z,
+    area=(100, 100, 124, 124),
+    max_height=680,
+    min_z=32,
+)
+
+LAYOUTS = {"wooden_24": WOODEN_24, "giga_24": GIGA_24, "giga_24u": GIGA_24U}
 
 LEFT3 = 42
 RIGHT3 = 43

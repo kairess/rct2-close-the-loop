@@ -18,6 +18,7 @@ DATA = Path(__file__).resolve().parents[2] / "data"
 TILE = 32
 DIR_DELTA = ((-TILE, 0), (0, TILE), (TILE, 0), (0, -TILE))
 STATION = 1  # END_STATION; the game reclassifies begin/middle/end itself
+UNDERGROUND_CLEARANCE = 32  # rough track clearance used to call an element fully underground
 LIFT = 1  # trackPlaceFlags bit for chain lift
 
 
@@ -50,6 +51,7 @@ class Segment:
     group: int
     allows_lift: bool
     is_inversion: bool
+    only_above_ground: bool
 
 
 @cache
@@ -72,6 +74,7 @@ def segments() -> dict[int, Segment]:
             group=s["trackGroup"],
             allows_lift=s["allowsChainLift"],
             is_inversion=s["isInversion"],
+            only_above_ground=s["onlyAllowedAboveGround"],
         )
         for s in raw
     }
@@ -173,6 +176,8 @@ class Layout:
     area: tuple[int, int, int, int]  # x0, y0, x1, y1 tiles, inclusive-exclusive
     max_height: int  # max base z above ground, world units
     min_separation: int = 48  # vertical gap demanded between track on one tile
+    min_z: int | None = None  # lowest base z allowed; None keeps track above ground (no tunnels)
+    cars: int | None = None  # cars per train; None keeps the game's default
 
     def start(self) -> State:
         x, y = self.station_tile
@@ -231,14 +236,25 @@ def check_space(layout: Layout, placed: list[Placed]) -> list[str]:
     for (ax, ay, _) in layout.access_tiles():
         occupied[(ax, ay)] = [(layout.ground_z, -1)]
     problems = []
+    g = layout.ground_z
     for i, p in enumerate(placed):
         s = segments()[p.type]
         span = max(abs(s.end_z - s.begin_z), 0) if len(s.elements) == 1 else 0
-        for tx, ty, z in piece_tiles(p.x, p.y, p.z, p.d, p.type):
+        tiles = list(piece_tiles(p.x, p.y, p.z, p.d, p.type))
+        lowest = min(z for _, _, z in tiles)
+        if lowest < g:
+            if layout.min_z is None:
+                return [f"piece {i} below ground (z={lowest})"]
+            if lowest < layout.min_z:
+                return [f"piece {i} too low (z={lowest})"]
+            if s.only_above_ground:
+                return [f"piece {i} type {p.type} must stay above ground"]
+            # A multi-tile piece cannot be partly above and partly below the surface.
+            if len(tiles) > 1 and max(z for _, _, z in tiles) + UNDERGROUND_CLEARANCE > g:
+                return [f"piece {i} straddles the surface"]
+        for tx, ty, z in tiles:
             if not (x0 <= tx < x1 and y0 <= ty < y1):
                 return [f"piece {i} leaves area at tile ({tx},{ty})"]
-            if z < layout.ground_z:
-                return [f"piece {i} below ground (z={z})"]
             if z + span - layout.ground_z > layout.max_height:
                 return [f"piece {i} too high (z={z})"]
             for oz, oi in occupied.get((tx, ty), ()):
