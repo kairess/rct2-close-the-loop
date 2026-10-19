@@ -1,0 +1,29 @@
+[
+ {
+  "layout": "twister_24",
+  "seed": 7,
+  "evals": 6469,
+  "minutes": 7.7,
+  "goal": true,
+  "first_goal_min": 1.44,
+  "first_goal_eval": 1739,
+  "best_goal": [
+   8.17,
+   7.34,
+   5.05
+  ],
+  "best_any": [
+   8.17,
+   7.34,
+   5.05
+  ],
+  "rated_share": 0.797,
+  "stages": {
+   "rated": 5155,
+   "stalled": 1026,
+   "build": 285,
+   "exit": 3
+  },
+  "run": "20261019-171726-twister_24"
+ }
+]
