@@ -52,7 +52,22 @@ GIGA_24U = Layout(
     min_z=32,
 )
 
-LAYOUTS = {"wooden_24": WOODEN_24, "giga_24": GIGA_24, "giga_24u": GIGA_24U}
+# Twister with Floorless Twister trains (multipliers E+10/I+5/N+10 of 128): vertical loops,
+# corkscrews and rolls without cheats, and any inversion waives the drop/negative-G requirements.
+TWISTER_24 = Layout(
+    ride_type_name="TwisterRollerCoaster",
+    ride_type=51,
+    ride_object="rct2.ride.bmfl",
+    station_tile=(104, 102),
+    station_dir=2,
+    station_len=4,
+    ground_z=GROUND_Z,
+    area=(100, 100, 124, 124),
+    max_height=320,
+    min_separation=24,
+)
+
+LAYOUTS = {"wooden_24": WOODEN_24, "giga_24": GIGA_24, "giga_24u": GIGA_24U, "twister_24": TWISTER_24}
 
 LEFT3 = 42
 RIGHT3 = 43

@@ -101,8 +101,13 @@ def piece_set(ride_type_name: str) -> frozenset[int]:
     pieces with no group of their own (covered/maze/vertical variants) and is
     never offered by the in-game builder, so it is excluded.
     """
-    tables = json.loads((DATA / "track_groups_from_bridge.json").read_text())
-    groups = set(tables["groupsByRideType"][ride_type_name]) - {0}
+    rtd = json.loads((DATA / "track_groups_rtd.json").read_text())
+    if ride_type_name in rtd:
+        # Extracted from the C++ ride type descriptors by scripts/extract_track_groups.py.
+        groups = set(rtd[ride_type_name]) - {0}
+    else:
+        tables = json.loads((DATA / "track_groups_from_bridge.json").read_text())
+        groups = set(tables["groupsByRideType"][ride_type_name]) - {0}
     out = set()
     for t, s in segments().items():
         if s.group not in groups or t in EXCLUDED_TYPES or t == STATION:
