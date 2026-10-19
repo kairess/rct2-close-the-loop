@@ -64,7 +64,8 @@ def main() -> None:
                         "without_trees": bare.to_dict()})
         for k, shot in enumerate(summary["screenshots"]):
             img = crop_to_area(Image.open(out / name / shot).convert("RGB"), layout, k)
-            img.save(out / name / f"thumb_r{k}.jpg", quality=85)
+            img = img.resize((960, round(960 * img.height / img.width)), Image.LANCZOS)
+            img.save(out / name / f"thumb_r{k}.jpg", quality=84)
         (out / name / "summary.json").write_text(json.dumps(summary, indent=1))
         index[name] = {k: summary[k] for k in ("condition", "kind", "run", "eval", "park", "screenshots")}
         index[name]["verdict"] = {k: summary["verdict"][k] for k in ("E", "I", "N", "decor")}

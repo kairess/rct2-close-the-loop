@@ -22,5 +22,29 @@
    "I": 7.08,
    "N": 4.52
   }
+ },
+ "dev_real_africaoasis": {
+  "condition": "real_africaoasis",
+  "kind": "real",
+  "run": "20261019-212140-twister@real_africaoasis",
+  "eval": 11483,
+  "park": "dev_real_africaoasis.park",
+  "screenshots": [
+   "dev_real_africaoasis_r0.png",
+   "dev_real_africaoasis_r1.png",
+   "dev_real_africaoasis_r2.png",
+   "dev_real_africaoasis_r3.png"
+  ],
+  "verdict": {
+   "E": 8.02,
+   "I": 7.53,
+   "N": 4.88,
+   "decor": 8
+  },
+  "without_trees": {
+   "E": 8.01,
+   "I": 7.53,
+   "N": 4.88
+  }
  }
 }

@@ -1,32 +1,29 @@
 {
  "split": "dev",
- "success": 0,
+ "success": 1,
  "n": 1,
  "rows": [
   {
-   "condition": "syn101",
-   "kind": "synthetic",
-   "params": {
-    "size": 28,
-    "shape": "rect",
-    "relief": 8,
-    "water": 0.1,
-    "trees": 0.2,
-    "unowned": 0.0
-   },
-   "tiles": 784,
+   "condition": "real_africaoasis",
+   "kind": "real",
+   "params": "Africa - Oasis.SC6",
+   "tiles": 576,
    "seed": 1,
-   "evals": 3725,
-   "goal": false,
-   "first_goal_min": null,
-   "best_goal": null,
-   "best_feasible": [
-    7.47,
-    7.08,
-    4.52
+   "evals": 14253,
+   "goal": true,
+   "first_goal_min": 3.39,
+   "best_goal": [
+    8.02,
+    7.53,
+    4.88
    ],
-   "best_goal_eval": null,
-   "run": "20261019-211650-twister@syn101"
+   "best_feasible": [
+    8.02,
+    7.53,
+    4.88
+   ],
+   "best_goal_eval": 11483,
+   "run": "20261019-212140-twister@real_africaoasis"
   }
  ]
 }

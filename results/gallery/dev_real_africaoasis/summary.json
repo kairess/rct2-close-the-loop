@@ -1,0 +1,577 @@
+{
+ "name": "dev_real_africaoasis",
+ "verdict": {
+  "stage": "rated",
+  "E": 8.02,
+  "I": 7.53,
+  "N": 4.88,
+  "stats": {
+   "excitement": 802,
+   "intensity": 753,
+   "nausea": 488,
+   "maxSpeed": 41,
+   "averageSpeed": 11,
+   "rideTime": 169,
+   "rideLength": 1120,
+   "maxPositiveVerticalGs": 3.76,
+   "maxNegativeVerticalGs": -0.99,
+   "maxLateralGs": 2.48,
+   "totalAirTime": 4.02,
+   "numDrops": 9,
+   "numLiftHills": 1,
+   "highestDropHeight": 16,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 5458,
+  "wall": 1.143,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 8
+ },
+ "track": [
+  [
+   19,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   22,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   233,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   6,
+   true
+  ],
+  [
+   46,
+   true
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   225,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   174,
+   false
+  ],
+  [
+   55,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   277,
+   false
+  ],
+  [
+   36,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   233,
+   false
+  ],
+  [
+   235,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   233,
+   false
+  ],
+  [
+   221,
+   false
+  ],
+  [
+   235,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   102,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   52,
+   false
+  ],
+  [
+   55,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   29,
+   false
+  ],
+  [
+   48,
+   false
+  ],
+  [
+   230,
+   false
+  ],
+  [
+   240,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   88,
+   false
+  ],
+  [
+   88,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   234,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   22,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   231,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   174,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   278,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   4,
+   false
+  ],
+  [
+   275,
+   false
+  ],
+  [
+   60,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "dev_real_africaoasis.park",
+ "screenshots": [
+  "dev_real_africaoasis_r0.png",
+  "dev_real_africaoasis_r1.png",
+  "dev_real_africaoasis_r2.png",
+  "dev_real_africaoasis_r3.png"
+ ],
+ "condition": "real_africaoasis",
+ "kind": "real",
+ "run": "20261019-212140-twister@real_africaoasis",
+ "eval": 11483,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 8.02,
+  "I": 7.53,
+  "N": 4.88,
+  "stats": {
+   "excitement": 802,
+   "intensity": 753,
+   "nausea": 488,
+   "maxSpeed": 41,
+   "averageSpeed": 11,
+   "rideTime": 169,
+   "rideLength": 1120,
+   "maxPositiveVerticalGs": 3.76,
+   "maxNegativeVerticalGs": -0.99,
+   "maxLateralGs": 2.48,
+   "totalAirTime": 4.02,
+   "numDrops": 9,
+   "numLiftHills": 1,
+   "highestDropHeight": 16,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 5469,
+  "wall": 1.121,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 8
+ },
+ "without_trees": {
+  "stage": "rated",
+  "E": 8.01,
+  "I": 7.53,
+  "N": 4.88,
+  "stats": {
+   "excitement": 801,
+   "intensity": 753,
+   "nausea": 488,
+   "maxSpeed": 41,
+   "averageSpeed": 11,
+   "rideTime": 169,
+   "rideLength": 1120,
+   "maxPositiveVerticalGs": 3.76,
+   "maxNegativeVerticalGs": -0.99,
+   "maxLateralGs": 2.48,
+   "totalAirTime": 4.02,
+   "numDrops": 9,
+   "numLiftHills": 1,
+   "highestDropHeight": 16,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 5458,
+  "wall": 1.141,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}
