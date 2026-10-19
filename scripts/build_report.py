@@ -102,6 +102,8 @@ def main() -> None:
                  + f"(실제 RCT2 시나리오 맵 {len(real)}곳, 무작위 지형 {len(syn)}곳)에서 "
                  f"조건마다 15분씩 돌려 <strong>{ok}곳에서 흥미도 Very High(7.68 이상)</strong>를 "
                  f"강도·멀미도 제한 안에서 달성했다."
+                 + ("" if args.split != "heldout" or ok / n >= 0.8 else
+                    f" 미리 정한 합격선 80%에는 못 미쳤다({ok / n:.0%}).")
                  + ("" if args.split == "heldout" else " 보류 조건 20개의 결과는 아침에 이 페이지에 채운다.")),
         "gallery_intro": (f"카드마다 그 조건에서 찾은 가장 좋은 코스터다. 강도 7.68, 멀미도 5.12 미만을 지킨 트랙 중 고른 것이다. "
                           f"새 게임 인스턴스에서 다시 짓고 레이팅한 값이며, 공원 파일은 <code>results/gallery/</code>에 있다. "

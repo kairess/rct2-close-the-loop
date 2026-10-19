@@ -1,0 +1,365 @@
+{
+ "name": "heldout_real_roaringtwentiesschneidercup",
+ "verdict": {
+  "stage": "rated",
+  "E": 7.86,
+  "I": 7.11,
+  "N": 4.67,
+  "stats": {
+   "excitement": 786,
+   "intensity": 711,
+   "nausea": 467,
+   "maxSpeed": 36,
+   "averageSpeed": 18,
+   "rideTime": 110,
+   "rideLength": 521,
+   "maxPositiveVerticalGs": 2.52,
+   "maxNegativeVerticalGs": -0.98,
+   "maxLateralGs": 1.78,
+   "totalAirTime": 3.48,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 16,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 3592,
+  "wall": 0.785,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 46
+ },
+ "track": [
+  [
+   6,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   34,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   242,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   41,
+   false
+  ],
+  [
+   229,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   104,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   174,
+   false
+  ],
+  [
+   177,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   177,
+   false
+  ],
+  [
+   241,
+   false
+  ],
+  [
+   235,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   53,
+   false
+  ],
+  [
+   177,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   108,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "heldout_real_roaringtwentiesschneidercup.park",
+ "screenshots": [
+  "heldout_real_roaringtwentiesschneidercup_r0.png",
+  "heldout_real_roaringtwentiesschneidercup_r1.png",
+  "heldout_real_roaringtwentiesschneidercup_r2.png",
+  "heldout_real_roaringtwentiesschneidercup_r3.png"
+ ],
+ "condition": "real_roaringtwentiesschneidercup",
+ "kind": "real",
+ "run": "20261020-010854-twister@real_roaringtwentiesschneidercup",
+ "eval": 10943,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 7.86,
+  "I": 7.11,
+  "N": 4.67,
+  "stats": {
+   "excitement": 786,
+   "intensity": 711,
+   "nausea": 467,
+   "maxSpeed": 36,
+   "averageSpeed": 18,
+   "rideTime": 110,
+   "rideLength": 521,
+   "maxPositiveVerticalGs": 2.52,
+   "maxNegativeVerticalGs": -0.98,
+   "maxLateralGs": 1.78,
+   "totalAirTime": 3.48,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 16,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 3593,
+  "wall": 0.784,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 46
+ },
+ "without_trees": {
+  "stage": "rated",
+  "E": 7.53,
+  "I": 7.11,
+  "N": 4.67,
+  "stats": {
+   "excitement": 753,
+   "intensity": 711,
+   "nausea": 467,
+   "maxSpeed": 36,
+   "averageSpeed": 18,
+   "rideTime": 110,
+   "rideLength": 521,
+   "maxPositiveVerticalGs": 2.52,
+   "maxNegativeVerticalGs": -0.98,
+   "maxLateralGs": 1.78,
+   "totalAirTime": 3.48,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 16,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 3592,
+  "wall": 0.787,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}

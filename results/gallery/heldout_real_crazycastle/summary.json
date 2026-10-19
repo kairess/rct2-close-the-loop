@@ -1,0 +1,565 @@
+{
+ "name": "heldout_real_crazycastle",
+ "verdict": {
+  "stage": "rated",
+  "E": 8.17,
+  "I": 7.43,
+  "N": 4.67,
+  "stats": {
+   "excitement": 817,
+   "intensity": 743,
+   "nausea": 467,
+   "maxSpeed": 56,
+   "averageSpeed": 12,
+   "rideTime": 157,
+   "rideLength": 1098,
+   "maxPositiveVerticalGs": 3.32,
+   "maxNegativeVerticalGs": -1.47,
+   "maxLateralGs": 2.41,
+   "totalAirTime": 2.91,
+   "numDrops": 9,
+   "numLiftHills": 3,
+   "highestDropHeight": 34,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 5088,
+  "wall": 1.063,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 68
+ },
+ "track": [
+  [
+   6,
+   true
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   226,
+   false
+  ],
+  [
+   228,
+   false
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   6,
+   true
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   27,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   230,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   27,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   6,
+   true
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   93,
+   false
+  ],
+  [
+   93,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   174,
+   false
+  ],
+  [
+   185,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   22,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   104,
+   false
+  ],
+  [
+   233,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   241,
+   false
+  ],
+  [
+   227,
+   false
+  ],
+  [
+   184,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   58,
+   false
+  ],
+  [
+   278,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   225,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   23,
+   false
+  ],
+  [
+   105,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   231,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   241,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   37,
+   false
+  ],
+  [
+   230,
+   false
+  ],
+  [
+   224,
+   false
+  ],
+  [
+   232,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   268,
+   false
+  ],
+  [
+   54,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   47,
+   false
+  ],
+  [
+   4,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   52,
+   false
+  ],
+  [
+   55,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   42,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "heldout_real_crazycastle.park",
+ "screenshots": [
+  "heldout_real_crazycastle_r0.png",
+  "heldout_real_crazycastle_r1.png",
+  "heldout_real_crazycastle_r2.png",
+  "heldout_real_crazycastle_r3.png"
+ ],
+ "condition": "real_crazycastle",
+ "kind": "real",
+ "run": "20261020-002328-twister@real_crazycastle",
+ "eval": 12521,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 8.17,
+  "I": 7.43,
+  "N": 4.67,
+  "stats": {
+   "excitement": 817,
+   "intensity": 743,
+   "nausea": 467,
+   "maxSpeed": 56,
+   "averageSpeed": 12,
+   "rideTime": 157,
+   "rideLength": 1098,
+   "maxPositiveVerticalGs": 3.32,
+   "maxNegativeVerticalGs": -1.47,
+   "maxLateralGs": 2.41,
+   "totalAirTime": 2.91,
+   "numDrops": 9,
+   "numLiftHills": 3,
+   "highestDropHeight": 34,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 5088,
+  "wall": 1.066,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 68
+ },
+ "without_trees": {
+  "stage": "rated",
+  "E": 7.85,
+  "I": 7.43,
+  "N": 4.67,
+  "stats": {
+   "excitement": 785,
+   "intensity": 743,
+   "nausea": 467,
+   "maxSpeed": 56,
+   "averageSpeed": 12,
+   "rideTime": 157,
+   "rideLength": 1098,
+   "maxPositiveVerticalGs": 3.32,
+   "maxNegativeVerticalGs": -1.47,
+   "maxLateralGs": 2.41,
+   "totalAirTime": 2.91,
+   "numDrops": 9,
+   "numLiftHills": 3,
+   "highestDropHeight": 34,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 5088,
+  "wall": 1.062,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}

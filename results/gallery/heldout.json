@@ -1,0 +1,482 @@
+{
+ "heldout_real_amityairfield": {
+  "condition": "real_amityairfield",
+  "kind": "real",
+  "run": "20261019-235310-twister@real_amityairfield",
+  "eval": 14017,
+  "park": "heldout_real_amityairfield.park",
+  "screenshots": [
+   "heldout_real_amityairfield_r0.png",
+   "heldout_real_amityairfield_r1.png",
+   "heldout_real_amityairfield_r2.png",
+   "heldout_real_amityairfield_r3.png"
+  ],
+  "verdict": {
+   "E": 8.46,
+   "I": 7.38,
+   "N": 5.02,
+   "decor": 75
+  },
+  "without_trees": {
+   "E": 8.1,
+   "I": 7.38,
+   "N": 5.02
+  }
+ },
+ "heldout_real_buildyourownsixflagsgreatadv": {
+  "condition": "real_buildyourownsixflagsgreatadv",
+  "kind": "real",
+  "run": "20261020-000819-twister@real_buildyourownsixflagsgreatadv",
+  "eval": 11973,
+  "park": "heldout_real_buildyourownsixflagsgreatadv.park",
+  "screenshots": [
+   "heldout_real_buildyourownsixflagsgreatadv_r0.png",
+   "heldout_real_buildyourownsixflagsgreatadv_r1.png",
+   "heldout_real_buildyourownsixflagsgreatadv_r2.png",
+   "heldout_real_buildyourownsixflagsgreatadv_r3.png"
+  ],
+  "verdict": {
+   "E": 7.84,
+   "I": 7.42,
+   "N": 4.76,
+   "decor": 75
+  },
+  "without_trees": {
+   "E": 7.54,
+   "I": 7.42,
+   "N": 4.76
+  }
+ },
+ "heldout_real_crazycastle": {
+  "condition": "real_crazycastle",
+  "kind": "real",
+  "run": "20261020-002328-twister@real_crazycastle",
+  "eval": 12521,
+  "park": "heldout_real_crazycastle.park",
+  "screenshots": [
+   "heldout_real_crazycastle_r0.png",
+   "heldout_real_crazycastle_r1.png",
+   "heldout_real_crazycastle_r2.png",
+   "heldout_real_crazycastle_r3.png"
+  ],
+  "verdict": {
+   "E": 8.17,
+   "I": 7.43,
+   "N": 4.67,
+   "decor": 68
+  },
+  "without_trees": {
+   "E": 7.85,
+   "I": 7.43,
+   "N": 4.67
+  }
+ },
+ "heldout_real_infernalviews": {
+  "condition": "real_infernalviews",
+  "kind": "real",
+  "run": "20261020-003840-twister@real_infernalviews",
+  "eval": 18277,
+  "park": "heldout_real_infernalviews.park",
+  "screenshots": [
+   "heldout_real_infernalviews_r0.png",
+   "heldout_real_infernalviews_r1.png",
+   "heldout_real_infernalviews_r2.png",
+   "heldout_real_infernalviews_r3.png"
+  ],
+  "verdict": {
+   "E": 8.43,
+   "I": 7.34,
+   "N": 4.6,
+   "decor": 79
+  },
+  "without_trees": {
+   "E": 7.98,
+   "I": 7.34,
+   "N": 4.6
+  }
+ },
+ "heldout_real_prehistoricaftertheasteroid": {
+  "condition": "real_prehistoricaftertheasteroid",
+  "kind": "real",
+  "run": "20261020-005349-twister@real_prehistoricaftertheasteroid",
+  "eval": 16771,
+  "park": "heldout_real_prehistoricaftertheasteroid.park",
+  "screenshots": [
+   "heldout_real_prehistoricaftertheasteroid_r0.png",
+   "heldout_real_prehistoricaftertheasteroid_r1.png",
+   "heldout_real_prehistoricaftertheasteroid_r2.png",
+   "heldout_real_prehistoricaftertheasteroid_r3.png"
+  ],
+  "verdict": {
+   "E": 8.22,
+   "I": 7.6,
+   "N": 4.8,
+   "decor": 66
+  },
+  "without_trees": {
+   "E": 7.9,
+   "I": 7.6,
+   "N": 4.8
+  }
+ },
+ "heldout_real_roaringtwentiesschneidercup": {
+  "condition": "real_roaringtwentiesschneidercup",
+  "kind": "real",
+  "run": "20261020-010854-twister@real_roaringtwentiesschneidercup",
+  "eval": 10943,
+  "park": "heldout_real_roaringtwentiesschneidercup.park",
+  "screenshots": [
+   "heldout_real_roaringtwentiesschneidercup_r0.png",
+   "heldout_real_roaringtwentiesschneidercup_r1.png",
+   "heldout_real_roaringtwentiesschneidercup_r2.png",
+   "heldout_real_roaringtwentiesschneidercup_r3.png"
+  ],
+  "verdict": {
+   "E": 7.86,
+   "I": 7.11,
+   "N": 4.67,
+   "decor": 46
+  },
+  "without_trees": {
+   "E": 7.53,
+   "I": 7.11,
+   "N": 4.67
+  }
+ },
+ "heldout_real_roaringtwentiesskyscrapers": {
+  "condition": "real_roaringtwentiesskyscrapers",
+  "kind": "real",
+  "run": "20261020-012400-twister@real_roaringtwentiesskyscrapers",
+  "eval": 12204,
+  "park": "heldout_real_roaringtwentiesskyscrapers.park",
+  "screenshots": [
+   "heldout_real_roaringtwentiesskyscrapers_r0.png",
+   "heldout_real_roaringtwentiesskyscrapers_r1.png",
+   "heldout_real_roaringtwentiesskyscrapers_r2.png",
+   "heldout_real_roaringtwentiesskyscrapers_r3.png"
+  ],
+  "verdict": {
+   "E": 7.81,
+   "I": 7.29,
+   "N": 4.67,
+   "decor": 59
+  },
+  "without_trees": {
+   "E": 7.51,
+   "I": 7.29,
+   "N": 4.67
+  }
+ },
+ "heldout_real_sixflagsbelgium": {
+  "condition": "real_sixflagsbelgium",
+  "kind": "real",
+  "run": "20261020-013910-twister@real_sixflagsbelgium",
+  "eval": 8252,
+  "park": "heldout_real_sixflagsbelgium.park",
+  "screenshots": [
+   "heldout_real_sixflagsbelgium_r0.png",
+   "heldout_real_sixflagsbelgium_r1.png",
+   "heldout_real_sixflagsbelgium_r2.png",
+   "heldout_real_sixflagsbelgium_r3.png"
+  ],
+  "verdict": {
+   "E": 7.83,
+   "I": 7.58,
+   "N": 4.67,
+   "decor": 0
+  },
+  "without_trees": {
+   "E": 7.83,
+   "I": 7.58,
+   "N": 4.67
+  }
+ },
+ "heldout_real_sixflagsgreatadventure": {
+  "condition": "real_sixflagsgreatadventure",
+  "kind": "real",
+  "run": "20261020-015421-twister@real_sixflagsgreatadventure",
+  "eval": 11495,
+  "park": "heldout_real_sixflagsgreatadventure.park",
+  "screenshots": [
+   "heldout_real_sixflagsgreatadventure_r0.png",
+   "heldout_real_sixflagsgreatadventure_r1.png",
+   "heldout_real_sixflagsgreatadventure_r2.png",
+   "heldout_real_sixflagsgreatadventure_r3.png"
+  ],
+  "verdict": {
+   "E": 8.51,
+   "I": 7.46,
+   "N": 4.76,
+   "decor": 66
+  },
+  "without_trees": {
+   "E": 8.07,
+   "I": 7.46,
+   "N": 4.76
+  }
+ },
+ "heldout_syn200": {
+  "condition": "syn200",
+  "kind": "synthetic",
+  "run": "20261020-020928-twister@syn200",
+  "eval": 22263,
+  "park": "heldout_syn200.park",
+  "screenshots": [
+   "heldout_syn200_r0.png",
+   "heldout_syn200_r1.png",
+   "heldout_syn200_r2.png",
+   "heldout_syn200_r3.png"
+  ],
+  "verdict": {
+   "E": 7.33,
+   "I": 7.33,
+   "N": 4.77,
+   "decor": 40
+  },
+  "without_trees": {
+   "E": 7.07,
+   "I": 7.33,
+   "N": 4.77
+  }
+ },
+ "heldout_syn202": {
+  "condition": "syn202",
+  "kind": "synthetic",
+  "run": "20261020-022433-twister@syn202",
+  "eval": 20965,
+  "park": "heldout_syn202.park",
+  "screenshots": [
+   "heldout_syn202_r0.png",
+   "heldout_syn202_r1.png",
+   "heldout_syn202_r2.png",
+   "heldout_syn202_r3.png"
+  ],
+  "verdict": {
+   "E": 7.94,
+   "I": 7.56,
+   "N": 4.52,
+   "decor": 79
+  },
+  "without_trees": {
+   "E": 7.54,
+   "I": 7.56,
+   "N": 4.52
+  }
+ },
+ "heldout_syn203": {
+  "condition": "syn203",
+  "kind": "synthetic",
+  "run": "20261020-023937-twister@syn203",
+  "eval": 8026,
+  "park": "heldout_syn203.park",
+  "screenshots": [
+   "heldout_syn203_r0.png",
+   "heldout_syn203_r1.png",
+   "heldout_syn203_r2.png",
+   "heldout_syn203_r3.png"
+  ],
+  "verdict": {
+   "E": 7.86,
+   "I": 7.01,
+   "N": 4.2,
+   "decor": 30
+  },
+  "without_trees": {
+   "E": 7.66,
+   "I": 7.01,
+   "N": 4.2
+  }
+ },
+ "heldout_syn204": {
+  "condition": "syn204",
+  "kind": "synthetic",
+  "run": "20261020-025440-twister@syn204",
+  "eval": 11634,
+  "park": "heldout_syn204.park",
+  "screenshots": [
+   "heldout_syn204_r0.png",
+   "heldout_syn204_r1.png",
+   "heldout_syn204_r2.png",
+   "heldout_syn204_r3.png"
+  ],
+  "verdict": {
+   "E": 7.61,
+   "I": 7.34,
+   "N": 4.52,
+   "decor": 73
+  },
+  "without_trees": {
+   "E": 7.38,
+   "I": 7.34,
+   "N": 4.52
+  }
+ },
+ "heldout_syn205": {
+  "condition": "syn205",
+  "kind": "synthetic",
+  "run": "20261020-030943-twister@syn205",
+  "eval": 19556,
+  "park": "heldout_syn205.park",
+  "screenshots": [
+   "heldout_syn205_r0.png",
+   "heldout_syn205_r1.png",
+   "heldout_syn205_r2.png",
+   "heldout_syn205_r3.png"
+  ],
+  "verdict": {
+   "E": 7.81,
+   "I": 7.58,
+   "N": 4.7,
+   "decor": 39
+  },
+  "without_trees": {
+   "E": 7.64,
+   "I": 7.58,
+   "N": 4.7
+  }
+ },
+ "heldout_syn206": {
+  "condition": "syn206",
+  "kind": "synthetic",
+  "run": "20261020-032448-twister@syn206",
+  "eval": 26051,
+  "park": "heldout_syn206.park",
+  "screenshots": [
+   "heldout_syn206_r0.png",
+   "heldout_syn206_r1.png",
+   "heldout_syn206_r2.png",
+   "heldout_syn206_r3.png"
+  ],
+  "verdict": {
+   "E": 7.98,
+   "I": 7.53,
+   "N": 4.94,
+   "decor": 40
+  },
+  "without_trees": {
+   "E": 7.68,
+   "I": 7.53,
+   "N": 4.94
+  }
+ },
+ "heldout_syn207": {
+  "condition": "syn207",
+  "kind": "synthetic",
+  "run": "20261020-033951-twister@syn207",
+  "eval": 11398,
+  "park": "heldout_syn207.park",
+  "screenshots": [
+   "heldout_syn207_r0.png",
+   "heldout_syn207_r1.png",
+   "heldout_syn207_r2.png",
+   "heldout_syn207_r3.png"
+  ],
+  "verdict": {
+   "E": 8.09,
+   "I": 7.0,
+   "N": 4.37,
+   "decor": 83
+  },
+  "without_trees": {
+   "E": 7.78,
+   "I": 7.0,
+   "N": 4.37
+  }
+ },
+ "heldout_syn208": {
+  "condition": "syn208",
+  "kind": "synthetic",
+  "run": "20261020-035455-twister@syn208",
+  "eval": 20977,
+  "park": "heldout_syn208.park",
+  "screenshots": [
+   "heldout_syn208_r0.png",
+   "heldout_syn208_r1.png",
+   "heldout_syn208_r2.png",
+   "heldout_syn208_r3.png"
+  ],
+  "verdict": {
+   "E": 7.55,
+   "I": 7.52,
+   "N": 4.47,
+   "decor": 41
+  },
+  "without_trees": {
+   "E": 7.38,
+   "I": 7.52,
+   "N": 4.47
+  }
+ },
+ "heldout_syn209": {
+  "condition": "syn209",
+  "kind": "synthetic",
+  "run": "20261020-040959-twister@syn209",
+  "eval": 18018,
+  "park": "heldout_syn209.park",
+  "screenshots": [
+   "heldout_syn209_r0.png",
+   "heldout_syn209_r1.png",
+   "heldout_syn209_r2.png",
+   "heldout_syn209_r3.png"
+  ],
+  "verdict": {
+   "E": 7.81,
+   "I": 7.47,
+   "N": 4.64,
+   "decor": 72
+  },
+  "without_trees": {
+   "E": 7.49,
+   "I": 7.47,
+   "N": 4.64
+  }
+ },
+ "heldout_real_alpineadventures_posthoc": {
+  "condition": "real_alpineadventures",
+  "kind": "real",
+  "run": "20261020-042706-twister@real_alpineadventures",
+  "eval": 7384,
+  "park": "heldout_real_alpineadventures_posthoc.park",
+  "screenshots": [
+   "heldout_real_alpineadventures_posthoc_r0.png",
+   "heldout_real_alpineadventures_posthoc_r1.png",
+   "heldout_real_alpineadventures_posthoc_r2.png",
+   "heldout_real_alpineadventures_posthoc_r3.png"
+  ],
+  "verdict": {
+   "E": 8.33,
+   "I": 6.81,
+   "N": 4.94,
+   "decor": 80
+  },
+  "without_trees": {
+   "E": 7.88,
+   "I": 6.81,
+   "N": 4.94
+  }
+ },
+ "heldout_syn201_posthoc": {
+  "condition": "syn201",
+  "kind": "synthetic",
+  "run": "20261020-044209-twister@syn201",
+  "eval": 16643,
+  "park": "heldout_syn201_posthoc.park",
+  "screenshots": [
+   "heldout_syn201_posthoc_r0.png",
+   "heldout_syn201_posthoc_r1.png",
+   "heldout_syn201_posthoc_r2.png",
+   "heldout_syn201_posthoc_r3.png"
+  ],
+  "verdict": {
+   "E": 6.79,
+   "I": 4.61,
+   "N": 3.05,
+   "decor": 22
+  },
+  "without_trees": {
+   "E": 6.6,
+   "I": 4.61,
+   "N": 3.05
+  }
+ }
+}

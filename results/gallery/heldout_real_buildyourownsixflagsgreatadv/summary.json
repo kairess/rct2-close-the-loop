@@ -1,0 +1,425 @@
+{
+ "name": "heldout_real_buildyourownsixflagsgreatadv",
+ "verdict": {
+  "stage": "rated",
+  "E": 7.84,
+  "I": 7.42,
+  "N": 4.76,
+  "stats": {
+   "excitement": 784,
+   "intensity": 742,
+   "nausea": 476,
+   "maxSpeed": 52,
+   "averageSpeed": 9,
+   "rideTime": 157,
+   "rideLength": 888,
+   "maxPositiveVerticalGs": 3.47,
+   "maxNegativeVerticalGs": -1.24,
+   "maxLateralGs": 2.35,
+   "totalAirTime": 4.26,
+   "numDrops": 9,
+   "numLiftHills": 3,
+   "highestDropHeight": 16,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 5079,
+  "wall": 1.062,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 75
+ },
+ "track": [
+  [
+   108,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   6,
+   true
+  ],
+  [
+   47,
+   true
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   47,
+   true
+  ],
+  [
+   225,
+   false
+  ],
+  [
+   227,
+   false
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   55,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   115,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   231,
+   false
+  ],
+  [
+   229,
+   false
+  ],
+  [
+   239,
+   false
+  ],
+  [
+   91,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   34,
+   true
+  ],
+  [
+   275,
+   false
+  ],
+  [
+   55,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   239,
+   false
+  ],
+  [
+   91,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   53,
+   false
+  ],
+  [
+   176,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   239,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   93,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   174,
+   false
+  ],
+  [
+   269,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   240,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   267,
+   false
+  ],
+  [
+   54,
+   false
+  ],
+  [
+   42,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "heldout_real_buildyourownsixflagsgreatadv.park",
+ "screenshots": [
+  "heldout_real_buildyourownsixflagsgreatadv_r0.png",
+  "heldout_real_buildyourownsixflagsgreatadv_r1.png",
+  "heldout_real_buildyourownsixflagsgreatadv_r2.png",
+  "heldout_real_buildyourownsixflagsgreatadv_r3.png"
+ ],
+ "condition": "real_buildyourownsixflagsgreatadv",
+ "kind": "real",
+ "run": "20261020-000819-twister@real_buildyourownsixflagsgreatadv",
+ "eval": 11973,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 7.84,
+  "I": 7.42,
+  "N": 4.76,
+  "stats": {
+   "excitement": 784,
+   "intensity": 742,
+   "nausea": 476,
+   "maxSpeed": 52,
+   "averageSpeed": 9,
+   "rideTime": 157,
+   "rideLength": 888,
+   "maxPositiveVerticalGs": 3.47,
+   "maxNegativeVerticalGs": -1.24,
+   "maxLateralGs": 2.35,
+   "totalAirTime": 4.26,
+   "numDrops": 9,
+   "numLiftHills": 3,
+   "highestDropHeight": 16,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 5080,
+  "wall": 1.062,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 75
+ },
+ "without_trees": {
+  "stage": "rated",
+  "E": 7.54,
+  "I": 7.42,
+  "N": 4.76,
+  "stats": {
+   "excitement": 754,
+   "intensity": 742,
+   "nausea": 476,
+   "maxSpeed": 52,
+   "averageSpeed": 9,
+   "rideTime": 157,
+   "rideLength": 888,
+   "maxPositiveVerticalGs": 3.47,
+   "maxNegativeVerticalGs": -1.24,
+   "maxLateralGs": 2.35,
+   "totalAirTime": 4.26,
+   "numDrops": 9,
+   "numLiftHills": 3,
+   "highestDropHeight": 16,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 5079,
+  "wall": 1.064,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}

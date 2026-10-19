@@ -1,0 +1,629 @@
+{
+ "name": "heldout_real_sixflagsgreatadventure",
+ "verdict": {
+  "stage": "rated",
+  "E": 8.51,
+  "I": 7.46,
+  "N": 4.76,
+  "stats": {
+   "excitement": 851,
+   "intensity": 746,
+   "nausea": 476,
+   "maxSpeed": 40,
+   "averageSpeed": 18,
+   "rideTime": 65,
+   "rideLength": 243,
+   "maxPositiveVerticalGs": 2.63,
+   "maxNegativeVerticalGs": -0.89,
+   "maxLateralGs": 2.56,
+   "totalAirTime": 5.04,
+   "numDrops": 11,
+   "numLiftHills": 4,
+   "highestDropHeight": 19,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 2155,
+  "wall": 0.488,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 66
+ },
+ "track": [
+  [
+   6,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   4,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   174,
+   false
+  ],
+  [
+   278,
+   false
+  ],
+  [
+   49,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   103,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   56,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   53,
+   false
+  ],
+  [
+   177,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   91,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   36,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   23,
+   false
+  ],
+  [
+   105,
+   false
+  ],
+  [
+   90,
+   false
+  ],
+  [
+   94,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   53,
+   false
+  ],
+  [
+   270,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   59,
+   false
+  ],
+  [
+   177,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   240,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   116,
+   false
+  ],
+  [
+   116,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   241,
+   false
+  ],
+  [
+   110,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   49,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   27,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   176,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   53,
+   false
+  ],
+  [
+   61,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   241,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   6,
+   true
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   6,
+   true
+  ],
+  [
+   40,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   184,
+   false
+  ],
+  [
+   176,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   241,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   238,
+   false
+  ],
+  [
+   220,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   240,
+   false
+  ],
+  [
+   103,
+   false
+  ],
+  [
+   105,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   238,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   232,
+   false
+  ],
+  [
+   230,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   275,
+   false
+  ],
+  [
+   55,
+   false
+  ],
+  [
+   43,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "heldout_real_sixflagsgreatadventure.park",
+ "screenshots": [
+  "heldout_real_sixflagsgreatadventure_r0.png",
+  "heldout_real_sixflagsgreatadventure_r1.png",
+  "heldout_real_sixflagsgreatadventure_r2.png",
+  "heldout_real_sixflagsgreatadventure_r3.png"
+ ],
+ "condition": "real_sixflagsgreatadventure",
+ "kind": "real",
+ "run": "20261020-015421-twister@real_sixflagsgreatadventure",
+ "eval": 11495,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 8.51,
+  "I": 7.46,
+  "N": 4.76,
+  "stats": {
+   "excitement": 851,
+   "intensity": 746,
+   "nausea": 476,
+   "maxSpeed": 40,
+   "averageSpeed": 18,
+   "rideTime": 65,
+   "rideLength": 243,
+   "maxPositiveVerticalGs": 2.63,
+   "maxNegativeVerticalGs": -0.89,
+   "maxLateralGs": 2.56,
+   "totalAirTime": 5.04,
+   "numDrops": 11,
+   "numLiftHills": 4,
+   "highestDropHeight": 19,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 2150,
+  "wall": 0.974,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 66
+ },
+ "without_trees": {
+  "stage": "rated",
+  "E": 8.07,
+  "I": 7.46,
+  "N": 4.76,
+  "stats": {
+   "excitement": 807,
+   "intensity": 746,
+   "nausea": 476,
+   "maxSpeed": 40,
+   "averageSpeed": 18,
+   "rideTime": 65,
+   "rideLength": 243,
+   "maxPositiveVerticalGs": 2.63,
+   "maxNegativeVerticalGs": -0.89,
+   "maxLateralGs": 2.56,
+   "totalAirTime": 5.04,
+   "numDrops": 11,
+   "numLiftHills": 4,
+   "highestDropHeight": 19,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 2155,
+  "wall": 0.492,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}

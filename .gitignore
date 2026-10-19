@@ -17,3 +17,6 @@ runs/
 
 # OpenRCT2 user data for experiment instances (created by game.py)
 runtime/
+
+# Intermediate animation frames (the GIF/WebP are kept)
+results/*/frames/

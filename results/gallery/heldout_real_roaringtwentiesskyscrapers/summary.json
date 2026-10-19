@@ -1,0 +1,473 @@
+{
+ "name": "heldout_real_roaringtwentiesskyscrapers",
+ "verdict": {
+  "stage": "rated",
+  "E": 7.81,
+  "I": 7.29,
+  "N": 4.67,
+  "stats": {
+   "excitement": 781,
+   "intensity": 729,
+   "nausea": 467,
+   "maxSpeed": 34,
+   "averageSpeed": 10,
+   "rideTime": 152,
+   "rideLength": 886,
+   "maxPositiveVerticalGs": 3.68,
+   "maxNegativeVerticalGs": -0.92,
+   "maxLateralGs": 2.52,
+   "totalAirTime": 3.03,
+   "numDrops": 9,
+   "numLiftHills": 3,
+   "highestDropHeight": 8,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4909,
+  "wall": 1.047,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 59
+ },
+ "track": [
+  [
+   241,
+   false
+  ],
+  [
+   227,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   4,
+   false
+  ],
+  [
+   226,
+   false
+  ],
+  [
+   228,
+   false
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   6,
+   true
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   177,
+   false
+  ],
+  [
+   242,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   93,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   58,
+   false
+  ],
+  [
+   61,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   58,
+   false
+  ],
+  [
+   61,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   23,
+   false
+  ],
+  [
+   23,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   174,
+   false
+  ],
+  [
+   176,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   234,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   52,
+   false
+  ],
+  [
+   177,
+   false
+  ],
+  [
+   42,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "heldout_real_roaringtwentiesskyscrapers.park",
+ "screenshots": [
+  "heldout_real_roaringtwentiesskyscrapers_r0.png",
+  "heldout_real_roaringtwentiesskyscrapers_r1.png",
+  "heldout_real_roaringtwentiesskyscrapers_r2.png",
+  "heldout_real_roaringtwentiesskyscrapers_r3.png"
+ ],
+ "condition": "real_roaringtwentiesskyscrapers",
+ "kind": "real",
+ "run": "20261020-012400-twister@real_roaringtwentiesskyscrapers",
+ "eval": 12204,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 7.81,
+  "I": 7.29,
+  "N": 4.67,
+  "stats": {
+   "excitement": 781,
+   "intensity": 729,
+   "nausea": 467,
+   "maxSpeed": 34,
+   "averageSpeed": 10,
+   "rideTime": 152,
+   "rideLength": 886,
+   "maxPositiveVerticalGs": 3.68,
+   "maxNegativeVerticalGs": -0.92,
+   "maxLateralGs": 2.52,
+   "totalAirTime": 3.03,
+   "numDrops": 9,
+   "numLiftHills": 3,
+   "highestDropHeight": 8,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4910,
+  "wall": 1.047,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 59
+ },
+ "without_trees": {
+  "stage": "rated",
+  "E": 7.51,
+  "I": 7.29,
+  "N": 4.67,
+  "stats": {
+   "excitement": 751,
+   "intensity": 729,
+   "nausea": 467,
+   "maxSpeed": 34,
+   "averageSpeed": 10,
+   "rideTime": 152,
+   "rideLength": 886,
+   "maxPositiveVerticalGs": 3.68,
+   "maxNegativeVerticalGs": -0.92,
+   "maxLateralGs": 2.52,
+   "totalAirTime": 3.03,
+   "numDrops": 9,
+   "numLiftHills": 3,
+   "highestDropHeight": 8,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4909,
+  "wall": 1.048,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}

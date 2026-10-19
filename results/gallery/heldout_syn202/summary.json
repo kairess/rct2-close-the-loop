@@ -1,0 +1,521 @@
+{
+ "name": "heldout_syn202",
+ "verdict": {
+  "stage": "rated",
+  "E": 7.94,
+  "I": 7.56,
+  "N": 4.52,
+  "stats": {
+   "excitement": 794,
+   "intensity": 756,
+   "nausea": 452,
+   "maxSpeed": 41,
+   "averageSpeed": 21,
+   "rideTime": 50,
+   "rideLength": 333,
+   "maxPositiveVerticalGs": 3.86,
+   "maxNegativeVerticalGs": -0.91,
+   "maxLateralGs": 2.16,
+   "totalAirTime": 2.43,
+   "numDrops": 9,
+   "numLiftHills": 4,
+   "highestDropHeight": 12,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 1659,
+  "wall": 0.379,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 79
+ },
+ "track": [
+  [
+   6,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   89,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   225,
+   false
+  ],
+  [
+   110,
+   false
+  ],
+  [
+   235,
+   false
+  ],
+  [
+   89,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   233,
+   false
+  ],
+  [
+   110,
+   false
+  ],
+  [
+   235,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   46,
+   false
+  ],
+  [
+   7,
+   false
+  ],
+  [
+   8,
+   false
+  ],
+  [
+   27,
+   false
+  ],
+  [
+   29,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   267,
+   false
+  ],
+  [
+   57,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   225,
+   false
+  ],
+  [
+   235,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   46,
+   false
+  ],
+  [
+   40,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   242,
+   false
+  ],
+  [
+   111,
+   false
+  ],
+  [
+   236,
+   false
+  ],
+  [
+   238,
+   false
+  ],
+  [
+   232,
+   false
+  ],
+  [
+   229,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   4,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   89,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   231,
+   false
+  ],
+  [
+   48,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   48,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   46,
+   true
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   87,
+   false
+  ],
+  [
+   22,
+   false
+  ],
+  [
+   91,
+   false
+  ],
+  [
+   102,
+   false
+  ],
+  [
+   233,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   58,
+   false
+  ],
+  [
+   61,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   232,
+   false
+  ],
+  [
+   229,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   53,
+   false
+  ],
+  [
+   176,
+   false
+  ],
+  [
+   58,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   59,
+   false
+  ],
+  [
+   269,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "heldout_syn202.park",
+ "screenshots": [
+  "heldout_syn202_r0.png",
+  "heldout_syn202_r1.png",
+  "heldout_syn202_r2.png",
+  "heldout_syn202_r3.png"
+ ],
+ "condition": "syn202",
+ "kind": "synthetic",
+ "run": "20261020-022433-twister@syn202",
+ "eval": 20965,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 7.94,
+  "I": 7.56,
+  "N": 4.52,
+  "stats": {
+   "excitement": 794,
+   "intensity": 756,
+   "nausea": 452,
+   "maxSpeed": 41,
+   "averageSpeed": 21,
+   "rideTime": 50,
+   "rideLength": 333,
+   "maxPositiveVerticalGs": 3.86,
+   "maxNegativeVerticalGs": -0.91,
+   "maxLateralGs": 2.16,
+   "totalAirTime": 2.43,
+   "numDrops": 9,
+   "numLiftHills": 4,
+   "highestDropHeight": 12,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 1654,
+  "wall": 0.377,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 79
+ },
+ "without_trees": {
+  "stage": "rated",
+  "E": 7.54,
+  "I": 7.56,
+  "N": 4.52,
+  "stats": {
+   "excitement": 754,
+   "intensity": 756,
+   "nausea": 452,
+   "maxSpeed": 41,
+   "averageSpeed": 21,
+   "rideTime": 50,
+   "rideLength": 333,
+   "maxPositiveVerticalGs": 3.86,
+   "maxNegativeVerticalGs": -0.91,
+   "maxLateralGs": 2.16,
+   "totalAirTime": 2.43,
+   "numDrops": 9,
+   "numLiftHills": 4,
+   "highestDropHeight": 12,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 1659,
+  "wall": 0.38,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}

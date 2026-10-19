@@ -1,0 +1,56 @@
+{
+ "split": "heldout",
+ "success": 1,
+ "n": 2,
+ "rows": [
+  {
+   "condition": "real_alpineadventures",
+   "kind": "real",
+   "params": "Alpine Adventures.SC6",
+   "tiles": 400,
+   "seed": 1,
+   "evals": 13581,
+   "goal": true,
+   "first_goal_min": 1.29,
+   "best_goal": [
+    8.33,
+    6.81,
+    4.94
+   ],
+   "best_feasible": [
+    8.33,
+    6.81,
+    4.94
+   ],
+   "best_goal_eval": 7384,
+   "run": "20261020-042706-twister@real_alpineadventures",
+   "error": null
+  },
+  {
+   "condition": "syn201",
+   "kind": "synthetic",
+   "params": {
+    "size": 12,
+    "shape": "cross",
+    "relief": 4,
+    "water": 0.2,
+    "trees": 0.0,
+    "unowned": 0.1
+   },
+   "tiles": 80,
+   "seed": 1,
+   "evals": 23405,
+   "goal": false,
+   "first_goal_min": null,
+   "best_goal": null,
+   "best_feasible": [
+    6.79,
+    4.61,
+    3.05
+   ],
+   "best_goal_eval": null,
+   "run": "20261020-044209-twister@syn201",
+   "error": null
+  }
+ ]
+}

@@ -1,0 +1,525 @@
+{
+ "name": "heldout_real_sixflagsbelgium",
+ "verdict": {
+  "stage": "rated",
+  "E": 7.83,
+  "I": 7.58,
+  "N": 4.67,
+  "stats": {
+   "excitement": 783,
+   "intensity": 758,
+   "nausea": 467,
+   "maxSpeed": 36,
+   "averageSpeed": 22,
+   "rideTime": 77,
+   "rideLength": 1017,
+   "maxPositiveVerticalGs": 3.4,
+   "maxNegativeVerticalGs": -0.88,
+   "maxLateralGs": 2.48,
+   "totalAirTime": 2.52,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 8,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 2525,
+  "wall": 0.561,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ },
+ "track": [
+  [
+   6,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   275,
+   false
+  ],
+  [
+   55,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   240,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   90,
+   false
+  ],
+  [
+   238,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   6,
+   true
+  ],
+  [
+   226,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   58,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   22,
+   false
+  ],
+  [
+   104,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   59,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   230,
+   false
+  ],
+  [
+   232,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   87,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   234,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   23,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   174,
+   false
+  ],
+  [
+   177,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   58,
+   false
+  ],
+  [
+   60,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "heldout_real_sixflagsbelgium.park",
+ "screenshots": [
+  "heldout_real_sixflagsbelgium_r0.png",
+  "heldout_real_sixflagsbelgium_r1.png",
+  "heldout_real_sixflagsbelgium_r2.png",
+  "heldout_real_sixflagsbelgium_r3.png"
+ ],
+ "condition": "real_sixflagsbelgium",
+ "kind": "real",
+ "run": "20261020-013910-twister@real_sixflagsbelgium",
+ "eval": 8252,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 7.83,
+  "I": 7.58,
+  "N": 4.67,
+  "stats": {
+   "excitement": 783,
+   "intensity": 758,
+   "nausea": 467,
+   "maxSpeed": 36,
+   "averageSpeed": 22,
+   "rideTime": 77,
+   "rideLength": 1017,
+   "maxPositiveVerticalGs": 3.4,
+   "maxNegativeVerticalGs": -0.88,
+   "maxLateralGs": 2.48,
+   "totalAirTime": 2.52,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 8,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 2515,
+  "wall": 0.865,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ },
+ "without_trees": {
+  "stage": "rated",
+  "E": 7.83,
+  "I": 7.58,
+  "N": 4.67,
+  "stats": {
+   "excitement": 783,
+   "intensity": 758,
+   "nausea": 467,
+   "maxSpeed": 36,
+   "averageSpeed": 22,
+   "rideTime": 77,
+   "rideLength": 1017,
+   "maxPositiveVerticalGs": 3.4,
+   "maxNegativeVerticalGs": -0.88,
+   "maxLateralGs": 2.48,
+   "totalAirTime": 2.52,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 8,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 2525,
+  "wall": 0.564,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}

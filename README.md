@@ -76,6 +76,11 @@ uv run python scripts/gallery.py heldout runs/2026*/          # results/gallery/
 
 조건 파일(`data/bench/<split>/*.json`)에는 공원 경로, 영역 타일 목록, 샌드박스·지형 깎기 여부만 들어 있다.
 
+2단계 결과(보류 조건 20개, 조건마다 15분): 공식 15/20(실제 RCT2 맵 9/10, 무작위 지형 6/10). 판정은 [docs/GOAL.md](docs/GOAL.md), 과정은 [docs/LOG.md](docs/LOG.md)에 있다.
+- `results/gallery/heldout_*/`: 공원 파일(OpenRCT2에서 열면 코스터와 나무가 지어져 있다), 스크린샷, 요약
+- `results/evolution_heldout_*/`: 첫 회로에서 최종 코스터까지 애니메이션
+- 보고서: https://claude.ai/artifact/UNfTE7T2m3o6fMp8zgxrRH
+
 지형은 `scripts/make_terrains.py`가 만든다. 명세는 `data/terrains/`, 공원 파일은 `data/parks/`에 저장된다. S2 실험은 `scripts/run_s2.sh <차종> <분> <seed>`로 돌리고, `scripts/summarize_s2.py runs/...`로 요약한다.
 
 `docs/RATINGS.md`에는 레이팅 규칙(요구 조건, 보너스, 근접 점수, 측정 방식)과 적용 현황을 정리해 두었다.

@@ -1,0 +1,829 @@
+{
+ "name": "heldout_real_infernalviews",
+ "verdict": {
+  "stage": "rated",
+  "E": 8.43,
+  "I": 7.34,
+  "N": 4.6,
+  "stats": {
+   "excitement": 843,
+   "intensity": 734,
+   "nausea": 460,
+   "maxSpeed": 40,
+   "averageSpeed": 22,
+   "rideTime": 71,
+   "rideLength": 378,
+   "maxPositiveVerticalGs": 3.69,
+   "maxNegativeVerticalGs": -0.69,
+   "maxLateralGs": 2.34,
+   "totalAirTime": 3.06,
+   "numDrops": 9,
+   "numLiftHills": 4,
+   "highestDropHeight": 14,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 2328,
+  "wall": 0.535,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 79
+ },
+ "track": [
+  [
+   6,
+   true
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   4,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   233,
+   false
+  ],
+  [
+   227,
+   false
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   22,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   242,
+   false
+  ],
+  [
+   228,
+   false
+  ],
+  [
+   41,
+   false
+  ],
+  [
+   48,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   52,
+   false
+  ],
+  [
+   177,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   48,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   226,
+   false
+  ],
+  [
+   228,
+   false
+  ],
+  [
+   4,
+   false
+  ],
+  [
+   46,
+   true
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   56,
+   false
+  ],
+  [
+   277,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   88,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   241,
+   false
+  ],
+  [
+   110,
+   false
+  ],
+  [
+   221,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   52,
+   false
+  ],
+  [
+   269,
+   false
+  ],
+  [
+   58,
+   false
+  ],
+  [
+   277,
+   false
+  ],
+  [
+   229,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   231,
+   false
+  ],
+  [
+   229,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   234,
+   false
+  ],
+  [
+   236,
+   false
+  ],
+  [
+   29,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   234,
+   false
+  ],
+  [
+   236,
+   false
+  ],
+  [
+   238,
+   false
+  ],
+  [
+   240,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   115,
+   false
+  ],
+  [
+   115,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   6,
+   true
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   275,
+   false
+  ],
+  [
+   274,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   59,
+   false
+  ],
+  [
+   54,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   176,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   241,
+   false
+  ],
+  [
+   235,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   46,
+   true
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   53,
+   false
+  ],
+  [
+   278,
+   false
+  ],
+  [
+   48,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   183,
+   false
+  ],
+  [
+   55,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   93,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   46,
+   false
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   93,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   115,
+   false
+  ],
+  [
+   115,
+   false
+  ],
+  [
+   223,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   48,
+   false
+  ],
+  [
+   229,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   90,
+   false
+  ],
+  [
+   94,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   104,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   242,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   176,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   276,
+   false
+  ],
+  [
+   60,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "heldout_real_infernalviews.park",
+ "screenshots": [
+  "heldout_real_infernalviews_r0.png",
+  "heldout_real_infernalviews_r1.png",
+  "heldout_real_infernalviews_r2.png",
+  "heldout_real_infernalviews_r3.png"
+ ],
+ "condition": "real_infernalviews",
+ "kind": "real",
+ "run": "20261020-003840-twister@real_infernalviews",
+ "eval": 18277,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 8.43,
+  "I": 7.34,
+  "N": 4.6,
+  "stats": {
+   "excitement": 843,
+   "intensity": 734,
+   "nausea": 460,
+   "maxSpeed": 40,
+   "averageSpeed": 22,
+   "rideTime": 71,
+   "rideLength": 378,
+   "maxPositiveVerticalGs": 3.69,
+   "maxNegativeVerticalGs": -0.69,
+   "maxLateralGs": 2.34,
+   "totalAirTime": 3.06,
+   "numDrops": 9,
+   "numLiftHills": 4,
+   "highestDropHeight": 14,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 2338,
+  "wall": 0.532,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 79
+ },
+ "without_trees": {
+  "stage": "rated",
+  "E": 7.98,
+  "I": 7.34,
+  "N": 4.6,
+  "stats": {
+   "excitement": 798,
+   "intensity": 734,
+   "nausea": 460,
+   "maxSpeed": 40,
+   "averageSpeed": 22,
+   "rideTime": 71,
+   "rideLength": 378,
+   "maxPositiveVerticalGs": 3.69,
+   "maxNegativeVerticalGs": -0.69,
+   "maxLateralGs": 2.34,
+   "totalAirTime": 3.06,
+   "numDrops": 9,
+   "numLiftHills": 4,
+   "highestDropHeight": 14,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 2328,
+  "wall": 0.535,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}
