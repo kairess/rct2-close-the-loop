@@ -183,6 +183,14 @@ class Layout:
     min_separation: int = 48  # vertical gap demanded between track on one tile
     min_z: int | None = None  # lowest base z allowed; None keeps track above ground (no tunnels)
     cars: int | None = None  # cars per train; None keeps the game's default
+    park: str | None = None  # park file (relative to the repo) with this layout's terrain; None = flat fixture
+    ground_map: dict | None = None  # {(tile_x, tile_y): surface z} where it differs from ground_z
+    obstacles: dict | None = None  # {(tile_x, tile_y): top z} of trees; track must pass above
+
+    def ground_at(self, tx: int, ty: int) -> int:
+        if self.ground_map is None:
+            return self.ground_z
+        return self.ground_map.get((tx, ty), self.ground_z)
 
     def start(self) -> State:
         x, y = self.station_tile
@@ -241,13 +249,14 @@ def check_space(layout: Layout, placed: list[Placed]) -> list[str]:
     for (ax, ay, _) in layout.access_tiles():
         occupied[(ax, ay)] = [(layout.ground_z, -1)]
     problems = []
-    g = layout.ground_z
+    obstacles = layout.obstacles or {}
     for i, p in enumerate(placed):
         s = segments()[p.type]
         span = max(abs(s.end_z - s.begin_z), 0) if len(s.elements) == 1 else 0
         tiles = list(piece_tiles(p.x, p.y, p.z, p.d, p.type))
-        lowest = min(z for _, _, z in tiles)
-        if lowest < g:
+        below = [(z, layout.ground_at(tx, ty)) for tx, ty, z in tiles if z < layout.ground_at(tx, ty)]
+        if below:
+            lowest = min(z for z, _ in below)
             if layout.min_z is None:
                 return [f"piece {i} below ground (z={lowest})"]
             if lowest < layout.min_z:
@@ -255,13 +264,16 @@ def check_space(layout: Layout, placed: list[Placed]) -> list[str]:
             if s.only_above_ground:
                 return [f"piece {i} type {p.type} must stay above ground"]
             # A multi-tile piece cannot be partly above and partly below the surface.
-            if len(tiles) > 1 and max(z for _, _, z in tiles) + UNDERGROUND_CLEARANCE > g:
+            if len(tiles) > 1 and any(z + UNDERGROUND_CLEARANCE > layout.ground_at(tx, ty) for tx, ty, z in tiles):
                 return [f"piece {i} straddles the surface"]
         for tx, ty, z in tiles:
             if not (x0 <= tx < x1 and y0 <= ty < y1):
                 return [f"piece {i} leaves area at tile ({tx},{ty})"]
-            if z + span - layout.ground_z > layout.max_height:
+            if z + span - layout.ground_at(tx, ty) > layout.max_height:
                 return [f"piece {i} too high (z={z})"]
+            top = obstacles.get((tx, ty))
+            if top is not None and z < top:
+                return [f"piece {i} hits a tree at tile ({tx},{ty})"]
             for oz, oi in occupied.get((tx, ty), ()):
                 if oi != i and abs(oz - z) < layout.min_separation:
                     return [f"piece {i} overlaps piece {oi} at tile ({tx},{ty})"]

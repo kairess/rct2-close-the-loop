@@ -268,10 +268,16 @@ function rideStats(ride) {
 
 function cmdEvaluate(args, reply) {
     var speedBefore = context.gameSpeed;
+    // Track placement silently removes trees in its way, and demolishing the ride
+    // does not bring them back. Report it so the caller can discard the instance.
+    var sceneryBefore = args.sceneryRect ? countScenery(args.sceneryRect) : null;
     ensureSpeed(function (err) {
         if (err) return reply(false, err);
         evaluate(args, function (ok, result) {
-            if (ok) result.speedBefore = speedBefore;
+            if (ok) {
+                result.speedBefore = speedBefore;
+                if (sceneryBefore !== null) result.sceneryLost = sceneryBefore - countScenery(args.sceneryRect);
+            }
             reply(ok, result);
         });
     });
@@ -438,6 +444,68 @@ function cmdDemolishAll(args, reply) {
     });
 }
 
+// Shape an experiment area: set flat land heights per tile and plant trees.
+// args.tiles = [[tileX, tileY, height]] (height in land units of 8 z),
+// args.trees = {identifier, at: [[tileX, tileY]]}.
+function cmdTerraform(args, reply) {
+    var tiles = args.tiles || [];
+    var errors = [];
+    sequence(tiles.length, function (i, next) {
+        var t = tiles[i];
+        context.executeAction('landsetheight', { x: t[0] * 32, y: t[1] * 32, height: t[2], style: 0 }, function (res) {
+            if (res.error) errors.push('land ' + t + ': ' + errText(res));
+            next(null);
+        });
+    }, function () {
+        var trees = args.trees;
+        if (!trees || !trees.at || !trees.at.length) return reply(true, { tiles: tiles.length, trees: 0, errors: errors });
+        var obj = objectManager.load(trees.identifier);
+        if (!obj) return reply(false, 'could not load ' + trees.identifier);
+        var planted = 0;
+        sequence(trees.at.length, function (i, next) {
+            var p = trees.at[i];
+            var surface = surfaceZ(p[0], p[1]);
+            context.executeAction('smallsceneryplace', {
+                x: p[0] * 32, y: p[1] * 32, z: surface, direction: 0, object: obj.index, quadrant: 0,
+                primaryColour: 0, secondaryColour: 0, tertiaryColour: 0
+            }, function (res) {
+                if (res.error) errors.push('tree ' + p + ': ' + errText(res));
+                else planted++;
+                next(null);
+            });
+        }, function () {
+            reply(true, { tiles: tiles.length, trees: planted, errors: errors });
+        });
+    });
+}
+
+function surfaceZ(tx, ty) {
+    var tile = map.getTile(tx, ty);
+    for (var i = 0; i < tile.numElements; i++) {
+        var e = tile.getElement(i);
+        if (e.type === 'surface') return e.baseZ;
+    }
+    return 0;
+}
+
+function countScenery(rect) {
+    var n = 0;
+    for (var x = rect[0]; x < rect[2]; x++) {
+        for (var y = rect[1]; y < rect[3]; y++) {
+            var tile = map.getTile(x, y);
+            for (var i = 0; i < tile.numElements; i++) {
+                var type = tile.getElement(i).type;
+                if (type === 'small_scenery' || type === 'large_scenery') n++;
+            }
+        }
+    }
+    return n;
+}
+
+function cmdSceneryCount(args, reply) {
+    reply(true, { count: countScenery(args.rect) });
+}
+
 function cmdTile(args, reply) {
     var tile = map.getTile(args.x, args.y);
     var out = [];
@@ -467,7 +535,9 @@ var COMMANDS = {
     capture: cmdCapture,
     save: cmdSave,
     demolish_all: cmdDemolishAll,
-    tile: cmdTile
+    tile: cmdTile,
+    terraform: cmdTerraform,
+    scenery_count: cmdSceneryCount
 };
 
 // ---------------------------------------------------------------- transport

@@ -7,10 +7,12 @@ import threading
 import time
 from concurrent.futures import Future
 from dataclasses import dataclass, field
+from pathlib import Path
 
 from .game import Game, GameError, wait_ready
 from .track import Layout, pieces_payload, trace
 
+ROOT = Path(__file__).resolve().parents[2]
 TICKS_PER_PIECE = 120
 MIN_TICKS = 6000
 EVALUATE_TIMEOUT = 60.0  # seconds; a healthy evaluation takes 0.5-3 s
@@ -59,7 +61,8 @@ class Judge:
         self._launch()
 
     def _launch(self) -> None:
-        self.game = Game(slot=self.slot)
+        park = ROOT / self.layout.park if self.layout.park else None
+        self.game = Game(park=park, slot=self.slot)
         self.slot = self.game.slot
         self.evals_since_launch = 0
         wait_ready(self.game)
@@ -78,8 +81,9 @@ class Judge:
         if self.evals_since_launch >= RESTART_EVERY and not keep:
             self.restart()
         v = self._evaluate(pieces, keep, prefilter)
-        if v.stage == "error":
-            # Lost sync with the instance (timeout, crash, closed socket): start over.
+        if v.stage in ("error", "scenery"):
+            # Lost sync with the instance (timeout, crash, closed socket), or the build
+            # removed trees so the terrain no longer matches the layout: start over.
             self.restart()
         else:
             self.evals_since_launch += 1
@@ -102,12 +106,16 @@ class Judge:
             "keep": keep,
             "cars": self.layout.cars,
         }
+        if self.layout.obstacles:
+            args["sceneryRect"] = list(self.layout.area)
         try:
             r = self.game.call("evaluate", args, timeout=EVALUATE_TIMEOUT)
         except (GameError, OSError) as e:
             return Verdict("error", error=str(e), wall=time.perf_counter() - t0)
         v = Verdict(r["stage"], error=r.get("error"), ticks=r.get("ticks", 0), wall=time.perf_counter() - t0,
                     speed_before=r.get("speedBefore"))
+        if r.get("sceneryLost"):
+            return Verdict("scenery", error=f"build removed {r['sceneryLost']} scenery items", wall=v.wall)
         if "index" in r:
             # Index into the full placed list (station first); report it relative to `pieces`.
             v.build_index = r["index"] - self.layout.station_len

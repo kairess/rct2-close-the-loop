@@ -76,9 +76,9 @@ def main() -> None:
                 s.pop("trajectory")
             print(json.dumps(s, indent=1))
         return
-    from .layouts import LAYOUTS
+    from .layouts import get_layout
 
-    layout = LAYOUTS[args.layout]
+    layout = get_layout(args.layout)
     if args.cmd == "search":
         from .search import SearchConfig, run
 

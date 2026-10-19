@@ -68,6 +68,19 @@ TWISTER_24 = Layout(
 )
 
 LAYOUTS = {"wooden_24": WOODEN_24, "giga_24": GIGA_24, "giga_24u": GIGA_24U, "twister_24": TWISTER_24}
+BASES = {"giga": GIGA_24, "twister": TWISTER_24, "wooden": WOODEN_24}
+
+
+def get_layout(name: str) -> Layout:
+    """A named layout, or "<ride>@<terrain>" (e.g. "giga@hills24") for a baked S2 terrain."""
+    if name in LAYOUTS:
+        return LAYOUTS[name]
+    ride, _, terrain_name = name.partition("@")
+    if not terrain_name or ride not in BASES:
+        raise KeyError(f"unknown layout {name!r}")
+    from .terrain import layout_for
+
+    return layout_for(BASES[ride], terrain_name)
 
 LEFT3 = 42
 RIGHT3 = 43
