@@ -20,6 +20,18 @@ def main() -> None:
     s.add_argument("--init", type=Path, help="best.json (or any JSON with a 'track') to start from")
     s.add_argument("--stop-on-goal", action="store_true")
 
+    m = sub.add_parser("mapelites", help="MAP-Elites over intensity x nausea, fitness = excitement")
+    m.add_argument("--layout", default="wooden_24")
+    m.add_argument("--workers", type=int, default=14)
+    m.add_argument("--batch", type=int, default=28)
+    m.add_argument("--evals", type=int, default=30000)
+    m.add_argument("--minutes", type=float, default=60)
+    m.add_argument("--hill", type=int, default=6)
+    m.add_argument("--seed", type=int, default=1)
+    m.add_argument("--goal-bias", type=float, default=0.5)
+    m.add_argument("--init", type=Path, nargs="*", help="JSON files with a 'track' (best.json) or archive.json")
+    m.add_argument("--stop-on-goal", action="store_true")
+
     e = sub.add_parser("evaluate", help="re-evaluate a track in a fresh game instance")
     e.add_argument("file", type=Path, help="JSON with a 'track' field (e.g. runs/.../best.json)")
     e.add_argument("--layout", default="wooden_24")
@@ -60,6 +72,20 @@ def main() -> None:
         if args.init:
             initial = [tuple(p) for p in json.loads(args.init.read_text())["track"]]
         run(cfg, layout, initial)
+    elif args.cmd == "mapelites":
+        from .mapelites import MapElitesConfig, run as run_me
+
+        cfg = MapElitesConfig(
+            layout_name=args.layout, workers=args.workers, batch=args.batch, max_evals=args.evals,
+            max_minutes=args.minutes, hill=args.hill, seed=args.seed, goal_bias=args.goal_bias,
+            stop_on_goal=args.stop_on_goal,
+        )
+        seeds = []
+        for f in args.init or []:
+            data = json.loads(f.read_text())
+            entries = data if isinstance(data, list) else [data]
+            seeds.extend([tuple(p) for p in e["track"]] for e in entries)
+        run_me(cfg, layout, seeds or None)
     elif args.cmd == "evaluate":
         from .judge import Judge
         from .search import meets_goal
