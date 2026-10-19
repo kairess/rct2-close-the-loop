@@ -1,0 +1,162 @@
+{
+ "split": "heldout_b",
+ "success": 5,
+ "n": 6,
+ "rows": [
+  {
+   "condition": "real_africavictoriafalls",
+   "kind": "real",
+   "params": "Africa - Victoria Falls.SC6",
+   "tiles": 256,
+   "seed": 1,
+   "evals": 16269,
+   "goal": true,
+   "first_goal_min": 6.87,
+   "best_goal": [
+    7.95,
+    6.75,
+    4.5
+   ],
+   "best_feasible": [
+    7.95,
+    6.75,
+    4.5
+   ],
+   "best_goal_eval": 15238,
+   "run": "20261020-050038-twister@real_africavictoriafalls",
+   "error": null
+  },
+  {
+   "condition": "real_buildyourownsixflagspark",
+   "kind": "real",
+   "params": "Build your own Six Flags Park.SC6",
+   "tiles": 400,
+   "seed": 1,
+   "evals": 17809,
+   "goal": true,
+   "first_goal_min": 3.14,
+   "best_goal": [
+    8.74,
+    7.62,
+    4.65
+   ],
+   "best_feasible": [
+    8.74,
+    7.62,
+    4.65
+   ],
+   "best_goal_eval": 14697,
+   "run": "20261020-051546-twister@real_buildyourownsixflagspark",
+   "error": null
+  },
+  {
+   "condition": "real_sixflagsovertexas",
+   "kind": "real",
+   "params": "Six Flags over Texas.SC6",
+   "tiles": 256,
+   "seed": 1,
+   "evals": 10333,
+   "goal": false,
+   "first_goal_min": null,
+   "best_goal": null,
+   "best_feasible": [
+    7.64,
+    7.33,
+    4.82
+   ],
+   "best_goal_eval": null,
+   "run": "20261020-053052-twister@real_sixflagsovertexas",
+   "error": null
+  },
+  {
+   "condition": "syn300",
+   "kind": "synthetic",
+   "params": {
+    "size": 28,
+    "shape": "L",
+    "relief": 4,
+    "water": 0.0,
+    "trees": 0.2,
+    "unowned": 0.1
+   },
+   "tiles": 588,
+   "seed": 1,
+   "evals": 19097,
+   "goal": true,
+   "first_goal_min": 12.74,
+   "best_goal": [
+    7.74,
+    7.2,
+    4.91
+   ],
+   "best_feasible": [
+    7.74,
+    7.2,
+    4.91
+   ],
+   "best_goal_eval": 17700,
+   "run": "20261020-054559-twister@syn300",
+   "error": null
+  },
+  {
+   "condition": "syn301",
+   "kind": "synthetic",
+   "params": {
+    "size": 24,
+    "shape": "cross",
+    "relief": 6,
+    "water": 0.3,
+    "trees": 0.2,
+    "unowned": 0.0
+   },
+   "tiles": 320,
+   "seed": 1,
+   "evals": 21393,
+   "goal": true,
+   "first_goal_min": 7.31,
+   "best_goal": [
+    7.85,
+    7.54,
+    4.48
+   ],
+   "best_feasible": [
+    7.85,
+    7.54,
+    4.48
+   ],
+   "best_goal_eval": 11131,
+   "run": "20261020-060103-twister@syn301",
+   "error": null
+  },
+  {
+   "condition": "syn302",
+   "kind": "synthetic",
+   "params": {
+    "size": 28,
+    "shape": "cross",
+    "relief": 8,
+    "water": 0.2,
+    "trees": 0.2,
+    "unowned": 0.0
+   },
+   "tiles": 460,
+   "seed": 1,
+   "evals": 19209,
+   "goal": true,
+   "first_goal_min": 5.97,
+   "best_goal": [
+    7.68,
+    6.72,
+    4.87
+   ],
+   "best_feasible": [
+    7.68,
+    6.72,
+    4.87
+   ],
+   "best_goal_eval": 8682,
+   "run": "20261020-061607-twister@syn302",
+   "error": null
+  }
+ ]
+}

@@ -1,0 +1,552 @@
+{
+ "name": "heldout_b_real_africavictoriafalls",
+ "verdict": {
+  "stage": "rated",
+  "E": 7.95,
+  "I": 6.75,
+  "N": 4.5,
+  "stats": {
+   "excitement": 795,
+   "intensity": 675,
+   "nausea": 450,
+   "maxSpeed": 42,
+   "averageSpeed": 15,
+   "rideTime": 128,
+   "rideLength": 565,
+   "maxPositiveVerticalGs": 2.95,
+   "maxNegativeVerticalGs": -0.96,
+   "maxLateralGs": 1.9,
+   "totalAirTime": 3.18,
+   "numDrops": 9,
+   "numLiftHills": 6,
+   "highestDropHeight": 14,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4158,
+  "wall": 0.886,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 47
+ },
+ "track": [
+  [
+   6,
+   true
+  ],
+  [
+   4,
+   false
+  ],
+  [
+   4,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   4,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   226,
+   false
+  ],
+  [
+   236,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   238,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   53,
+   false
+  ],
+  [
+   270,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   268,
+   false
+  ],
+  [
+   176,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   271,
+   false
+  ],
+  [
+   60,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   6,
+   true
+  ],
+  [
+   225,
+   false
+  ],
+  [
+   110,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   241,
+   false
+  ],
+  [
+   110,
+   false
+  ],
+  [
+   235,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   89,
+   false
+  ],
+  [
+   89,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   238,
+   false
+  ],
+  [
+   116,
+   false
+  ],
+  [
+   220,
+   false
+  ],
+  [
+   116,
+   false
+  ],
+  [
+   232,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   267,
+   false
+  ],
+  [
+   273,
+   false
+  ],
+  [
+   49,
+   false
+  ],
+  [
+   230,
+   false
+  ],
+  [
+   240,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   23,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   234,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   43,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "heldout_b_real_africavictoriafalls.park",
+ "screenshots": [
+  "heldout_b_real_africavictoriafalls_r0.png",
+  "heldout_b_real_africavictoriafalls_r1.png",
+  "heldout_b_real_africavictoriafalls_r2.png",
+  "heldout_b_real_africavictoriafalls_r3.png"
+ ],
+ "condition": "real_africavictoriafalls",
+ "kind": "real",
+ "run": "20261020-050038-twister@real_africavictoriafalls",
+ "eval": 15238,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 7.95,
+  "I": 6.75,
+  "N": 4.5,
+  "stats": {
+   "excitement": 795,
+   "intensity": 675,
+   "nausea": 450,
+   "maxSpeed": 42,
+   "averageSpeed": 15,
+   "rideTime": 128,
+   "rideLength": 565,
+   "maxPositiveVerticalGs": 2.95,
+   "maxNegativeVerticalGs": -0.96,
+   "maxLateralGs": 1.9,
+   "totalAirTime": 3.18,
+   "numDrops": 9,
+   "numLiftHills": 6,
+   "highestDropHeight": 14,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4159,
+  "wall": 0.873,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 47
+ },
+ "tried": [
+  {
+   "eval": 15238,
+   "fresh": {
+    "stage": "rated",
+    "E": 7.95,
+    "I": 6.75,
+    "N": 4.5
+   }
+  }
+ ],
+ "without_trees": {
+  "stage": "rated",
+  "E": 7.55,
+  "I": 6.75,
+  "N": 4.5,
+  "stats": {
+   "excitement": 755,
+   "intensity": 675,
+   "nausea": 450,
+   "maxSpeed": 42,
+   "averageSpeed": 15,
+   "rideTime": 128,
+   "rideLength": 565,
+   "maxPositiveVerticalGs": 2.95,
+   "maxNegativeVerticalGs": -0.96,
+   "maxLateralGs": 1.9,
+   "totalAirTime": 3.18,
+   "numDrops": 9,
+   "numLiftHills": 6,
+   "highestDropHeight": 14,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4158,
+  "wall": 0.888,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}

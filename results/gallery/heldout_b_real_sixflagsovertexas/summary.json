@@ -1,0 +1,396 @@
+{
+ "name": "heldout_b_real_sixflagsovertexas",
+ "verdict": {
+  "stage": "rated",
+  "E": 7.64,
+  "I": 7.33,
+  "N": 4.82,
+  "stats": {
+   "excitement": 764,
+   "intensity": 733,
+   "nausea": 482,
+   "maxSpeed": 47,
+   "averageSpeed": 13,
+   "rideTime": 133,
+   "rideLength": 557,
+   "maxPositiveVerticalGs": 2.86,
+   "maxNegativeVerticalGs": -0.96,
+   "maxLateralGs": 2,
+   "totalAirTime": 5.46,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 24,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4326,
+  "wall": 0.918,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 10
+ },
+ "track": [
+  [
+   241,
+   false
+  ],
+  [
+   227,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   52,
+   false
+  ],
+  [
+   176,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   115,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   277,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   238,
+   false
+  ],
+  [
+   224,
+   false
+  ],
+  [
+   240,
+   false
+  ],
+  [
+   234,
+   false
+  ],
+  [
+   111,
+   false
+  ],
+  [
+   111,
+   false
+  ],
+  [
+   218,
+   false
+  ],
+  [
+   111,
+   false
+  ],
+  [
+   111,
+   false
+  ],
+  [
+   218,
+   false
+  ],
+  [
+   111,
+   false
+  ],
+  [
+   218,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   53,
+   false
+  ],
+  [
+   61,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   230,
+   false
+  ],
+  [
+   240,
+   false
+  ],
+  [
+   103,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   174,
+   false
+  ],
+  [
+   55,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   232,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   43,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "heldout_b_real_sixflagsovertexas.park",
+ "screenshots": [
+  "heldout_b_real_sixflagsovertexas_r0.png",
+  "heldout_b_real_sixflagsovertexas_r1.png",
+  "heldout_b_real_sixflagsovertexas_r2.png",
+  "heldout_b_real_sixflagsovertexas_r3.png"
+ ],
+ "condition": "real_sixflagsovertexas",
+ "kind": "real",
+ "run": "20261020-053052-twister@real_sixflagsovertexas",
+ "eval": 8902,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 7.64,
+  "I": 7.33,
+  "N": 4.82,
+  "stats": {
+   "excitement": 764,
+   "intensity": 733,
+   "nausea": 482,
+   "maxSpeed": 47,
+   "averageSpeed": 13,
+   "rideTime": 133,
+   "rideLength": 557,
+   "maxPositiveVerticalGs": 2.86,
+   "maxNegativeVerticalGs": -0.96,
+   "maxLateralGs": 2,
+   "totalAirTime": 5.46,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 24,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4332,
+  "wall": 1.166,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 10
+ },
+ "tried": [
+  {
+   "eval": 8902,
+   "fresh": {
+    "stage": "rated",
+    "E": 7.64,
+    "I": 7.33,
+    "N": 4.82
+   }
+  }
+ ],
+ "without_trees": {
+  "stage": "rated",
+  "E": 7.59,
+  "I": 7.33,
+  "N": 4.82,
+  "stats": {
+   "excitement": 759,
+   "intensity": 733,
+   "nausea": 482,
+   "maxSpeed": 47,
+   "averageSpeed": 13,
+   "rideTime": 133,
+   "rideLength": 557,
+   "maxPositiveVerticalGs": 2.86,
+   "maxNegativeVerticalGs": -0.96,
+   "maxLateralGs": 2,
+   "totalAirTime": 5.46,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 24,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4326,
+  "wall": 0.919,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}

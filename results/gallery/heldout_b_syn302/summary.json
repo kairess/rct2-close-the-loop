@@ -1,0 +1,392 @@
+{
+ "name": "heldout_b_syn302",
+ "verdict": {
+  "stage": "rated",
+  "E": 7.68,
+  "I": 6.72,
+  "N": 4.87,
+  "stats": {
+   "excitement": 768,
+   "intensity": 672,
+   "nausea": 487,
+   "maxSpeed": 36,
+   "averageSpeed": 12,
+   "rideTime": 140,
+   "rideLength": 600,
+   "maxPositiveVerticalGs": 2.49,
+   "maxNegativeVerticalGs": -0.98,
+   "maxLateralGs": 1.93,
+   "totalAirTime": 4.32,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 18,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4528,
+  "wall": 0.958,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 57
+ },
+ "track": [
+  [
+   6,
+   true
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   174,
+   false
+  ],
+  [
+   177,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   176,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   88,
+   false
+  ],
+  [
+   88,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   48,
+   false
+  ],
+  [
+   229,
+   false
+  ],
+  [
+   115,
+   false
+  ],
+  [
+   115,
+   false
+  ],
+  [
+   115,
+   false
+  ],
+  [
+   239,
+   false
+  ],
+  [
+   87,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   56,
+   false
+  ],
+  [
+   269,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   58,
+   false
+  ],
+  [
+   274,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   6,
+   true
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   47,
+   true
+  ],
+  [
+   182,
+   false
+  ],
+  [
+   276,
+   false
+  ],
+  [
+   61,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   241,
+   false
+  ],
+  [
+   110,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   100,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   43,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "heldout_b_syn302.park",
+ "screenshots": [
+  "heldout_b_syn302_r0.png",
+  "heldout_b_syn302_r1.png",
+  "heldout_b_syn302_r2.png",
+  "heldout_b_syn302_r3.png"
+ ],
+ "condition": "syn302",
+ "kind": "synthetic",
+ "run": "20261020-061607-twister@syn302",
+ "eval": 8682,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 7.68,
+  "I": 6.72,
+  "N": 4.87,
+  "stats": {
+   "excitement": 768,
+   "intensity": 672,
+   "nausea": 487,
+   "maxSpeed": 36,
+   "averageSpeed": 12,
+   "rideTime": 140,
+   "rideLength": 600,
+   "maxPositiveVerticalGs": 2.49,
+   "maxNegativeVerticalGs": -0.98,
+   "maxLateralGs": 1.93,
+   "totalAirTime": 4.32,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 18,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4525,
+  "wall": 0.957,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 57
+ },
+ "tried": [
+  {
+   "eval": 8682,
+   "fresh": {
+    "stage": "rated",
+    "E": 7.68,
+    "I": 6.72,
+    "N": 4.87
+   }
+  }
+ ],
+ "without_trees": {
+  "stage": "rated",
+  "E": 7.45,
+  "I": 6.72,
+  "N": 4.87,
+  "stats": {
+   "excitement": 745,
+   "intensity": 672,
+   "nausea": 487,
+   "maxSpeed": 36,
+   "averageSpeed": 12,
+   "rideTime": 140,
+   "rideLength": 600,
+   "maxPositiveVerticalGs": 2.49,
+   "maxNegativeVerticalGs": -0.98,
+   "maxLateralGs": 1.93,
+   "totalAirTime": 4.32,
+   "numDrops": 9,
+   "numLiftHills": 2,
+   "highestDropHeight": 18,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 8,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4528,
+  "wall": 0.961,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 0
+ }
+}

@@ -512,3 +512,11 @@ OpenRCT2 v0.5.6 `RideRatings.cpp`의 공식에 담금질 최고 트랙(E 5.58)�
   - 실제 맵 3곳은 개발·보류에 쓰지 않은 시나리오다: Victoria Falls 16×16, Six Flags over Texas 16×16, Build your own Six Flags Park 20×20.
   - 무작위 지형 3곳: 28 L자, 24 십자(물 30%), 28 십자(기복 8, 물 20%).
 - 설정과 시간 예산은 같다. 06:35쯤 끝나면 보고서에 별도 절로 붙인다.
+
+## 2026-10-20 06:32 — 새 보류 조건 B: 5/6
+
+- 고친 코드로 처음 보는 6곳을 돌렸다. 결과는 5/6(83%)이고, 모든 조건에서 시험 운행된 코스터가 나왔다.
+  - 달성: Victoria Falls 7.95, Build your own Six Flags Park 8.74(밤새 최고), syn300 7.74, syn301 7.85, syn302 7.68.
+  - 미달: Six Flags over Texas 7.64(16×16).
+- 실패 패턴은 그대로다. 미달은 모두 좁은 영역(256칸 이하)이거나, 목표에 0.04~0.15 모자란 경우였다.
+- 보고서에 "새 보류 조건 6곳" 절을 붙여 다시 게시했다(버전 4): https://claude.ai/artifact/UNfTE7T2m3o6fMp8zgxrRH
