@@ -13,9 +13,11 @@ import json
 import sys
 from pathlib import Path
 
+from PIL import Image
+
 from rct2_close_the_loop.design import layout_from_run
 from rct2_close_the_loop.judge import Judge
-from rct2_close_the_loop.results import RESULTS, render
+from rct2_close_the_loop.results import RESULTS, crop_to_area, render
 
 GOAL = (7.68, 7.68, 5.12)
 
@@ -60,6 +62,9 @@ def main() -> None:
         summary.update({"condition": meta["condition_name"], "kind": meta.get("kind"), "run": run.name,
                         "eval": best["eval"], "search_verdict": best["verdict"],
                         "without_trees": bare.to_dict()})
+        for k, shot in enumerate(summary["screenshots"]):
+            img = crop_to_area(Image.open(out / name / shot).convert("RGB"), layout, k)
+            img.save(out / name / f"thumb_r{k}.jpg", quality=85)
         (out / name / "summary.json").write_text(json.dumps(summary, indent=1))
         index[name] = {k: summary[k] for k in ("condition", "kind", "run", "eval", "park", "screenshots")}
         index[name]["verdict"] = {k: summary["verdict"][k] for k in ("E", "I", "N", "decor")}

@@ -35,6 +35,40 @@ def screenshot(park: Path, img: Path, layout: Layout, rotation: int = 0, zoom: i
     )
 
 
+def crop_to_area(img, layout: Layout, rotation: int = 0, zoom: int | None = None, aspect: float = 1.6, top: int = 260):
+    """Cut a screenshot taken with `camera(layout)` down to the area, plus `top` world z of headroom.
+
+    Screen offsets from the camera follow OpenRCT2's projection: x = y - x', y = (x + y) / 2 - z
+    (world units, rotated with the view), divided by 2**zoom."""
+    cx, cy, cz, auto_zoom = camera(layout)
+    z_ = auto_zoom if zoom is None else zoom
+    x0, y0, x1, y1 = layout.area
+    tiles = layout.area_tiles or [(x, y) for x in range(x0, x1) for y in range(y0, y1)]
+    bases = [layout.env.tiles[t].base for t in tiles if layout.env and t in layout.env.tiles] or [layout.ground_z]
+    pts = []
+    for wx, wy in ((x0, y0), (x1, y0), (x0, y1), (x1, y1)):
+        dx, dy = wx * TILE - cx, wy * TILE - cy
+        for _ in range(rotation):
+            dx, dy = dy, -dx
+        for z in (min(bases), max(bases) + top):
+            pts.append(((dy - dx) / 2**z_, ((dx + dy) / 2 - (z - cz)) / 2**z_))
+    w, h = img.size
+    left = w / 2 + min(p[0] for p in pts) - 24
+    right = w / 2 + max(p[0] for p in pts) + 24
+    upper = h / 2 + min(p[1] for p in pts) - 24
+    lower = h / 2 + max(p[1] for p in pts) + 24
+    # Grow the short side to the requested aspect, then clamp to the image.
+    cw, ch = right - left, lower - upper
+    if cw / ch < aspect:
+        grow = (ch * aspect - cw) / 2
+        left, right = left - grow, right + grow
+    else:
+        grow = (cw / aspect - ch) / 2
+        upper, lower = upper - grow, lower + grow
+    box = (max(0, int(left)), max(0, int(upper)), min(w, int(right)), min(h, int(lower)))
+    return img.crop(box)
+
+
 def render(layout: Layout, track: list[tuple[int, bool]], name: str, zoom: int | None = 0, circuits: int = 1,
            out: Path | None = None) -> dict:
     """Build the track in a fresh instance, save the park, re-rate it, and screenshot it."""
@@ -101,7 +135,7 @@ def animate(layout: Layout, run_dir: Path, name: str, frames: int = 24, rotation
         img_path = out / "frames" / f"{k:02d}.png"
         screenshot(park, img_path, layout, rotation)
         park.unlink(missing_ok=True)
-        img = Image.open(img_path).convert("RGB").resize((960, 600))
+        img = crop_to_area(Image.open(img_path).convert("RGB"), layout, rotation).resize((960, 600))
         d = ImageDraw.Draw(img)
         v = fr["verdict"]
         label = f"eval {fr['eval']:>6}  {(fr['t'] - t0) / 60:5.1f} min   E {v['E']:.2f}  I {v['I']:.2f}  N {v['N']:.2f}"
@@ -111,4 +145,7 @@ def animate(layout: Layout, run_dir: Path, name: str, frames: int = 24, rotation
     gif = out / f"{name}.gif"
     durations = [700] * (len(images) - 1) + [2500]
     images[0].save(gif, save_all=True, append_images=images[1:], duration=durations, loop=0, optimize=True)
+    # A much smaller copy for web pages.
+    images[0].save(out / f"{name}.webp", save_all=True, append_images=images[1:], duration=durations, loop=0,
+                   quality=80, method=4)
     return gif

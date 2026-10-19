@@ -25,7 +25,10 @@ OpenRCT2를 심판으로 써서 롤러코스터를 설계하는 실험이다. �
 | `search.py` | 담금질(배치 단위) |
 | `mapelites.py` | MAP-Elites(강도 × 멀미도 칸, 적합도 = 흥미도, 비동기) |
 | `surrogate.py`, `physics.py` | 빠른 심판 실험(그래디언트 부스팅, 에너지 높이 모델) |
-| `results.py`, `report.py`, `analysis.py` | 공원 저장과 스크린샷, 근거 수집, 실행 요약 |
+| `results.py`, `report.py`, `analysis.py` | 공원 저장과 스크린샷, 진화 애니메이션, 근거 수집, 실행 요약 |
+| `env.py`, `site.py` | 2단계: 게임에서 땅을 읽고(높이, 물, 소유권, 구조물), 역과 시작 회로를 스스로 찾는다 |
+| `decor.py` | 2단계: 역 주변과 트랙 옆에 나무를 심는 계획. 경치는 강도 없이 흥미도만 올린다 |
+| `design.py`, `bench.py` | 2단계: 고정 설정(`FIXED`)으로 조건 하나를 설계하고, 벤치마크 조건을 만든다 |
 
 ## 설치
 
@@ -60,6 +63,18 @@ uv run rct2loop report runs/*/                                     # results/rep
 | `wooden_24`, `giga_24`, `twister_24` | 평평한 빈 24×24 영역의 목재·기가·트위스터 코스터 |
 | `giga_24u` | 지하 허용(실험용). 평지에서는 터널 입구에 지형 작업이 필요해 아직 쓸 수 없다 |
 | `<차종>@<지형>` | 차종은 `giga`, `twister`, `wooden` 중 하나, 지형은 `hills24`, `trees24`, `hilltrees24`, `small16`, `center24` 중 하나다(S2 조건) |
+
+2단계(범용 파이프라인)는 공원 파일과 영역만 받는다.
+
+```bash
+uv run rct2loop design data/bench/dev/syn101.json --seed 1   # 땅 읽기 → 역·시작 회로 → 15분 탐색
+./scripts/run_bench.sh dev 1                                  # 개발 조건 10개
+./scripts/run_bench.sh heldout 1                              # 보류 조건 20개(최종 평가에만)
+uv run python scripts/summarize_bench.py heldout runs/2026*/  # results/benchmark_heldout.json
+uv run python scripts/gallery.py heldout runs/2026*/          # results/gallery/: 공원 파일, 스크린샷, 나무 없는 레이팅
+```
+
+조건 파일(`data/bench/<split>/*.json`)에는 공원 경로, 영역 타일 목록, 샌드박스·지형 깎기 여부만 들어 있다.
 
 지형은 `scripts/make_terrains.py`가 만든다. 명세는 `data/terrains/`, 공원 파일은 `data/parks/`에 저장된다. S2 실험은 `scripts/run_s2.sh <차종> <분> <seed>`로 돌리고, `scripts/summarize_s2.py runs/...`로 요약한다.
 
