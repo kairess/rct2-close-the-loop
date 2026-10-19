@@ -41,6 +41,17 @@ def _unit(d: int) -> tuple[int, int]:
     return dx // TILE, dy // TILE
 
 
+def _station_tiles(base: Layout, tile: tuple[int, int], d: int) -> list[tuple[int, int]]:
+    """Station tiles plus the entrance and exit tiles beside the middle one."""
+    fx, fy = _unit(d)
+    st = [(tile[0] + fx * k, tile[1] + fy * k) for k in range(base.station_len)]
+    mid = st[(base.station_len - 1) // 2]
+    for k in ((d + 1) & 3, (d + 3) & 3):
+        ox, oy = _unit(k)
+        st.append((mid[0] + ox, mid[1] + oy))
+    return st
+
+
 def station_candidates(base: Layout, env: Env, area: frozenset) -> list[tuple[float, tuple[int, int], int, int]]:
     """(rank, station tile, direction, station z) for every placement whose station and
     entrance/exit tiles are inside the area, buildable and free at one height."""
@@ -82,6 +93,23 @@ def station_candidates(base: Layout, env: Env, area: frozenset) -> list[tuple[fl
     return out
 
 
+def fly_height(env: Env, area: frozenset, tile: tuple[int, int], d: int, turn: int, length: int, depth: int) -> int:
+    """Lowest station height that clears the land and every obstacle in the region a
+    rectangle from this station would cover (ahead `length` tiles, `depth` to the turning side)."""
+    fx, fy = _unit(d)
+    side = (d + 3) & 3 if turn == LEFT3 else (d + 1) & 3
+    sx, sy = _unit(side)
+    top = 0
+    for i in range(-2, length + 1):
+        for j in range(-1, depth + 1):
+            t = (tile[0] + fx * i + sx * j, tile[1] + fy * i + sy * j)
+            info = env.tiles.get(t)
+            if t not in area or info is None:
+                continue
+            top = max(top, info.floor, *(b1 for _b0, b1 in info.blocked))
+    return -(-top // 16) * 16
+
+
 def rectangle_loops(layout: Layout, hill: int, turn: int, max_side: int = 40):
     """Closed rectangles from the station, largest first; yields piece lists passing the pre-filter."""
     L = layout.station_len
@@ -108,31 +136,45 @@ def find_start(base: Layout, env: Env, area: frozenset, park: str | None, judge_
         raise ValueError("no station placement fits the area")
     # Best-ranked first, with a little shuffling among near-equal ranks.
     cands = sorted(cands[: max_candidates * 3], key=lambda c: -(c[0] + rng.random()))[:max_candidates]
+    x0, y0, x1, y1 = bbox(area)
+    max_side = max(x1 - x0, y1 - y0)
     judge = None
     try:
         for rank, tile, d, z in cands:
-            layout = dataclasses.replace(base, station_tile=tile, station_dir=d, ground_z=z, env=env,
-                                         area_tiles=area, area=bbox(area), park=park)
-            for hill in HILLS:
-                found = None
-                for turn in (LEFT3, RIGHT3):
-                    best = next(rectangle_loops(layout, hill, turn), None)
-                    if best and (found is None or len(best) > len(found)):
-                        found = best
-                if not found:
-                    continue
-                if judge_factory is None:
-                    return layout, found, None
-                if judge is None:
-                    judge = judge_factory(layout)
-                else:
-                    judge.layout = layout
-                v = judge.evaluate(found)
-                log(f"start candidate tile={tile} dir={d} z={z} hill={hill} pieces={len(found)} -> {v.stage} "
-                    f"{v.excitement if v.rated else v.error or ''}")
-                if v.rated:
-                    return layout, found, v
-                break  # this placement's biggest loop failed in game; try the next placement
+            # First at ground height; then on stilts high enough to clear hills and trees
+            # in the region each turning direction would use.
+            levels = [(z, (LEFT3, RIGHT3))]
+            for turn in (LEFT3, RIGHT3):
+                zf = fly_height(env, area, tile, d, turn, max_side, max_side)
+                if zf > z and all(env.free_at(t, zf) for t in _station_tiles(base, tile, d)):
+                    levels.append((zf, (turn,)))
+            done_here = False
+            for level_z, turns in levels:
+                layout = dataclasses.replace(base, station_tile=tile, station_dir=d, ground_z=level_z, env=env,
+                                             area_tiles=area, area=bbox(area), park=park)
+                for hill in HILLS:
+                    found = None
+                    for turn in turns:
+                        best = next(rectangle_loops(layout, hill, turn, max_side + 1), None)
+                        if best and (found is None or len(best) > len(found)):
+                            found = best
+                    if not found:
+                        continue
+                    if judge_factory is None:
+                        return layout, found, None
+                    if judge is None:
+                        judge = judge_factory(layout)
+                    else:
+                        judge.layout = layout
+                    v = judge.evaluate(found)
+                    log(f"start candidate tile={tile} dir={d} z={level_z} hill={hill} pieces={len(found)} -> {v.stage} "
+                        f"{v.excitement if v.rated else v.error or ''}")
+                    if v.rated:
+                        return layout, found, v
+                    done_here = True
+                    break  # this level's biggest loop failed in game; try the next level or placement
+                if done_here:
+                    break
         raise ValueError("no starting loop was rated by the game")
     finally:
         if judge is not None:
