@@ -1,0 +1,16 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# OpenRCT2 binary + vendored libs (scripts/setup_env.sh)
+.vendor/
+
+# Experiment data (large; summaries go to docs/ and results/)
+runs/

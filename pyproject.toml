@@ -1,0 +1,19 @@
+[project]
+name = "rct2-close-the-loop"
+version = "0.1.0"
+description = "Coaster design with OpenRCT2 as the judge: closed loop first, then segment edits"
+readme = "README.md"
+authors = [
+    { name = "kairess", email = "kairess87@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "pyrct2>=0.10.0",
+]
+
+[project.scripts]
+rct2-close-the-loop = "rct2_close_the_loop:main"
+
+[build-system]
+requires = ["uv_build>=0.12.9,<0.13.0"]
+build-backend = "uv_build"
