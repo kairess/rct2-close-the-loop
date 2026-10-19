@@ -14,12 +14,25 @@ TRACK_CLEARANCE = 32  # rough vertical room a track element needs (ride clearanc
 OBSTACLE_MARGIN = 8
 MIN_TRACK_Z = 16  # TrackPlaceAction refuses anything lower
 LAND_STEP = 16  # land heights move in steps of 2 height units
+SLOPE_CORNERS = 0x0F  # a raised corner lifts it one land step
+SLOPE_STEEP = 0x10  # steep slope: the raised corner is two steps up
+
+
+def surface_top(base: int, slope: int) -> int:
+    """Highest corner of a surface tile. Parks loaded from RCT2 files report a sloped
+    surface's clearance equal to its base, but track cannot sit below its top corner
+    (ConstructionClearance.cpp compares the track's base with every corner)."""
+    if slope & SLOPE_STEEP:
+        return base + 2 * LAND_STEP
+    if slope & SLOPE_CORNERS:
+        return base + LAND_STEP
+    return base
 
 
 @dataclass
 class TileInfo:
     base: int  # surface base z
-    ground: int  # surface clearance z (top of a slope)
+    ground: int  # top of the surface (highest corner of a slope)
     water: int  # water surface z, 0 = dry
     owned: bool
     rights: bool
@@ -43,10 +56,11 @@ class Env:
     @classmethod
     def from_scan(cls, scan: dict, sandbox: bool = False, terraform: bool = False, tunnels: bool = False) -> Env:
         tiles = {}
-        for tx, ty, base, clear, _slope, water, owned, rights, edge, others in scan["tiles"]:
+        for tx, ty, base, clear, slope, water, owned, rights, edge, others in scan["tiles"]:
             blocked = [(b, c + OBSTACLE_MARGIN) for _type, b, c, _ride in others]
             scenery = sum(t in ("small_scenery", "large_scenery") for t, *_ in others)
-            tiles[(tx, ty)] = TileInfo(base, clear, water, bool(owned), bool(rights), bool(edge), blocked, scenery)
+            top = max(clear, surface_top(base, slope))
+            tiles[(tx, ty)] = TileInfo(base, top, water, bool(owned), bool(rights), bool(edge), blocked, scenery)
         return cls(tiles, sandbox=sandbox, terraform=terraform, tunnels=tunnels)
 
     def buildable(self, tile: tuple[int, int]) -> bool:
