@@ -42,7 +42,9 @@ FIXED = {
     "n_cap": 5.0,
     "cars": None,  # None: the game's default train length
     "station_len": None,  # None: the ride's base layout
-    "lake": 0.0,  # share of the area dug into a lake before designing (landscape_lake)
+    "lake": 0.0,  # share of the area dug into a lake before designing (landscape)
+    "mounds": 0,  # 3x3 hills raised before designing, for tunnels (landscape)
+    "tunnels": False,  # allow track fully below the surface
 }
 
 # Phase 3: one coaster as exciting as possible (Extreme = 10.24). Intensity stays under the
@@ -66,13 +68,16 @@ def load_condition(path: Path) -> dict:
     return cond
 
 
-def landscape_lake(cond: dict, fraction: float, log=print) -> Path:
-    """Dig a lake into the middle of the area: the owned, dry, unobstructed tiles nearest the area's
-    centroid, `fraction` of the area, lowered two land steps with water at the old ground level.
+def landscape(cond: dict, lake: float = 0.0, mounds: int = 0, log=print) -> Path:
+    """Shape the land before designing, on owned, dry, unobstructed, flat tiles of the area.
 
-    Track can then skim the water and the land at the same height: pieces over water score
-    WATER_OVER/TOUCH/LOW/HIGH proximity (up to 135 points, about +0.41 excitement) on top of the
-    ground-touch points (120) the land still gives. Returns the new park file."""
+    - lake: dig the `lake` share of the area nearest its centroid two land steps down, with water
+      at the old ground level. Track can skim water and land at the same height: water proximity
+      (up to 135 points, about +0.41 excitement) on top of the ground-touch points the land keeps.
+    - mounds: raise `mounds` flat-topped 3x3 hills by 4 land steps, spread over the rest. Track
+      tunnelling through one is a sheltered section; up to 11 sections add about +0.33 excitement
+      plus +0.05 each for entering cover pitched or banked, for little intensity (RideRatings.cpp).
+    Returns the new park file."""
     area = cond["area"]
     x0, y0, x1, y1 = bbox(area)
     env = scan_env(cond["park_path"], (x0, y0, x1, y1), sandbox=cond.get("sandbox", False), terraform=True, tunnels=False)
@@ -80,21 +85,37 @@ def landscape_lake(cond: dict, fraction: float, log=print) -> Path:
     cy = sum(t[1] for t in area) / len(area)
     ok = [t for t in area if env.landscapable(t) and env.tiles[t].ground == env.tiles[t].base]
     ok.sort(key=lambda t: (t[0] - cx) ** 2 + (t[1] - cy) ** 2)
-    lake = ok[: int(len(area) * fraction)]
-    heights = [[x, y, env.tiles[(x, y)].base // 8 - 4] for x, y in lake]
-    water = [[x, y, env.tiles[(x, y)].base // 8] for x, y in lake]
-    name = f"{cond['name']}_lake{int(fraction * 100)}"
+    lake_tiles = ok[: int(len(area) * lake)]
+    heights = [[x, y, env.tiles[(x, y)].base // 8 - 4] for x, y in lake_tiles]
+    water = [[x, y, env.tiles[(x, y)].base // 8] for x, y in lake_tiles]
+    # Mounds: 3x3 blocks of free tiles at least 2 tiles inside the area, far from the lake and
+    # from each other (greedy farthest-point choice, deterministic).
+    free = set(ok) - set(lake_tiles)
+    sites = [(x, y) for x, y in free
+             if all((x + dx, y + dy) in free for dx in range(-3, 4) for dy in range(-3, 4))]
+    chosen: list[tuple[int, int]] = []
+    while sites and len(chosen) < mounds:
+        best = max(sites, key=lambda t: (min(((t[0] - u[0]) ** 2 + (t[1] - u[1]) ** 2 for u in chosen), default=1e9),
+                                         -((t[0] - cx) ** 2 + (t[1] - cy) ** 2)))
+        chosen.append(best)
+        sites = [t for t in sites if max(abs(t[0] - best[0]), abs(t[1] - best[1])) > 4]
+    for mx, my in chosen:
+        for dx in (-1, 0, 1):
+            for dy in (-1, 0, 1):
+                t = (mx + dx, my + dy)
+                heights.append([t[0], t[1], env.tiles[t].base // 8 + 4])
+    name = f"{cond['name']}_lake{int(lake * 100)}_m{len(chosen)}"
     with Game(park=cond["park_path"]) as g:
         wait_ready(g)
         g.call("setup", {"sandbox": cond.get("sandbox", False)})
         r = g.call("terraform", {"tiles": heights, "water": water}, timeout=600)
         if r["errors"]:
-            log(f"lake: {len(r['errors'])} tiles refused, e.g. {r['errors'][:3]}")
+            log(f"landscape: {len(r['errors'])} changes refused, e.g. {r['errors'][:3]}")
         g.call("save", {"filename": name})
     dest = ROOT / "data" / "extreme" / "parks" / f"{name}.park"
     dest.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(RUNTIME / "save" / f"{name}.park", dest)
-    log(f"lake: {len(lake)} of {len(area)} tiles -> {dest.relative_to(ROOT)}")
+    log(f"landscape: lake {len(lake_tiles)} of {len(area)} tiles, {len(chosen)} mounds -> {dest.relative_to(ROOT)}")
     return dest
 
 
@@ -121,8 +142,10 @@ def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, l
            config: str = "fixed") -> Path:
     cfg_values = {**CONFIGS[config], **(overrides or {})}
     cond = load_condition(condition_path)
-    if cfg_values.get("lake"):
-        cond["park_path"] = landscape_lake(cond, cfg_values["lake"], log=log)
+    if cfg_values.get("lake") or cfg_values.get("mounds"):
+        cond["park_path"] = landscape(cond, cfg_values.get("lake", 0.0), cfg_values.get("mounds", 0), log=log)
+    if cfg_values.get("tunnels"):
+        cond["tunnels"] = True
     layout, track, v0 = prepare(cond, cfg_values["ride"], log=log, decor=cfg_values.get("decor"),
                                 cars=cfg_values.get("cars"), station_len=cfg_values.get("station_len"))
     log(f"start: station {layout.station_tile} dir {layout.station_dir} z {layout.ground_z}, "
