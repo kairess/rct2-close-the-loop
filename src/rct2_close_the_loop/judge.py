@@ -13,6 +13,8 @@ from .track import Layout, pieces_payload, trace
 
 TICKS_PER_PIECE = 120
 MIN_TICKS = 6000
+EVALUATE_TIMEOUT = 60.0  # seconds; a healthy evaluation takes 0.5-3 s
+RESTART_EVERY = 2000  # evaluations per game instance before a fresh launch
 
 
 @dataclass
@@ -26,6 +28,7 @@ class Verdict:
     ticks: int = 0
     wall: float = 0.0
     build_index: int | None = None
+    speed_before: int | None = None
 
     @property
     def rated(self) -> bool:
@@ -42,6 +45,7 @@ class Verdict:
             "ticks": self.ticks,
             "wall": round(self.wall, 3),
             "build_index": self.build_index,
+            "speed_before": self.speed_before,
         }
 
 
@@ -50,15 +54,38 @@ class Judge:
 
     def __init__(self, layout: Layout, slot: int | None = None):
         self.layout = layout
-        self.game = Game(slot=slot)
+        self.slot = slot
+        self.restarts = 0
+        self._launch()
+
+    def _launch(self) -> None:
+        self.game = Game(slot=self.slot)
+        self.slot = self.game.slot
+        self.evals_since_launch = 0
         wait_ready(self.game)
         self.game.call("setup")
-        obj = self.game.call("load_object", {"identifier": layout.ride_object})
-        if layout.ride_type not in obj["rideType"]:
-            raise GameError(f"{layout.ride_object} is not ride type {layout.ride_type}: {obj['rideType']}")
+        obj = self.game.call("load_object", {"identifier": self.layout.ride_object})
+        if self.layout.ride_type not in obj["rideType"]:
+            raise GameError(f"{self.layout.ride_object} is not ride type {self.layout.ride_type}: {obj['rideType']}")
         self.ride_object_index = obj["index"]
 
+    def restart(self) -> None:
+        self.game.close()
+        self.restarts += 1
+        self._launch()
+
     def evaluate(self, pieces: list[tuple[int, bool]], keep: bool = False, prefilter: bool = True) -> Verdict:
+        if self.evals_since_launch >= RESTART_EVERY and not keep:
+            self.restart()
+        v = self._evaluate(pieces, keep, prefilter)
+        if v.stage == "error":
+            # Lost sync with the instance (timeout, crash, closed socket): start over.
+            self.restart()
+        else:
+            self.evals_since_launch += 1
+        return v
+
+    def _evaluate(self, pieces: list[tuple[int, bool]], keep: bool, prefilter: bool) -> Verdict:
         t0 = time.perf_counter()
         tr = trace(self.layout, pieces)
         if prefilter and (not tr.closed or tr.problems):
@@ -75,10 +102,11 @@ class Judge:
             "keep": keep,
         }
         try:
-            r = self.game.call("evaluate", args, timeout=180)
+            r = self.game.call("evaluate", args, timeout=EVALUATE_TIMEOUT)
         except (GameError, OSError) as e:
             return Verdict("error", error=str(e), wall=time.perf_counter() - t0)
-        v = Verdict(r["stage"], error=r.get("error"), ticks=r.get("ticks", 0), wall=time.perf_counter() - t0)
+        v = Verdict(r["stage"], error=r.get("error"), ticks=r.get("ticks", 0), wall=time.perf_counter() - t0,
+                    speed_before=r.get("speedBefore"))
         if "index" in r:
             # Index into the full placed list (station first); report it relative to `pieces`.
             v.build_index = r["index"] - self.layout.station_len

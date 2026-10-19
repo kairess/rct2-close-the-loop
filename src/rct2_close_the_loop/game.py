@@ -44,6 +44,15 @@ enable_hot_reloading = false
 """
 
 
+def _die_with_parent() -> None:
+    """Child-side: get SIGTERM when the Python parent dies, so instances never linger."""
+    import ctypes
+    import signal
+
+    PR_SET_PDEATHSIG = 1
+    ctypes.CDLL("libc.so.6", use_errno=True).prctl(PR_SET_PDEATHSIG, signal.SIGTERM)
+
+
 def rct2_path() -> Path:
     env = os.environ.get("RCT2_PATH")
     if env:
@@ -68,6 +77,9 @@ def prepare_runtime() -> Path:
     """Create runtime/ with config.ini and only our plugin (refreshed every launch)."""
     plugin_dir = RUNTIME / "plugin"
     plugin_dir.mkdir(parents=True, exist_ok=True)
+    # OpenRCT2 fails to create these itself when a custom user data path is used.
+    for sub in ("screenshot", "save"):
+        (RUNTIME / sub).mkdir(exist_ok=True)
     cfg = RUNTIME / "config.ini"
     if not cfg.exists():
         cfg.write_text(RUNTIME_CONFIG)
@@ -100,8 +112,11 @@ class Game:
             "--user-data-path", str(RUNTIME),
             "--rct2-data-path", str(rct2_path()),
         ]
+        # The game prints some strings in its legacy codepage (e.g. currency signs).
+        # The reader must never die, or the pipe fills and the game blocks on stdout.
         self.proc = subprocess.Popen(
-            cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1,
+            encoding="utf-8", errors="replace", preexec_fn=_die_with_parent,
         )
         self._port: int | None = None
         self._port_ready = threading.Event()

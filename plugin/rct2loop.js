@@ -83,27 +83,39 @@ function cmdPing(args, reply) {
         version: VERSION,
         apiVersion: context.apiVersion,
         paused: context.paused,
+        gameSpeed: context.gameSpeed,
         ticks: date.ticksElapsed,
         mapSize: { x: map.size.x, y: map.size.y }
     });
 }
 
+var wantedSpeed = HYPER_SPEED;
+
 function cmdSetup(args, reply) {
-    // sandbox, build while paused, no breakdowns, no money
-    var cheats = [[0, 1], [11, 1], [9, 1], [15, 1]];
+    // sandbox, build while paused, no breakdowns, no money, objective "have fun".
+    // Without "have fun" the scenario deadline passes after enough hyper-speed
+    // ticks and ScenarioEnd() resets the game speed to normal.
+    var cheats = [[0, 1], [11, 1], [9, 1], [15, 1], [38, 0]];
     sequence(cheats.length, function (i, next) {
         context.executeAction('cheatset', { type: cheats[i][0], param1: cheats[i][1], param2: 0 }, function (res) {
             next(res.error ? 'cheat ' + cheats[i][0] + ': ' + errText(res) : null);
         });
     }, function (err) {
         if (err) return reply(false, err);
-        var speed = args.speed || HYPER_SPEED;
-        context.executeAction('gamesetspeed', { speed: speed }, function (res) {
-            if (res.error) return reply(false, 'gamesetspeed: ' + errText(res));
+        wantedSpeed = args.speed || HYPER_SPEED;
+        ensureSpeed(function (err) {
+            if (err) return reply(false, err);
             setPaused(true, function () {
-                reply(true, { speed: speed, paused: context.paused });
+                reply(true, { speed: context.gameSpeed, paused: context.paused });
             });
         });
+    });
+}
+
+function ensureSpeed(cb) {
+    if (context.gameSpeed === wantedSpeed) return cb(null);
+    context.executeAction('gamesetspeed', { speed: wantedSpeed }, function (res) {
+        cb(res.error ? 'gamesetspeed: ' + errText(res) : null);
     });
 }
 
@@ -253,6 +265,17 @@ function rideStats(ride) {
 }
 
 function cmdEvaluate(args, reply) {
+    var speedBefore = context.gameSpeed;
+    ensureSpeed(function (err) {
+        if (err) return reply(false, err);
+        evaluate(args, function (ok, result) {
+            if (ok) result.speedBefore = speedBefore;
+            reply(ok, result);
+        });
+    });
+}
+
+function evaluate(args, reply) {
     var t0 = Date.now();
     var timing = {};
     createRide(args, function (err, rideId) {
@@ -335,13 +358,24 @@ function cmdCapture(args, reply) {
     }
 }
 
+// A hosted (network) game only lets plugins mutate game state inside a game
+// action, so saving goes through a custom action.
+var SAVE_ACTION = 'rct2loop_save';
+
+function registerActions() {
+    context.registerAction(SAVE_ACTION, function () {
+        return {};
+    }, function (e) {
+        context.saveGame({ filename: e.args.filename });
+        return {};
+    });
+}
+
 function cmdSave(args, reply) {
-    try {
-        context.saveGame({ filename: args.filename });
+    context.executeAction(SAVE_ACTION, { filename: args.filename }, function (res) {
+        if (res.error) return reply(false, 'save: ' + errText(res));
         reply(true, { filename: args.filename });
-    } catch (e) {
-        reply(false, 'saveGame: ' + e);
-    }
+    });
 }
 
 function cmdDemolishAll(args, reply) {
@@ -454,5 +488,8 @@ registerPlugin({
     type: 'intransient',
     licence: 'MIT',
     targetApiVersion: 110,
-    main: listen
+    main: function () {
+        registerActions();
+        listen();
+    }
 });

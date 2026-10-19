@@ -25,7 +25,26 @@ def main() -> None:
     e.add_argument("--layout", default="wooden_24")
     e.add_argument("--repeat", type=int, default=3)
 
+    r = sub.add_parser("render", help="build a track, save the park and take screenshots into results/<name>/")
+    r.add_argument("file", type=Path, help="JSON with a 'track' field")
+    r.add_argument("name")
+    r.add_argument("--layout", default="wooden_24")
+    r.add_argument("--zoom", type=int, default=0)
+
+    st = sub.add_parser("stats", help="summarize search runs")
+    st.add_argument("runs", type=Path, nargs="+")
+    st.add_argument("--trajectory", action="store_true")
+
     args = parser.parse_args()
+    if args.cmd == "stats":
+        from .analysis import summarize_run
+
+        for run_dir in args.runs:
+            s = summarize_run(run_dir)
+            if not args.trajectory:
+                s.pop("trajectory")
+            print(json.dumps(s, indent=1))
+        return
     from .layouts import LAYOUTS
 
     layout = LAYOUTS[args.layout]
@@ -53,3 +72,9 @@ def main() -> None:
                 print(json.dumps({"repeat": k, "goal": meets_goal(v), **v.to_dict()}))
         finally:
             judge.close()
+    elif args.cmd == "render":
+        from .results import render
+
+        track = [tuple(p) for p in json.loads(args.file.read_text())["track"]]
+        summary = render(layout, track, args.name, zoom=args.zoom)
+        print(json.dumps({k: v for k, v in summary.items() if k != "track"}, indent=1))
