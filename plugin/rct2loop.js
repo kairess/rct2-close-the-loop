@@ -317,10 +317,17 @@ function evaluate(args, reply) {
     });
 }
 
+// A train that cannot clear a hill rolls back and forth over track it has
+// already covered. If the lead car reaches no new track tile for this many
+// ticks, the test is called off instead of running to maxTicks.
+var STALL_TICKS = 1500;
+
 function runTest(rideId, maxTicks, cb) {
     var start = date.ticksElapsed;
     var sub = null;
     var done = false;
+    var visited = {};
+    var lastNew = start;
     var stop = function (stage) {
         if (done) return;
         done = true;
@@ -337,6 +344,18 @@ function runTest(rideId, maxTicks, cb) {
         if ((ride.lifecycleFlags & LC_TESTED) && ride.excitement >= 0) return stop('rated');
         if (ride.lifecycleFlags & LC_CRASHED) return stop('crashed');
         if (date.ticksElapsed - start >= maxTicks) return stop('timeout');
+        if ((date.ticksElapsed & 15) === 0 && ride.vehicles.length > 0) {
+            var car = map.getEntity(ride.vehicles[0]);
+            if (car && car.trackLocation) {
+                var loc = car.trackLocation;
+                var key = loc.x + ',' + loc.y + ',' + loc.z;
+                if (!visited[key]) {
+                    visited[key] = true;
+                    lastNew = date.ticksElapsed;
+                }
+            }
+        }
+        if (date.ticksElapsed - lastNew > STALL_TICKS) return stop('stalled');
     });
     setPaused(false, function () {});
 }
