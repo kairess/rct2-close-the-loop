@@ -122,7 +122,7 @@ def animate(layout: Layout, run_dir: Path, name: str, frames: int = 24, rotation
     picks = evolution_frames(run_dir, frames)
     with open(run_dir / "evals.jsonl") as f:
         t0 = json.loads(f.readline())["t"]
-    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", 34)
+    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", 28)
     images = []
     for k, fr in enumerate(picks):
         judge = Judge(layout)  # fresh instance per frame: kept rides and cut land do not carry over
@@ -139,7 +139,7 @@ def animate(layout: Layout, run_dir: Path, name: str, frames: int = 24, rotation
         d = ImageDraw.Draw(img)
         v = fr["verdict"]
         label = f"eval {fr['eval']:>6}  {(fr['t'] - t0) / 60:5.1f} min   E {v['E']:.2f}  I {v['I']:.2f}  N {v['N']:.2f}"
-        d.rectangle([0, 0, 960, 52], fill=(18, 22, 17))
+        d.rectangle([0, 0, 960, 46], fill=(18, 22, 17))
         d.text((16, 8), label, font=font, fill=(236, 239, 232))
         images.append(img)
     gif = out / f"{name}.gif"
