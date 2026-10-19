@@ -49,7 +49,21 @@ def main() -> None:
     st.add_argument("runs", type=Path, nargs="+")
     st.add_argument("--trajectory", action="store_true")
 
+    rp = sub.add_parser("report", help="collect evidence from runs into results/report.json")
+    rp.add_argument("runs", type=Path, nargs="+")
+    rp.add_argument("--out", type=Path, default=Path("results/report.json"))
+
     args = parser.parse_args()
+    if args.cmd == "report":
+        from .report import collect
+
+        rep = collect(args.runs, args.out)
+        print(json.dumps(rep["totals"]), "->", args.out)
+        for r in rep["runs"]:
+            b = r["best"]
+            print(f"{r['run']:40s} {r['method']:9s} {r['ride']:10s} evals={r['evals']:6d} "
+                  f"g2={r['g2_rejects']}/{r['g2_sent']} goal_hits={r['goal_hits']} best=E{b['verdict']['E']}/I{b['verdict']['I']}/N{b['verdict']['N']}")
+        return
     if args.cmd == "stats":
         from .analysis import summarize_run
 
