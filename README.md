@@ -53,7 +53,17 @@ uv run rct2loop stats runs/<run>/                                  # 단계별 �
 uv run rct2loop report runs/*/                                     # results/report.json
 ```
 
-레이아웃은 `wooden_24`(목재 코스터)와 `giga_24`(기가 코스터)가 있다. 둘 다 24×24 타일 영역을 쓴다.
+레이아웃은 다음과 같다.
+
+| 이름 | 내용 |
+| --- | --- |
+| `wooden_24`, `giga_24`, `twister_24` | 평평한 빈 24×24 영역의 목재·기가·트위스터 코스터 |
+| `giga_24u` | 지하 허용(실험용). 평지에서는 터널 입구에 지형 작업이 필요해 아직 쓸 수 없다 |
+| `<차종>@<지형>` | 차종은 `giga`, `twister`, `wooden` 중 하나, 지형은 `hills24`, `trees24`, `hilltrees24`, `small16`, `center24` 중 하나다(S2 조건) |
+
+지형은 `scripts/make_terrains.py`가 만든다. 명세는 `data/terrains/`, 공원 파일은 `data/parks/`에 저장된다. S2 실험은 `scripts/run_s2.sh <차종> <분> <seed>`로 돌리고, `scripts/summarize_s2.py runs/...`로 요약한다.
+
+`docs/RATINGS.md`에는 레이팅 규칙(요구 조건, 보너스, 근접 점수, 측정 방식)과 적용 현황을 정리해 두었다.
 
 실행마다 `runs/<시각>-<레이아웃>/`이 생기고 다음 파일이 남는다.
 - `evals.jsonl`: 평가마다 한 줄. 편집 전 트랙의 eval id, 편집, 편집 후 전체 트랙, 판정, 점수
