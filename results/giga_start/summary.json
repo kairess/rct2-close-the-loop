@@ -1,0 +1,331 @@
+{
+ "name": "giga_start",
+ "verdict": {
+  "stage": "rated",
+  "E": 1.36,
+  "I": 2.58,
+  "N": 1.96,
+  "stats": {
+   "excitement": 136,
+   "intensity": 258,
+   "nausea": 196,
+   "maxSpeed": 39,
+   "averageSpeed": 7,
+   "rideTime": 85,
+   "rideLength": 358,
+   "maxPositiveVerticalGs": 2.53,
+   "maxNegativeVerticalGs": 0.68,
+   "maxLateralGs": 2.89,
+   "totalAirTime": 0,
+   "numDrops": 1,
+   "numLiftHills": 1,
+   "highestDropHeight": 18,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 5,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 2786,
+  "wall": 0.61,
+  "build_index": null,
+  "speed_before": 8
+ },
+ "track": [
+  [
+   6,
+   true
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ]
+ ],
+ "park": "giga_start.park",
+ "screenshots": [
+  "giga_start_r0.png",
+  "giga_start_r1.png",
+  "giga_start_r2.png",
+  "giga_start_r3.png"
+ ]
+}
