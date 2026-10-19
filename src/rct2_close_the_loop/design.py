@@ -28,6 +28,10 @@ FIXED = {
     "slack": 0.05,
     "i_cap_start": 6.5,
     "i_cap_end": 7.5,
+    "priors": False,
+    "i_price_start": 0.0,
+    "i_price_end": 0.0,
+    "circuits": "1",
     "batch": 28,
     "workers": 14,
 }
@@ -69,6 +73,8 @@ def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, l
         max_minutes=cfg_values["minutes"], t0=cfg_values["t0"], t1=cfg_values["t1"], seed=seed,
         slack=cfg_values["slack"], chains=cfg_values["chains"],
         i_cap_start=cfg_values["i_cap_start"], i_cap_end=cfg_values["i_cap_end"],
+        priors=cfg_values["priors"], i_price_start=cfg_values["i_price_start"], i_price_end=cfg_values["i_price_end"],
+        circuits=cfg_values["circuits"],
     )
     run_dir = run(cfg, layout, initial=track, log_print=log)
     meta = {"condition": str(condition_path), "condition_name": cond["name"], "kind": cond.get("kind"),

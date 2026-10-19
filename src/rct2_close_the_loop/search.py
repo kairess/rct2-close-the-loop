@@ -74,6 +74,7 @@ class SearchConfig:
     priors: bool = False  # cap inversions at 6 and helix pieces at 5 (rating rules, see EditGenerator)
     i_price_start: float = 0.0  # price of a unit of intensity in score(), moving to i_price_end over the run
     i_price_end: float = 0.0
+    circuits: str = "1"  # laps per chain, cycled over chains (e.g. "1,1,1,2"): a portfolio, not a per-site choice
     stop_on_goal: bool = False
 
 
@@ -123,6 +124,7 @@ class Chain:
     verdict: Verdict
     eval_id: int
     best: float
+    circuits: int = 1
     since_best: int = 0
 
 
@@ -147,15 +149,22 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
         price = cfg.i_price_start + (cfg.i_price_end - cfg.i_price_start) * frac
         return score(v, cfg.slack, cap, price)
 
+    laps = [int(x) for x in str(cfg.circuits).split(",")]
+    chain_laps = [laps[i % len(laps)] for i in range(cfg.chains)]
     try:
-        v0 = pool.map([track])[0]
-        start_id = log.eval({"before": None, "edit": None, "track": track, "verdict": v0.to_dict(), "score": scorer(v0, 0.0), "round": 0})
-        if not v0.rated:
-            raise RuntimeError(f"initial track not rated: {v0.to_dict()}")
-        chains = [Chain(track, v0, start_id, scorer(v0, 0.0)) for _ in range(cfg.chains)]
-        best, best_v, best_id = track, v0, start_id
-        log.best({"eval": best_id, "score": scorer(v0, 0.0), "verdict": v0.to_dict(), "track": best})
-        log_print(f"initial: {summarize(v0)} pieces={len(track)}")
+        starts = {}
+        for c in sorted(set(chain_laps)):
+            v = pool.map([track], [c])[0]
+            eid = log.eval({"before": None, "edit": None, "track": track, "verdict": v.to_dict(),
+                            "score": scorer(v, 0.0), "round": 0, "circuits": c})
+            if not v.rated:
+                raise RuntimeError(f"initial track not rated with {c} circuit(s): {v.to_dict()}")
+            starts[c] = (v, eid)
+        chains = [Chain(track, starts[c][0], starts[c][1], scorer(starts[c][0], 0.0), circuits=c) for c in chain_laps]
+        v0, start_id = starts[chain_laps[0]]
+        best, best_v, best_id, best_laps = track, v0, start_id, chain_laps[0]
+        log.best({"eval": best_id, "score": scorer(v0, 0.0), "verdict": v0.to_dict(), "track": best, "circuits": best_laps})
+        log_print(f"initial: {summarize(v0)} pieces={len(track)} circuits={chain_laps}")
 
         rnd = 0
         goal_hits = 0
@@ -168,10 +177,10 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
             proposals = []  # (chain index, candidate, edit)
             for ci, ch in enumerate(chains):
                 for _ in range(per_chain):
-                    p = gen.propose(ch.track)
+                    p = gen.propose(ch.track, ch.circuits)
                     if p:
                         proposals.append((ci, *p))
-            verdicts = pool.map([c for _, c, _ in proposals])
+            verdicts = pool.map([c for _, c, _ in proposals], [chains[ci].circuits for ci, _, _ in proposals])
             stages: dict[str, int] = {}
             round_best: dict[int, tuple] = {}
             for (ci, cand, edit), v in zip(proposals, verdicts):
@@ -179,13 +188,14 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
                 stages[v.stage] = stages.get(v.stage, 0) + 1
                 eid = log.eval({
                     "before": chains[ci].eval_id, "edit": edit.to_dict(), "track": cand,
-                    "verdict": v.to_dict(), "score": s, "round": rnd, "chain": ci,
+                    "verdict": v.to_dict(), "score": s, "round": rnd, "chain": ci, "circuits": chains[ci].circuits,
                 })
                 if meets_goal(v):
                     goal_hits += 1
                     if best_goal is None or v.excitement > best_goal:
                         best_goal = v.excitement
-                        log.best({"eval": eid, "score": s, "verdict": v.to_dict(), "track": cand, "round": rnd}, "best_goal.json")
+                        log.best({"eval": eid, "score": s, "verdict": v.to_dict(), "track": cand, "round": rnd,
+                                  "circuits": chains[ci].circuits}, "best_goal.json")
                         log_print(f"[r{rnd} e{log.n}] GOAL MET {summarize(v)} chain={ci} pieces={len(cand)}")
                 if s is not None and (ci not in round_best or s > round_best[ci][0]):
                     round_best[ci] = (s, cand, v, eid)
@@ -203,14 +213,16 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
                 if ch.since_best >= cfg.reheat_after:
                     # Restart from the oval rather than the chain's own best: a stuck design
                     # usually sits at the intensity boundary, and its best is the same trap.
-                    ch.track, ch.verdict, ch.eval_id = track, v0, start_id
-                    ch.best, ch.since_best = scorer(v0, frac), 0
+                    sv, sid = starts[ch.circuits]
+                    ch.track, ch.verdict, ch.eval_id = track, sv, sid
+                    ch.best, ch.since_best = scorer(sv, frac), 0
                     log_print(f"[r{rnd} e{log.n}] chain {ci} stagnated: restart from the oval")
             # Global best by the final-cap score (what the goal needs), tracked across chains.
             for ci, ch in enumerate(chains):
                 if scorer(ch.verdict, 1.0) > scorer(best_v, 1.0):
-                    best, best_v, best_id = ch.track, ch.verdict, ch.eval_id
-                    log.best({"eval": best_id, "score": scorer(best_v, 1.0), "verdict": best_v.to_dict(), "track": best, "round": rnd})
+                    best, best_v, best_id, best_laps = ch.track, ch.verdict, ch.eval_id, ch.circuits
+                    log.best({"eval": best_id, "score": scorer(best_v, 1.0), "verdict": best_v.to_dict(), "track": best,
+                              "round": rnd, "circuits": best_laps})
                     log_print(f"[r{rnd} e{log.n}] new best {summarize(best_v)} chain={ci} pieces={len(best)} "
                               f"goal={'YES' if meets_goal(best_v) else 'no'}")
             log.progress({

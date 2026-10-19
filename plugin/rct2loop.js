@@ -368,7 +368,10 @@ function evaluateOnLand(args, t0, timing, reply) {
                 if (err) return finish({ stage: failedIndex === 0 ? 'entrance' : 'exit', error: err });
                 setCars(rideId, args.cars, function (err) {
                     if (err) return finish({ stage: 'cars', error: err });
-                    startTest(rideId, args, timing, t0, finish);
+                    setCircuits(rideId, args.circuits, function (err) {
+                        if (err) return finish({ stage: 'circuits', error: err });
+                        startTest(rideId, args, timing, t0, finish);
+                    });
                 });
             });
         });
@@ -379,6 +382,15 @@ function evaluateOnLand(args, t0, timing, reply) {
 function setCars(rideId, cars, cb) {
     if (!cars) return cb(null);
     context.executeAction('ridesetvehicle', { ride: rideId, type: 1, value: cars, colour: 0 }, function (res) {
+        cb(res.error ? errText(res) : null);
+    });
+}
+
+// Laps per ride: length counts on the first lap only, while time, drops, turns,
+// air time and shelter add up over every lap (Vehicle.cpp UpdateMeasurements).
+function setCircuits(rideId, circuits, cb) {
+    if (!circuits || circuits === 1) return cb(null);
+    context.executeAction('ridesetsetting', { ride: rideId, setting: 9, value: circuits }, function (res) {
         cb(res.error ? errText(res) : null);
     });
 }
@@ -437,6 +449,8 @@ function runTest(rideId, maxTicks, cb) {
             var car = map.getEntity(ride.vehicles[0]);
             if (car && car.trackLocation) {
                 var loc = car.trackLocation;
+                // A multi-lap ride covers the same track again after each station pass.
+                if (loc.trackType >= 1 && loc.trackType <= 3) visited = {};
                 var key = loc.x + ',' + loc.y + ',' + loc.z;
                 if (!visited[key]) {
                     visited[key] = true;

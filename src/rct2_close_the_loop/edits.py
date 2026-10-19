@@ -26,6 +26,11 @@ UP_SLOPES = {2, 4, 10}
 Piece = tuple[int, bool]
 
 
+# Laps the test actually measures for a ride's "number of circuits" setting (measured on
+# OpenRCT2 v0.5.6: 1 and 2 circuits measure one lap, 3 and 4 measure two).
+MEASURED_LAPS = {1: 1, 2: 1, 3: 2, 4: 2}
+
+
 @cache
 def rating_flags() -> tuple[frozenset[int], frozenset[int]]:
     """Track types the game counts as an inversion (normalToInversion) and as a helix piece,
@@ -123,7 +128,7 @@ class EditGenerator:
             out.append((t, chain and up and s.allows_lift))
         return out
 
-    def segment(self, track: list[Piece], tries: int = 200):
+    def segment(self, track: list[Piece], tries: int = 200, laps: int = 1):
         max_window, max_walk = self.max_window, self.max_walk
         n = len(track)
         sts = self.states(track)
@@ -151,7 +156,7 @@ class EditGenerator:
             chain = any(l for _, l in removed) if self.rng.random() < 0.7 else self.rng.random() < 0.5
             inserted = self._lifts(run, chain)
             cand = track[:i] + inserted + track[j:]
-            if not self.within_priors(cand):
+            if not self.within_priors(cand, laps):
                 continue
             tr = trace(self.layout, cand)
             if not tr.closed:
@@ -161,11 +166,12 @@ class EditGenerator:
             return cand, Edit("segment", i, j, removed, inserted)
         return None
 
-    def within_priors(self, track: list[Piece]) -> bool:
+    def within_priors(self, track: list[Piece], laps: int = 1) -> bool:
+        """Caps apply to what the test counts, so a two-lap ride gets half per lap."""
         inv, helix = rating_flags()
-        if self.max_inversions is not None and sum(t in inv for t, _ in track) > self.max_inversions:
+        if self.max_inversions is not None and sum(t in inv for t, _ in track) * laps > self.max_inversions:
             return False
-        if self.max_helix is not None and sum(t in helix for t, _ in track) > self.max_helix:
+        if self.max_helix is not None and sum(t in helix for t, _ in track) * laps > self.max_helix:
             return False
         return True
 
@@ -189,9 +195,9 @@ class EditGenerator:
         inserted = [(t, flip) for t, _ in removed]
         return track[:i] + inserted + track[j:], Edit("lift", i, j, removed, inserted)
 
-    def propose(self, track: list[Piece]):
+    def propose(self, track: list[Piece], circuits: int = 1):
         if self.rng.random() < 0.1:
             r = self.lift_toggle(track)
             if r:
                 return r
-        return self.segment(track)
+        return self.segment(track, laps=MEASURED_LAPS.get(circuits, 1))
