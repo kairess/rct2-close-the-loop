@@ -11,17 +11,27 @@ long, keyed by the displacement it produces in its own frame.
 
 from __future__ import annotations
 
+import json
 import random
 from collections import defaultdict
 from dataclasses import dataclass
+from functools import cache
 
-from .track import Layout, State, rot, segments, step, trace
+from .track import DATA, Layout, State, rot, segments, step, trace
 
 COMPLETION_DEPTH = 4
 MAX_PER_KEY = 48
 UP_SLOPES = {2, 4, 10}
 
 Piece = tuple[int, bool]
+
+
+@cache
+def rating_flags() -> tuple[frozenset[int], frozenset[int]]:
+    """Track types the game counts as an inversion (normalToInversion) and as a helix piece,
+    extracted from OpenRCT2's TrackData.cpp into data/track_flags.json."""
+    raw = json.loads((DATA / "track_flags.json").read_text())
+    return frozenset(raw["normalToInversion"]), frozenset(raw["helix"])
 
 
 @dataclass
@@ -50,11 +60,16 @@ def relative(a: State, b: State) -> tuple[int, int, int, int, int, int]:
 
 class EditGenerator:
     def __init__(self, layout: Layout, pieces: frozenset[int], seed: int | None = None,
-                 max_window: int = 8, max_walk: int = 6):
+                 max_window: int = 8, max_walk: int = 6, max_inversions: int | None = None,
+                 max_helix: int | None = None):
         self.layout = layout
         self.rng = random.Random(seed)
         self.max_window = max_window
         self.max_walk = max_walk
+        # Rating priors: excitement counts at most 6 inversions and 5 helix pieces; beyond
+        # that they only add intensity and nausea, so such candidates are not worth a test.
+        self.max_inversions = max_inversions
+        self.max_helix = max_helix
         self.by_entry: dict[tuple[int, int], list[int]] = defaultdict(list)
         for t in sorted(pieces):
             s = segments()[t]
@@ -136,6 +151,8 @@ class EditGenerator:
             chain = any(l for _, l in removed) if self.rng.random() < 0.7 else self.rng.random() < 0.5
             inserted = self._lifts(run, chain)
             cand = track[:i] + inserted + track[j:]
+            if not self.within_priors(cand):
+                continue
             tr = trace(self.layout, cand)
             if not tr.closed:
                 raise AssertionError(f"segment edit broke closure at [{i},{j}): {tr.problems}")
@@ -143,6 +160,14 @@ class EditGenerator:
                 continue
             return cand, Edit("segment", i, j, removed, inserted)
         return None
+
+    def within_priors(self, track: list[Piece]) -> bool:
+        inv, helix = rating_flags()
+        if self.max_inversions is not None and sum(t in inv for t, _ in track) > self.max_inversions:
+            return False
+        if self.max_helix is not None and sum(t in helix for t, _ in track) > self.max_helix:
+            return False
+        return True
 
     def lift_toggle(self, track: list[Piece]):
         """Flip the chain lift on one maximal run of lift-capable uphill pieces."""

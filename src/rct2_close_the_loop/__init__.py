@@ -23,6 +23,9 @@ def main() -> None:
     s.add_argument("--icap-start", type=float, default=7.5, help="intensity cap in the score at the start")
     s.add_argument("--icap-end", type=float, default=7.5, help="intensity cap in the score at the end")
     s.add_argument("--reheat-after", type=int, default=60, help="rounds without a chain best before it restarts")
+    s.add_argument("--priors", action="store_true", help="cap inversions at 6 and helix pieces at 5")
+    s.add_argument("--iprice-start", type=float, default=0.0, help="price per unit of intensity at the start")
+    s.add_argument("--iprice-end", type=float, default=0.0, help="price per unit of intensity at the end")
     s.add_argument("--stop-on-goal", action="store_true")
 
     m = sub.add_parser("mapelites", help="MAP-Elites over intensity x nausea, fitness = excitement")
@@ -102,7 +105,8 @@ def main() -> None:
             layout_name=args.layout, workers=args.workers, batch=args.batch, max_evals=args.evals,
             max_minutes=args.minutes, t0=args.t0, t1=args.t1, hill=args.hill, seed=args.seed,
             slack=args.slack, chains=args.chains, i_cap_start=args.icap_start, i_cap_end=args.icap_end,
-            reheat_after=args.reheat_after, stop_on_goal=args.stop_on_goal,
+            reheat_after=args.reheat_after, priors=args.priors, i_price_start=args.iprice_start,
+            i_price_end=args.iprice_end, stop_on_goal=args.stop_on_goal,
         )
         initial = None
         if args.init:

@@ -34,7 +34,7 @@ N_CAP = 5.00
 PENALTY = 2.0
 
 
-def score(v: Verdict, slack: float = 0.0, i_cap: float = I_CAP) -> float | None:
+def score(v: Verdict, slack: float = 0.0, i_cap: float = I_CAP, i_price: float = 0.0) -> float | None:
     """Excitement minus penalties past the I/N caps.
 
     `slack` > 0 adds a small preference for lower intensity and nausea, so that
@@ -42,11 +42,13 @@ def score(v: Verdict, slack: float = 0.0, i_cap: float = I_CAP) -> float | None:
     (e.g. lateral G just under the 2.80 penalty cliff) instead of a coin flip.
     A lower `i_cap` early in a run keeps designs from spending the whole
     intensity budget before their excitement structure is in place.
+    `i_price` charges every unit of intensity: a change is only worth it if it
+    buys more than `i_price` excitement per unit of intensity it costs.
     """
     if not v.rated:
         return None
     s = v.excitement - PENALTY * max(0.0, v.intensity - i_cap) - PENALTY * max(0.0, v.nausea - N_CAP)
-    return s - slack * (v.intensity + v.nausea) / 2
+    return s - slack * (v.intensity + v.nausea) / 2 - i_price * v.intensity
 
 
 def meets_goal(v: Verdict) -> bool:
@@ -69,6 +71,9 @@ class SearchConfig:
     chains: int = 1  # independent annealing chains sharing the judge pool
     i_cap_start: float = I_CAP  # intensity cap in score(), moving linearly to i_cap_end over the run
     i_cap_end: float = I_CAP
+    priors: bool = False  # cap inversions at 6 and helix pieces at 5 (rating rules, see EditGenerator)
+    i_price_start: float = 0.0  # price of a unit of intensity in score(), moving to i_price_end over the run
+    i_price_end: float = 0.0
     stop_on_goal: bool = False
 
 
@@ -124,7 +129,8 @@ class Chain:
 def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | None = None, log_print=print) -> Path:
     rng = random.Random(cfg.seed)
     pieces = piece_set(layout.ride_type_name)
-    gen = EditGenerator(layout, pieces, seed=cfg.seed)
+    gen = EditGenerator(layout, pieces, seed=cfg.seed,
+                        max_inversions=6 if cfg.priors else None, max_helix=5 if cfg.priors else None)
     track = initial or oval(layout, hill=cfg.hill)
 
     log = RunLog(cfg.layout_name, {"search": cfg.__dict__, "layout": layout.to_record(), "git": git_rev(), "pieces": sorted(pieces)})
@@ -138,7 +144,8 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
 
     def scorer(v: Verdict, frac: float) -> float | None:
         cap = cfg.i_cap_start + (cfg.i_cap_end - cfg.i_cap_start) * frac
-        return score(v, cfg.slack, cap)
+        price = cfg.i_price_start + (cfg.i_price_end - cfg.i_price_start) * frac
+        return score(v, cfg.slack, cap, price)
 
     try:
         v0 = pool.map([track])[0]
