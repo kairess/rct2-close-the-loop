@@ -48,6 +48,10 @@ def main() -> None:
             for k in range(4):
                 shutil.copyfile(RESULTS / "gallery" / key / f"thumb_r{k}.jpg", img / f"{key}_r{k}.jpg")
             gallery[name] = {"img": f"img/{key}", "verdict": g["verdict"], "without_trees": g["without_trees"]}
+            # Show the rating a fresh instance reproduced (gallery.py), not only the search's own value.
+            if g["verdict"].get("E") is not None:
+                fresh = [g["verdict"][k] for k in ("E", "I", "N")]
+                r["best_goal" if r["goal"] else "best_feasible"] = fresh
     shutil.copyfile(RESULTS / "report" / "img" / "final_r0.png", img / "final_r0.png")
 
     posthoc = {}
@@ -104,7 +108,7 @@ def main() -> None:
                           f"사진을 누르면 다른 방향에서 볼 수 있다."),
         "table_intro": (f"성공 {ok}/{n}(실제 맵 {sum(r['goal'] for r in real)}/{len(real)}, "
                         f"무작위 지형 {sum(r['goal'] for r in syn)}/{len(syn)}). "
-                        f"\"첫 달성\"은 15분 가운데 목표를 처음 만족한 시각이다. "
+                        f"\"첫 달성\"은 15분 가운데 목표를 처음 만족한 시각이다. E/I/N은 새 게임 인스턴스에서 다시 매긴 값이다. "
                         + ("조건은 실행 전에 고정된 코드로 뽑았고, 이 조건들로 설정을 고치지 않았다." + dev_note
                            if args.split == "heldout" else "")),
         "human": (f"RCT2에 들어 있는 사람 설계 롤러코스터 {len(coasters)}개 중 이 목표(E ≥ 7.68, I &lt; 7.68, N &lt; 5.12)를 "
