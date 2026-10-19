@@ -66,7 +66,8 @@ class Judge:
         self.slot = self.game.slot
         self.evals_since_launch = 0
         wait_ready(self.game)
-        self.game.call("setup")
+        env = self.layout.env
+        self.game.call("setup", {"sandbox": env.sandbox} if env is not None else {})
         obj = self.game.call("load_object", {"identifier": self.layout.ride_object})
         if self.layout.ride_type not in obj["rideType"]:
             raise GameError(f"{self.layout.ride_object} is not ride type {self.layout.ride_type}: {obj['rideType']}")
@@ -106,8 +107,10 @@ class Judge:
             "keep": keep,
             "cars": self.layout.cars,
         }
-        if self.layout.obstacles:
+        if self.layout.obstacles or self.layout.env is not None:
             args["sceneryRect"] = list(self.layout.area)
+        if tr.cuts:
+            args["cuts"] = [[x, y, units] for (x, y), units in sorted(tr.cuts.items())]
         try:
             r = self.game.call("evaluate", args, timeout=EVALUATE_TIMEOUT)
         except (GameError, OSError) as e:

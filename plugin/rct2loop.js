@@ -95,7 +95,11 @@ function cmdSetup(args, reply) {
     // sandbox, build while paused, no breakdowns, no money, objective "have fun".
     // Without "have fun" the scenario deadline passes after enough hyper-speed
     // ticks and ScenarioEnd() resets the game speed to normal.
-    var cheats = [[0, 1], [11, 1], [9, 1], [15, 1], [38, 0]];
+    // args.sandbox === false keeps land ownership rules: track only on owned land or with construction rights.
+    // Guests are removed so a loaded scenario's crowd does not slow down every tick, and
+    // research status is ignored so any coaster type can be built (money is out of scope too).
+    var sandbox = args.sandbox === false ? 0 : 1;
+    var cheats = [[0, sandbox], [11, 1], [9, 1], [15, 1], [38, 0], [21, 0], [44, 1]];
     sequence(cheats.length, function (i, next) {
         context.executeAction('cheatset', { type: cheats[i][0], param1: cheats[i][1], param2: 0 }, function (res) {
             next(res.error ? 'cheat ' + cheats[i][0] + ': ' + errText(res) : null);
@@ -283,17 +287,66 @@ function cmdEvaluate(args, reply) {
     });
 }
 
+// Lower the land on the given tiles ([[tileX, tileY, heightUnits]]) and remember
+// what was there, so restoreLand can put it back after the evaluation.
+function cutLand(cuts, cb) {
+    var saved = [];
+    sequence(cuts.length, function (i, next) {
+        var c = cuts[i];
+        var tile = map.getTile(c[0], c[1]);
+        var surf = null;
+        for (var k = 0; k < tile.numElements; k++) {
+            if (tile.getElement(k).type === 'surface') surf = tile.getElement(k);
+        }
+        if (!surf) return next('no surface at ' + c);
+        saved.push([c[0], c[1], surf.baseHeight, surf.slope]);
+        context.executeAction('landsetheight', { x: c[0] * 32, y: c[1] * 32, height: c[2], style: 0 }, function (res) {
+            next(res.error ? 'cut ' + c + ': ' + errText(res) : null);
+        });
+    }, function (err) {
+        cb(err, saved);
+    });
+}
+
+function restoreLand(saved, cb) {
+    sequence(saved.length, function (i, next) {
+        var s = saved[i];
+        context.executeAction('landsetheight', { x: s[0] * 32, y: s[1] * 32, height: s[2], style: s[3] }, function () {
+            next(null);
+        });
+    }, function () {
+        cb();
+    });
+}
+
 function evaluate(args, reply) {
     var t0 = Date.now();
     var timing = {};
+    cutLand(args.cuts || [], function (err, saved) {
+        if (err) {
+            return restoreLand(saved, function () {
+                reply(true, { stage: 'terraform', error: err });
+            });
+        }
+        var done = function (result) {
+            if (args.keep) return reply(true, result);
+            restoreLand(saved, function () {
+                reply(true, result);
+            });
+        };
+        evaluateOnLand(args, t0, timing, done);
+    });
+}
+
+function evaluateOnLand(args, t0, timing, reply) {
     createRide(args, function (err, rideId) {
-        if (err) return reply(true, { stage: 'create', error: err });
+        if (err) return reply({ stage: 'create', error: err });
         var finish = function (result) {
             result.ride = rideId;
             result.timing = timing;
-            if (args.keep) return reply(true, result);
+            if (args.keep) return reply(result);
             demolish(rideId, function () {
-                reply(true, result);
+                reply(result);
             });
         };
         sequence(args.pieces.length, function (i, next) {
@@ -457,25 +510,56 @@ function cmdTerraform(args, reply) {
             next(null);
         });
     }, function () {
-        var trees = args.trees;
-        if (!trees || !trees.at || !trees.at.length) return reply(true, { tiles: tiles.length, trees: 0, errors: errors });
-        var obj = objectManager.load(trees.identifier);
-        if (!obj) return reply(false, 'could not load ' + trees.identifier);
-        var planted = 0;
-        sequence(trees.at.length, function (i, next) {
-            var p = trees.at[i];
-            var surface = surfaceZ(p[0], p[1]);
-            context.executeAction('smallsceneryplace', {
-                x: p[0] * 32, y: p[1] * 32, z: surface, direction: 0, object: obj.index, quadrant: 0,
-                primaryColour: 0, secondaryColour: 0, tertiaryColour: 0
+        setWaterAndOwnership(args, errors, function () {
+            plantTrees(args, tiles, errors, reply);
+        });
+    });
+}
+
+// args.water = [[tileX, tileY, heightUnits]], args.ownership = [[tileX, tileY, flags]]
+// (flags: 1 construction rights, 2 land owned; 0 unowned).
+function setWaterAndOwnership(args, errors, cb) {
+    var water = args.water || [];
+    var own = args.ownership || [];
+    sequence(water.length, function (i, next) {
+        var w = water[i];
+        context.executeAction('watersetheight', { x: w[0] * 32, y: w[1] * 32, height: w[2] }, function (res) {
+            if (res.error) errors.push('water ' + w + ': ' + errText(res));
+            next(null);
+        });
+    }, function () {
+        sequence(own.length, function (i, next) {
+            var o = own[i];
+            context.executeAction('landsetrights', {
+                x1: o[0] * 32, y1: o[1] * 32, x2: o[0] * 32, y2: o[1] * 32, setting: 4, ownership: o[2]
             }, function (res) {
-                if (res.error) errors.push('tree ' + p + ': ' + errText(res));
-                else planted++;
+                if (res.error) errors.push('ownership ' + o + ': ' + errText(res));
                 next(null);
             });
         }, function () {
-            reply(true, { tiles: tiles.length, trees: planted, errors: errors });
+            cb();
         });
+    });
+}
+
+function plantTrees(args, tiles, errors, reply) {
+    var trees = args.trees;
+    if (!trees || !trees.at || !trees.at.length) return reply(true, { tiles: tiles.length, trees: 0, errors: errors });
+    var obj = objectManager.load(trees.identifier);
+    if (!obj) return reply(false, 'could not load ' + trees.identifier);
+    var planted = 0;
+    sequence(trees.at.length, function (i, next) {
+        var p = trees.at[i];
+        context.executeAction('smallsceneryplace', {
+            x: p[0] * 32, y: p[1] * 32, z: surfaceZ(p[0], p[1]), direction: 0, object: obj.index, quadrant: 0,
+            primaryColour: 0, secondaryColour: 0, tertiaryColour: 0
+        }, function (res) {
+            if (res.error) errors.push('tree ' + p + ': ' + errText(res));
+            else planted++;
+            next(null);
+        });
+    }, function () {
+        reply(true, { tiles: tiles.length, trees: planted, errors: errors });
     });
 }
 
@@ -500,6 +584,37 @@ function countScenery(rect) {
         }
     }
     return n;
+}
+
+// Describe every tile of a rectangle for the search's pre-filter:
+// [tx, ty, surfaceBaseZ, surfaceClearanceZ, slope, waterZ, owned, rights, edge, [[type, baseZ, clearanceZ, ride]]]
+function cmdScan(args, reply) {
+    var r = args.rect;
+    var out = [];
+    var sx = map.size.x, sy = map.size.y;
+    for (var x = Math.max(0, r[0]); x < Math.min(sx, r[2]); x++) {
+        for (var y = Math.max(0, r[1]); y < Math.min(sy, r[3]); y++) {
+            var tile = map.getTile(x, y);
+            var surf = null;
+            var others = [];
+            for (var i = 0; i < tile.numElements; i++) {
+                var e = tile.getElement(i);
+                if (e.type === 'surface') {
+                    surf = e;
+                } else {
+                    others.push([e.type, e.baseZ, e.clearanceZ, e.type === 'track' ? e.ride : -1]);
+                }
+            }
+            var edge = (x <= 1 || y <= 1 || x >= sx - 2 || y >= sy - 2) ? 1 : 0;
+            if (!surf) {
+                out.push([x, y, 0, 0, 0, 0, 0, 0, 1, others]);
+                continue;
+            }
+            out.push([x, y, surf.baseZ, surf.clearanceZ, surf.slope, surf.waterHeight,
+                surf.hasOwnership ? 1 : 0, surf.hasConstructionRights ? 1 : 0, edge, others]);
+        }
+    }
+    reply(true, { mapSize: [sx, sy], tiles: out });
 }
 
 function cmdSceneryCount(args, reply) {
@@ -537,7 +652,8 @@ var COMMANDS = {
     demolish_all: cmdDemolishAll,
     tile: cmdTile,
     terraform: cmdTerraform,
-    scenery_count: cmdSceneryCount
+    scenery_count: cmdSceneryCount,
+    scan: cmdScan
 };
 
 // ---------------------------------------------------------------- transport

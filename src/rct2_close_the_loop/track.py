@@ -186,6 +186,8 @@ class Layout:
     park: str | None = None  # park file (relative to the repo) with this layout's terrain; None = flat fixture
     ground_map: dict | None = None  # {(tile_x, tile_y): surface z} where it differs from ground_z
     obstacles: dict | None = None  # {(tile_x, tile_y): top z} of trees; track must pass above
+    env: object | None = None  # env.Env read from the game; when set it replaces ground_map/obstacles
+    area_tiles: frozenset | None = None  # arbitrary-shape area; None = the `area` rectangle
 
     def to_record(self) -> dict:
         """JSON-safe description for run configs (terrain maps keyed "x,y")."""
@@ -193,9 +195,23 @@ class Layout:
         for key in ("ground_map", "obstacles"):
             if rec[key] is not None:
                 rec[key] = {f"{x},{y}": z for (x, y), z in rec[key].items()}
+        if self.env is not None:
+            rec["env"] = {"sandbox": self.env.sandbox, "terraform": self.env.terraform,
+                          "tunnels": self.env.tunnels, **self.env.summary(self.area_tiles)}
+        if self.area_tiles is not None:
+            rec["area_tiles"] = sorted(f"{x},{y}" for x, y in self.area_tiles)
         return rec
 
+    def in_area(self, tx: int, ty: int) -> bool:
+        if self.area_tiles is not None:
+            return (tx, ty) in self.area_tiles
+        x0, y0, x1, y1 = self.area
+        return x0 <= tx < x1 and y0 <= ty < y1
+
     def ground_at(self, tx: int, ty: int) -> int:
+        if self.env is not None:
+            info = self.env.tiles.get((tx, ty))
+            return info.floor if info else self.ground_z
         if self.ground_map is None:
             return self.ground_z
         return self.ground_map.get((tx, ty), self.ground_z)
@@ -226,6 +242,7 @@ class Trace:
     end: State
     closed: bool
     problems: list[str] = field(default_factory=list)
+    cuts: dict = field(default_factory=dict)  # {(tile_x, tile_y): land height units} to lower before building
 
 
 def trace(layout: Layout, pieces: list[tuple[int, bool]], check: bool = True) -> Trace:
@@ -245,9 +262,53 @@ def trace(layout: Layout, pieces: list[tuple[int, bool]], check: bool = True) ->
         placed.append(Placed(t, state.x, state.y, zb, state.d, lift))
         state = nxt
     closed = state.key() == layout.start().key()
+    cuts: dict = {}
     if check:
-        problems.extend(check_space(layout, placed))
-    return Trace(placed, state, closed, problems)
+        if layout.env is not None:
+            env_problems, cuts = check_space_env(layout, placed)
+            problems.extend(env_problems)
+        else:
+            problems.extend(check_space(layout, placed))
+    return Trace(placed, state, closed, problems, cuts)
+
+
+def check_space_env(layout: Layout, placed: list[Placed]) -> tuple[list[str], dict]:
+    """Pre-filter against the scanned land: area mask, ownership, water, obstacles,
+    height limit, self-overlap, and which tiles must be cut to let the track through."""
+    from .env import cut_units
+
+    env = layout.env
+    occupied: dict[tuple[int, int], list[tuple[int, int]]] = {}
+    for (ax, ay, _) in layout.access_tiles():
+        occupied[(ax, ay)] = [(layout.ground_z, -1)]
+    cuts: dict[tuple[int, int], int] = {}
+    for i, p in enumerate(placed):
+        s = segments()[p.type]
+        span = max(abs(s.end_z - s.begin_z), 0) if len(s.elements) == 1 else 0
+        tiles = list(piece_tiles(p.x, p.y, p.z, p.d, p.type))
+        kinds = []
+        for tx, ty, z in tiles:
+            t = (tx, ty)
+            if not layout.in_area(tx, ty):
+                return [f"piece {i} leaves area at tile {t}"], {}
+            kind = env.classify(t, z)
+            if kind == "no":
+                return [f"piece {i} cannot sit on tile {t} at z={z}"], {}
+            if z + span - env.tiles[t].base > layout.max_height:
+                return [f"piece {i} too high (z={z})"], {}
+            for oz, oi in occupied.get(t, ()):
+                if oi != i and abs(oz - z) < layout.min_separation:
+                    return [f"piece {i} overlaps piece {oi} at tile {t}"], {}
+            occupied.setdefault(t, []).append((z, i))
+            kinds.append(kind)
+            if kind == "cut":
+                cuts[t] = min(cuts.get(t, 1 << 30), cut_units(z))
+        if "under" in kinds:
+            if s.only_above_ground:
+                return [f"piece {i} type {p.type} must stay above ground"], {}
+            if len(set(kinds)) > 1:
+                return [f"piece {i} straddles the surface"], {}
+    return [], cuts
 
 
 def check_space(layout: Layout, placed: list[Placed]) -> list[str]:

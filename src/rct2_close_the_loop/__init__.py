@@ -56,11 +56,23 @@ def main() -> None:
     st.add_argument("runs", type=Path, nargs="+")
     st.add_argument("--trajectory", action="store_true")
 
+    dg = sub.add_parser("design", help="general pipeline: condition JSON (park + area) -> coaster")
+    dg.add_argument("condition", type=Path)
+    dg.add_argument("--seed", type=int, default=1)
+    dg.add_argument("--minutes", type=float, help="override the fixed time budget (development only)")
+    dg.add_argument("--ride", help="override the fixed ride type (development only)")
+
     rp = sub.add_parser("report", help="collect evidence from runs into results/report.json")
     rp.add_argument("runs", type=Path, nargs="+")
     rp.add_argument("--out", type=Path, default=Path("results/report.json"))
 
     args = parser.parse_args()
+    if args.cmd == "design":
+        from .design import design
+
+        overrides = {k: v for k, v in (("minutes", args.minutes), ("ride", args.ride)) if v is not None}
+        print(design(args.condition, seed=args.seed, overrides=overrides))
+        return
     if args.cmd == "report":
         from .report import collect
 
