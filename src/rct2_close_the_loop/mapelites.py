@@ -40,6 +40,7 @@ class MapElitesConfig:
     hill: int = 6
     seed: int = 1
     goal_bias: float = 0.5  # share of parents drawn from cells that satisfy the I/N limits
+    tournament: int = 2  # goal-cell parents are the best of this many random goal cells
     max_window: int = 12
     max_walk: int = 8
     progress_every: int = 200
@@ -52,6 +53,22 @@ def cell_of(v: Verdict) -> tuple[int, int]:
 
 def in_goal_box(cell: tuple[int, int]) -> bool:
     return (cell[0] + 1) * I_STEP <= GOAL_I and (cell[1] + 1) * N_STEP <= GOAL_N
+
+
+def elites_from_run(run_dir, limit: int = 80) -> list[list[tuple[int, bool]]]:
+    """Best rated track per (I, N) cell in an earlier run's evals.jsonl, most exciting first."""
+    best: dict[tuple[int, int], dict] = {}
+    with open(run_dir / "evals.jsonl") as f:
+        for line in f:
+            r = json.loads(line)
+            v = r["verdict"]
+            if v["stage"] != "rated":
+                continue
+            c = (int(v["I"] / I_STEP), int(v["N"] / N_STEP))
+            if c not in best or v["E"] > best[c]["verdict"]["E"]:
+                best[c] = r
+    ranked = sorted(best.values(), key=lambda r: -r["verdict"]["E"])[:limit]
+    return [[tuple(p) for p in r["track"]] for r in ranked]
 
 
 def run(cfg: MapElitesConfig, layout: Layout, initial: list[list[tuple[int, bool]]] | None = None, log_print=print):
@@ -91,8 +108,11 @@ def run(cfg: MapElitesConfig, layout: Layout, initial: list[list[tuple[int, bool
     def pick_parent() -> dict:
         cells = list(archive)
         goal_cells = [c for c in cells if in_goal_box(c)]
-        pool_cells = goal_cells if goal_cells and rng.random() < cfg.goal_bias else cells
-        return archive[rng.choice(pool_cells)]
+        if goal_cells and rng.random() < cfg.goal_bias:
+            # Tournament among goal cells: some pressure toward the most exciting elites.
+            picks = [archive[rng.choice(goal_cells)] for _ in range(cfg.tournament)]
+            return max(picks, key=lambda a: a["v"].excitement)
+        return archive[rng.choice(cells)]
 
     inflight: dict = {}
 

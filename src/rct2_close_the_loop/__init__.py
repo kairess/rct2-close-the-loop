@@ -29,9 +29,11 @@ def main() -> None:
     m.add_argument("--hill", type=int, default=6)
     m.add_argument("--seed", type=int, default=1)
     m.add_argument("--goal-bias", type=float, default=0.5)
+    m.add_argument("--tournament", type=int, default=2)
     m.add_argument("--max-window", type=int, default=12)
     m.add_argument("--max-walk", type=int, default=8)
     m.add_argument("--init", type=Path, nargs="*", help="JSON files with a 'track' (best.json) or archive.json")
+    m.add_argument("--init-run", type=Path, nargs="*", help="seed with the best track per (I, N) cell of earlier runs")
     m.add_argument("--stop-on-goal", action="store_true")
 
     e = sub.add_parser("evaluate", help="re-evaluate a track in a fresh game instance")
@@ -89,18 +91,20 @@ def main() -> None:
             initial = [tuple(p) for p in json.loads(args.init.read_text())["track"]]
         run(cfg, layout, initial)
     elif args.cmd == "mapelites":
-        from .mapelites import MapElitesConfig, run as run_me
+        from .mapelites import MapElitesConfig, elites_from_run, run as run_me
 
         cfg = MapElitesConfig(
             layout_name=args.layout, workers=args.workers, inflight=args.inflight, max_evals=args.evals,
             max_minutes=args.minutes, hill=args.hill, seed=args.seed, goal_bias=args.goal_bias,
-            max_window=args.max_window, max_walk=args.max_walk, stop_on_goal=args.stop_on_goal,
+            tournament=args.tournament, max_window=args.max_window, max_walk=args.max_walk, stop_on_goal=args.stop_on_goal,
         )
         seeds = []
         for f in args.init or []:
             data = json.loads(f.read_text())
             entries = data if isinstance(data, list) else [data]
             seeds.extend([tuple(p) for p in e["track"]] for e in entries)
+        for run_dir in args.init_run or []:
+            seeds.extend(elites_from_run(run_dir))
         run_me(cfg, layout, seeds or None)
     elif args.cmd == "evaluate":
         from .judge import Judge
