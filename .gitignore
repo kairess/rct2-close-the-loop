@@ -14,3 +14,6 @@ wheels/
 
 # Experiment data (large; summaries go to docs/ and results/)
 runs/
+
+# OpenRCT2 user data for experiment instances (created by game.py)
+runtime/
