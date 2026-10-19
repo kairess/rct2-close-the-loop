@@ -1,7 +1,7 @@
 {
  "split": "dev",
  "success": 5,
- "n": 6,
+ "n": 7,
  "rows": [
   {
    "condition": "real_africaoasis",
@@ -144,6 +144,31 @@
    ],
    "best_goal_eval": 8972,
    "run": "20261019-223715-twister@syn101"
+  },
+  {
+   "condition": "syn102",
+   "kind": "synthetic",
+   "params": {
+    "size": 16,
+    "shape": "cross",
+    "relief": 8,
+    "water": 0.1,
+    "trees": 0.05,
+    "unowned": 0.0
+   },
+   "tiles": 156,
+   "seed": 1,
+   "evals": 29008,
+   "goal": false,
+   "first_goal_min": null,
+   "best_goal": null,
+   "best_feasible": [
+    7.4,
+    7.11,
+    3.84
+   ],
+   "best_goal_eval": null,
+   "run": "20261019-225218-twister@syn102"
   }
  ]
 }
