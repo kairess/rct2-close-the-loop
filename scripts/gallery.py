@@ -5,7 +5,8 @@
 For every run of the split the best goal-meeting track is rebuilt (or, if the
 goal was missed, the best one with I < 7.68 and N < 5.12), with its trees, saved
 to results/gallery/<split>_<condition>/ and screenshot from four sides. It is
-also rated once without trees, to show what the theming adds.
+also rated once without trees, to show what the theming adds. A track whose
+rating a fresh instance does not reproduce is skipped for the next best one.
 """
 
 import dataclasses
@@ -22,16 +23,22 @@ from rct2_close_the_loop.results import RESULTS, crop_to_area, render
 GOAL = (7.68, 7.68, 5.12)
 
 
-def pick(run: Path) -> dict | None:
-    best = None
+def candidates(run: Path, limit: int = 12) -> list[dict]:
+    """Distinct tracks with I and N under the goal limits, highest excitement first."""
+    best: dict[str, dict] = {}
     for line in open(run / "evals.jsonl"):
         r = json.loads(line)
         v = r["verdict"]
         if v["stage"] != "rated" or v["I"] >= GOAL[1] or v["N"] >= GOAL[2]:
             continue
-        if best is None or v["E"] > best["verdict"]["E"]:
-            best = r
-    return best
+        key = json.dumps([r["track"], r.get("circuits", 1)])
+        if key not in best:
+            best[key] = r
+    return sorted(best.values(), key=lambda r: (-r["verdict"]["E"], r["eval"]))[:limit]
+
+
+def reproduced(verdict: dict, search: dict) -> bool:
+    return verdict["stage"] == "rated" and all(verdict[k] == search[k] for k in ("E", "I", "N"))
 
 
 def main() -> None:
@@ -48,21 +55,27 @@ def main() -> None:
         layout, meta = layout_from_run(run)
         if f"/{split}/" not in meta["condition"]:
             continue
-        best = pick(run)
-        if best is None:
-            print(run.name, "no feasible track")
-            continue
         name = f"{split}_{meta['condition_name']}{suffix}"
-        track = [tuple(p) for p in best["track"]]
-        circuits = best.get("circuits", 1)
-        summary = render(layout, track, name, zoom=None, circuits=circuits, out=out / name)
+        # The best track whose rating a fresh game instance reproduces exactly.
+        tried = []
+        for best in candidates(run):
+            track = [tuple(p) for p in best["track"]]
+            circuits = best.get("circuits", 1)
+            summary = render(layout, track, name, zoom=None, circuits=circuits, out=out / name)
+            tried.append({"eval": best["eval"], "fresh": {k: summary["verdict"][k] for k in ("stage", "E", "I", "N")}})
+            if reproduced(summary["verdict"], best["verdict"]):
+                break
+        else:
+            print(run.name, "no feasible track" if not tried else "no track reproduced in a fresh instance")
+            if not tried:
+                continue
         judge = Judge(dataclasses.replace(layout, decor=None))
         try:
             bare = judge.evaluate(track, circuits=circuits)
         finally:
             judge.close()
         summary.update({"condition": meta["condition_name"], "kind": meta.get("kind"), "run": run.name,
-                        "eval": best["eval"], "search_verdict": best["verdict"],
+                        "eval": best["eval"], "search_verdict": best["verdict"], "tried": tried,
                         "without_trees": bare.to_dict()})
         for k, shot in enumerate(summary["screenshots"]):
             img = crop_to_area(Image.open(out / name / shot).convert("RGB"), layout, k)
