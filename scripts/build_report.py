@@ -79,16 +79,19 @@ def main() -> None:
         "gallery": gallery,
         "anim": anim,
         "lead": (f"공원 파일과 영역만 주면 땅을 읽고, 역을 놓고, 게임이 매긴 레이팅만 보고 코스터를 설계한다. "
-                 f"개발에 쓰지 않은 {n}개 조건(실제 RCT2 시나리오 맵 {len(real)}곳, 새 무작위 지형 {len(syn)}곳)에서 "
+                 + (f"개발에 쓰지 않은 {n}개 조건" if args.split == "heldout" else f"설정을 고를 때 쓴 개발 조건 {n}개")
+                 + f"(실제 RCT2 시나리오 맵 {len(real)}곳, 무작위 지형 {len(syn)}곳)에서 "
                  f"조건마다 15분씩 돌려 <strong>{ok}곳에서 흥미도 Very High(7.68 이상)</strong>를 "
-                 f"강도·멀미도 제한 안에서 달성했다."),
+                 f"강도·멀미도 제한 안에서 달성했다."
+                 + ("" if args.split == "heldout" else " 보류 조건 20개의 결과는 아침에 이 페이지에 채운다.")),
         "gallery_intro": (f"카드마다 그 조건에서 찾은 가장 좋은 코스터다. 강도 7.68, 멀미도 5.12 미만을 지킨 트랙 중 고른 것이다. "
                           f"새 게임 인스턴스에서 다시 짓고 레이팅한 값이며, 공원 파일은 <code>results/gallery/</code>에 있다. "
                           f"사진을 누르면 다른 방향에서 볼 수 있다."),
         "table_intro": (f"성공 {ok}/{n}(실제 맵 {sum(r['goal'] for r in real)}/{len(real)}, "
                         f"무작위 지형 {sum(r['goal'] for r in syn)}/{len(syn)}). "
-                        f"\"첫 달성\"은 15분 가운데 목표를 처음 만족한 시각이다. 조건은 실행 전에 고정된 코드로 뽑았고, "
-                        f"이 조건들로 설정을 고치지 않았다." + dev_note),
+                        f"\"첫 달성\"은 15분 가운데 목표를 처음 만족한 시각이다. "
+                        + ("조건은 실행 전에 고정된 코드로 뽑았고, 이 조건들로 설정을 고치지 않았다." + dev_note
+                           if args.split == "heldout" else "")),
         "human": (f"RCT2에 들어 있는 사람 설계 롤러코스터 {len(coasters)}개 중 이 목표(E ≥ 7.68, I &lt; 7.68, N &lt; 5.12)를 "
                   f"만족하는 것은 <strong>{builtin['meet_goal']}개</strong>이고, 24×24 안에 들어가는 것은 "
                   f"{builtin['meet_goal_within_24']}개다. 사람 설계의 흥미도 중앙값은 {med:.2f}이고, "
