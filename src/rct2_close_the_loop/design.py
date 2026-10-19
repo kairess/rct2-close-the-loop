@@ -45,7 +45,8 @@ def prepare(cond: dict, ride: str, log=print, judge_factory=None):
     """Scan the land and find a starting loop. Returns (layout, track, verdict)."""
     area = cond["area"]
     x0, y0, x1, y1 = bbox(area)
-    env = scan_env(cond["park_path"], (x0 - 1, y0 - 1, x1 + 1, y1 + 1), sandbox=cond.get("sandbox", False),
+    # Scan a margin of 6 tiles: scenery near the station counts for the ratings even outside the area.
+    env = scan_env(cond["park_path"], (x0 - 6, y0 - 6, x1 + 6, y1 + 6), sandbox=cond.get("sandbox", False),
                    terraform=cond.get("terraform", True), tunnels=cond.get("tunnels", False))
     log(f"land: {env.summary(area)}")
     base = BASES[ride]

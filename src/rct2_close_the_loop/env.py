@@ -25,6 +25,7 @@ class TileInfo:
     rights: bool
     edge: bool
     blocked: list[tuple[int, int]] = field(default_factory=list)  # (z0, z1) taken by other elements
+    scenery: int = 0  # small/large scenery items (trees count): the ratings' station scenery bonus
 
     @property
     def floor(self) -> int:
@@ -44,7 +45,8 @@ class Env:
         tiles = {}
         for tx, ty, base, clear, _slope, water, owned, rights, edge, others in scan["tiles"]:
             blocked = [(b, c + OBSTACLE_MARGIN) for _type, b, c, _ride in others]
-            tiles[(tx, ty)] = TileInfo(base, clear, water, bool(owned), bool(rights), bool(edge), blocked)
+            scenery = sum(t in ("small_scenery", "large_scenery") for t, *_ in others)
+            tiles[(tx, ty)] = TileInfo(base, clear, water, bool(owned), bool(rights), bool(edge), blocked, scenery)
         return cls(tiles, sandbox=sandbox, terraform=terraform, tunnels=tunnels)
 
     def buildable(self, tile: tuple[int, int]) -> bool:
@@ -76,6 +78,16 @@ class Env:
         if z + TRACK_CLEARANCE <= info.base:
             return "under" if self.tunnels else ("cut" if self.terraform and self.landscapable(tile) else "no")
         return "cut" if self.terraform and self.landscapable(tile) else "no"
+
+    def scenery_near(self, tile: tuple[int, int], radius: int = 5) -> int:
+        """Scenery items in the (2r+1)^2 square the ratings scan around the station start (cap 47)."""
+        n = 0
+        for dx in range(-radius, radius + 1):
+            for dy in range(-radius, radius + 1):
+                info = self.tiles.get((tile[0] + dx, tile[1] + dy))
+                if info:
+                    n += info.scenery
+        return min(n, 47)
 
     def summary(self, area: set[tuple[int, int]] | None = None) -> dict:
         tiles = [t for t in self.tiles if area is None or t in area]

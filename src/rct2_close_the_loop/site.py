@@ -88,7 +88,9 @@ def station_candidates(base: Layout, env: Env, area: frozenset) -> list[tuple[fl
                     r += 1
                 side_room = max(side_room, r)
             stilts = z - min(floors)
-            out.append((run + side_room - stilts / 16.0, tile, d, z))
+            # Scenery within 5 tiles of the station start is worth up to +0.24 excitement for free.
+            scenery = env.scenery_near(tile)
+            out.append((run + side_room - stilts / 16.0 + 0.2 * scenery, tile, d, z))
     out.sort(key=lambda c: -c[0])
     return out
 
