@@ -2,8 +2,8 @@
  "dev_syn101": {
   "condition": "syn101",
   "kind": "synthetic",
-  "run": "20261019-211650-twister@syn101",
-  "eval": 3604,
+  "run": "20261019-223715-twister@syn101",
+  "eval": 8972,
   "park": "dev_syn101.park",
   "screenshots": [
    "dev_syn101_r0.png",
@@ -12,15 +12,15 @@
    "dev_syn101_r3.png"
   ],
   "verdict": {
-   "E": 7.47,
-   "I": 7.08,
-   "N": 4.52,
-   "decor": 78
+   "E": 7.71,
+   "I": 7.4,
+   "N": 5.11,
+   "decor": 82
   },
   "without_trees": {
-   "E": 7.25,
-   "I": 7.08,
-   "N": 4.52
+   "E": 7.49,
+   "I": 7.4,
+   "N": 5.11
   }
  },
  "dev_real_africaoasis": {

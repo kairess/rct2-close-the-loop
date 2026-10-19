@@ -2,51 +2,39 @@
  "name": "dev_syn101",
  "verdict": {
   "stage": "rated",
-  "E": 7.47,
-  "I": 7.08,
-  "N": 4.52,
+  "E": 7.71,
+  "I": 7.4,
+  "N": 5.11,
   "stats": {
-   "excitement": 747,
-   "intensity": 708,
-   "nausea": 452,
+   "excitement": 771,
+   "intensity": 740,
+   "nausea": 511,
    "maxSpeed": 39,
-   "averageSpeed": 7,
-   "rideTime": 151,
-   "rideLength": 689,
-   "maxPositiveVerticalGs": 3.81,
-   "maxNegativeVerticalGs": -0.99,
-   "maxLateralGs": 2.28,
-   "totalAirTime": 3.81,
-   "numDrops": 8,
-   "numLiftHills": 2,
-   "highestDropHeight": 8,
+   "averageSpeed": 9,
+   "rideTime": 155,
+   "rideLength": 873,
+   "maxPositiveVerticalGs": 3.96,
+   "maxNegativeVerticalGs": -0.88,
+   "maxLateralGs": 2.41,
+   "totalAirTime": 3.06,
+   "numDrops": 9,
+   "numLiftHills": 3,
+   "highestDropHeight": 12,
    "lifecycleFlags": 3,
    "status": "testing",
    "cars": 8,
    "trains": 1
   },
   "error": null,
-  "ticks": 4896,
-  "wall": 1.037,
+  "ticks": 5020,
+  "wall": 1.062,
   "build_index": null,
   "speed_before": 8,
-  "decor": 78
+  "decor": 82
  },
  "track": [
   [
-   242,
-   false
-  ],
-  [
-   228,
-   false
-  ],
-  [
-   4,
-   true
-  ],
-  [
-   4,
+   6,
    true
   ],
   [
@@ -62,19 +50,27 @@
    false
   ],
   [
+   4,
+   true
+  ],
+  [
+   226,
+   false
+  ],
+  [
+   236,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
    9,
    true
   ],
   [
-   0,
-   false
-  ],
-  [
-   100,
-   false
-  ],
-  [
-   100,
+   38,
    false
   ],
   [
@@ -82,31 +78,43 @@
    false
   ],
   [
-   240,
+   248,
    false
   ],
   [
-   21,
+   241,
    false
   ],
   [
-   107,
+   243,
    false
   ],
   [
-   12,
+   43,
    false
   ],
   [
-   31,
+   109,
    false
   ],
   [
-   33,
+   108,
    false
   ],
   [
-   234,
+   106,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   242,
    false
   ],
   [
@@ -118,6 +126,14 @@
    false
   ],
   [
+   45,
+   false
+  ],
+  [
+   23,
+   false
+  ],
+  [
    21,
    false
   ],
@@ -126,11 +142,35 @@
    false
   ],
   [
-   38,
+   108,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   175,
+   false
+  ],
+  [
+   54,
    false
   ],
   [
    43,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   15,
    false
   ],
   [
@@ -142,11 +182,47 @@
    false
   ],
   [
+   93,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   93,
+   false
+  ],
+  [
+   233,
+   false
+  ],
+  [
+   235,
+   false
+  ],
+  [
    32,
    false
   ],
   [
-   237,
+   89,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   115,
    false
   ],
   [
@@ -154,83 +230,19 @@
    false
   ],
   [
-   53,
-   false
-  ],
-  [
-   177,
-   false
-  ],
-  [
-   175,
-   false
-  ],
-  [
-   176,
-   false
-  ],
-  [
-   42,
-   false
-  ],
-  [
-   42,
-   false
-  ],
-  [
-   175,
-   false
-  ],
-  [
-   61,
-   false
-  ],
-  [
    109,
    false
   ],
   [
-   19,
+   18,
    false
   ],
   [
-   103,
+   44,
    false
   ],
   [
-   103,
-   false
-  ],
-  [
-   234,
-   false
-  ],
-  [
-   244,
-   false
-  ],
-  [
-   108,
-   false
-  ],
-  [
-   108,
-   false
-  ],
-  [
-   100,
-   false
-  ],
-  [
-   100,
-   false
-  ],
-  [
-   100,
-   false
-  ],
-  [
-   108,
+   20,
    false
   ],
   [
@@ -242,23 +254,23 @@
    false
   ],
   [
-   27,
+   226,
    false
   ],
   [
-   90,
+   236,
    false
   ],
   [
-   33,
+   238,
    false
   ],
   [
-   33,
+   248,
    false
   ],
   [
-   21,
+   42,
    false
   ],
   [
@@ -266,23 +278,55 @@
    false
   ],
   [
-   116,
+   248,
    false
   ],
   [
-   240,
+   42,
    false
   ],
   [
-   234,
+   174,
    false
   ],
   [
-   228,
+   177,
    false
   ],
   [
-   9,
+   59,
+   false
+  ],
+  [
+   269,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   27,
+   false
+  ],
+  [
+   92,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   0,
    false
   ],
   [
@@ -294,6 +338,38 @@
    false
   ],
   [
+   0,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   174,
+   false
+  ],
+  [
+   61,
+   false
+  ],
+  [
+   58,
+   false
+  ],
+  [
+   176,
+   false
+  ],
+  [
    58,
    false
   ],
@@ -302,43 +378,7 @@
    false
   ],
   [
-   38,
-   false
-  ],
-  [
-   175,
-   false
-  ],
-  [
-   60,
-   false
-  ],
-  [
-   100,
-   false
-  ],
-  [
-   106,
-   false
-  ],
-  [
-   38,
-   false
-  ],
-  [
-   38,
-   false
-  ],
-  [
-   38,
-   false
-  ],
-  [
-   59,
-   false
-  ],
-  [
-   61,
+   43,
    false
   ]
  ],
@@ -352,68 +392,68 @@
  ],
  "condition": "syn101",
  "kind": "synthetic",
- "run": "20261019-211650-twister@syn101",
- "eval": 3604,
+ "run": "20261019-223715-twister@syn101",
+ "eval": 8972,
  "search_verdict": {
   "stage": "rated",
-  "E": 7.47,
-  "I": 7.08,
-  "N": 4.52,
+  "E": 7.71,
+  "I": 7.4,
+  "N": 5.11,
   "stats": {
-   "excitement": 747,
-   "intensity": 708,
-   "nausea": 452,
+   "excitement": 771,
+   "intensity": 740,
+   "nausea": 511,
    "maxSpeed": 39,
-   "averageSpeed": 7,
-   "rideTime": 151,
-   "rideLength": 689,
-   "maxPositiveVerticalGs": 3.81,
-   "maxNegativeVerticalGs": -0.99,
-   "maxLateralGs": 2.28,
-   "totalAirTime": 3.81,
-   "numDrops": 8,
-   "numLiftHills": 2,
-   "highestDropHeight": 8,
+   "averageSpeed": 9,
+   "rideTime": 155,
+   "rideLength": 873,
+   "maxPositiveVerticalGs": 3.96,
+   "maxNegativeVerticalGs": -0.88,
+   "maxLateralGs": 2.41,
+   "totalAirTime": 3.06,
+   "numDrops": 9,
+   "numLiftHills": 3,
+   "highestDropHeight": 12,
    "lifecycleFlags": 3,
    "status": "testing",
    "cars": 8,
    "trains": 1
   },
   "error": null,
-  "ticks": 4893,
-  "wall": 1.035,
+  "ticks": 5018,
+  "wall": 1.058,
   "build_index": null,
   "speed_before": 8,
-  "decor": 78
+  "decor": 82
  },
  "without_trees": {
   "stage": "rated",
-  "E": 7.25,
-  "I": 7.08,
-  "N": 4.52,
+  "E": 7.49,
+  "I": 7.4,
+  "N": 5.11,
   "stats": {
-   "excitement": 725,
-   "intensity": 708,
-   "nausea": 452,
+   "excitement": 749,
+   "intensity": 740,
+   "nausea": 511,
    "maxSpeed": 39,
-   "averageSpeed": 7,
-   "rideTime": 151,
-   "rideLength": 689,
-   "maxPositiveVerticalGs": 3.81,
-   "maxNegativeVerticalGs": -0.99,
-   "maxLateralGs": 2.28,
-   "totalAirTime": 3.81,
-   "numDrops": 8,
-   "numLiftHills": 2,
-   "highestDropHeight": 8,
+   "averageSpeed": 9,
+   "rideTime": 155,
+   "rideLength": 873,
+   "maxPositiveVerticalGs": 3.96,
+   "maxNegativeVerticalGs": -0.88,
+   "maxLateralGs": 2.41,
+   "totalAirTime": 3.06,
+   "numDrops": 9,
+   "numLiftHills": 3,
+   "highestDropHeight": 12,
    "lifecycleFlags": 3,
    "status": "testing",
    "cars": 8,
    "trains": 1
   },
   "error": null,
-  "ticks": 4896,
-  "wall": 1.041,
+  "ticks": 5020,
+  "wall": 1.065,
   "build_index": null,
   "speed_before": 8,
   "decor": 0

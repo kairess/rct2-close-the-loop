@@ -1,6 +1,6 @@
 {
  "split": "dev",
- "success": 4,
+ "success": 5,
  "n": 6,
  "rows": [
   {
@@ -129,17 +129,21 @@
    },
    "tiles": 784,
    "seed": 1,
-   "evals": 3725,
-   "goal": false,
-   "first_goal_min": null,
-   "best_goal": null,
-   "best_feasible": [
-    7.47,
-    7.08,
-    4.52
+   "evals": 14393,
+   "goal": true,
+   "first_goal_min": 6.81,
+   "best_goal": [
+    7.71,
+    7.4,
+    5.11
    ],
-   "best_goal_eval": null,
-   "run": "20261019-211650-twister@syn101"
+   "best_feasible": [
+    7.71,
+    7.4,
+    5.11
+   ],
+   "best_goal_eval": 8972,
+   "run": "20261019-223715-twister@syn101"
   }
  ]
 }

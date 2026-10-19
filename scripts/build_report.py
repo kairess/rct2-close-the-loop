@@ -64,6 +64,13 @@ def main() -> None:
     real = [r for r in bench["rows"] if conds[r["condition"]]["kind"] == "real"]
     syn = [r for r in bench["rows"] if conds[r["condition"]]["kind"] != "real"]
 
+    dev_note = ""
+    dev_path = RESULTS / "benchmark_dev.json"
+    if args.split != "dev" and dev_path.exists():
+        dev = json.loads(dev_path.read_text())
+        dev_note = (f" 설정을 고를 때 쓴 개발 조건(실제 맵 4곳, 무작위 지형 6곳)에서는 "
+                    f"{dev['success']}/{dev['n']}였다.")
+
     data = {
         "split": args.split,
         "split_label": SPLIT_LABEL.get(args.split, args.split),
@@ -81,7 +88,7 @@ def main() -> None:
         "table_intro": (f"성공 {ok}/{n}(실제 맵 {sum(r['goal'] for r in real)}/{len(real)}, "
                         f"무작위 지형 {sum(r['goal'] for r in syn)}/{len(syn)}). "
                         f"\"첫 달성\"은 15분 가운데 목표를 처음 만족한 시각이다. 조건은 실행 전에 고정된 코드로 뽑았고, "
-                        f"이 조건들로 설정을 고치지 않았다."),
+                        f"이 조건들로 설정을 고치지 않았다." + dev_note),
         "human": (f"RCT2에 들어 있는 사람 설계 롤러코스터 {len(coasters)}개 중 이 목표(E ≥ 7.68, I &lt; 7.68, N &lt; 5.12)를 "
                   f"만족하는 것은 <strong>{builtin['meet_goal']}개</strong>이고, 24×24 안에 들어가는 것은 "
                   f"{builtin['meet_goal_within_24']}개다. 사람 설계의 흥미도 중앙값은 {med:.2f}이고, "
