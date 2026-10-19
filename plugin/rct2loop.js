@@ -280,7 +280,8 @@ function cmdEvaluate(args, reply) {
         evaluate(args, function (ok, result) {
             if (ok) {
                 result.speedBefore = speedBefore;
-                if (sceneryBefore !== null) result.sceneryLost = sceneryBefore - countScenery(args.sceneryRect);
+                // A kept ride keeps its trees, so the count only means something when everything was undone.
+                if (sceneryBefore !== null && !args.keep) result.sceneryLost = sceneryBefore - countScenery(args.sceneryRect);
             }
             reply(ok, result);
         });

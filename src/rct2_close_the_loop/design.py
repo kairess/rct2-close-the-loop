@@ -84,3 +84,18 @@ def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, l
     (run_dir / "design.json").write_text(json.dumps(meta, indent=1))
     return run_dir
 
+
+
+def layout_from_run(run_dir: Path):
+    """Rebuild the layout a design run used (land re-scanned from its park). Returns (layout, meta)."""
+    meta = json.loads((Path(run_dir) / "design.json").read_text())
+    cond = load_condition(ROOT / meta["condition"] if not Path(meta["condition"]).is_absolute() else meta["condition"])
+    area = cond["area"]
+    x0, y0, x1, y1 = bbox(area)
+    env = scan_env(cond["park_path"], (x0 - 6, y0 - 6, x1 + 6, y1 + 6), sandbox=cond.get("sandbox", False),
+                   terraform=cond.get("terraform", True), tunnels=cond.get("tunnels", False))
+    sx, sy, sd, sz = meta["station"]
+    layout = dataclasses.replace(BASES[meta["config"]["ride"]], station_tile=(sx, sy), station_dir=sd, ground_z=sz,
+                                 env=env, area_tiles=area, area=bbox(area), park=str(cond["park_path"]),
+                                 decor=meta["config"].get("decor"))
+    return layout, meta

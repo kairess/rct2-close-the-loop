@@ -35,9 +35,10 @@ def screenshot(park: Path, img: Path, layout: Layout, rotation: int = 0, zoom: i
     )
 
 
-def render(layout: Layout, track: list[tuple[int, bool]], name: str, zoom: int | None = 0, circuits: int = 1) -> dict:
+def render(layout: Layout, track: list[tuple[int, bool]], name: str, zoom: int | None = 0, circuits: int = 1,
+           out: Path | None = None) -> dict:
     """Build the track in a fresh instance, save the park, re-rate it, and screenshot it."""
-    out = RESULTS / name
+    out = out or RESULTS / name
     out.mkdir(parents=True, exist_ok=True)
     judge = Judge(layout)
     try:
