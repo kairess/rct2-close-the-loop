@@ -25,6 +25,6 @@ for c in "${conditions[@]}"; do
   out="runs/s2/${layout//@/_}-seed${seed}.out"
   echo "$(date '+%H:%M:%S') start $layout (hill $hill)"
   uv run rct2loop search --layout "$layout" --hill "$hill" --minutes "$minutes" --evals 1000000 \
-    --seed "$seed" --t0 0.3 --t1 0.02 --slack 0.05 > "$out" 2>&1
+    --seed "$seed" --t0 0.3 --t1 0.02 --slack 0.05 --chains 4 --icap-start 6.5 --icap-end 7.5 > "$out" 2>&1
   echo "$(date '+%H:%M:%S') done $layout: $(grep -E 'run dir' "$out" | head -1)"
 done

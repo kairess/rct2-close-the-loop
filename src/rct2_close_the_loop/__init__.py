@@ -19,6 +19,10 @@ def main() -> None:
     s.add_argument("--seed", type=int, default=1)
     s.add_argument("--init", type=Path, help="best.json (or any JSON with a 'track') to start from")
     s.add_argument("--slack", type=float, default=0.0, help="low-I/N tie-breaker weight")
+    s.add_argument("--chains", type=int, default=1, help="independent annealing chains")
+    s.add_argument("--icap-start", type=float, default=7.5, help="intensity cap in the score at the start")
+    s.add_argument("--icap-end", type=float, default=7.5, help="intensity cap in the score at the end")
+    s.add_argument("--reheat-after", type=int, default=60, help="rounds without a chain best before it restarts")
     s.add_argument("--stop-on-goal", action="store_true")
 
     m = sub.add_parser("mapelites", help="MAP-Elites over intensity x nausea, fitness = excitement")
@@ -85,7 +89,8 @@ def main() -> None:
         cfg = SearchConfig(
             layout_name=args.layout, workers=args.workers, batch=args.batch, max_evals=args.evals,
             max_minutes=args.minutes, t0=args.t0, t1=args.t1, hill=args.hill, seed=args.seed,
-            slack=args.slack, stop_on_goal=args.stop_on_goal,
+            slack=args.slack, chains=args.chains, i_cap_start=args.icap_start, i_cap_end=args.icap_end,
+            reheat_after=args.reheat_after, stop_on_goal=args.stop_on_goal,
         )
         initial = None
         if args.init:
