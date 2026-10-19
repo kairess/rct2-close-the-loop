@@ -166,5 +166,53 @@
    "I": 7.11,
    "N": 3.84
   }
+ },
+ "dev_syn103": {
+  "condition": "syn103",
+  "kind": "synthetic",
+  "run": "20261019-230725-twister@syn103",
+  "eval": 13395,
+  "park": "dev_syn103.park",
+  "screenshots": [
+   "dev_syn103_r0.png",
+   "dev_syn103_r1.png",
+   "dev_syn103_r2.png",
+   "dev_syn103_r3.png"
+  ],
+  "verdict": {
+   "E": 8.0,
+   "I": 7.6,
+   "N": 4.67,
+   "decor": 98
+  },
+  "without_trees": {
+   "E": 7.55,
+   "I": 7.6,
+   "N": 4.67
+  }
+ },
+ "dev_syn104": {
+  "condition": "syn104",
+  "kind": "synthetic",
+  "run": "20261019-232229-twister@syn104",
+  "eval": 22008,
+  "park": "dev_syn104.park",
+  "screenshots": [
+   "dev_syn104_r0.png",
+   "dev_syn104_r1.png",
+   "dev_syn104_r2.png",
+   "dev_syn104_r3.png"
+  ],
+  "verdict": {
+   "E": 7.64,
+   "I": 7.53,
+   "N": 4.89,
+   "decor": 25
+  },
+  "without_trees": {
+   "E": 7.45,
+   "I": 7.53,
+   "N": 4.89
+  }
  }
 }

@@ -1,7 +1,7 @@
 {
  "split": "dev",
- "success": 5,
- "n": 7,
+ "success": 7,
+ "n": 10,
  "rows": [
   {
    "condition": "real_africaoasis",
@@ -169,6 +169,89 @@
    ],
    "best_goal_eval": null,
    "run": "20261019-225218-twister@syn102"
+  },
+  {
+   "condition": "syn103",
+   "kind": "synthetic",
+   "params": {
+    "size": 32,
+    "shape": "L",
+    "relief": 2,
+    "water": 0.0,
+    "trees": 0.0,
+    "unowned": 0.2
+   },
+   "tiles": 768,
+   "seed": 1,
+   "evals": 17529,
+   "goal": true,
+   "first_goal_min": 2.57,
+   "best_goal": [
+    8.0,
+    7.6,
+    4.67
+   ],
+   "best_feasible": [
+    8.0,
+    7.6,
+    4.67
+   ],
+   "best_goal_eval": 13395,
+   "run": "20261019-230725-twister@syn103"
+  },
+  {
+   "condition": "syn104",
+   "kind": "synthetic",
+   "params": {
+    "size": 12,
+    "shape": "rect",
+    "relief": 2,
+    "water": 0.2,
+    "trees": 0.1,
+    "unowned": 0.0
+   },
+   "tiles": 144,
+   "seed": 1,
+   "evals": 25536,
+   "goal": false,
+   "first_goal_min": null,
+   "best_goal": null,
+   "best_feasible": [
+    7.64,
+    7.53,
+    4.89
+   ],
+   "best_goal_eval": null,
+   "run": "20261019-232229-twister@syn104"
+  },
+  {
+   "condition": "syn105",
+   "kind": "synthetic",
+   "params": {
+    "size": 28,
+    "shape": "L",
+    "relief": 8,
+    "water": 0.0,
+    "trees": 0.0,
+    "unowned": 0.1
+   },
+   "tiles": 588,
+   "seed": 1,
+   "evals": 12153,
+   "goal": true,
+   "first_goal_min": 1.6,
+   "best_goal": [
+    8.28,
+    7.5,
+    4.95
+   ],
+   "best_feasible": [
+    8.28,
+    7.5,
+    4.95
+   ],
+   "best_goal_eval": 10360,
+   "run": "20261019-233733-twister@syn105"
   }
  ]
 }
