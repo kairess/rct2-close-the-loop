@@ -1,37 +1,37 @@
 {
- "name": "ht32_paths",
+ "name": "ht32_extreme",
  "verdict": {
   "stage": "rated",
-  "E": 10.16,
-  "I": 7.35,
-  "N": 5.93,
+  "E": 10.29,
+  "I": 7.07,
+  "N": 5.87,
   "stats": {
-   "excitement": 1016,
-   "intensity": 735,
-   "nausea": 593,
-   "maxSpeed": 51,
-   "averageSpeed": 20,
-   "rideTime": 152,
-   "rideLength": 1810,
-   "maxPositiveVerticalGs": 3.11,
-   "maxNegativeVerticalGs": -0.97,
-   "maxLateralGs": 2.79,
-   "totalAirTime": 6.09,
-   "numDrops": 20,
+   "excitement": 1029,
+   "intensity": 707,
+   "nausea": 587,
+   "maxSpeed": 48,
+   "averageSpeed": 16,
+   "rideTime": 177,
+   "rideLength": 1747,
+   "maxPositiveVerticalGs": 2.97,
+   "maxNegativeVerticalGs": -1.06,
+   "maxLateralGs": 2.69,
+   "totalAirTime": 5.52,
+   "numDrops": 19,
    "numLiftHills": 6,
-   "highestDropHeight": 12,
+   "highestDropHeight": 16,
    "lifecycleFlags": 3,
    "status": "testing",
    "cars": 10,
    "trains": 1
   },
   "error": null,
-  "ticks": 4917,
-  "wall": 1.034,
+  "ticks": 5738,
+  "wall": 1.264,
   "build_index": null,
   "speed_before": 8,
-  "decor": 83,
-  "paths": 54
+  "decor": 66,
+  "paths": 95
  },
  "track": [
   [
@@ -39,163 +39,15 @@
    false
   ],
   [
-   228,
-   false
-  ],
-  [
-   4,
-   true
-  ],
-  [
-   4,
-   true
-  ],
-  [
-   46,
-   true
-  ],
-  [
-   35,
-   true
-  ],
-  [
-   9,
-   true
-  ],
-  [
-   43,
-   false
-  ],
-  [
-   12,
-   false
-  ],
-  [
-   48,
-   false
-  ],
-  [
-   31,
-   false
-  ],
-  [
-   33,
-   false
-  ],
-  [
-   238,
-   false
-  ],
-  [
-   248,
-   false
-  ],
-  [
-   0,
-   false
-  ],
-  [
-   39,
-   false
-  ],
-  [
-   108,
-   false
-  ],
-  [
-   42,
-   false
-  ],
-  [
-   18,
-   false
-  ],
-  [
-   20,
-   false
-  ],
-  [
-   43,
-   false
-  ],
-  [
-   17,
-   false
-  ],
-  [
-   12,
-   false
-  ],
-  [
-   48,
-   false
-  ],
-  [
-   10,
-   false
-  ],
-  [
-   15,
-   false
-  ],
-  [
-   108,
-   false
-  ],
-  [
-   12,
-   false
-  ],
-  [
-   229,
-   false
-  ],
-  [
-   219,
-   false
-  ],
-  [
-   239,
-   false
-  ],
-  [
-   28,
-   false
-  ],
-  [
-   10,
-   false
-  ],
-  [
-   15,
-   false
-  ],
-  [
-   242,
-   false
-  ],
-  [
    111,
    false
   ],
   [
-   218,
-   false
-  ],
-  [
-   222,
-   false
-  ],
-  [
    228,
    false
   ],
   [
-   9,
-   true
-  ],
-  [
-   6,
+   4,
    true
   ],
   [
@@ -203,552 +55,12 @@
    false
   ],
   [
-   236,
+   228,
    false
   ],
   [
-   103,
-   false
-  ],
-  [
-   29,
-   false
-  ],
-  [
-   30,
-   false
-  ],
-  [
-   89,
-   false
-  ],
-  [
-   20,
-   false
-  ],
-  [
-   43,
-   false
-  ],
-  [
-   107,
-   false
-  ],
-  [
-   12,
-   false
-  ],
-  [
-   15,
-   false
-  ],
-  [
-   17,
-   false
-  ],
-  [
-   39,
-   false
-  ],
-  [
-   18,
-   false
-  ],
-  [
-   44,
-   false
-  ],
-  [
-   102,
-   false
-  ],
-  [
-   24,
-   false
-  ],
-  [
-   26,
-   false
-  ],
-  [
-   24,
-   false
-  ],
-  [
-   46,
+   4,
    true
-  ],
-  [
-   9,
-   true
-  ],
-  [
-   109,
-   false
-  ],
-  [
-   246,
-   false
-  ],
-  [
-   240,
-   false
-  ],
-  [
-   45,
-   false
-  ],
-  [
-   21,
-   false
-  ],
-  [
-   18,
-   false
-  ],
-  [
-   44,
-   false
-  ],
-  [
-   22,
-   false
-  ],
-  [
-   237,
-   false
-  ],
-  [
-   219,
-   false
-  ],
-  [
-   239,
-   false
-  ],
-  [
-   24,
-   false
-  ],
-  [
-   27,
-   false
-  ],
-  [
-   94,
-   false
-  ],
-  [
-   234,
-   false
-  ],
-  [
-   111,
-   false
-  ],
-  [
-   244,
-   false
-  ],
-  [
-   42,
-   false
-  ],
-  [
-   108,
-   false
-  ],
-  [
-   6,
-   false
-  ],
-  [
-   26,
-   false
-  ],
-  [
-   28,
-   false
-  ],
-  [
-   15,
-   false
-  ],
-  [
-   43,
-   false
-  ],
-  [
-   18,
-   false
-  ],
-  [
-   28,
-   false
-  ],
-  [
-   15,
-   false
-  ],
-  [
-   38,
-   false
-  ],
-  [
-   42,
-   false
-  ],
-  [
-   6,
-   false
-  ],
-  [
-   26,
-   false
-  ],
-  [
-   237,
-   false
-  ],
-  [
-   223,
-   false
-  ],
-  [
-   247,
-   false
-  ],
-  [
-   0,
-   false
-  ],
-  [
-   0,
-   false
-  ],
-  [
-   43,
-   false
-  ],
-  [
-   19,
-   false
-  ],
-  [
-   234,
-   false
-  ],
-  [
-   236,
-   false
-  ],
-  [
-   23,
-   false
-  ],
-  [
-   234,
-   false
-  ],
-  [
-   222,
-   false
-  ],
-  [
-   244,
-   false
-  ],
-  [
-   39,
-   false
-  ],
-  [
-   42,
-   false
-  ],
-  [
-   43,
-   false
-  ],
-  [
-   18,
-   false
-  ],
-  [
-   44,
-   false
-  ],
-  [
-   20,
-   false
-  ],
-  [
-   43,
-   false
-  ],
-  [
-   242,
-   false
-  ],
-  [
-   244,
-   false
-  ],
-  [
-   17,
-   false
-  ],
-  [
-   42,
-   false
-  ],
-  [
-   12,
-   false
-  ],
-  [
-   229,
-   false
-  ],
-  [
-   219,
-   false
-  ],
-  [
-   239,
-   false
-  ],
-  [
-   91,
-   false
-  ],
-  [
-   237,
-   false
-  ],
-  [
-   239,
-   false
-  ],
-  [
-   89,
-   false
-  ],
-  [
-   20,
-   false
-  ],
-  [
-   18,
-   false
-  ],
-  [
-   89,
-   false
-  ],
-  [
-   237,
-   false
-  ],
-  [
-   247,
-   false
-  ],
-  [
-   42,
-   false
-  ],
-  [
-   18,
-   false
-  ],
-  [
-   32,
-   false
-  ],
-  [
-   44,
-   false
-  ],
-  [
-   104,
-   false
-  ],
-  [
-   32,
-   false
-  ],
-  [
-   89,
-   false
-  ],
-  [
-   104,
-   false
-  ],
-  [
-   24,
-   false
-  ],
-  [
-   9,
-   true
-  ],
-  [
-   106,
-   false
-  ],
-  [
-   18,
-   false
-  ],
-  [
-   20,
-   false
-  ],
-  [
-   108,
-   false
-  ],
-  [
-   6,
-   false
-  ],
-  [
-   9,
-   true
-  ],
-  [
-   242,
-   false
-  ],
-  [
-   244,
-   false
-  ],
-  [
-   43,
-   false
-  ],
-  [
-   0,
-   false
-  ],
-  [
-   42,
-   false
-  ],
-  [
-   0,
-   false
-  ],
-  [
-   108,
-   false
-  ],
-  [
-   108,
-   false
-  ],
-  [
-   38,
-   false
-  ],
-  [
-   109,
-   false
-  ],
-  [
-   18,
-   false
-  ],
-  [
-   44,
-   false
-  ],
-  [
-   104,
-   false
-  ],
-  [
-   20,
-   false
-  ],
-  [
-   39,
-   false
-  ],
-  [
-   245,
-   false
-  ],
-  [
-   239,
-   false
-  ],
-  [
-   44,
-   false
-  ],
-  [
-   24,
-   false
-  ],
-  [
-   9,
-   false
-  ],
-  [
-   106,
-   false
-  ],
-  [
-   42,
-   false
-  ],
-  [
-   19,
-   false
-  ],
-  [
-   21,
-   false
-  ],
-  [
-   6,
-   false
-  ],
-  [
-   46,
-   false
-  ],
-  [
-   9,
-   false
-  ],
-  [
-   241,
-   false
-  ],
-  [
-   235,
-   false
-  ],
-  [
-   28,
-   false
-  ],
-  [
-   15,
-   false
-  ],
-  [
-   0,
-   false
-  ],
-  [
-   6,
-   false
   ],
   [
    225,
@@ -759,39 +71,7 @@
    false
   ],
   [
-   42,
-   false
-  ],
-  [
-   0,
-   false
-  ],
-  [
-   0,
-   false
-  ],
-  [
-   12,
-   false
-  ],
-  [
-   10,
-   false
-  ],
-  [
-   37,
-   false
-  ],
-  [
-   30,
-   false
-  ],
-  [
-   22,
-   false
-  ],
-  [
-   237,
+   245,
    false
   ],
   [
@@ -799,35 +79,7 @@
    false
   ],
   [
-   42,
-   false
-  ],
-  [
    19,
-   false
-  ],
-  [
-   21,
-   false
-  ],
-  [
-   42,
-   false
-  ],
-  [
-   242,
-   false
-  ],
-  [
-   228,
-   false
-  ],
-  [
-   47,
-   true
-  ],
-  [
-   27,
    false
   ],
   [
@@ -835,11 +87,15 @@
    false
   ],
   [
-   30,
+   31,
    false
   ],
   [
-   44,
+   25,
+   false
+  ],
+  [
+   26,
    false
   ],
   [
@@ -847,11 +103,27 @@
    false
   ],
   [
-   106,
+   18,
    false
   ],
   [
-   107,
+   28,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   0,
    false
   ],
   [
@@ -859,11 +131,11 @@
    false
   ],
   [
-   246,
+   12,
    false
   ],
   [
-   248,
+   15,
    false
   ],
   [
@@ -871,7 +143,43 @@
    false
   ],
   [
-   18,
+   16,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   30,
    false
   ],
   [
@@ -883,51 +191,784 @@
    false
   ],
   [
+   246,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   22,
+   false
+  ],
+  [
+   104,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   46,
+   true
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   23,
+   false
+  ],
+  [
+   105,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   48,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   241,
+   false
+  ],
+  [
+   227,
+   false
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   48,
+   false
+  ],
+  [
+   229,
+   false
+  ],
+  [
+   239,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   231,
+   false
+  ],
+  [
+   48,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   239,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   233,
+   false
+  ],
+  [
+   235,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   87,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   233,
+   false
+  ],
+  [
+   217,
+   false
+  ],
+  [
+   227,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   231,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   103,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   27,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   233,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   241,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   240,
+   false
+  ],
+  [
+   238,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   29,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   87,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   29,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   103,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   242,
+   false
+  ],
+  [
+   236,
+   false
+  ],
+  [
+   23,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   242,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   102,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   23,
+   false
+  ],
+  [
+   105,
+   false
+  ],
+  [
+   25,
+   false
+  ],
+  [
+   226,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   242,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   104,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   226,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   242,
+   false
+  ],
+  [
+   236,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   23,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   16,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   115,
+   false
+  ],
+  [
+   239,
+   false
+  ],
+  [
+   233,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
    42,
    false
   ]
  ],
  "circuits": 1,
- "park": "ht32_paths.park",
+ "park": "ht32_extreme.park",
  "screenshots": [
-  "ht32_paths_r0.png",
-  "ht32_paths_r1.png",
-  "ht32_paths_r2.png",
-  "ht32_paths_r3.png"
+  "ht32_extreme_r0.png",
+  "ht32_extreme_r1.png",
+  "ht32_extreme_r2.png",
+  "ht32_extreme_r3.png"
  ],
- "run": "20261020-083124-hypertwister@flat32",
- "eval": 9373,
+ "run": "20261020-100735-hypertwister@flat32",
+ "eval": 7099,
  "search_verdict": {
   "stage": "rated",
-  "E": 9.34,
-  "I": 7.3,
-  "N": 5.66,
+  "E": 10.29,
+  "I": 7.07,
+  "N": 5.87,
   "stats": {
-   "excitement": 934,
-   "intensity": 730,
-   "nausea": 566,
-   "maxSpeed": 51,
-   "averageSpeed": 20,
-   "rideTime": 152,
-   "rideLength": 1810,
-   "maxPositiveVerticalGs": 3.11,
-   "maxNegativeVerticalGs": -0.97,
-   "maxLateralGs": 2.79,
-   "totalAirTime": 6.09,
-   "numDrops": 20,
+   "excitement": 1029,
+   "intensity": 707,
+   "nausea": 587,
+   "maxSpeed": 48,
+   "averageSpeed": 16,
+   "rideTime": 177,
+   "rideLength": 1747,
+   "maxPositiveVerticalGs": 2.97,
+   "maxNegativeVerticalGs": -1.06,
+   "maxLateralGs": 2.69,
+   "totalAirTime": 5.52,
+   "numDrops": 19,
    "numLiftHills": 6,
-   "highestDropHeight": 12,
+   "highestDropHeight": 16,
    "lifecycleFlags": 3,
    "status": "testing",
    "cars": 10,
    "trains": 1
   },
   "error": null,
-  "ticks": 4917,
-  "wall": 1.03,
+  "ticks": 5738,
+  "wall": 1.263,
   "build_index": null,
   "speed_before": 8,
-  "decor": 88
+  "decor": 66,
+  "paths": 95
  },
  "paths": true,
  "config": {
@@ -952,6 +993,7 @@
   "station_len": 5,
   "lake": 0.0,
   "mounds": 0,
-  "tunnels": false
+  "tunnels": false,
+  "paths": true
  }
 }
