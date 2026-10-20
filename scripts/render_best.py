@@ -24,7 +24,7 @@ def main() -> None:
     ap.add_argument("--icap", type=float, default=10.35)
     args = ap.parse_args()
     layout, meta = layout_from_run(args.run)
-    if args.paths:
+    if args.paths and not layout.paths:  # keep the run's own planner version (e.g. "v2")
         layout = dataclasses.replace(layout, paths=True)
     best = None
     for line in open(args.run / "evals.jsonl"):
