@@ -48,6 +48,7 @@ FIXED = {
     "paths": False,  # route the exit path and queue line past the track in every evaluation (paths.py)
     "reversed": False,  # run the trains backwards
     "theme": False,  # match tree species, paths, colours and station style to the park around the area (theme.py)
+    "height_price": 0.0,  # excitement given up per metre of mean track height above ground (supports)
 }
 
 # Phase 3: one coaster as exciting as possible (Extreme = 10.24). Intensity stays under the
@@ -171,6 +172,7 @@ def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, l
         i_cap_start=cfg_values["i_cap_start"], i_cap_end=cfg_values["i_cap_end"],
         priors=cfg_values["priors"], i_price_start=cfg_values["i_price_start"], i_price_end=cfg_values["i_price_end"],
         circuits=cfg_values["circuits"], goal=cfg_values["goal"], n_cap=cfg_values["n_cap"],
+        height_price=cfg_values.get("height_price", 0.0),
     )
     run_dir = run(cfg, layout, initial=track, log_print=log)
     meta = {"condition": str(condition_path), "condition_name": cond["name"], "kind": cond.get("kind"),
@@ -225,6 +227,7 @@ def continue_run(run_dir: Path, minutes: float, seed: int = 2, t0: float = 0.1, 
         i_cap_start=cfg_values["i_cap_end"], i_cap_end=cfg_values["i_cap_end"],
         priors=cfg_values["priors"], i_price_start=cfg_values["i_price_start"], i_price_end=cfg_values["i_price_end"],
         circuits=cfg_values["circuits"], goal=cfg_values["goal"], n_cap=cfg_values["n_cap"],
+        height_price=cfg_values.get("height_price", 0.0),
     )
     out = run(cfg, layout, initial=track, log_print=log)
     meta = {**meta, "config": cfg_values, "seed": seed, "continued_from": str(run_dir), "from_eval": best["eval"]}

@@ -34,6 +34,7 @@ class Verdict:
     speed_before: int | None = None
     decor: int = 0  # trees planted for the rating (removed again unless kept)
     paths: int = 0  # footpath tiles built for the rating (removed again unless kept)
+    height: float = 0.0  # mean height of the pieces above the ground or water, metres (supports, looks)
 
     @property
     def rated(self) -> bool:
@@ -53,7 +54,24 @@ class Verdict:
             "speed_before": self.speed_before,
             "decor": self.decor,
             "paths": self.paths,
+            "height": round(self.height, 2),
         }
+
+
+METRES_PER_Z = 0.09  # a 112-z tree is about 10 m
+
+
+def mean_height(layout: Layout, placed) -> float:
+    """Mean height of each piece's first element above the ground or water, in metres (0 below it)."""
+    env = layout.env
+    if env is None or not placed:
+        return 0.0
+    total = 0
+    for p in placed:
+        info = env.tiles.get((p.x // 32, p.y // 32))
+        if info is not None:
+            total += max(0, p.z - info.floor)
+    return total / len(placed) * METRES_PER_Z
 
 
 class Judge:
@@ -142,6 +160,7 @@ class Judge:
                     speed_before=r.get("speedBefore"), decor=r.get("decor", 0), paths=r.get("paths", 0))
         if r.get("sceneryLost"):
             return Verdict("scenery", error=f"build removed {r['sceneryLost']} scenery items", wall=v.wall)
+        v.height = mean_height(self.layout, tr.placed)
         if "index" in r:
             # Index into the full placed list (station first); report it relative to `pieces`.
             v.build_index = r["index"] - self.layout.station_len

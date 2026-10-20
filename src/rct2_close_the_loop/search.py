@@ -43,7 +43,7 @@ GOALS = {
 
 
 def score(v: Verdict, slack: float = 0.0, i_cap: float = I_CAP, i_price: float = 0.0,
-          n_cap: float = N_CAP) -> float | None:
+          n_cap: float = N_CAP, height_price: float = 0.0) -> float | None:
     """Excitement minus penalties past the I/N caps.
 
     `slack` > 0 adds a small preference for lower intensity and nausea, so that
@@ -57,7 +57,8 @@ def score(v: Verdict, slack: float = 0.0, i_cap: float = I_CAP, i_price: float =
     if not v.rated:
         return None
     s = v.excitement - PENALTY * max(0.0, v.intensity - i_cap) - PENALTY * max(0.0, v.nausea - n_cap)
-    return s - slack * (v.intensity + v.nausea) / 2 - i_price * v.intensity
+    # height_price: excitement given up per metre of mean height above ground (fewer, shorter supports).
+    return s - slack * (v.intensity + v.nausea) / 2 - i_price * v.intensity - height_price * v.height
 
 
 def meets_goal(v: Verdict, goal: str = "very_high") -> bool:
@@ -88,6 +89,7 @@ class SearchConfig:
     stop_on_goal: bool = False
     n_cap: float = N_CAP  # nausea cap in score()
     goal: str = "very_high"  # key of GOALS: what best_goal.json and "GOAL MET" track
+    height_price: float = 0.0  # score cost per metre of mean track height above ground
 
 
 class RunLog:
@@ -159,7 +161,7 @@ def run(cfg: SearchConfig, layout: Layout, initial: list[tuple[int, bool]] | Non
     def scorer(v: Verdict, frac: float) -> float | None:
         cap = cfg.i_cap_start + (cfg.i_cap_end - cfg.i_cap_start) * frac
         price = cfg.i_price_start + (cfg.i_price_end - cfg.i_price_start) * frac
-        return score(v, cfg.slack, cap, price, cfg.n_cap)
+        return score(v, cfg.slack, cap, price, cfg.n_cap, cfg.height_price)
 
     laps = [int(x) for x in str(cfg.circuits).split(",")]
     chain_laps = [laps[i % len(laps)] for i in range(cfg.chains)]
