@@ -23,7 +23,7 @@ results/*/frames/
 
 # Video intermediates (frames and image sequences; scripts/make_videos.py rebuilds them)
 results/video/ride_frames/
-results/video/ride_seq/
+results/video/ride_seq*/
 results/video/search_frames/
-results/video/search_seq/
+results/video/search_seq*/
 results/video/*_log.txt
