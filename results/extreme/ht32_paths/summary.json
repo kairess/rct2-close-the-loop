@@ -2,13 +2,13 @@
  "name": "ht32_paths",
  "verdict": {
   "stage": "rated",
-  "E": 10.41,
-  "I": 7.37,
-  "N": 5.96,
+  "E": 10.16,
+  "I": 7.35,
+  "N": 5.93,
   "stats": {
-   "excitement": 1041,
-   "intensity": 737,
-   "nausea": 596,
+   "excitement": 1016,
+   "intensity": 735,
+   "nausea": 593,
    "maxSpeed": 51,
    "averageSpeed": 20,
    "rideTime": 152,
@@ -27,11 +27,11 @@
   },
   "error": null,
   "ticks": 4917,
-  "wall": 1.619,
+  "wall": 1.034,
   "build_index": null,
   "speed_before": 8,
-  "decor": 81,
-  "paths": 60
+  "decor": 83,
+  "paths": 54
  },
  "track": [
   [
