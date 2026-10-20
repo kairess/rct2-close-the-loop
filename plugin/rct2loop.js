@@ -253,6 +253,88 @@ function cmdRunTicks(args, reply) {
     setPaused(false, function () {});
 }
 
+// Ride video: open the park and a ride, bring guests next to it, wait until a train leaves with
+// guests aboard, then save the park every `every` ticks for `frames` frames, noting the lead car.
+// args = {ride, guests, spots: [[x, y, z]] (world, path tiles), warmup, every, frames, prefix, prerecord}
+function leadCar(ride) {
+    var r = map.getRide(ride);
+    if (!r || !r.vehicles.length) return null;
+    return map.getEntity(r.vehicles[0]);
+}
+
+function trainGuests(ride) {
+    var r = map.getRide(ride);
+    if (!r || !r.vehicles.length) return 0;
+    var n = 0, id = r.vehicles[0], k = 0;
+    while (id !== null && id !== undefined && k++ < 100) {
+        var car = map.getEntity(id);
+        if (!car) break;
+        for (var i = 0; i < car.guests.length; i++) if (car.guests[i] !== null) n++;
+        id = car.nextCarOnTrain;
+    }
+    return n;
+}
+
+function cmdRideRecord(args, reply) {
+    var acts = [['parksetparameter', { parameter: 1, value: 0 }], ['ridesetstatus', { ride: args.ride, status: 1 }]];
+    sequence(acts.length, function (i, next) {
+        context.executeAction(acts[i][0], acts[i][1], function () { next(null); });
+    }, function () {
+        var made = 0;
+        for (var g = 0; g < args.guests; g++) {
+            var guest = park.generateGuest();
+            if (!guest) continue;
+            var spot = args.spots[g % args.spots.length];
+            guest.x = spot[0]; guest.y = spot[1]; guest.z = spot[2];
+            guest.minIntensity = 0; guest.maxIntensity = 15;
+            try { guest.nauseaTolerance = 3; } catch (e) {}
+            guest.happiness = 230; guest.energy = 120;
+            made++;
+        }
+        var frames = [], ticks = 0, phase = 'warmup', waitFrames = 0;
+        var grab = function (cb) {
+            var car = leadCar(args.ride);
+            var name = args.prefix + '_' + ('0000' + frames.length).slice(-5);
+            context.executeAction(SAVE_ACTION, { filename: name }, function () {
+                frames.push({ file: name, x: car ? car.x : 0, y: car ? car.y : 0, z: car ? car.z : 0,
+                              status: car ? car.status : null, guests: trainGuests(args.ride), tick: ticks });
+                cb();
+            });
+        };
+        var busy = false;
+        var sub = context.subscribe('interval.tick', function () {
+            ticks++;
+            if (busy) return;
+            if (phase === 'warmup') {
+                var car = leadCar(args.ride);
+                var aboard = trainGuests(args.ride);
+                // Start a little before departure: guests on board and the train still at the station.
+                if (aboard > 0 && car && (car.status === 'waitingToDepart' || car.status === 'departing' ||
+                                           car.status === 'travelling' || car.status === 'movingToEndOfStation')) {
+                    phase = 'record';
+                }
+                if (ticks > args.warmup) {
+                    sub.dispose();
+                    setPaused(true, function () { reply(true, { made: made, frames: frames, reason: 'no train with guests' }); });
+                }
+                return;
+            }
+            if (ticks % args.every !== 0) return;
+            busy = true;
+            setPaused(true, function () {
+                grab(function () {
+                    if (frames.length >= args.frames) {
+                        sub.dispose();
+                        return reply(true, { made: made, frames: frames });
+                    }
+                    setPaused(false, function () { busy = false; });
+                });
+            });
+        });
+        ensureSpeed(function () { setPaused(false, function () {}); });
+    });
+}
+
 // Rides in the park with their ratings and status (for checking a decorated park).
 function cmdRideInfo(args, reply) {
     var out = [];
@@ -963,6 +1045,7 @@ var COMMANDS = {
     actions: cmdActions,
     ride_info: cmdRideInfo,
     run_ticks: cmdRunTicks,
+    ride_record: cmdRideRecord,
     measure_clearance: cmdMeasureClearance,
     allowed: cmdAllowed,
     evaluate: cmdEvaluate,
