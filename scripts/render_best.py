@@ -22,10 +22,13 @@ def main() -> None:
     ap.add_argument("name")
     ap.add_argument("--paths", action="store_true")
     ap.add_argument("--icap", type=float, default=10.35)
+    ap.add_argument("--reversed", action="store_true", help="run the trains backwards (a normal ride setting)")
     args = ap.parse_args()
     layout, meta = layout_from_run(args.run)
     if args.paths and not layout.paths:  # keep the run's own planner version (e.g. "v2")
         layout = dataclasses.replace(layout, paths=True)
+    if args.reversed:
+        layout = dataclasses.replace(layout, reversed=True)
     best = None
     for line in open(args.run / "evals.jsonl"):
         r = json.loads(line)
@@ -39,7 +42,7 @@ def main() -> None:
         img = crop_to_area(Image.open(out / shot).convert("RGB"), layout, k)
         img.resize((960, round(960 * img.height / img.width)), Image.LANCZOS).save(out / f"thumb_r{k}.jpg", quality=84)
     summary.update({"run": args.run.name, "eval": best["eval"], "search_verdict": best["verdict"], "paths": args.paths,
-                    "config": meta["config"]})
+                    "reversed": args.reversed, "config": meta["config"]})
     (out / "summary.json").write_text(json.dumps(summary, indent=1))
     v = summary["verdict"]
     print(f"{args.name}: E{v['E']} I{v['I']} N{v['N']} paths {v.get('paths')} trees {v.get('decor')} -> {out}")
