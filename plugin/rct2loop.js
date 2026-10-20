@@ -446,6 +446,9 @@ function evaluateOnLand(args, t0, timing, reply) {
                 if (err) return finish({ stage: failedIndex === 0 ? 'entrance' : 'exit', error: err });
                 setCars(rideId, args.cars, function (err) {
                     if (err) return finish({ stage: 'cars', error: err });
+                    if (args.reversed) {
+                        context.executeAction('ridesetvehicle', { ride: rideId, type: 3, value: 1, colour: 0 }, function () {});
+                    }
                     setCircuits(rideId, args.circuits, function (err) {
                         if (err) return finish({ stage: 'circuits', error: err });
                         placePaths(args.paths, paved, function (errs) {

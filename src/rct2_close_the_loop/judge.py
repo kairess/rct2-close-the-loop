@@ -114,6 +114,7 @@ class Judge:
             "circuits": circuits,
             "keep": keep,
             "cars": self.layout.cars,
+            "reversed": self.layout.reversed,
         }
         if self.layout.obstacles or self.layout.env is not None:
             args["sceneryRect"] = list(self.layout.area)

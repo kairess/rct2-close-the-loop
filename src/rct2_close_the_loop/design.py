@@ -46,6 +46,7 @@ FIXED = {
     "mounds": 0,  # 3x3 hills raised before designing, for tunnels (landscape)
     "tunnels": False,  # allow track fully below the surface
     "paths": False,  # route the exit path and queue line past the track in every evaluation (paths.py)
+    "reversed": False,  # run the trains backwards
 }
 
 # Phase 3: one coaster as exciting as possible (Extreme = 10.24). Intensity stays under the
@@ -121,7 +122,8 @@ def landscape(cond: dict, lake: float = 0.0, mounds: int = 0, log=print) -> Path
 
 
 def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | None = None,
-            cars: int | None = None, station_len: int | None = None, paths: bool = False):
+            cars: int | None = None, station_len: int | None = None, paths: bool = False,
+            reversed_trains: bool = False):
     """Scan the land and find a starting loop. Returns (layout, track, verdict)."""
     area = cond["area"]
     x0, y0, x1, y1 = bbox(area)
@@ -129,7 +131,7 @@ def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | N
     env = scan_env(cond["park_path"], (x0 - 6, y0 - 6, x1 + 6, y1 + 6), sandbox=cond.get("sandbox", False),
                    terraform=cond.get("terraform", True), tunnels=cond.get("tunnels", False))
     log(f"land: {env.summary(area)}")
-    base = dataclasses.replace(BASES[ride], decor=decor, cars=cars, paths=paths)
+    base = dataclasses.replace(BASES[ride], decor=decor, cars=cars, paths=paths, reversed=reversed_trains)
     if station_len:
         base = dataclasses.replace(base, station_len=station_len)
     if judge_factory is None:
@@ -149,7 +151,7 @@ def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, l
         cond["tunnels"] = True
     layout, track, v0 = prepare(cond, cfg_values["ride"], log=log, decor=cfg_values.get("decor"),
                                 cars=cfg_values.get("cars"), station_len=cfg_values.get("station_len"),
-                                paths=cfg_values.get("paths", False))
+                                paths=cfg_values.get("paths", False), reversed_trains=cfg_values.get("reversed", False))
     log(f"start: station {layout.station_tile} dir {layout.station_dir} z {layout.ground_z}, "
         f"{len(track)} pieces, E{v0.excitement}/I{v0.intensity}/N{v0.nausea}")
     cfg = SearchConfig(
@@ -185,7 +187,8 @@ def layout_from_run(run_dir: Path):
     cfg = meta["config"]
     layout = dataclasses.replace(BASES[cfg["ride"]], station_tile=(sx, sy), station_dir=sd, ground_z=sz,
                                  env=env, area_tiles=area, area=bbox(area), park=str(cond["park_path"]),
-                                 decor=cfg.get("decor"), cars=cfg.get("cars"), paths=cfg.get("paths", False))
+                                 decor=cfg.get("decor"), cars=cfg.get("cars"), paths=cfg.get("paths", False),
+                                 reversed=cfg.get("reversed", False))
     if cfg.get("station_len"):
         layout = dataclasses.replace(layout, station_len=cfg["station_len"])
     return layout, meta
