@@ -69,9 +69,9 @@ def station_candidates(base: Layout, env: Env, area: frozenset) -> list[tuple[fl
             need = st + sides
             if any(t not in area or not env.buildable(t) for t in need):
                 continue
+            fronts = []
             if base.paths == "v2":
                 # The queue line and exit path start on the tiles in front of the entrance and exit.
-                fronts = []
                 for k in ((d + 1) & 3, (d + 3) & 3):
                     ox, oy = _unit(k)
                     fronts.append((mid[0] + 2 * ox, mid[1] + 2 * oy))
@@ -80,6 +80,9 @@ def station_candidates(base: Layout, env: Env, area: frozenset) -> list[tuple[fl
             floors = [env.tiles[t].floor for t in need]
             z = max(floors)
             if not all(env.free_at(t, z) for t in need):
+                continue
+            # A path at the station's height must not be under the ground in front of the doors.
+            if any(env.tiles[t].floor > z or not env.free_at(t, z) for t in fronts):
                 continue
             # Room to run ahead after the station, and room on both turning sides.
             run = 0
