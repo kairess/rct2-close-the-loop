@@ -230,6 +230,56 @@ function cmdMeasureClearance(args, reply) {
 
 // What a park looks like around an area, for theming: counts of small scenery, footpath surfaces
 // and railings, and terrain surfaces in args.rect, plus the installed station styles.
+// Installed objects of the given types: [{identifier, name, type}] (for picking decorations).
+function cmdObjects(args, reply) {
+    var out = [];
+    var all = objectManager.installedObjects;
+    for (var i = 0; i < all.length; i++) {
+        if (args.types.indexOf(all[i].type) >= 0) out.push({ identifier: all[i].identifier, name: all[i].name, type: all[i].type });
+    }
+    reply(true, out);
+}
+
+// Let the simulation run for args.ticks ticks (ratings recalculate, guests walk), then pause again.
+function cmdRunTicks(args, reply) {
+    var n = 0;
+    var sub = context.subscribe('interval.tick', function () {
+        n++;
+        if (n >= args.ticks) {
+            sub.dispose();
+            setPaused(true, function () { reply(true, { ticks: n }); });
+        }
+    });
+    setPaused(false, function () {});
+}
+
+// Rides in the park with their ratings and status (for checking a decorated park).
+function cmdRideInfo(args, reply) {
+    var out = [];
+    var rides = map.rides;
+    for (var i = 0; i < rides.length; i++) {
+        var r = rides[i];
+        out.push({ id: r.id, name: r.name, type: r.type, classification: r.classification, status: r.status,
+                   excitement: r.excitement, intensity: r.intensity, nausea: r.nausea });
+    }
+    reply(true, out);
+}
+
+// Execute a list of game actions in order: args.list = [[action, args], ...] ->
+// [{ok, error, position}] per item. Used to build a park around a coaster.
+function cmdActions(args, reply) {
+    var out = [];
+    sequence(args.list.length, function (i, next) {
+        var a = args.list[i];
+        context.executeAction(a[0], a[1], function (res) {
+            out.push(res.error ? { ok: false, error: errText(res) } : { ok: true, position: res.position || null });
+            next(null);
+        });
+    }, function () {
+        reply(true, out);
+    });
+}
+
 function cmdCensus(args, reply) {
     var r = args.rect;
     var scenery = {}, paths = {}, railings = {}, terrain = {};
@@ -909,6 +959,10 @@ var COMMANDS = {
     installed_rides: cmdInstalledRides,
     ride_objects: cmdRideObjects,
     census: cmdCensus,
+    objects: cmdObjects,
+    actions: cmdActions,
+    ride_info: cmdRideInfo,
+    run_ticks: cmdRunTicks,
     measure_clearance: cmdMeasureClearance,
     allowed: cmdAllowed,
     evaluate: cmdEvaluate,
