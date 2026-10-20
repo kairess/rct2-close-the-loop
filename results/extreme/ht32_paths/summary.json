@@ -1,0 +1,957 @@
+{
+ "name": "ht32_paths",
+ "verdict": {
+  "stage": "rated",
+  "E": 10.41,
+  "I": 7.37,
+  "N": 5.96,
+  "stats": {
+   "excitement": 1041,
+   "intensity": 737,
+   "nausea": 596,
+   "maxSpeed": 51,
+   "averageSpeed": 20,
+   "rideTime": 152,
+   "rideLength": 1810,
+   "maxPositiveVerticalGs": 3.11,
+   "maxNegativeVerticalGs": -0.97,
+   "maxLateralGs": 2.79,
+   "totalAirTime": 6.09,
+   "numDrops": 20,
+   "numLiftHills": 6,
+   "highestDropHeight": 12,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 10,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4917,
+  "wall": 1.619,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 81,
+  "paths": 60
+ },
+ "track": [
+  [
+   242,
+   false
+  ],
+  [
+   228,
+   false
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   4,
+   true
+  ],
+  [
+   46,
+   true
+  ],
+  [
+   35,
+   true
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   48,
+   false
+  ],
+  [
+   31,
+   false
+  ],
+  [
+   33,
+   false
+  ],
+  [
+   238,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   48,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   229,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   239,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   242,
+   false
+  ],
+  [
+   111,
+   false
+  ],
+  [
+   218,
+   false
+  ],
+  [
+   222,
+   false
+  ],
+  [
+   228,
+   false
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   6,
+   true
+  ],
+  [
+   226,
+   false
+  ],
+  [
+   236,
+   false
+  ],
+  [
+   103,
+   false
+  ],
+  [
+   29,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   89,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   102,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   46,
+   true
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   240,
+   false
+  ],
+  [
+   45,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   22,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   239,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   27,
+   false
+  ],
+  [
+   94,
+   false
+  ],
+  [
+   234,
+   false
+  ],
+  [
+   111,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   26,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   223,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   234,
+   false
+  ],
+  [
+   236,
+   false
+  ],
+  [
+   23,
+   false
+  ],
+  [
+   234,
+   false
+  ],
+  [
+   222,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   242,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   17,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   229,
+   false
+  ],
+  [
+   219,
+   false
+  ],
+  [
+   239,
+   false
+  ],
+  [
+   91,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   239,
+   false
+  ],
+  [
+   89,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   89,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   104,
+   false
+  ],
+  [
+   32,
+   false
+  ],
+  [
+   89,
+   false
+  ],
+  [
+   104,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   9,
+   true
+  ],
+  [
+   242,
+   false
+  ],
+  [
+   244,
+   false
+  ],
+  [
+   43,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   108,
+   false
+  ],
+  [
+   38,
+   false
+  ],
+  [
+   109,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   104,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   39,
+   false
+  ],
+  [
+   245,
+   false
+  ],
+  [
+   239,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   24,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   46,
+   false
+  ],
+  [
+   9,
+   false
+  ],
+  [
+   241,
+   false
+  ],
+  [
+   235,
+   false
+  ],
+  [
+   28,
+   false
+  ],
+  [
+   15,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   6,
+   false
+  ],
+  [
+   225,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   12,
+   false
+  ],
+  [
+   10,
+   false
+  ],
+  [
+   37,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   22,
+   false
+  ],
+  [
+   237,
+   false
+  ],
+  [
+   247,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   19,
+   false
+  ],
+  [
+   21,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   242,
+   false
+  ],
+  [
+   228,
+   false
+  ],
+  [
+   47,
+   true
+  ],
+  [
+   27,
+   false
+  ],
+  [
+   29,
+   false
+  ],
+  [
+   30,
+   false
+  ],
+  [
+   44,
+   false
+  ],
+  [
+   20,
+   false
+  ],
+  [
+   106,
+   false
+  ],
+  [
+   107,
+   false
+  ],
+  [
+   42,
+   false
+  ],
+  [
+   246,
+   false
+  ],
+  [
+   248,
+   false
+  ],
+  [
+   0,
+   false
+  ],
+  [
+   18,
+   false
+  ],
+  [
+   233,
+   false
+  ],
+  [
+   243,
+   false
+  ],
+  [
+   42,
+   false
+  ]
+ ],
+ "circuits": 1,
+ "park": "ht32_paths.park",
+ "screenshots": [
+  "ht32_paths_r0.png",
+  "ht32_paths_r1.png",
+  "ht32_paths_r2.png",
+  "ht32_paths_r3.png"
+ ],
+ "run": "20261020-083124-hypertwister@flat32",
+ "eval": 9373,
+ "search_verdict": {
+  "stage": "rated",
+  "E": 9.34,
+  "I": 7.3,
+  "N": 5.66,
+  "stats": {
+   "excitement": 934,
+   "intensity": 730,
+   "nausea": 566,
+   "maxSpeed": 51,
+   "averageSpeed": 20,
+   "rideTime": 152,
+   "rideLength": 1810,
+   "maxPositiveVerticalGs": 3.11,
+   "maxNegativeVerticalGs": -0.97,
+   "maxLateralGs": 2.79,
+   "totalAirTime": 6.09,
+   "numDrops": 20,
+   "numLiftHills": 6,
+   "highestDropHeight": 12,
+   "lifecycleFlags": 3,
+   "status": "testing",
+   "cars": 10,
+   "trains": 1
+  },
+  "error": null,
+  "ticks": 4917,
+  "wall": 1.03,
+  "build_index": null,
+  "speed_before": 8,
+  "decor": 88
+ },
+ "paths": true,
+ "config": {
+  "ride": "hypertwister",
+  "minutes": 15.0,
+  "chains": 4,
+  "t0": 0.3,
+  "t1": 0.02,
+  "slack": 0.0,
+  "i_cap_start": 10.3,
+  "i_cap_end": 10.3,
+  "priors": false,
+  "i_price_start": 0.0,
+  "i_price_end": 0.0,
+  "circuits": "1",
+  "decor": "rct2.scenery_small.tco",
+  "batch": 28,
+  "workers": 14,
+  "goal": "extreme",
+  "n_cap": 1000.0,
+  "cars": null,
+  "station_len": 5,
+  "lake": 0.0,
+  "mounds": 0,
+  "tunnels": false
+ }
+}
