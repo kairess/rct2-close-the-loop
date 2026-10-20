@@ -120,16 +120,19 @@ class Judge:
             args["sceneryRect"] = list(self.layout.area)
         if tr.cuts:
             args["cuts"] = [[x, y, units] for (x, y), units in sorted(tr.cuts.items())]
+        theme = self.layout.theme or {}
+        if theme:
+            args["theme"] = {k: theme.get(k) for k in ("track", "vehicle", "station")}
         path_tiles = []
         if self.layout.paths and self.layout.env is not None:
             if self.planner is not None:
                 path_tiles = self.planner.submit(paths.plan_in_worker, tr.placed).result()
             else:
                 path_tiles = paths.plan(self.layout, tr.placed)
-            args["paths"] = {"tiles": path_tiles}
+            args["paths"] = {"tiles": path_tiles, "objects": theme.get("paths")}
         if self.layout.decor and self.layout.env is not None:
             avoid = {(t[0], t[1]) for t in path_tiles}
-            args["decor"] = {"identifier": self.layout.decor,
+            args["decor"] = {"identifier": self.layout.decor, "identifiers": theme.get("trees") or [self.layout.decor],
                              "tiles": [t for t in decor.plan(self.layout, tr.placed, tr.cuts) if tuple(t) not in avoid]}
         try:
             r = self.game.call("evaluate", args, timeout=EVALUATE_TIMEOUT)

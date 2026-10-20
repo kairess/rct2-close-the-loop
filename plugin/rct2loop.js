@@ -228,6 +228,47 @@ function cmdMeasureClearance(args, reply) {
     });
 }
 
+// What a park looks like around an area, for theming: counts of small scenery, footpath surfaces
+// and railings, and terrain surfaces in args.rect, plus the installed station styles.
+function cmdCensus(args, reply) {
+    var r = args.rect;
+    var scenery = {}, paths = {}, railings = {}, terrain = {};
+    var bump = function (m, k, extra) {
+        if (!m[k]) m[k] = { n: 0 };
+        m[k].n++;
+        if (extra) for (var e in extra) m[k][e] = extra[e];
+    };
+    var objId = function (type, idx) {
+        if (idx === null || idx === undefined) return null;
+        var o = objectManager.getObject(type, idx);
+        return o ? o.identifier : null;
+    };
+    for (var x = Math.max(0, r[0]); x < Math.min(map.size.x, r[2]); x++) {
+        for (var y = Math.max(0, r[1]); y < Math.min(map.size.y, r[3]); y++) {
+            var tile = map.getTile(x, y);
+            for (var i = 0; i < tile.numElements; i++) {
+                var e = tile.getElement(i);
+                if (e.type === 'small_scenery') {
+                    var so = objectManager.getObject('small_scenery', e.object);
+                    if (so) bump(scenery, so.identifier, { flags: so.flags, height: so.height });
+                } else if (e.type === 'footpath') {
+                    var sid = objId('footpath_surface', e.surfaceObject);
+                    if (sid) bump(paths, sid, { queue: e.isQueue });
+                    var rid = objId('footpath_railings', e.railingsObject);
+                    if (rid) bump(railings, rid);
+                } else if (e.type === 'surface') {
+                    var tid = objId('terrain_surface', e.surfaceStyle);
+                    if (tid) bump(terrain, tid);
+                }
+            }
+        }
+    }
+    var stations = [];
+    var all = objectManager.installedObjects;
+    for (var j = 0; j < all.length; j++) if (all[j].type === 'station') stations.push(all[j].identifier);
+    reply(true, { scenery: scenery, paths: paths, railings: railings, terrain: terrain, stations: stations });
+}
+
 // Rating multipliers and train specs of every installed ride object (args.prefix filters identifiers).
 // Objects not already in the park are loaded only to read them, then unloaded again.
 function cmdRideObjects(args, reply) {
@@ -446,6 +487,7 @@ function evaluateOnLand(args, t0, timing, reply) {
                 if (err) return finish({ stage: failedIndex === 0 ? 'entrance' : 'exit', error: err });
                 setCars(rideId, args.cars, function (err) {
                     if (err) return finish({ stage: 'cars', error: err });
+                    if (args.keep && args.theme) applyTheme(rideId, args.theme);
                     if (args.reversed) {
                         context.executeAction('ridesetvehicle', { ride: rideId, type: 3, value: 1, colour: 0 }, function () {});
                     }
@@ -471,19 +513,25 @@ var decorObjects = {};
 
 function plantDecor(decor, planted, cb) {
     if (!decor || !decor.tiles || !decor.tiles.length) return cb();
-    var index = decorObjects[decor.identifier];
-    if (index === undefined) {
-        var obj = objectManager.load(decor.identifier);
-        index = decorObjects[decor.identifier] = obj ? obj.index : null;
+    var ids = decor.identifiers || [decor.identifier];
+    var indices = [];
+    for (var k = 0; k < ids.length; k++) {
+        var index = decorObjects[ids[k]];
+        if (index === undefined) {
+            var obj = objectManager.load(ids[k]);
+            index = decorObjects[ids[k]] = obj ? obj.index : null;
+        }
+        if (index !== null) indices.push(index);
     }
-    if (index === null) return cb();
+    if (!indices.length) return cb();
     sequence(decor.tiles.length, function (i, next) {
         var p = decor.tiles[i];
+        var object = indices[(p[0] * 7 + p[1] * 13) % indices.length];  // a mixed stand, fixed per tile
         context.executeAction('smallsceneryplace', {
-            x: p[0] * 32, y: p[1] * 32, z: 0, direction: 0, object: index, quadrant: 0,
+            x: p[0] * 32, y: p[1] * 32, z: 0, direction: (p[0] + p[1]) & 3, object: object, quadrant: 0,
             primaryColour: 0, secondaryColour: 0, tertiaryColour: 0
         }, function (res) {
-            if (!res.error) planted.push([p[0] * 32, p[1] * 32, res.position ? res.position.z : surfaceZ(p[0], p[1])]);
+            if (!res.error) planted.push([p[0] * 32, p[1] * 32, res.position ? res.position.z : surfaceZ(p[0], p[1]), object]);
             next(null);
         });
     }, function () {
@@ -494,7 +542,21 @@ function plantDecor(decor, planted, cb) {
 // Footpaths the planner routed past the track (args.paths = {tiles: [[tileX, tileY, z, slopeDir, queue]]},
 // slopeDir -1 for flat). Real queue and exit paths that touch the track earn proximity points.
 // `placed` collects [x, y, z] to undo.
-function pathObjects() {
+function loadedIndex(type, identifier) {
+    if (!identifier) return null;
+    var all = objectManager.getAllObjects(type);
+    for (var i = 0; i < all.length; i++) if (all[i].identifier === identifier) return all[i].index;
+    var o = objectManager.load(identifier);
+    return o ? o.index : null;
+}
+
+function pathObjects(wanted) {
+    if (wanted) {
+        var n = loadedIndex('footpath_surface', wanted.surface);
+        var q = loadedIndex('footpath_surface', wanted.queue);
+        var rl = loadedIndex('footpath_railings', wanted.railings);
+        if (n !== null && q !== null && rl !== null) return { normal: n, queue: q, railings: rl };
+    }
     var surfaces = objectManager.getAllObjects('footpath_surface');
     var railings = objectManager.getAllObjects('footpath_railings');
     var normal = null, queue = null;
@@ -511,7 +573,7 @@ function pathObjects() {
 
 function placePaths(paths, placed, cb) {
     if (!paths || !paths.tiles || !paths.tiles.length) return cb([]);
-    var objs = pathObjects();
+    var objs = pathObjects(paths.objects);
     var errors = [];
     sequence(paths.tiles.length, function (i, next) {
         var t = paths.tiles[i];
@@ -541,15 +603,27 @@ function removePaths(placed, cb) {
 
 function removeDecor(decor, planted, cb) {
     if (!planted.length) return cb();
-    var index = decorObjects[decor.identifier];
     sequence(planted.length, function (i, next) {
         var p = planted[i];
-        context.executeAction('smallsceneryremove', { x: p[0], y: p[1], z: p[2], object: index, quadrant: 0 }, function () {
+        context.executeAction('smallsceneryremove', { x: p[0], y: p[1], z: p[2], object: p[3], quadrant: 0 }, function () {
             next(null);
         });
     }, function () {
         cb();
     });
+}
+
+// Colours and station style (RideSetAppearanceAction): looks only, no effect on ratings.
+// theme = {track: [main, additional, supports], vehicle: [body, trim, tertiary], station: identifier}
+function applyTheme(rideId, theme) {
+    var acts = [];
+    if (theme.track) for (var i = 0; i < 3; i++) acts.push([i, theme.track[i]]);
+    if (theme.vehicle) for (var j = 0; j < 3; j++) acts.push([3 + j, theme.vehicle[j]]);
+    var st = theme.station ? loadedIndex('station', theme.station) : null;
+    if (st !== null) acts.push([7, st]);
+    for (var k = 0; k < acts.length; k++) {
+        context.executeAction('ridesetappearance', { ride: rideId, type: acts[k][0], value: acts[k][1], index: 0 }, function () {});
+    }
 }
 
 // Longer trains earn the train-length bonus ((cars - 1) * 2.86 excitement points).
@@ -834,6 +908,7 @@ var COMMANDS = {
     load_object: cmdLoadObject,
     installed_rides: cmdInstalledRides,
     ride_objects: cmdRideObjects,
+    census: cmdCensus,
     measure_clearance: cmdMeasureClearance,
     allowed: cmdAllowed,
     evaluate: cmdEvaluate,

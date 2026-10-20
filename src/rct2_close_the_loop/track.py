@@ -212,6 +212,7 @@ class Layout:
     env: object | None = None  # env.Env read from the game; when set it replaces ground_map/obstacles
     area_tiles: frozenset | None = None  # arbitrary-shape area; None = the `area` rectangle
     decor: str | None = None  # small scenery object planted around the track before rating (decor.py)
+    theme: dict | None = None  # look of the park around the area (theme.py): tree species, path objects, colours
     reversed: bool = False  # trains run backwards (a normal ride setting): excitement x(1+2/128), intensity x(1+12/128)
     paths: bool | str = False  # True or "v2" (queue targets, stations with free fronts): route the ride's exit path and queue line past the track before rating (paths.py)
 
