@@ -25,9 +25,9 @@ from .track import DIR_DELTA, TILE, Layout, Placed, element_clearances, piece_ti
 PATH_CLEAR = 32  # kPathClearance
 SLOPE_CLEAR = 48  # a sloped path also covers its rise
 STEP = 16  # kPathHeightStep
-TOUCH_TARGET = 10  # pieces per touch item: min(x + 10, 20) saturates at 10
+TOUCH_TARGET = 8  # pieces per touch item: min(x + 10, 20) is 90% of its maximum at 8
 MAX_TILES = 140
-MAX_BFS = 25_000
+MAX_BFS = 12_000
 
 Tile = tuple[int, int]
 State = tuple[int, int, int, int]  # x, y, base z, slope direction (-1 = flat)
@@ -54,16 +54,26 @@ class Planner:
         for ax, ay, _ in layout.access_tiles():
             self.blocked.add((ax, ay))
         self.used: dict[Tile, State] = {}
+        self._static: dict[State, bool] = {}
         # No route needs to climb above the highest spot that touches the track.
         self.z_max = max([c for _t, _b, c, _i in self.first] + [layout.ground_z]) + STEP
 
     # ---------------------------------------------------------------- geometry
 
     def valid(self, s: State) -> bool:
+        if (s[0], s[1]) in self.used:
+            return False
+        ok = self._static.get(s)
+        if ok is None:
+            ok = self._static[s] = self._geometry_ok(s)
+        return ok
+
+    def _geometry_ok(self, s: State) -> bool:
+        """Everything about a path state that does not depend on the route built so far."""
         x, y, z, d = s
         t = (x, y)
         info = self.env.tiles.get(t)
-        if info is None or t in self.blocked or t in self.used or not self.layout.in_area(x, y):
+        if info is None or t in self.blocked or not self.layout.in_area(x, y):
             return False
         if not self.env.buildable(t) or z % STEP or z < info.floor or z > self.z_max:
             return False
@@ -203,3 +213,17 @@ def plan(layout: Layout, placed: list[Placed]) -> list[list[int]]:
     if layout.env is None:
         return []
     return Planner(layout, placed).plan()
+
+
+# Planning is pure Python; with many judge threads it would serialise on the GIL, so a pool of
+# processes plans instead. Each process gets the layout once and then only the placed pieces.
+_worker_layout: Layout | None = None
+
+
+def init_worker(layout: Layout) -> None:
+    global _worker_layout
+    _worker_layout = layout
+
+
+def plan_in_worker(placed: list[Placed]) -> list[list[int]]:
+    return plan(_worker_layout, placed)

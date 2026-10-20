@@ -59,8 +59,9 @@ class Verdict:
 class Judge:
     """One game instance prepared for a layout's ride object."""
 
-    def __init__(self, layout: Layout, slot: int | None = None):
+    def __init__(self, layout: Layout, slot: int | None = None, planner=None):
         self.layout = layout
+        self.planner = planner  # optional process pool for paths.plan (see JudgePool)
         self.slot = slot
         self.restarts = 0
         self._launch()
@@ -120,7 +121,10 @@ class Judge:
             args["cuts"] = [[x, y, units] for (x, y), units in sorted(tr.cuts.items())]
         path_tiles = []
         if self.layout.paths and self.layout.env is not None:
-            path_tiles = paths.plan(self.layout, tr.placed)
+            if self.planner is not None:
+                path_tiles = self.planner.submit(paths.plan_in_worker, tr.placed).result()
+            else:
+                path_tiles = paths.plan(self.layout, tr.placed)
             args["paths"] = {"tiles": path_tiles}
         if self.layout.decor and self.layout.env is not None:
             avoid = {(t[0], t[1]) for t in path_tiles}
@@ -161,6 +165,12 @@ class JudgePool:
         self._lock = threading.Lock()
         self._errors: list[Exception] = []
         self._started = threading.Semaphore(0)
+        self.planner = None
+        if layout.paths and layout.env is not None:
+            from concurrent.futures import ProcessPoolExecutor
+
+            self.planner = ProcessPoolExecutor(max_workers=max(2, workers // 2), initializer=paths.init_worker,
+                                               initargs=(layout,))
         # Each worker thread launches and owns its game for the pool's lifetime:
         # PR_SET_PDEATHSIG fires when the *thread* that spawned the game exits.
         for _ in range(workers):
@@ -179,7 +189,7 @@ class JudgePool:
 
     def _run(self) -> None:
         try:
-            judge = Judge(self.layout)
+            judge = Judge(self.layout, planner=self.planner)
             with self._lock:
                 self._judges.append(judge)
         except Exception as e:  # noqa: BLE001 - surfaced in __init__
@@ -212,3 +222,5 @@ class JudgePool:
             self._jobs.put(None)
         for j in self._judges:
             j.close()
+        if self.planner is not None:
+            self.planner.shutdown(cancel_futures=True)
