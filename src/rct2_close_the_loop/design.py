@@ -49,6 +49,7 @@ FIXED = {
     "reversed": False,  # run the trains backwards
     "theme": False,  # match tree species, paths, colours and station style to the park around the area (theme.py)
     "height_price": 0.0,  # excitement given up per metre of mean track height above ground (supports)
+    "max_height_m": None,  # no piece higher than this above the ground under it (None: the ride's own limit)
 }
 
 # Phase 3: one coaster as exciting as possible (Extreme = 10.24). Intensity stays under the
@@ -123,9 +124,16 @@ def landscape(cond: dict, lake: float = 0.0, mounds: int = 0, log=print) -> Path
     return dest
 
 
+def height_cap(base, max_height_m: float | None) -> int:
+    """World-z cap above ground for a cap in metres (a 112-z tree is about 10 m)."""
+    if not max_height_m:
+        return base.max_height
+    return min(base.max_height, int(round(max_height_m / 0.09 / 8)) * 8)
+
+
 def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | None = None,
             cars: int | None = None, station_len: int | None = None, paths: bool = False,
-            reversed_trains: bool = False, use_theme: bool = False):
+            reversed_trains: bool = False, use_theme: bool = False, max_height_m: float | None = None):
     """Scan the land and find a starting loop. Returns (layout, track, verdict)."""
     area = cond["area"]
     x0, y0, x1, y1 = bbox(area)
@@ -147,7 +155,18 @@ def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | N
         from .judge import Judge
 
         judge_factory = lambda lay: Judge(lay)  # noqa: E731
-    return find_start(base, env, area, str(cond["park_path"]), judge_factory=judge_factory, log=log)
+    cap = height_cap(base, max_height_m)
+    ride_cap = base.max_height
+    while True:
+        try:
+            return find_start(dataclasses.replace(base, max_height=cap), env, area, str(cond["park_path"]),
+                              judge_factory=judge_factory, log=log)
+        except ValueError:
+            if cap >= ride_cap:
+                raise
+            # No starting loop fits under the cap: relax it rather than give up.
+            cap = min(ride_cap, int(cap * 1.5) // 8 * 8)
+            log(f"no starting loop under the height cap; relaxing it to {cap} z")
 
 
 def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, log=print,
@@ -161,7 +180,7 @@ def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, l
     layout, track, v0 = prepare(cond, cfg_values["ride"], log=log, decor=cfg_values.get("decor"),
                                 cars=cfg_values.get("cars"), station_len=cfg_values.get("station_len"),
                                 paths=cfg_values.get("paths", False), reversed_trains=cfg_values.get("reversed", False),
-                                use_theme=cfg_values.get("theme", False))
+                                use_theme=cfg_values.get("theme", False), max_height_m=cfg_values.get("max_height_m"))
     log(f"start: station {layout.station_tile} dir {layout.station_dir} z {layout.ground_z}, "
         f"{len(track)} pieces, E{v0.excitement}/I{v0.intensity}/N{v0.nausea}")
     cfg = SearchConfig(
@@ -177,7 +196,8 @@ def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, l
     run_dir = run(cfg, layout, initial=track, log_print=log)
     meta = {"condition": str(condition_path), "condition_name": cond["name"], "kind": cond.get("kind"),
             "config": cfg_values, "seed": seed, "station": [*layout.station_tile, layout.station_dir, layout.ground_z],
-            "park": str(cond["park_path"]), "tunnels": bool(cond.get("tunnels")), "theme": layout.theme}
+            "park": str(cond["park_path"]), "tunnels": bool(cond.get("tunnels")), "theme": layout.theme,
+            "max_height": layout.max_height}
     (run_dir / "design.json").write_text(json.dumps(meta, indent=1))
     return run_dir
 
@@ -202,6 +222,8 @@ def layout_from_run(run_dir: Path):
                                  reversed=cfg.get("reversed", False), theme=meta.get("theme"))
     if cfg.get("station_len"):
         layout = dataclasses.replace(layout, station_len=cfg["station_len"])
+    if meta.get("max_height"):
+        layout = dataclasses.replace(layout, max_height=meta["max_height"])
     return layout, meta
 
 
