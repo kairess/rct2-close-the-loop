@@ -110,7 +110,26 @@ li strong { color: var(--ink); }
     <p class="lead" id="lead"></p>
   </header>
 
+  <section id="x-section" hidden>
+    <div class="narrow" style="display:flex;flex-direction:column;gap:12px">
+      <div class="eyebrow">3단계 · 코스터 하나를 극한까지</div>
+      <h2 id="x-title"></h2>
+      <p id="x-intro"></p>
+    </div>
+    <div class="table-wrap narrow">
+      <table>
+        <thead><tr><th>지렛대</th><th>측정한 효과</th><th>근거</th></tr></thead>
+        <tbody id="x-levers"></tbody>
+      </table>
+    </div>
+    <div class="cards" id="x-cards"></div>
+  </section>
+
   <section aria-label="요약">
+    <div class="narrow" style="display:flex;flex-direction:column;gap:12px">
+      <div class="eyebrow">2단계 · 처음 보는 땅에서도 되는가</div>
+      <h2>보류 조건 20곳 벤치마크</h2>
+    </div>
     <div class="readout" id="readout"></div>
   </section>
 
@@ -255,7 +274,26 @@ function render() {
     const ph = (DATA.posthoc || {})[r.condition];
     return rowHtml(r) + (ph ? rowHtml(ph.row, `↳ 사후 재실행(공식 집계 제외)`) : '');
   }).join('');
+  renderExtreme();
   bindRotation();
+}
+
+function renderExtreme() {
+  const X = DATA.extreme;
+  if (!X) return;
+  document.getElementById('x-section').hidden = false;
+  document.getElementById('x-title').textContent = X.title;
+  document.getElementById('x-intro').innerHTML = X.intro;
+  document.getElementById('x-levers').innerHTML = X.levers.map(l => `<tr><td>${l[0]}</td><td class="num">${l[1]}</td><td>${l[2]}</td></tr>`).join('');
+  document.getElementById('x-cards').innerHTML = X.items.map(it => {
+    const v = it.verdict;
+    const ok = v.E >= 10.24;
+    return `<article class="card" data-kind="extreme"><div class="pic"><img src="${it.img}_r0.jpg" data-base="${it.img}" data-rot="0" alt="${it.title}" loading="lazy" width="960" height="600"><button type="button" aria-label="다른 방향에서 보기">방향 1/4</button></div>
+      <div class="body"><h3>${it.title}</h3><div class="sub">${it.sub}</div>
+      <div class="eni"><span>${f2(v.E)}<small>흥미도</small></span><span>${f2(v.I)}<small>강도</small></span><span>${f2(v.N)}<small>멀미도</small></span></div>
+      <span class="pill ${ok ? 'ok' : 'miss'}">${ok ? '극한 등급' : '극한 미달'}</span>
+      <div class="note">${it.note}</div></div></article>`;
+  }).join('');
 }
 
 function bindRotation() {
@@ -297,7 +335,7 @@ function card(r) {
 document.querySelectorAll('.filters button').forEach(btn => btn.addEventListener('click', () => {
   document.querySelectorAll('.filters button').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
   const kind = btn.dataset.kind;
-  document.querySelectorAll('.card').forEach(el => { el.hidden = kind !== 'all' && el.dataset.kind !== kind; });
+  document.querySelectorAll('#cards .card, #extra-cards .card').forEach(el => { el.hidden = kind !== 'all' && el.dataset.kind !== kind; });
 }));
 
 render();

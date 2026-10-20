@@ -26,6 +26,7 @@ def main() -> None:
     ap.add_argument("--anim-caption", default="")
     ap.add_argument("--posthoc", type=Path, help="summary of re-runs made after a fix found on this split")
     ap.add_argument("--posthoc-note", default="")
+    ap.add_argument("--extreme", type=Path, help="JSON describing the phase 3 (Extreme) section")
     ap.add_argument("--extra-split", help="a second held-out split measured with code changed after the first")
     ap.add_argument("--extra-note", default="")
     args = ap.parse_args()
@@ -88,6 +89,18 @@ def main() -> None:
                     r["best_goal" if r["goal"] else "best_feasible"] = [g["verdict"][k] for k in ("E", "I", "N")]
         extra = {"bench": xb, "note": args.extra_note}
 
+    extreme = None
+    if args.extreme:
+        extreme = json.loads(args.extreme.read_text())
+        for it in extreme["items"]:
+            name = it["dir"]
+            src = RESULTS / "extreme" / name
+            summ = json.loads((src / "summary.json").read_text())
+            for k in range(4):
+                shutil.copyfile(src / f"thumb_r{k}.jpg", img / f"x_{name}_r{k}.jpg")
+            it["img"] = f"img/x_{name}"
+            it["verdict"] = {k: summ["verdict"][k] for k in ("E", "I", "N", "decor", "paths")}
+
     anim = None
     if args.anim:
         shutil.copyfile(args.anim, img / "evolution.webp")
@@ -119,6 +132,7 @@ def main() -> None:
         "gallery": gallery,
         "posthoc": posthoc,
         "extra": extra,
+        "extreme": extreme,
         "anim": anim,
         "lead": (f"공원 파일과 영역만 주면 땅을 읽고, 역을 놓고, 게임이 매긴 레이팅만 보고 코스터를 설계한다. "
                  + (f"개발에 쓰지 않은 {n}개 조건" if args.split == "heldout" else f"설정을 고를 때 쓴 개발 조건 {n}개")
