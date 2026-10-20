@@ -28,7 +28,8 @@ OpenRCT2를 심판으로 써서 롤러코스터를 설계하는 실험이다. �
 | `results.py`, `report.py`, `analysis.py` | 공원 저장과 스크린샷, 진화 애니메이션, 근거 수집, 실행 요약 |
 | `env.py`, `site.py` | 2단계: 게임에서 땅을 읽고(높이, 물, 소유권, 구조물), 역과 시작 회로를 스스로 찾는다 |
 | `decor.py` | 2단계: 역 주변과 트랙 옆에 나무를 심는 계획. 경치는 강도 없이 흥미도만 올린다 |
-| `design.py`, `bench.py` | 2단계: 고정 설정(`FIXED`)으로 조건 하나를 설계하고, 벤치마크 조건을 만든다 |
+| `design.py`, `bench.py` | 2·3단계: 설정(`FIXED`, `EXTREME`)으로 조건 하나를 설계하고(땅 꾸미기 포함), 벤치마크 조건을 만든다 |
+| `paths.py` | 3단계: 출구 길과 대기열을 트랙 아래·위로 지나게 계획한다(실제로 이어진 길만) |
 
 ## 설치
 
@@ -80,6 +81,19 @@ uv run python scripts/gallery.py heldout runs/2026*/          # results/gallery/
 - `results/gallery/heldout_*/`: 공원 파일(OpenRCT2에서 열면 코스터와 나무가 지어져 있다), 스크린샷, 요약
 - `results/evolution_heldout_*/`: 첫 회로에서 최종 코스터까지 애니메이션
 - 보고서: https://claude.ai/artifact/UNfTE7T2m3o6fMp8zgxrRH
+
+3단계(흥미도 극한)는 `extreme` 설정으로 돌린다.
+
+```bash
+# 하이퍼 트위스터, 역 5칸(10량), 강도 상한 10.3, 실제 길(대기열 포함), 호수·언덕·터널, 45분
+uv run rct2loop design data/extreme/flat40.json --config extreme --ride hypertwister \
+  --set station_len=5 --set i_cap_start=10.3 --set i_cap_end=10.3 --set paths='"v2"' \
+  --set lake=0.25 --set mounds=8 --set tunnels=true --minutes 45
+uv run rct2loop continue runs/<dir> --minutes 60               # 그 실행의 최고 트랙에서 이어서 탐색
+uv run python scripts/render_best.py runs/<dir> NAME --paths [--reversed]   # results/extreme/NAME/
+```
+
+3단계 결과: 최고 E 11.71(40×40, 뒤로 가는 열차), `results/extreme/`. 지렛대별 측정값은 [docs/LOG.md](docs/LOG.md), 판정은 [docs/GOAL.md](docs/GOAL.md) 3단계 절에 있다.
 
 지형은 `scripts/make_terrains.py`가 만든다. 명세는 `data/terrains/`, 공원 파일은 `data/parks/`에 저장된다. S2 실험은 `scripts/run_s2.sh <차종> <분> <seed>`로 돌리고, `scripts/summarize_s2.py runs/...`로 요약한다.
 
