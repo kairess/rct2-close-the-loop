@@ -69,6 +69,12 @@ def main() -> None:
     dg.add_argument("--set", action="append", default=[], metavar="KEY=VALUE",
                     help="override a configuration value (JSON value), e.g. --set cars=10 --set circuits='\"1,1,3,3\"'")
 
+    cn = sub.add_parser("continue", help="search on from a design run's best track (same land, station, config)")
+    cn.add_argument("run", type=Path)
+    cn.add_argument("--minutes", type=float, default=60.0)
+    cn.add_argument("--seed", type=int, default=2)
+    cn.add_argument("--t0", type=float, default=0.1)
+
     rp = sub.add_parser("report", help="collect evidence from runs into results/report.json")
     rp.add_argument("runs", type=Path, nargs="+")
     rp.add_argument("--out", type=Path, default=Path("results/report.json"))
@@ -85,6 +91,11 @@ def main() -> None:
             except json.JSONDecodeError:
                 overrides[key] = value
         print(design(args.condition, seed=args.seed, overrides=overrides, config=args.config))
+        return
+    if args.cmd == "continue":
+        from .design import continue_run
+
+        print(continue_run(args.run, args.minutes, seed=args.seed, t0=args.t0))
         return
     if args.cmd == "report":
         from .report import collect

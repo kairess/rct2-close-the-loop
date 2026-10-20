@@ -192,3 +192,32 @@ def layout_from_run(run_dir: Path):
     if cfg.get("station_len"):
         layout = dataclasses.replace(layout, station_len=cfg["station_len"])
     return layout, meta
+
+
+def continue_run(run_dir: Path, minutes: float, seed: int = 2, t0: float = 0.1, log=print) -> Path:
+    """Search on from a design run's best track: same land, station and configuration, a cooler start."""
+    layout, meta = layout_from_run(run_dir)
+    cfg_values = {**meta["config"], "minutes": minutes, "t0": t0}
+    icap = cfg_values["i_cap_end"] + 0.05
+    best = None
+    with open(Path(run_dir) / "evals.jsonl") as f:
+        for line in f:
+            r = json.loads(line)
+            v = r["verdict"]
+            if v["stage"] == "rated" and v["I"] < icap and (best is None or v["E"] > best["verdict"]["E"]):
+                best = r
+    track = [tuple(p) for p in best["track"]]
+    log(f"continue from {Path(run_dir).name} eval {best['eval']} E{best['verdict']['E']}")
+    cfg = SearchConfig(
+        layout_name=f"{cfg_values['ride']}@{meta['condition_name']}+",
+        workers=cfg_values["workers"], batch=cfg_values["batch"], max_evals=10**9,
+        max_minutes=minutes, t0=t0, t1=cfg_values["t1"], seed=seed,
+        slack=cfg_values["slack"], chains=cfg_values["chains"],
+        i_cap_start=cfg_values["i_cap_end"], i_cap_end=cfg_values["i_cap_end"],
+        priors=cfg_values["priors"], i_price_start=cfg_values["i_price_start"], i_price_end=cfg_values["i_price_end"],
+        circuits=cfg_values["circuits"], goal=cfg_values["goal"], n_cap=cfg_values["n_cap"],
+    )
+    out = run(cfg, layout, initial=track, log_print=log)
+    meta = {**meta, "config": cfg_values, "seed": seed, "continued_from": str(run_dir), "from_eval": best["eval"]}
+    (out / "design.json").write_text(json.dumps(meta, indent=1))
+    return out
