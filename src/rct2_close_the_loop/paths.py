@@ -27,7 +27,7 @@ SLOPE_CLEAR = 48  # a sloped path also covers its rise
 STEP = 16  # kPathHeightStep
 TOUCH_TARGET = 10  # pieces per touch item: min(x + 10, 20) saturates at 10
 MAX_TILES = 140
-MAX_BFS = 60_000
+MAX_BFS = 25_000
 
 Tile = tuple[int, int]
 State = tuple[int, int, int, int]  # x, y, base z, slope direction (-1 = flat)
@@ -54,6 +54,8 @@ class Planner:
         for ax, ay, _ in layout.access_tiles():
             self.blocked.add((ax, ay))
         self.used: dict[Tile, State] = {}
+        # No route needs to climb above the highest spot that touches the track.
+        self.z_max = max([c for _t, _b, c, _i in self.first] + [layout.ground_z]) + STEP
 
     # ---------------------------------------------------------------- geometry
 
@@ -63,7 +65,7 @@ class Planner:
         info = self.env.tiles.get(t)
         if info is None or t in self.blocked or t in self.used or not self.layout.in_area(x, y):
             return False
-        if not self.env.buildable(t) or z % STEP or z < info.floor:
+        if not self.env.buildable(t) or z % STEP or z < info.floor or z > self.z_max:
             return False
         top = z + (SLOPE_CLEAR if d >= 0 else PATH_CLEAR)
         if any(z < b1 and b0 < top for b0, b1 in info.blocked):
