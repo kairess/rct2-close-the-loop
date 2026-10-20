@@ -120,12 +120,46 @@ class Planner:
                 while prev[s] is not None:
                     out.append(s)
                     s = prev[s]
-                return out[::-1]
+                out.append(s)
+                route = self.untangle(out[::-1])
+                if route is not None:
+                    return route[1:]
+                continue
             for nb in self.neighbours(s):
                 if nb not in prev:
                     prev[nb] = s
                     q.append(nb)
         return None
+
+    def connects(self, a: State, b: State) -> bool:
+        for m in range(4):
+            ux, uy = _unit(m)
+            if (a[0] + ux, a[1] + uy) == (b[0], b[1]):
+                ha, hb = self.edge(a, m), self.edge(b, (m + 2) & 3)
+                return ha is not None and ha == hb
+        return False
+
+    def untangle(self, route: list[State]) -> list[State] | None:
+        """A route through the state grid may pass one tile twice at different heights, which the
+        game cannot build. Cut such loops out where the ends still meet; None if one cannot be cut."""
+        while True:
+            first: dict[Tile, int] = {}
+            dup = None
+            for k, s in enumerate(route):
+                t = (s[0], s[1])
+                if t in first:
+                    dup = (first[t], k)
+                    break
+                first[t] = k
+            if dup is None:
+                return route
+            i, j = dup
+            if i > 0 and self.connects(route[i - 1], route[j]):
+                route = route[:i] + route[j:]
+            elif j + 1 < len(route) and self.connects(route[i], route[j + 1]):
+                route = route[: i + 1] + route[j + 1:]
+            else:
+                return None
 
     def take(self, route: list[State], queue: bool, out: list[list[int]]) -> None:
         for s in route:
@@ -176,17 +210,49 @@ class Planner:
         if edge:
             self.take(edge, False, tiles)
         exit_tiles = {(t[0], t[1]) for t in tiles}
-        # Queue line: from the entrance, under the track once if possible, then into the exit path.
+        # Queue line: from the entrance past the track, then into the exit path.
         entrance_front = self.front(0)
         if self.valid(entrance_front):
             queue: list[list[int]] = []
             self.take([entrance_front], True, queue)
             q_under = {(t, b - PATH_CLEAR) for t, b, c, i in self.first if (b - PATH_CLEAR) % STEP == 0}
-            route = self.bfs([entrance_front], lambda s: s[3] < 0 and ((s[0], s[1]), s[2]) in q_under)
             qhead = entrance_front
-            if route and len(route) < 30:
-                self.take(route, True, queue)
-                qhead = route[-1]
+            if self.layout.paths == "v2":
+                # Queue items: touch above (40), touch under (45), track over the queue (up to 4 pieces, +25).
+                q_on_top = {(t, c) for t, b, c, i in self.first if c % STEP == 0}
+                over_tiles = {t: b for t, b, c, i in self.first}
+                want = {"under": 1, "on_top": 1, "over": 4}
+
+                def q_target(s: State) -> bool:
+                    key = ((s[0], s[1]), s[2])
+                    if s[3] < 0 and want["under"] and key in q_under:
+                        return True
+                    if s[3] < 0 and want["on_top"] and key in q_on_top:
+                        return True
+                    b = over_tiles.get((s[0], s[1]))
+                    return bool(want["over"]) and b is not None and s[2] + PATH_CLEAR <= b
+
+                while len(queue) < 50:
+                    route = self.bfs([qhead], q_target)
+                    if not route or len(queue) + len(route) > 50:
+                        break
+                    self.take(route, True, queue)
+                    qhead = route[-1]
+                    key = ((qhead[0], qhead[1]), qhead[2])
+                    if qhead[3] < 0 and key in q_under and want["under"]:
+                        want["under"] -= 1
+                    elif qhead[3] < 0 and key in q_on_top and want["on_top"]:
+                        want["on_top"] -= 1
+                    else:
+                        want["over"] = max(0, want["over"] - 1)
+                        over_tiles.pop((qhead[0], qhead[1]), None)
+                    if not any(want.values()):
+                        break
+            else:
+                route = self.bfs([entrance_front], lambda s: s[3] < 0 and ((s[0], s[1]), s[2]) in q_under)
+                if route and len(route) < 30:
+                    self.take(route, True, queue)
+                    qhead = route[-1]
 
             def joins(s: State) -> bool:
                 for m in range(4):
@@ -227,3 +293,29 @@ def init_worker(layout: Layout) -> None:
 
 def plan_in_worker(placed: list[Placed]) -> list[list[int]]:
     return plan(_worker_layout, placed)
+
+
+def connected(tiles: list[list[int]]) -> tuple[int, int]:
+    """(number of separate path networks, tiles) for planned path tiles; one network means every
+    tile is reachable from every other along matching edges (no gaps)."""
+    states = {(t[0], t[1]): (t[0], t[1], t[2], t[3]) for t in tiles}
+    seen: set[Tile] = set()
+    parts = 0
+    for start in states:
+        if start in seen:
+            continue
+        parts += 1
+        stack = [start]
+        seen.add(start)
+        while stack:
+            x, y = stack.pop()
+            s = states[(x, y)]
+            for m in range(4):
+                ux, uy = _unit(m)
+                n = (x + ux, y + uy)
+                if n in states and n not in seen:
+                    h = Planner.edge(s, m)
+                    if h is not None and h == Planner.edge(states[n], (m + 2) & 3):
+                        seen.add(n)
+                        stack.append(n)
+    return parts, len(states)
