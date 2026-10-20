@@ -7,7 +7,9 @@ The coaster zone (the design's area) keeps its own exit path, queue and trees. A
 - an avenue south to a park entrance, with a fountain plaza;
 - lamps, benches and litter bins along the promenade, stalls facing it;
 - a garden band of mixed trees, bushes and flowers;
-- the coaster recoloured (blue track, white supports, yellow trains) with a classical station.
+- the coaster recoloured (red track, white supports, white trains with red trim) with a classical station;
+- the park's guest spawns moved to a short road outside the new entrance (the base park's spawn
+  led to an entrance with no paths, so guests never got in).
 Writes <out>/showcase.park and <out>/surroundings.park (the same scene without the coaster zone's
 ride, for rendering the search frames in it), and prints the coaster's ratings after dressing.
 """
@@ -38,7 +40,7 @@ STATUES = ["rct2.scenery_small.tstd", "rct2.scenery_small.thrs"]
 # Stalls: (ride object, ride type).
 STALLS = [("rct2.ride.drnks", 30), ("rct2.ride.burgb", 28), ("rct2.ride.icecr2", 28), ("rct2.ride.souvs", 32),
           ("rct2.ride.infok", 35), ("rct2.ride.balln", 32), ("rct2.ride.popcs", 28), ("rct2.ride.tlt1", 36)]
-COLOURS = {"track": [6, 2, 2], "vehicle": [18, 6, 2]}  # dark blue / white / white, yellow trains with dark blue trim
+COLOURS = {"track": [28, 2, 2], "vehicle": [2, 28, 0]}  # bright red / white / white, white trains with red trim
 STATION = "rct2.station.classical"
 
 
@@ -162,9 +164,23 @@ def main() -> None:
                     acts.append(scenery(x, y, rng.choice(TREES)))
                 elif r < 0.45:
                     acts.append(scenery(x, y, rng.choice(BUSHES)))
+        # A road outside the entrance (unowned land, as peep spawns require) where guests arrive.
+        road = [(cx, ent_y + k) for k in (1, 2, 3)]
+        acts.append(["landsetrights", {"x1": (cx - 1) * 32, "y1": road[0][1] * 32, "x2": (cx + 1) * 32,
+                                       "y2": road[-1][1] * 32, "setting": 0, "ownership": 0}])
+        acts += [path(x, y) for x, y in road]
         res = g.call("actions", {"list": acts}, timeout=900)
         failed = [(a[0], r["error"]) for a, r in zip(acts, res) if not r["ok"]]
         print(f"scene: {len(acts)} actions, {len(failed)} refused; e.g. {failed[:4]}")
+        # Guest spawns: find the old ones (where a few test guests appear), toggle them off by placing
+        # a spawn on the same tile, then add ours at the end of the road, facing the entrance.
+        g.call("spawn_guests", {"n": 6}, timeout=60)
+        old = {(p_[0], p_[1], p_[2]) for p_ in g.call("guests_info", {"limit": 50})["sample"]}
+        spawn_acts = [["peepspawnplace", {"x": x * 32, "y": y * 32, "z": z, "direction": 0}] for x, y, z in old]
+        spawn_acts.append(["peepspawnplace", {"x": road[-1][0] * 32, "y": road[-1][1] * 32, "z": GROUND, "direction": 3}])
+        spawn_acts.append(["cheatset", {"type": 21, "param1": 0, "param2": 0}])  # remove the test guests
+        res = g.call("actions", {"list": spawn_acts})
+        print("spawns: old", sorted(old), [r["ok"] or r["error"] for r in res])
         # Stalls: create each, place a 1x1 shop, open it.
         for x, y, d, obj, rtype in stall_spots:
             r = g.call("actions", {"list": [["ridecreate", {"rideType": rtype, "rideObject": idx[obj], "entranceObject": 0,

@@ -240,17 +240,29 @@ function cmdObjects(args, reply) {
     reply(true, out);
 }
 
+// Objects loaded in the park, by type: args.types -> {type: [identifier, ...]}.
+function cmdLoaded(args, reply) {
+    var out = {};
+    for (var t = 0; t < args.types.length; t++) {
+        out[args.types[t]] = objectManager.getAllObjects(args.types[t]).map(function (o) { return o.identifier; });
+    }
+    reply(true, out);
+}
+
 // Let the simulation run for args.ticks ticks (ratings recalculate, guests walk), then pause again.
 function cmdRunTicks(args, reply) {
     var n = 0;
+    var t0 = Date.now();
     var sub = context.subscribe('interval.tick', function () {
         n++;
         if (n >= args.ticks) {
             sub.dispose();
-            setPaused(true, function () { reply(true, { ticks: n }); });
+            setPaused(true, function () {
+                reply(true, { ticks: n, ms: Date.now() - t0, speed: context.gameSpeed, guests: map.getAllEntities('guest').length });
+            });
         }
     });
-    setPaused(false, function () {});
+    ensureSpeed(function () { setPaused(false, function () {}); });
 }
 
 // Ride video: open the park and a ride, bring guests next to it, wait until a train leaves with
@@ -262,77 +274,180 @@ function leadCar(ride) {
     return map.getEntity(r.vehicles[0]);
 }
 
-function trainGuests(ride) {
-    var r = map.getRide(ride);
-    if (!r || !r.vehicles.length) return 0;
-    var n = 0, id = r.vehicles[0], k = 0;
-    while (id !== null && id !== undefined && k++ < 100) {
-        var car = map.getEntity(id);
-        if (!car) break;
-        for (var i = 0; i < car.guests.length; i++) if (car.guests[i] !== null) n++;
-        id = car.nextCarOnTrain;
-    }
+// Guests riding the ride's first train. A car's seat slots keep the ids of guests who have got
+// off (the game tracks the count separately), so only guests off the map, as riders are, count.
+function carRiders(car) {
+    var n = 0;
+    car.guests.forEach(function (id) {
+        if (id === null) return;
+        var g = map.getEntity(id);
+        if (g && g.type === 'guest' && g.x === -32768) n++;
+    });
     return n;
 }
 
-function cmdRideRecord(args, reply) {
-    var acts = [['parksetparameter', { parameter: 1, value: 0 }], ['ridesetstatus', { ride: args.ride, status: 1 }]];
-    sequence(acts.length, function (i, next) {
-        context.executeAction(acts[i][0], acts[i][1], function () { next(null); });
-    }, function () {
-        var made = 0;
-        for (var g = 0; g < args.guests; g++) {
-            var guest = park.generateGuest();
-            if (!guest) continue;
-            var spot = args.spots[g % args.spots.length];
-            guest.x = spot[0]; guest.y = spot[1]; guest.z = spot[2];
-            guest.minIntensity = 0; guest.maxIntensity = 15;
-            try { guest.nauseaTolerance = 3; } catch (e) {}
-            guest.happiness = 230; guest.energy = 120;
-            made++;
-        }
-        var frames = [], ticks = 0, phase = 'warmup', waitFrames = 0;
-        var grab = function (cb) {
-            var car = leadCar(args.ride);
-            var name = args.prefix + '_' + ('0000' + frames.length).slice(-5);
-            context.executeAction(SAVE_ACTION, { filename: name }, function () {
-                frames.push({ file: name, x: car ? car.x : 0, y: car ? car.y : 0, z: car ? car.z : 0,
-                              status: car ? car.status : null, guests: trainGuests(args.ride), tick: ticks });
-                cb();
-            });
-        };
-        var busy = false;
-        var sub = context.subscribe('interval.tick', function () {
-            ticks++;
-            if (busy) return;
-            if (phase === 'warmup') {
-                var car = leadCar(args.ride);
-                var aboard = trainGuests(args.ride);
-                // Start a little before departure: guests on board and the train still at the station.
-                if (aboard > 0 && car && (car.status === 'waitingToDepart' || car.status === 'departing' ||
-                                           car.status === 'travelling' || car.status === 'movingToEndOfStation')) {
-                    phase = 'record';
-                }
-                if (ticks > args.warmup) {
-                    sub.dispose();
-                    setPaused(true, function () { reply(true, { made: made, frames: frames, reason: 'no train with guests' }); });
-                }
-                return;
-            }
-            if (ticks % args.every !== 0) return;
-            busy = true;
-            setPaused(true, function () {
-                grab(function () {
-                    if (frames.length >= args.frames) {
-                        sub.dispose();
-                        return reply(true, { made: made, frames: frames });
-                    }
-                    setPaused(false, function () { busy = false; });
-                });
+function trainGuests(ride) {
+    var n = 0;
+    trainCars(ride).forEach(function (c) { n += carRiders(c); });
+    return n;
+}
+
+// Where the guests are: tile, height, in park, cash, intensity range (debugging a demo scene).
+function cmdGuestsInfo(args, reply) {
+    var all = map.getAllEntities('guest');
+    var out = [];
+    for (var i = 0; i < all.length && i < (args.limit || 40); i++) {
+        var g = all[i];
+        out.push([Math.floor(g.x / 32), Math.floor(g.y / 32), g.z, g.isInPark, g.cash, g.minIntensity, g.maxIntensity, g.happiness]);
+    }
+    var r = map.getRide(args.ride || 0);
+    var car = leadCar(args.ride || 0);
+    var seats = 0;
+    trainCars(args.ride || 0).forEach(function (c) { seats += c.numSeats; });
+    reply(true, { n: all.length, sample: out, customers: r ? r.totalCustomers : null, aboard: trainGuests(args.ride || 0), seats: seats,
+                  car: car ? [car.x, car.y, car.z, car.status] : null, queue: r ? r.stations[0].queueLength : null, entrance: r ? r.stations[0].entrance : null,
+                  exit: r ? r.stations[0].exit : null });
+}
+
+// Pick up guests already in the park and drop them on a path tile (world x, y, z), the way a player
+// drags guests around: dropped next to a ride entrance they decide there whether to ride.
+function cmdBoardGuests(args, reply) {
+    var all = map.getAllEntities('guest');
+    var ids = [];
+    for (var i = 0; i < all.length && ids.length < args.n; i++) if (all[i].isInPark) ids.push(all[i].id);
+    var placed = 0, errors = [];
+    sequence(ids.length, function (i, next) {
+        context.executeAction('peeppickup', { type: 0, id: ids[i], x: 0, y: 0, z: 0, playerId: 0 }, function (r1) {
+            if (r1.error) { if (errors.length < 3) errors.push('pickup: ' + errText(r1)); return next(null); }
+            context.executeAction('peeppickup', { type: 2, id: ids[i], x: args.at[0], y: args.at[1], z: args.at[2], playerId: 0 }, function (r2) {
+                if (r2.error) { if (errors.length < 3) errors.push('place: ' + errText(r2)); }
+                else placed++;
+                next(null);
             });
         });
-        ensureSpeed(function () { setPaused(false, function () {}); });
+    }, function () {
+        reply(true, { candidates: ids.length, placed: placed, errors: errors });
     });
+}
+
+// Debug helper: generate guests and place them on given tiles; reports what worked.
+function cmdSpawnGuests(args, reply) {
+    context.executeAction(GUESTS_ACTION, { n: args.n, spots: args.spots || [], widen: !!args.widen, minIntensity: 0, maxIntensity: 15 }, function (res) {
+        reply(!res.error, res.error ? errText(res) : { guests: map.getAllEntities('guest').length });
+    });
+}
+
+// Film a shot in the running game (needs a game with a display, see Game(display=...); headless
+// games cannot capture). Every few ticks the view is captured to <screenshots>/<prefix>/NNNNN.png.
+// args:
+//   camera: {x, y, z} for a fixed view, or {follow: true} to centre on the middle car of the train;
+//   zoom, rotation, width, height;
+//   minDt, maxDt: ticks between frames; with px, a frame is taken once the camera has moved px
+//     screen pixels (so a follow shot moves at an even pace) or maxDt ticks have passed;
+//   start: car statuses to wait for before the first frame (at most maxWait ticks);
+//   stop: car statuses that end the shot once minFrames are taken, the status `after` has been seen
+//     and at least stopMinQueue guests are queuing (then tail more ticks are filmed); frames: the most;
+//   queue: [[x, y], ...] tiles whose guests are counted in each frame.
+// -> {frames: [{tick, car: [x, y, z, status], mid: [x, y, z], under, kmh, aboard, queue}], reason}
+function screenXY(rot, x, y, z) {
+    if (rot === 0) return [y - x, (x + y) / 2 - z];
+    if (rot === 1) return [-x - y, (y - x) / 2 - z];
+    if (rot === 2) return [x - y, (-x - y) / 2 - z];
+    return [x + y, (x - y) / 2 - z];
+}
+
+function groundZ(x, y) {
+    var tile = map.getTile(Math.floor(x / 32), Math.floor(y / 32));
+    for (var i = 0; i < tile.numElements; i++) {
+        var e = tile.getElement(i);
+        if (e.type === 'surface') return e.baseZ;
+    }
+    return 0;
+}
+
+// captureImage centres on a map position at its ground height; to centre on a point in the air,
+// slide the position along the screen's vertical axis by the height difference.
+var SLIDE = [[1, 1], [-1, 1], [-1, -1], [1, -1]];
+function capturePosition(rot, x, y, z) {
+    var v = SLIDE[rot], d = 0;
+    for (var k = 0; k < 4; k++) d = groundZ(x + d * v[0], y + d * v[1]) - z;
+    var lim = map.size.x * 32 - 48;
+    return { x: Math.max(48, Math.min(lim, Math.round(x + d * v[0]))), y: Math.max(48, Math.min(lim, Math.round(y + d * v[1]))) };
+}
+
+function trainCars(ride) {
+    var r = map.getRide(ride);
+    var out = [];
+    if (!r || !r.vehicles.length) return out;
+    var id = r.vehicles[0];
+    while (id !== null && id !== undefined && out.length < 100) {
+        var car = map.getEntity(id);
+        if (!car) break;
+        out.push(car);
+        id = car.nextCarOnTrain;
+    }
+    return out;
+}
+
+function cmdFilm(args, reply) {
+    var ride = args.ride || 0, rot = args.rotation || 0;
+    var queue = {};
+    (args.queue || []).forEach(function (t) { queue[t[0] + ',' + t[1]] = true; });
+    var frames = [], ticks = 0, sinceLast = 0, started = !args.start, last = null, done = false, seen = {};
+    var stopAt = null;
+    var dir = args.prefix;
+    var finish = function (reason) {
+        if (done) return;
+        done = true;
+        sub.dispose();
+        setPaused(true, function () { reply(true, { frames: frames, reason: reason }); });
+    };
+    var sub = context.subscribe('interval.tick', function () {
+      try {
+        if (done) return;
+        ticks++;
+        sinceLast++;
+        var cars = trainCars(ride);
+        var lead = cars.length ? cars[0] : null;
+        var status = lead ? lead.status : null;
+        seen[status] = true;
+        if (!started) {
+            if (args.start.indexOf(status) >= 0) { started = true; sinceLast = 1e9; }
+            else if (ticks > (args.maxWait || 20000)) return finish('start not reached');
+            else return;
+        }
+        var inQueue = 0;
+        if (args.queue) {
+            map.getAllEntities('guest').forEach(function (g) {
+                if (queue[Math.floor(g.x / 32) + ',' + Math.floor(g.y / 32)]) inQueue++;
+            });
+        }
+        if (stopAt === null && args.stop && frames.length >= (args.minFrames || 0) && args.stop.indexOf(status) >= 0 &&
+            (!args.after || seen[args.after]) && inQueue >= (args.stopMinQueue || 0)) stopAt = ticks + (args.tail || 0);
+        if (stopAt !== null && ticks >= stopAt) return finish('stop');
+        var mid = cars.length ? cars[Math.floor(cars.length / 2)] : null;
+        var cam = args.camera.follow && mid ? { x: mid.x, y: mid.y, z: mid.z } : args.camera;
+        var scr = screenXY(rot, cam.x, cam.y, cam.z);
+        var moved = last ? Math.max(Math.abs(scr[0] - last[0]), Math.abs(scr[1] - last[1])) : 1e9;
+        if (sinceLast < (args.minDt || 1)) return;
+        if (!(sinceLast >= (args.maxDt || args.minDt || 1) || (args.px && moved >= args.px))) return;
+        sinceLast = 0;
+        last = scr;
+        var name = dir + '/' + ('0000' + frames.length).slice(-5) + '.png';
+        context.captureImage({ filename: name, width: args.width, height: args.height,
+                               position: capturePosition(rot, cam.x, cam.y, cam.z), zoom: args.zoom || 0, rotation: rot });
+        var aboard = 0;
+        cars.forEach(function (c) { aboard += carRiders(c); });
+        frames.push({ tick: ticks, car: lead ? [lead.x, lead.y, lead.z, status] : null,
+                      mid: mid ? [mid.x, mid.y, mid.z] : null, under: mid ? mid.z + 4 < groundZ(mid.x, mid.y) : false,
+                      kmh: lead ? Math.round(Math.abs(lead.velocity) * 9 / 262144 * 1.609) : 0,
+                      aboard: aboard, queue: inQueue });
+        if (frames.length >= args.frames) finish('frames');
+      } catch (e) {
+        if (!done) { done = true; sub.dispose(); setPaused(true, function () { reply(false, 'film: ' + e + ' at tick ' + ticks); }); }
+      }
+    });
+    ensureSpeed(function () { setPaused(false, function () {}); });
 }
 
 // Rides in the park with their ratings and status (for checking a decorated park).
@@ -864,6 +979,33 @@ function cmdCapture(args, reply) {
 // action, so saving goes through a custom action.
 var SAVE_ACTION = 'rct2loop_save';
 
+var GUESTS_ACTION = 'rct2loop_guests';
+
+// Guests may only be created or changed inside a game action in host mode.
+// args = {n, spots: [[x, y, z]], widen, minIntensity, maxIntensity} -> spawns n guests (at the park's
+// peep spawns, or on the spots); with widen, also widens every guest's intensity range and nausea
+// tolerance (so all of them will try the coaster).
+function guestsExecute(e) {
+    var a = e.args;
+    var made = 0;
+    for (var g = 0; g < (a.n || 0); g++) {
+        var guest = park.generateGuest();
+        if (!guest) break;
+        if (a.spots && a.spots.length) {
+            var spot = a.spots[g % a.spots.length];
+            guest.x = spot[0]; guest.y = spot[1]; guest.z = spot[2];
+        }
+        made++;
+    }
+    var all = map.getAllEntities('guest');
+    for (var i = 0; i < all.length && a.widen; i++) {
+        all[i].minIntensity = a.minIntensity || 0;
+        all[i].maxIntensity = a.maxIntensity || 15;
+        all[i].nauseaTolerance = 3;
+    }
+    return { made: made, guests: all.length };
+}
+
 function registerActions() {
     context.registerAction(SAVE_ACTION, function () {
         return {};
@@ -871,6 +1013,9 @@ function registerActions() {
         context.saveGame({ filename: e.args.filename });
         return {};
     });
+    context.registerAction(GUESTS_ACTION, function () {
+        return {};
+    }, guestsExecute);
 }
 
 function cmdSave(args, reply) {
@@ -1022,6 +1167,19 @@ function cmdTile(args, reply) {
         var e = tile.getElement(i);
         var info = { type: e.type, baseZ: e.baseZ, clearanceZ: e.clearanceZ };
         if (e.type === 'surface') info.waterHeight = e.waterHeight;
+        if (e.type === 'footpath') {
+            info.isQueue = e.isQueue;
+            info.edges = e.edges;
+            info.corners = e.corners;
+            info.slopeDirection = e.slopeDirection;
+            info.isSloped = e.isSloped;
+        }
+        if (e.type === 'entrance') {
+            info.object = e.object;
+            info.direction = e.direction;
+            info.ride = e.ride;
+            info.sequence = e.sequence;
+        }
         if (e.type === 'track') {
             info.trackType = e.trackType;
             info.ride = e.ride;
@@ -1042,10 +1200,14 @@ var COMMANDS = {
     ride_objects: cmdRideObjects,
     census: cmdCensus,
     objects: cmdObjects,
+    loaded: cmdLoaded,
     actions: cmdActions,
     ride_info: cmdRideInfo,
     run_ticks: cmdRunTicks,
-    ride_record: cmdRideRecord,
+    film: cmdFilm,
+    spawn_guests: cmdSpawnGuests,
+    guests_info: cmdGuestsInfo,
+    board_guests: cmdBoardGuests,
     measure_clearance: cmdMeasureClearance,
     allowed: cmdAllowed,
     evaluate: cmdEvaluate,

@@ -97,7 +97,8 @@ class Game:
     _slot_counter = itertools.count()
     _slot_lock = threading.Lock()
 
-    def __init__(self, park: Path | None = None, slot: int | None = None, launch_timeout: float = 60.0):
+    def __init__(self, park: Path | None = None, slot: int | None = None, launch_timeout: float = 60.0,
+                 display: str | None = None):
         prepare_runtime()
         if slot is None:
             with Game._slot_lock:
@@ -106,7 +107,7 @@ class Game:
         self.logs: deque[str] = deque(maxlen=500)
         park = park or base_park()
         cmd = [
-            str(OPENRCT2), "host", str(park), "--headless",
+            str(OPENRCT2), "host", str(park), *([] if display else ["--headless"]),
             "--port", str(NETWORK_PORT_BASE + slot),
             "--address", "127.0.0.1",
             "--user-data-path", str(RUNTIME),
@@ -114,8 +115,11 @@ class Game:
         ]
         # The game prints some strings in its legacy codepage (e.g. currency signs).
         # The reader must never die, or the pipe fills and the game blocks on stdout.
+        # display: an X display (e.g. a virtual one from Xvfb) to run the game with its renderer, which
+        # in-game captures need (they draw guests and trains; headless games cannot capture).
+        env = {**os.environ, "DISPLAY": display, "SDL_AUDIODRIVER": "dummy"} if display else None
         self.proc = subprocess.Popen(
-            cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1,
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1, env=env,
             encoding="utf-8", errors="replace", preexec_fn=_die_with_parent,
         )
         self._port: int | None = None
