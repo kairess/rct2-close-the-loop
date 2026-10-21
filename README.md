@@ -5,7 +5,10 @@ simplest closed circuit, keeps it closed through every edit, and lets
 [OpenRCT2](https://github.com/OpenRCT2/OpenRCT2) build, test-run and rate each candidate. Tens of
 thousands of candidates are rated this way in one run.
 
-![The record coaster in its finished park](docs/media/park.jpg)
+![The search, one frame per new best, from the first loop to the record](docs/media/search.gif)
+<sub>The search, one frame per new best, from the first closed loop (evaluation 1) to the record
+(evaluation 32,655). Each frame shows that track built in the finished park. E is the rating the
+search got.</sub>
 
 **Best coaster: a Hyper-Twister on a 40×40 lakeside area. It rates excitement 11.95, intensity
 9.99 and nausea 8.75.** That is the game's *Extreme* band, which starts at 10.24. Rebuilt in the
@@ -19,10 +22,6 @@ decorated park above and tested again, it rates **12.06**. The search took 43,99
 
 <img src="docs/media/ride.jpg" width="640" alt="A full train of 36 guests on the coaster, filmed in the running game">
 <br><sub>A full train (36 guests) on the coaster, filmed in the running game for the ride video.</sub>
-
-![The search, from the first loop to the record](docs/media/search.jpg)
-<sub>Six of the 209 new bests. Each picture shows the track at that point, built in the finished
-scene. E is the rating the search got.</sub>
 
 ## How it works
 
@@ -70,6 +69,10 @@ for trenches and tunnels; the land is restored after each evaluation.
 </p>
 <sub>Phase 2 coasters on held-out windows of real scenario maps (E 8.51, 8.46, 8.43). Each one's
 park file sits next to its pictures, ready to open in OpenRCT2.</sub>
+
+![The record coaster in the decorated park](docs/media/park.jpg)
+<sub>The record coaster in the decorated park: promenade, stalls, gardens and a park entrance
+around the design's own exit path, queue and trees. Tested again there, it rates E 12.06.</sub>
 
 Phase 3, every result re-rated in a fresh instance:
 
@@ -174,6 +177,7 @@ uv run python scripts/render_best.py runs/<run> NAME   # results/extreme/NAME/ (
 uv run python scripts/showcase.py results/extreme/best40/best40.park results/showcase/lakeside
 uv run python scripts/make_videos.py search en   # results/video/search_en.mp4
 uv run python scripts/make_videos.py ride en     # films a running game, then edits results/video/ride_en.mp4
+uv run python scripts/make_videos.py readme      # docs/media/: the GIF above and the stills
 ```
 
 - **Conditions.** A condition (`data/bench/<split>/*.json`, `data/extreme/*.json`) is a park plus
@@ -203,3 +207,9 @@ The project is built on [OpenRCT2](https://github.com/OpenRCT2/OpenRCT2) and
 [pyrct2](https://pypi.org/project/pyrct2/). The video music is a pair of public-domain recordings
 from OpenRCT2's OpenMusic: *Dill Pickles Rag* (Charles L. Johnson, 1906) and *El Capitan* (John
 Philip Sousa, 1896).
+
+## License
+
+The code is released under the [MIT License](LICENSE). The screenshots, videos and park files
+show RollerCoaster Tycoon 2 graphics and scenario maps, which belong to their owners and are not
+covered by that licence. The music in the videos is in the public domain.

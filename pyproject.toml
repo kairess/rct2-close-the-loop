@@ -3,6 +3,8 @@ name = "rct2-close-the-loop"
 version = "0.1.0"
 description = "Coaster design with OpenRCT2 as the judge: closed loop first, then segment edits"
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
     { name = "kairess", email = "kairess87@gmail.com" }
 ]

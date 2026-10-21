@@ -4,6 +4,7 @@
     uv run python scripts/make_videos.py ride [ko|en]       # film guests arriving, queuing and riding it
     uv run python scripts/make_videos.py ride-edit [ko|en]  # re-edit the ride video from recorded frames
     uv run python scripts/make_videos.py records            # re-extract search_records.json from the runs
+    uv run python scripts/make_videos.py readme             # the README's GIF and stills (docs/media/)
 
 Frames come from the game itself. Each search frame is the track at one of the run's new bests,
 built (with its own paths and trees) in the decorated surroundings, saved, and rendered with the
@@ -43,6 +44,7 @@ OUT = ROOT / "results" / "video"
 # from them (every new best, the run's design.json, totals) is kept in RECORDS.
 RUNS = [ROOT / "runs" / "20261020-130505-hypertwister@flat40", ROOT / "runs" / "20261020-135124-hypertwister@flat40+"]
 RECORDS = OUT / "search_records.json"
+MEDIA = ROOT / "docs" / "media"
 FONT = "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
 LOOK = {"track": [28, 2, 2], "vehicle": [2, 28, 0], "station": "rct2.station.classical", "trees": None, "paths": None}
 W, H, FPS = 1920, 1080, 30
@@ -301,20 +303,20 @@ def final_ratings() -> tuple[float, float, float]:
 
 
 class Sequence:
-    """Numbered JPEG frames for ffmpeg; a held picture is saved once and copied."""
+    """Numbered frames for ffmpeg (JPEG, or PNG for a GIF); a held picture is saved once and copied."""
 
-    def __init__(self, path: Path):
+    def __init__(self, path: Path, ext: str = "jpg"):
         shutil.rmtree(path, ignore_errors=True)
         path.mkdir(parents=True)
-        self.path, self.n = path, 0
+        self.path, self.n, self.ext = path, 0, ext
 
     def emit(self, img: Image.Image, count: int = 1) -> None:
-        first = self.path / f"{self.n:05d}.jpg"
+        first = self.path / f"{self.n:05d}.{self.ext}"
         for k in range(count):
             if k == 0:
                 img.save(first, quality=92)
             else:
-                shutil.copyfile(first, self.path / f"{self.n:05d}.jpg")
+                shutil.copyfile(first, self.path / f"{self.n:05d}.{self.ext}")
             self.n += 1
 
 
@@ -615,10 +617,47 @@ def ride_edit(lang: str = "ko", ride_secs: float = 26) -> Path:
     return mp4
 
 
+ZONE_CROP = (360, 190, 1560, 865)  # the coaster zone in the scene camera's 1920x1080 view
+RIDE_STILL = 393  # ride shot frame: a full train passing the flower beds
+
+
+def readme_media(width: int = 960, fps: int = 20) -> None:
+    """The README's pictures in docs/media/: search.gif (every new best that the scene can build,
+    cropped to the coaster zone, held longer for the early jumps and the first Extreme one), park.jpg
+    (the finished park) and ride.jpg (a full train, from the ride recording)."""
+    rec = json.loads(RECORDS.read_text())["records"]
+    work = OUT / "search_frames"
+    size = (width, width * 9 // 16)
+    seq = Sequence(OUT / "readme_seq", ext="png")
+    first_extreme = next(k for k, fr in enumerate(rec) if fr["E"] >= 10.24)
+    for k, fr in enumerate(rec):
+        if json.loads((work / f"n{fr['n']:05d}.json").read_text())["E"] is None:
+            continue  # rated on flat land; the lake scene's terrain does not take this track
+        img = Image.open(work / f"n{fr['n']:05d}.png").convert("RGB").crop(ZONE_CROP).resize(size, Image.LANCZOS)
+        d = ImageDraw.Draw(img, "RGBA")
+        label = f"eval {fr['n']:,}   E {fr['E']:.2f}   {band(fr['E'], 'en')}"
+        d.rounded_rectangle([10, 10, 34 + d.textlength(label, font=font(22)), 50], radius=9, fill=(12, 18, 30, 210))
+        d.text((22, 30), label, font=font(22), fill=(255, 214, 64) if fr["E"] >= 10.24 else (235, 240, 245),
+               anchor="lm")
+        last = k == len(rec) - 1
+        seconds = 3.0 if last else 0.5 if k == first_extreme else 0.4 if k < 5 else 0.15 if k < 40 else 1 / fps
+        seq.emit(img, round(seconds * fps))
+    # A fixed bayer pattern keeps unchanged pixels identical from frame to frame, so each GIF frame
+    # stores only what the edit changed.
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(fps), "-i", str(seq.path / "%05d.png"),
+                    "-vf", "split[a][b];[a]palettegen=max_colors=256:stats_mode=full[p];"
+                           "[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle",
+                    "-loop", "0", str(MEDIA / "search.gif")], check=True)
+    Image.open(work / "final_r0.png").convert("RGB").crop(ZONE_CROP).save(MEDIA / "park.jpg", quality=86)
+    f = next(f for f in json.loads((RIDE_DIR / "shots.json").read_text())["ride"] if f["i"] == RIDE_STILL)
+    load(f, close=False).crop((W // 4, H // 4, W // 4 + W // 2, H // 4 + H // 2)).save(MEDIA / "ride.jpg", quality=86)
+    print(f"-> {MEDIA}: search.gif ({seq.n / fps:.1f} s), park.jpg, ride.jpg")
+
+
 if __name__ == "__main__":
-    # make_videos.py search|ride|ride-edit [ko|en ...] | records
-    if sys.argv[1] == "records":
-        extract_records()
+    # make_videos.py search|ride|ride-edit [ko|en ...] | records | readme
+    if sys.argv[1] in ("records", "readme"):
+        {"records": extract_records, "readme": readme_media}[sys.argv[1]]()
         sys.exit()
     if sys.argv[1] == "ride":
         record()
