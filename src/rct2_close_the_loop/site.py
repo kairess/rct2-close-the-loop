@@ -15,6 +15,7 @@ from pathlib import Path
 
 from .env import Env
 from .game import Game, wait_ready
+from .judge import Judge
 from .layouts import FLAT, LEFT3, RIGHT3, _hill
 from .track import DIR_DELTA, TILE, Layout, trace
 
@@ -143,8 +144,8 @@ def rectangle_loops(layout: Layout, hill: int, turn: int, max_side: int = 40):
             yield pieces
 
 
-def find_start(base: Layout, env: Env, area: frozenset, park: str | None, judge_factory=None,
-               max_candidates: int = 60, seed: int = 0, log=print):
+def find_start(base: Layout, env: Env, area: frozenset, park: str | None, max_candidates: int = 60, seed: int = 0,
+               log=print):
     """Return (layout, starting track, verdict) for the first placement the game rates."""
     rng = random.Random(seed)
     cands = station_candidates(base, env, area)
@@ -176,10 +177,8 @@ def find_start(base: Layout, env: Env, area: frozenset, park: str | None, judge_
                             found = best
                     if not found:
                         continue
-                    if judge_factory is None:
-                        return layout, found, None
                     if judge is None:
-                        judge = judge_factory(layout)
+                        judge = Judge(layout)
                     else:
                         judge.layout = layout
                     v = judge.evaluate(found)

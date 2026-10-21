@@ -89,8 +89,6 @@ function cmdPing(args, reply) {
     });
 }
 
-var wantedSpeed = HYPER_SPEED;
-
 function cmdSetup(args, reply) {
     // sandbox, build while paused, no breakdowns, no money, objective "have fun".
     // Without "have fun" the scenario deadline passes after enough hyper-speed
@@ -106,7 +104,6 @@ function cmdSetup(args, reply) {
         });
     }, function (err) {
         if (err) return reply(false, err);
-        wantedSpeed = args.speed || HYPER_SPEED;
         ensureSpeed(function (err) {
             if (err) return reply(false, err);
             setPaused(true, function () {
@@ -117,8 +114,8 @@ function cmdSetup(args, reply) {
 }
 
 function ensureSpeed(cb) {
-    if (context.gameSpeed === wantedSpeed) return cb(null);
-    context.executeAction('gamesetspeed', { speed: wantedSpeed }, function (res) {
+    if (context.gameSpeed === HYPER_SPEED) return cb(null);
+    context.executeAction('gamesetspeed', { speed: HYPER_SPEED }, function (res) {
         cb(res.error ? 'gamesetspeed: ' + errText(res) : null);
     });
 }
@@ -158,6 +155,7 @@ function segmentInfo(seg) {
     };
 }
 
+// Geometry of every track piece the game knows (data/track_segments.json is this command's output).
 function cmdSegments(args, reply) {
     var out = [];
     for (var t = 0; t < MAX_TRACK_TYPE; t++) {
@@ -180,17 +178,6 @@ function cmdLoadObject(args, reply) {
         info.nauseaMultiplier = ro.nauseaMultiplier;
     }
     reply(true, info);
-}
-
-function cmdInstalledRides(args, reply) {
-    var out = [];
-    var all = objectManager.installedObjects;
-    for (var i = 0; i < all.length; i++) {
-        if (all[i].type === 'ride') {
-            out.push({ identifier: all[i].identifier, name: all[i].name, sourceGames: all[i].sourceGames });
-        }
-    }
-    reply(true, out);
 }
 
 // Clearance of every element of each track piece, measured by placing the piece in the air:
@@ -228,27 +215,6 @@ function cmdMeasureClearance(args, reply) {
     });
 }
 
-// What a park looks like around an area, for theming: counts of small scenery, footpath surfaces
-// and railings, and terrain surfaces in args.rect, plus the installed station styles.
-// Installed objects of the given types: [{identifier, name, type}] (for picking decorations).
-function cmdObjects(args, reply) {
-    var out = [];
-    var all = objectManager.installedObjects;
-    for (var i = 0; i < all.length; i++) {
-        if (args.types.indexOf(all[i].type) >= 0) out.push({ identifier: all[i].identifier, name: all[i].name, type: all[i].type });
-    }
-    reply(true, out);
-}
-
-// Objects loaded in the park, by type: args.types -> {type: [identifier, ...]}.
-function cmdLoaded(args, reply) {
-    var out = {};
-    for (var t = 0; t < args.types.length; t++) {
-        out[args.types[t]] = objectManager.getAllObjects(args.types[t]).map(function (o) { return o.identifier; });
-    }
-    reply(true, out);
-}
-
 // Let the simulation run for args.ticks ticks (ratings recalculate, guests walk), then pause again.
 function cmdRunTicks(args, reply) {
     var n = 0;
@@ -265,9 +231,8 @@ function cmdRunTicks(args, reply) {
     ensureSpeed(function () { setPaused(false, function () {}); });
 }
 
-// Ride video: open the park and a ride, bring guests next to it, wait until a train leaves with
-// guests aboard, then save the park every `every` ticks for `frames` frames, noting the lead car.
-// args = {ride, guests, spots: [[x, y, z]] (world, path tiles), warmup, every, frames, prefix, prerecord}
+// ---------------------------------------------------------------- ride video
+
 function leadCar(ride) {
     var r = map.getRide(ride);
     if (!r || !r.vehicles.length) return null;
@@ -292,7 +257,8 @@ function trainGuests(ride) {
     return n;
 }
 
-// Where the guests are: tile, height, in park, cash, intensity range (debugging a demo scene).
+// Guests and the ride's first train: a sample of guests [tile x, tile y, z, in park, cash, min and max
+// intensity, happiness], riders aboard, seats, the lead car, queue length, entrance and exit.
 function cmdGuestsInfo(args, reply) {
     var all = map.getAllEntities('guest');
     var out = [];
@@ -309,30 +275,9 @@ function cmdGuestsInfo(args, reply) {
                   exit: r ? r.stations[0].exit : null });
 }
 
-// Pick up guests already in the park and drop them on a path tile (world x, y, z), the way a player
-// drags guests around: dropped next to a ride entrance they decide there whether to ride.
-function cmdBoardGuests(args, reply) {
-    var all = map.getAllEntities('guest');
-    var ids = [];
-    for (var i = 0; i < all.length && ids.length < args.n; i++) if (all[i].isInPark) ids.push(all[i].id);
-    var placed = 0, errors = [];
-    sequence(ids.length, function (i, next) {
-        context.executeAction('peeppickup', { type: 0, id: ids[i], x: 0, y: 0, z: 0, playerId: 0 }, function (r1) {
-            if (r1.error) { if (errors.length < 3) errors.push('pickup: ' + errText(r1)); return next(null); }
-            context.executeAction('peeppickup', { type: 2, id: ids[i], x: args.at[0], y: args.at[1], z: args.at[2], playerId: 0 }, function (r2) {
-                if (r2.error) { if (errors.length < 3) errors.push('place: ' + errText(r2)); }
-                else placed++;
-                next(null);
-            });
-        });
-    }, function () {
-        reply(true, { candidates: ids.length, placed: placed, errors: errors });
-    });
-}
-
-// Debug helper: generate guests and place them on given tiles; reports what worked.
+// Generate args.n ordinary guests at the park's guest spawns.
 function cmdSpawnGuests(args, reply) {
-    context.executeAction(GUESTS_ACTION, { n: args.n, spots: args.spots || [], widen: !!args.widen, minIntensity: 0, maxIntensity: 15 }, function (res) {
+    context.executeAction(GUESTS_ACTION, { n: args.n }, function (res) {
         reply(!res.error, res.error ? errText(res) : { guests: map.getAllEntities('guest').length });
     });
 }
@@ -345,8 +290,8 @@ function cmdSpawnGuests(args, reply) {
 //   minDt, maxDt: ticks between frames; with px, a frame is taken once the camera has moved px
 //     screen pixels (so a follow shot moves at an even pace) or maxDt ticks have passed;
 //   start: car statuses to wait for before the first frame (at most maxWait ticks);
-//   stop: car statuses that end the shot once minFrames are taken, the status `after` has been seen
-//     and at least stopMinQueue guests are queuing (then tail more ticks are filmed); frames: the most;
+//   stop: car statuses that end the shot once minFrames are taken and at least stopMinQueue guests
+//     are queuing (then tail more ticks are filmed); frames: the most;
 //   queue: [[x, y], ...] tiles whose guests are counted in each frame.
 // -> {frames: [{tick, car: [x, y, z, status], mid: [x, y, z], under, kmh, aboard, queue}], reason}
 function screenXY(rot, x, y, z) {
@@ -393,7 +338,7 @@ function cmdFilm(args, reply) {
     var ride = args.ride || 0, rot = args.rotation || 0;
     var queue = {};
     (args.queue || []).forEach(function (t) { queue[t[0] + ',' + t[1]] = true; });
-    var frames = [], ticks = 0, sinceLast = 0, started = !args.start, last = null, done = false, seen = {};
+    var frames = [], ticks = 0, sinceLast = 0, started = !args.start, last = null, done = false;
     var stopAt = null;
     var dir = args.prefix;
     var finish = function (reason) {
@@ -410,7 +355,6 @@ function cmdFilm(args, reply) {
         var cars = trainCars(ride);
         var lead = cars.length ? cars[0] : null;
         var status = lead ? lead.status : null;
-        seen[status] = true;
         if (!started) {
             if (args.start.indexOf(status) >= 0) { started = true; sinceLast = 1e9; }
             else if (ticks > (args.maxWait || 20000)) return finish('start not reached');
@@ -423,7 +367,7 @@ function cmdFilm(args, reply) {
             });
         }
         if (stopAt === null && args.stop && frames.length >= (args.minFrames || 0) && args.stop.indexOf(status) >= 0 &&
-            (!args.after || seen[args.after]) && inQueue >= (args.stopMinQueue || 0)) stopAt = ticks + (args.tail || 0);
+            inQueue >= (args.stopMinQueue || 0)) stopAt = ticks + (args.tail || 0);
         if (stopAt !== null && ticks >= stopAt) return finish('stop');
         var mid = cars.length ? cars[Math.floor(cars.length / 2)] : null;
         var cam = args.camera.follow && mid ? { x: mid.x, y: mid.y, z: mid.z } : args.camera;
@@ -477,6 +421,8 @@ function cmdActions(args, reply) {
     });
 }
 
+// What a park looks like around an area, for theming: counts of small scenery, footpath surfaces
+// and railings, and terrain surfaces in args.rect, plus the installed station styles.
 function cmdCensus(args, reply) {
     var r = args.rect;
     var scenery = {}, paths = {}, railings = {}, terrain = {};
@@ -576,30 +522,6 @@ function trackArgs(rideId, rideType, p) {
         brakeSpeed: p[6] || 0, colour: 0, seatRotation: 4,
         trackPlaceFlags: p[5] || 0, isFromTrackDesign: false
     };
-}
-
-// Which track types can this ride type place at all? Queries each type at a
-// spot in the air; the per-type error text tells "not allowed" from other causes.
-function cmdAllowed(args, reply) {
-    createRide(args, function (err, rideId) {
-        if (err) return reply(false, 'ridecreate: ' + err);
-        var types = [];
-        for (var t = 0; t < MAX_TRACK_TYPE; t++) {
-            if (context.getTrackSegment(t)) types.push(t);
-        }
-        var results = [];
-        sequence(types.length, function (i, next) {
-            var p = [types[i], args.x, args.y, args.z, 0, 0, 0];
-            context.queryAction('trackplace', trackArgs(rideId, args.rideType, p), function (res) {
-                results.push([types[i], res.error, res.error ? errText(res) : '']);
-                next(null);
-            });
-        }, function () {
-            demolish(rideId, function () {
-                reply(true, results);
-            });
-        });
-    });
 }
 
 function rideStats(ride) {
@@ -738,13 +660,10 @@ function evaluateOnLand(args, t0, timing, reply) {
                     if (args.reversed) {
                         context.executeAction('ridesetvehicle', { ride: rideId, type: 3, value: 1, colour: 0 }, function () {});
                     }
-                    setCircuits(rideId, args.circuits, function (err) {
-                        if (err) return finish({ stage: 'circuits', error: err });
-                        placePaths(args.paths, paved, function (errs) {
-                            pathErrors = errs;
-                            plantDecor(args.decor, planted, function () {
-                                startTest(rideId, args, timing, t0, finish);
-                            });
+                    placePaths(args.paths, paved, function (errs) {
+                        pathErrors = errs;
+                        plantDecor(args.decor, planted, function () {
+                            startTest(rideId, args, timing, t0, finish);
                         });
                     });
                 });
@@ -881,15 +800,6 @@ function setCars(rideId, cars, cb) {
     });
 }
 
-// Laps per ride: length counts on the first lap only, while time, drops, turns,
-// air time and shelter add up over every lap (Vehicle.cpp UpdateMeasurements).
-function setCircuits(rideId, circuits, cb) {
-    if (!circuits || circuits === 1) return cb(null);
-    context.executeAction('ridesetsetting', { ride: rideId, setting: 9, value: circuits }, function (res) {
-        cb(res.error ? errText(res) : null);
-    });
-}
-
 function carsPerTrain(ride) {
     if (!ride.vehicles.length) return 0;
     var n = 0;
@@ -958,52 +868,21 @@ function runTest(rideId, maxTicks, cb) {
     setPaused(false, function () {});
 }
 
-function cmdCapture(args, reply) {
-    try {
-        context.captureImage({
-            filename: args.filename,
-            width: args.width,
-            height: args.height,
-            position: args.position,
-            zoom: args.zoom || 0,
-            rotation: args.rotation || 0,
-            transparent: !!args.transparent
-        });
-        reply(true, { filename: args.filename });
-    } catch (e) {
-        reply(false, 'captureImage: ' + e);
-    }
-}
-
 // A hosted (network) game only lets plugins mutate game state inside a game
 // action, so saving goes through a custom action.
 var SAVE_ACTION = 'rct2loop_save';
 
+// Guests may only be created inside a game action in host mode. args = {n}: n guests generated the
+// way the game generates arriving guests, at the park's guest spawns (preferences untouched).
 var GUESTS_ACTION = 'rct2loop_guests';
 
-// Guests may only be created or changed inside a game action in host mode.
-// args = {n, spots: [[x, y, z]], widen, minIntensity, maxIntensity} -> spawns n guests (at the park's
-// peep spawns, or on the spots); with widen, also widens every guest's intensity range and nausea
-// tolerance (so all of them will try the coaster).
 function guestsExecute(e) {
-    var a = e.args;
     var made = 0;
-    for (var g = 0; g < (a.n || 0); g++) {
-        var guest = park.generateGuest();
-        if (!guest) break;
-        if (a.spots && a.spots.length) {
-            var spot = a.spots[g % a.spots.length];
-            guest.x = spot[0]; guest.y = spot[1]; guest.z = spot[2];
-        }
+    for (var g = 0; g < (e.args.n || 0); g++) {
+        if (!park.generateGuest()) break;
         made++;
     }
-    var all = map.getAllEntities('guest');
-    for (var i = 0; i < all.length && a.widen; i++) {
-        all[i].minIntensity = a.minIntensity || 0;
-        all[i].maxIntensity = a.maxIntensity || 15;
-        all[i].nauseaTolerance = 3;
-    }
-    return { made: made, guests: all.length };
+    return { made: made, guests: map.getAllEntities('guest').length };
 }
 
 function registerActions() {
@@ -1022,17 +901,6 @@ function cmdSave(args, reply) {
     context.executeAction(SAVE_ACTION, { filename: args.filename }, function (res) {
         if (res.error) return reply(false, 'save: ' + errText(res));
         reply(true, { filename: args.filename });
-    });
-}
-
-function cmdDemolishAll(args, reply) {
-    var ids = [];
-    var rides = map.rides;
-    for (var i = 0; i < rides.length; i++) ids.push(rides[i].id);
-    sequence(ids.length, function (i, next) {
-        demolish(ids[i], function () { next(null); });
-    }, function () {
-        reply(true, { demolished: ids.length });
     });
 }
 
@@ -1156,10 +1024,6 @@ function cmdScan(args, reply) {
     reply(true, { mapSize: [sx, sy], tiles: out });
 }
 
-function cmdSceneryCount(args, reply) {
-    reply(true, { count: countScenery(args.rect) });
-}
-
 function cmdTile(args, reply) {
     var tile = map.getTile(args.x, args.y);
     var out = [];
@@ -1196,27 +1060,19 @@ var COMMANDS = {
     setup: cmdSetup,
     segments: cmdSegments,
     load_object: cmdLoadObject,
-    installed_rides: cmdInstalledRides,
     ride_objects: cmdRideObjects,
     census: cmdCensus,
-    objects: cmdObjects,
-    loaded: cmdLoaded,
     actions: cmdActions,
     ride_info: cmdRideInfo,
     run_ticks: cmdRunTicks,
     film: cmdFilm,
     spawn_guests: cmdSpawnGuests,
     guests_info: cmdGuestsInfo,
-    board_guests: cmdBoardGuests,
     measure_clearance: cmdMeasureClearance,
-    allowed: cmdAllowed,
     evaluate: cmdEvaluate,
-    capture: cmdCapture,
     save: cmdSave,
-    demolish_all: cmdDemolishAll,
     tile: cmdTile,
     terraform: cmdTerraform,
-    scenery_count: cmdSceneryCount,
     scan: cmdScan
 };
 

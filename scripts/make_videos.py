@@ -3,6 +3,7 @@
     uv run python scripts/make_videos.py search [ko|en]     # the search, one picture per new best
     uv run python scripts/make_videos.py ride [ko|en]       # film guests arriving, queuing and riding it
     uv run python scripts/make_videos.py ride-edit [ko|en]  # re-edit the ride video from recorded frames
+    uv run python scripts/make_videos.py records            # re-extract search_records.json from the runs
 
 Frames come from the game itself. Each search frame is the track at one of the run's new bests,
 built (with its own paths and trees) in the decorated surroundings, saved, and rendered with the
@@ -30,7 +31,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from scipy.signal import stft
 
-from rct2_close_the_loop.design import layout_from_run
+from rct2_close_the_loop.design import layout_from_meta, stored_path
 from rct2_close_the_loop.game import OPENRCT2, RUNTIME, Game, wait_ready
 from rct2_close_the_loop.judge import Judge
 from rct2_close_the_loop.results import CLI
@@ -38,7 +39,10 @@ from rct2_close_the_loop.results import CLI
 ROOT = Path(__file__).resolve().parents[1]
 SCENE = ROOT / "results" / "showcase" / "lakeside"
 OUT = ROOT / "results" / "video"
+# The record run and its continuation. runs/ is not in the repository; what the search video needs
+# from them (every new best, the run's design.json, totals) is kept in RECORDS.
 RUNS = [ROOT / "runs" / "20261020-130505-hypertwister@flat40", ROOT / "runs" / "20261020-135124-hypertwister@flat40+"]
+RECORDS = OUT / "search_records.json"
 FONT = "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
 LOOK = {"track": [28, 2, 2], "vehicle": [2, 28, 0], "station": "rct2.station.classical", "trees": None, "paths": None}
 W, H, FPS = 1920, 1080, 30
@@ -202,8 +206,9 @@ def caption(img: Image.Image, title: str, big: str, small: str, chip: str | None
     return img
 
 
-def improvements(icap: float = 10.35) -> list[dict]:
-    """Every new best (E, with intensity under the cap) across the run and its continuation. `n`
+def extract_records(icap: float = 10.35) -> None:
+    """Write RECORDS: every new best (E, with intensity under the cap) across the run and its
+    continuation, the first run's design.json, and the evaluations and minutes of both runs. `n`
     numbers the evaluations from 1 across both runs (each run's own `eval` starts at 0)."""
     out, best, t_off, n_off = [], None, 0.0, 0
     for run in RUNS:
@@ -213,30 +218,23 @@ def improvements(icap: float = 10.35) -> list[dict]:
             v = r["verdict"]
             if v["stage"] == "rated" and v["I"] < icap and (best is None or v["E"] > best + 1e-9):
                 best = v["E"]
-                out.append({"track": r["track"], "circuits": r.get("circuits", 1), "E": v["E"], "I": v["I"],
-                            "minutes": t_off + (r["t"] - t0) / 60, "n": n_off + r["eval"] + 1})
+                out.append({"n": n_off + r["eval"] + 1, "minutes": t_off + (r["t"] - t0) / 60, "E": v["E"],
+                            "I": v["I"], "track": r["track"]})
         t_off += (rows[-1]["t"] - t0) / 60
         n_off += len(rows)
-    return out
+    meta = json.loads((RUNS[0] / "design.json").read_text())
+    meta["park"] = stored_path(meta["park"])
+    RECORDS.write_text(json.dumps({"design": meta, "evaluations": n_off, "minutes": t_off, "records": out},
+                                  separators=(",", ":")))
+    print(f"{len(out)} records, {n_off} evaluations, {t_off:.1f} min -> {RECORDS}")
 
 
-def search_totals() -> tuple[int, float]:
-    """Evaluations and minutes of both runs together."""
-    n, minutes = 0, 0.0
-    for run in RUNS:
-        rows = [json.loads(line) for line in open(run / "evals.jsonl")]
-        n += len(rows)
-        minutes += (rows[-1]["t"] - rows[0]["t"]) / 60
-    return n, minutes
-
-
-def render_keys(picks: list[dict], workers: int = 8) -> None:
+def render_keys(picks: list[dict], design: dict, workers: int = 8) -> None:
     """The track at each pick, built with its own paths and trees in the decorated surroundings and
     shot from the scene's camera: search_frames/n<eval>.png, and .json with the rating it gets there."""
     work = OUT / "search_frames"
     work.mkdir(parents=True, exist_ok=True)
-    layout, _ = layout_from_run(RUNS[0])
-    layout = dataclasses.replace(layout, park=str(SCENE / "surroundings.park"), theme=LOOK)
+    layout = dataclasses.replace(layout_from_meta(design), park=str(SCENE / "surroundings.park"), theme=LOOK)
 
     def one(fr):
         img_path = work / f"n{fr['n']:05d}.png"
@@ -244,7 +242,7 @@ def render_keys(picks: list[dict], workers: int = 8) -> None:
             return
         judge = Judge(layout)
         try:
-            v = judge.evaluate([tuple(p) for p in fr["track"]], keep=True, circuits=fr["circuits"])
+            v = judge.evaluate([tuple(p) for p in fr["track"]], keep=True)
             judge.game.call("save", {"filename": f"vid_{fr['n']:05d}"})
         finally:
             judge.close()
@@ -291,10 +289,15 @@ def progress(img: Image.Image, imp: list[dict], k: int, n_max: int, lang: str) -
     return img
 
 
+def ratings(ride: dict) -> tuple[float, float, float]:
+    return ride["excitement"] / 100, ride["intensity"] / 100, ride["nausea"] / 100
+
+
 def final_ratings() -> tuple[float, float, float]:
-    """The finished park's ratings, as the game gave them in the ride recording."""
-    r = json.loads((RIDE_DIR / "shots.json").read_text())["ratings"]
-    return r["excitement"] / 100, r["intensity"] / 100, r["nausea"] / 100
+    """The finished park's ratings, as the game stored them in the showcase park."""
+    with Game(park=SCENE / "showcase.park") as g:
+        wait_ready(g)
+        return ratings(g.call("ride_info", {})[0])
 
 
 class Sequence:
@@ -320,10 +323,10 @@ def search(lang: str = "ko") -> Path:
     each for the first five (the big jumps), one beat up to the 40th, half a beat after that, and two
     beats for the first Extreme one. Then the finished park from four sides."""
     L = TEXT[lang]
-    imp = improvements()
-    render_keys(imp)
+    rec = json.loads(RECORDS.read_text())
+    imp, n_max, minutes = rec["records"], rec["evaluations"], rec["minutes"]
+    render_keys(imp, rec["design"])
     work = OUT / "search_frames"
-    n_max, minutes = search_totals()
     E, I, N = final_ratings()
     finals = [Image.open(p).convert("RGB") if p.exists() else shot(SCENE / "showcase.park", p, rotation=r)
               for r, p in enumerate(work / f"final_r{r}.png" for r in range(4))]
@@ -509,7 +512,7 @@ def hud(img: Image.Image, lines: list[tuple[str, str]]) -> Image.Image:
 def ride_edit(lang: str = "ko", ride_secs: float = 26) -> Path:
     L = TEXT[lang]
     shots = json.loads((RIDE_DIR / "shots.json").read_text())
-    E, I, N = final_ratings()
+    E, I, N = ratings(shots["ratings"])  # as the game gave them while filming
     seq = Sequence(OUT / f"ride_seq_{lang}")
     emit = seq.emit
 
@@ -613,9 +616,11 @@ def ride_edit(lang: str = "ko", ride_secs: float = 26) -> Path:
 
 
 if __name__ == "__main__":
-    # make_videos.py search|ride|ride-edit [ko|en ...]
-    langs = sys.argv[2:] or list(TEXT)
+    # make_videos.py search|ride|ride-edit [ko|en ...] | records
+    if sys.argv[1] == "records":
+        extract_records()
+        sys.exit()
     if sys.argv[1] == "ride":
         record()
-    for lang in langs:
+    for lang in sys.argv[2:] or list(TEXT):
         {"search": search, "ride": ride_edit, "ride-edit": ride_edit}[sys.argv[1]](lang)

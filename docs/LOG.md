@@ -901,3 +901,29 @@ OpenRCT2 v0.5.6 `RideRatings.cpp`의 공식에 담금질 최고 트랙(E 5.58)�
   - 캡션 상자는 글자 길이에 맞춰 늘어난다.
 - "치트 없음"을 **"레이팅 치트 없음"**("No rating cheats")으로 고쳤다. 돈, 연구, 고장 끄기 같은 편의 치트는 쓰지만, 레이팅에 영향을 주는 치트는 쓰지 않는다.
 - 다시 만들기: `uv run python scripts/make_videos.py search [ko|en]`, `ride-edit [ko|en]`(언어를 빼면 둘 다).
+
+## 2026-10-21 11:17 — 코드 정리, 영어 README, GitHub 공개 준비
+
+- 사용자 요청: 필요 없는 코드를 정리·리팩토링하고, 새 GitHub 레포를 만들어 영어 README와 함께 푸시할 것. 지금까지의 "푸시하지 않음" 규칙은 이 요청으로 바뀌었다.
+- 지운 것(기록은 git 이력에 남아 있다).
+  - 끝난 실험: 대리 모델(`surrogate.py`), 에너지 높이 모델(`physics.py`), MAP-Elites(`mapelites.py`, `rct2loop mapelites`). 어느 것도 최종 결과를 만들지 않았다.
+  - S2 지형 실험: `terrain.py`, `<차종>@<지형>` 레이아웃, `data/terrains/`, `data/parks/`, `make_terrains.py`, `run_s2*.sh`, `summarize_s2.py`, `results/s2_summary*.json`. 2단계 파이프라인이 게임에서 땅을 읽게 되면서 쓰지 않았다. 그래서 `Layout`에서 `ground_map`, `obstacles`, `min_z`(지하 실험 `giga_24u`)도 뺐다.
+  - 한 번 쓰고 만 옵션: 사전 조건(`priors`), 강도 가격(`i_price`), 여러 바퀴(`circuits`). 커밋된 결과는 모두 꺼진 값(False, 0, 1)으로 만들었다.
+  - 일회성 스크립트: `morning.sh`(특정 커밋 체리픽), `finish_heldout_b.sh`, `run_stats.py`, `rating_model/levers.py`·`objs.py`(없는 파일을 읽던 메모용 스크립트).
+  - 플러그인에서 아무도 부르지 않는 명령 8개(`installed_rides`, `objects`, `loaded`, `board_guests`, `allowed`, `capture`, `demolish_all`, `scenery_count`)와 여러 바퀴 설정. 손님 생성의 `widen`(모든 손님의 강도 허용 범위를 넓히는 옵션)도 지웠다. 쓰인 적은 없지만, "보통 손님"이라고 말하는 레포에 남겨 둘 이유가 없다.
+  - 의존성: scikit-learn을 빼고(대리 모델 전용), 영상 박자 검출이 쓰던 scipy를 직접 의존성으로 넣었다.
+- 정리한 것.
+  - 실제 맵 조건 파일 20개에 들어 있던 내 컴퓨터의 절대 경로를 뺐다. 이제 시나리오 이름만 두고, `load_condition`이 로컬 RCT2 설치에서 찾는다.
+  - `design.py`: 설정에서 `SearchConfig`를 만드는 코드를 `search_config()` 하나로 합쳤다. `layout_from_meta()`로 실행 폴더 없이 design.json만으로 레이아웃을 다시 만든다.
+  - 탐색 영상의 입력(최고 기록 209개, 실행 설정, 평가 수와 시간)을 `results/video/search_records.json`에 넣었다. `runs/`는 커밋하지 않으므로, 이게 없으면 클론에서 영상을 다시 만들 수 없었다. 마지막 카드의 레이팅은 꾸민 공원 파일에서 읽는다.
+  - `surroundings.py`를 `showcase.py`에 합쳤다(문서에는 원래 이 스크립트가 두 공원을 다 만든다고 적혀 있었다).
+  - `rating_model/parse.py`·`calc.py`를 `extract_rating_tables.py`·`rating_model.py`로 다시 썼다. 추출 결과는 `data/rating_tables.json`과 바이트 단위로 같고, 모델 출력도 같다.
+  - `rct2loop search`의 기본 레이아웃을 `giga_24`로 바꿨다(1단계 결과의 차종).
+- 검증: 정리 전 코드(git worktree)와 정리 후 코드로 같은 시드의 짧은 실행을 돌려 비교했다.
+  - 1단계(기가 24×24), 2단계(실제 맵 Future World, 고정 설정), 3단계(호수 24×24, 길 v2, 터널, 높이 상한), 각각 평가 196회. 모든 평가의 트랙, 편집, 단계, E/I/N, 점수, 나무·길 수가 같았다.
+  - 정리 전 코드를 두 번 돌려 보니 레이팅과 트랙은 같고, 틱 수와 일부 통계(공중 시간, 길이)만 조금씩 달랐다. 그래서 비교에서 이 둘은 뺐다.
+  - 기록 트랙을 `layout_from_run`으로 다시 지으면 E 11.95 / I 9.99 / N 8.75로 같다. 커밋한 기록 파일로 다시 렌더링한 탐색 장면 2장은 예전 그림과 픽셀까지 같다.
+  - 합친 `showcase.surroundings`가 만든 공원은 예전 스크립트가 만든 공원과 타일 스캔이 같다.
+  - 벤치마크 조건 생성 함수는 게임 호출을 흉내 낸 테스트에서 예전과 같은 호출, 같은 파일을 냈다.
+  - `rct2loop evaluate results/giga_final/summary.json`: E 8.18 / I 5.92 / N 4.24. 보류 조건 B 요약은 5/6.
+- README를 영어로 새로 썼다. 결과 사진은 `docs/media/`에 있다. GOAL·LOG·RATINGS는 한국어 그대로 둔다.

@@ -102,11 +102,10 @@ class Judge:
         self.restarts += 1
         self._launch()
 
-    def evaluate(self, pieces: list[tuple[int, bool]], keep: bool = False, prefilter: bool = True,
-                 circuits: int = 1) -> Verdict:
+    def evaluate(self, pieces: list[tuple[int, bool]], keep: bool = False, prefilter: bool = True) -> Verdict:
         if self.evals_since_launch >= RESTART_EVERY and not keep:
             self.restart()
-        v = self._evaluate(pieces, keep, prefilter, circuits)
+        v = self._evaluate(pieces, keep, prefilter)
         if v.stage in ("error", "scenery"):
             # Lost sync with the instance (timeout, crash, closed socket), or the build
             # removed trees so the terrain no longer matches the layout: start over.
@@ -115,7 +114,7 @@ class Judge:
             self.evals_since_launch += 1
         return v
 
-    def _evaluate(self, pieces: list[tuple[int, bool]], keep: bool, prefilter: bool, circuits: int = 1) -> Verdict:
+    def _evaluate(self, pieces: list[tuple[int, bool]], keep: bool, prefilter: bool) -> Verdict:
         t0 = time.perf_counter()
         tr = trace(self.layout, pieces)
         if prefilter and (not tr.closed or tr.problems):
@@ -128,13 +127,12 @@ class Judge:
             "pieces": pieces_payload(tr.placed),
             "entrance": [entrance[0] * 32, entrance[1] * 32, entrance[2]],
             "exit": [exit_[0] * 32, exit_[1] * 32, exit_[2]],
-            "maxTicks": max(MIN_TICKS, TICKS_PER_PIECE * len(tr.placed)) * circuits,
-            "circuits": circuits,
+            "maxTicks": max(MIN_TICKS, TICKS_PER_PIECE * len(tr.placed)),
             "keep": keep,
             "cars": self.layout.cars,
             "reversed": self.layout.reversed,
         }
-        if self.layout.obstacles or self.layout.env is not None:
+        if self.layout.env is not None:
             args["sceneryRect"] = list(self.layout.area)
         if tr.cuts:
             args["cuts"] = [[x, y, units] for (x, y), units in sorted(tr.cuts.items())]
@@ -224,20 +222,19 @@ class JudgePool:
             job = self._jobs.get()
             if job is None:
                 return
-            pieces, circuits, fut = job
+            pieces, fut = job
             try:
-                fut.set_result(judge.evaluate(pieces, circuits=circuits))
+                fut.set_result(judge.evaluate(pieces))
             except Exception as e:  # noqa: BLE001 - delivered to the caller
                 fut.set_exception(e)
 
-    def submit(self, pieces: list[tuple[int, bool]], circuits: int = 1) -> Future:
+    def submit(self, pieces: list[tuple[int, bool]]) -> Future:
         fut: Future = Future()
-        self._jobs.put((pieces, circuits, fut))
+        self._jobs.put((pieces, fut))
         return fut
 
-    def map(self, batch: list[list[tuple[int, bool]]], circuits: list[int] | None = None) -> list[Verdict]:
-        laps = circuits or [1] * len(batch)
-        futs = [self.submit(p, c) for p, c in zip(batch, laps)]
+    def map(self, batch: list[list[tuple[int, bool]]]) -> list[Verdict]:
+        futs = [self.submit(p) for p in batch]
         return [f.result() for f in futs]
 
     def close(self) -> None:

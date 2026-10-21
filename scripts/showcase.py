@@ -10,8 +10,9 @@ The coaster zone (the design's area) keeps its own exit path, queue and trees. A
 - the coaster recoloured (red track, white supports, white trains with red trim) with a classical station;
 - the park's guest spawns moved to a short road outside the new entrance (the base park's spawn
   led to an entrance with no paths, so guests never got in).
-Writes <out>/showcase.park and <out>/surroundings.park (the same scene without the coaster zone's
-ride, for rendering the search frames in it), and prints the coaster's ratings after dressing.
+Writes <out>/showcase.park, <out>/scene.json and <out>/surroundings.park (the same scene without the
+coaster and the footpaths inside its zone, for rendering the search frames in it: each frame builds
+its own track, paths and trees), and prints the coaster's ratings after dressing.
 """
 
 import json
@@ -54,8 +55,7 @@ def ring_tiles():
     return sorted(set(out))
 
 
-def main() -> None:
-    src, out = Path(sys.argv[1]), Path(sys.argv[2])
+def scene(src: Path, out: Path) -> None:
     out.mkdir(parents=True, exist_ok=True)
     rng = random.Random(7)
     x0, y0, x1, y1 = ZONE
@@ -211,5 +211,27 @@ def main() -> None:
     print("->", out / "showcase.park")
 
 
+def surroundings(out: Path) -> None:
+    """The showcase park without its coaster: the ride and the footpaths inside the coaster zone removed."""
+    x0, y0, x1, y1 = json.loads((out / "scene.json").read_text())["zone"]
+    with Game(park=out / "showcase.park") as g:
+        wait_ready(g)
+        g.call("setup", {"sandbox": True})
+        print(g.call("actions", {"list": [["ridedemolish", {"ride": 0, "modifyType": 0}]]}))
+        scan = g.call("scan", {"rect": [x0, y0, x1, y1]}, timeout=120)
+        acts = []
+        for tx, ty, base, clear, slope, water, owned, rights, edge, others in scan["tiles"]:
+            for kind, b, c, ride in others:
+                if kind == "footpath":
+                    acts.append(["footpathremove", {"x": tx * 32, "y": ty * 32, "z": b}])
+        res = g.call("actions", {"list": acts}, timeout=300)
+        print(f"removed {sum(r['ok'] for r in res)} of {len(acts)} zone footpath tiles")
+        g.call("save", {"filename": "surroundings"})
+    shutil.copyfile(RUNTIME / "save" / "surroundings.park", out / "surroundings.park")
+    print("->", out / "surroundings.park")
+
+
 if __name__ == "__main__":
-    main()
+    src, out = Path(sys.argv[1]), Path(sys.argv[2])
+    scene(src, out)
+    surroundings(out)

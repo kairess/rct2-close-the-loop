@@ -7,8 +7,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(prog="rct2loop", description="Coaster design with OpenRCT2 as the judge")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
-    s = sub.add_parser("search", help="loop-first segment-edit search")
-    s.add_argument("--layout", default="wooden_24")
+    s = sub.add_parser("search", help="loop-first segment-edit search on a flat 24x24 area")
+    s.add_argument("--layout", default="giga_24", help="one of layouts.LAYOUTS: giga_24, twister_24, wooden_24, ...")
     s.add_argument("--workers", type=int, default=14)
     s.add_argument("--batch", type=int, default=28)
     s.add_argument("--evals", type=int, default=20000)
@@ -23,37 +23,17 @@ def main() -> None:
     s.add_argument("--icap-start", type=float, default=7.5, help="intensity cap in the score at the start")
     s.add_argument("--icap-end", type=float, default=7.5, help="intensity cap in the score at the end")
     s.add_argument("--reheat-after", type=int, default=60, help="rounds without a chain best before it restarts")
-    s.add_argument("--priors", action="store_true", help="cap inversions at 6 and helix pieces at 5")
-    s.add_argument("--iprice-start", type=float, default=0.0, help="price per unit of intensity at the start")
-    s.add_argument("--iprice-end", type=float, default=0.0, help="price per unit of intensity at the end")
-    s.add_argument("--circuits", default="1", help="laps per chain, cycled over chains, e.g. 1,1,1,2")
     s.add_argument("--stop-on-goal", action="store_true")
-
-    m = sub.add_parser("mapelites", help="MAP-Elites over intensity x nausea, fitness = excitement")
-    m.add_argument("--layout", default="wooden_24")
-    m.add_argument("--workers", type=int, default=14)
-    m.add_argument("--inflight", type=int, default=28)
-    m.add_argument("--evals", type=int, default=30000)
-    m.add_argument("--minutes", type=float, default=60)
-    m.add_argument("--hill", type=int, default=6)
-    m.add_argument("--seed", type=int, default=1)
-    m.add_argument("--goal-bias", type=float, default=0.5)
-    m.add_argument("--tournament", type=int, default=2)
-    m.add_argument("--max-window", type=int, default=12)
-    m.add_argument("--max-walk", type=int, default=8)
-    m.add_argument("--init", type=Path, nargs="*", help="JSON files with a 'track' (best.json) or archive.json")
-    m.add_argument("--init-run", type=Path, nargs="*", help="seed with the best track per (I, N) cell of earlier runs")
-    m.add_argument("--stop-on-goal", action="store_true")
 
     e = sub.add_parser("evaluate", help="re-evaluate a track in a fresh game instance")
     e.add_argument("file", type=Path, help="JSON with a 'track' field (e.g. runs/.../best.json)")
-    e.add_argument("--layout", default="wooden_24")
+    e.add_argument("--layout", default="giga_24")
     e.add_argument("--repeat", type=int, default=3)
 
     r = sub.add_parser("render", help="build a track, save the park and take screenshots into results/<name>/")
     r.add_argument("file", type=Path, help="JSON with a 'track' field")
     r.add_argument("name")
-    r.add_argument("--layout", default="wooden_24")
+    r.add_argument("--layout", default="giga_24")
     r.add_argument("--zoom", type=int, default=0)
 
     st = sub.add_parser("stats", help="summarize search runs")
@@ -67,7 +47,7 @@ def main() -> None:
     dg.add_argument("--ride", help="override the fixed ride type (development only)")
     dg.add_argument("--config", default="fixed", help="named configuration in design.CONFIGS (fixed, extreme)")
     dg.add_argument("--set", action="append", default=[], metavar="KEY=VALUE",
-                    help="override a configuration value (JSON value), e.g. --set cars=10 --set circuits='\"1,1,3,3\"'")
+                    help="override a configuration value (JSON value), e.g. --set cars=10 --set paths='\"v2\"'")
 
     cn = sub.add_parser("continue", help="search on from a design run's best track (same land, station, config)")
     cn.add_argument("run", type=Path)
@@ -116,9 +96,11 @@ def main() -> None:
                 s.pop("trajectory")
             print(json.dumps(s, indent=1))
         return
-    from .layouts import get_layout
+    from .layouts import LAYOUTS
 
-    layout = get_layout(args.layout)
+    if args.layout not in LAYOUTS:
+        parser.error(f"unknown layout {args.layout!r}; choose from {', '.join(LAYOUTS)}")
+    layout = LAYOUTS[args.layout]
     if args.cmd == "search":
         from .search import SearchConfig, run
 
@@ -126,29 +108,12 @@ def main() -> None:
             layout_name=args.layout, workers=args.workers, batch=args.batch, max_evals=args.evals,
             max_minutes=args.minutes, t0=args.t0, t1=args.t1, hill=args.hill, seed=args.seed,
             slack=args.slack, chains=args.chains, i_cap_start=args.icap_start, i_cap_end=args.icap_end,
-            reheat_after=args.reheat_after, priors=args.priors, i_price_start=args.iprice_start,
-            i_price_end=args.iprice_end, circuits=args.circuits, stop_on_goal=args.stop_on_goal,
+            reheat_after=args.reheat_after, stop_on_goal=args.stop_on_goal,
         )
         initial = None
         if args.init:
             initial = [tuple(p) for p in json.loads(args.init.read_text())["track"]]
         run(cfg, layout, initial)
-    elif args.cmd == "mapelites":
-        from .mapelites import MapElitesConfig, elites_from_run, run as run_me
-
-        cfg = MapElitesConfig(
-            layout_name=args.layout, workers=args.workers, inflight=args.inflight, max_evals=args.evals,
-            max_minutes=args.minutes, hill=args.hill, seed=args.seed, goal_bias=args.goal_bias,
-            tournament=args.tournament, max_window=args.max_window, max_walk=args.max_walk, stop_on_goal=args.stop_on_goal,
-        )
-        seeds = []
-        for f in args.init or []:
-            data = json.loads(f.read_text())
-            entries = data if isinstance(data, list) else [data]
-            seeds.extend([tuple(p) for p in e["track"]] for e in entries)
-        for run_dir in args.init_run or []:
-            seeds.extend(elites_from_run(run_dir))
-        run_me(cfg, layout, seeds or None)
     elif args.cmd == "evaluate":
         from .judge import Judge
         from .search import meets_goal
@@ -158,7 +123,7 @@ def main() -> None:
         judge = Judge(layout)
         try:
             for k in range(args.repeat):
-                v = judge.evaluate(track, circuits=data.get("circuits", 1))
+                v = judge.evaluate(track)
                 print(json.dumps({"repeat": k, "goal": meets_goal(v), **v.to_dict()}))
         finally:
             judge.close()
@@ -167,5 +132,5 @@ def main() -> None:
 
         data = json.loads(args.file.read_text())
         track = [tuple(p) for p in data["track"]]
-        summary = render(layout, track, args.name, zoom=args.zoom, circuits=data.get("circuits", 1))
+        summary = render(layout, track, args.name, zoom=args.zoom)
         print(json.dumps({k: v for k, v in summary.items() if k != "track"}, indent=1))

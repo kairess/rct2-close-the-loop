@@ -24,7 +24,7 @@ def collect(run_dirs: list[Path], out: Path) -> dict:
     for d in run_dirs:
         s = summarize_run(d)
         cfg = json.loads((d / "config.json").read_text())
-        method = "mapelites" if "mapelites" in cfg else "anneal"
+        method = "mapelites" if "mapelites" in cfg else "anneal"  # phase 1 also tried MAP-Elites (since removed)
         layout = cfg["layout"]["ride_type_name"]
         runs.append({
             "run": d.name, "method": method, "ride": layout, "evals": s["evals"], "stages": s["stages"],

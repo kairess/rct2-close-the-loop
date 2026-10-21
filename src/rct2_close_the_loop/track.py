@@ -18,7 +18,6 @@ DATA = Path(__file__).resolve().parents[2] / "data"
 TILE = 32
 DIR_DELTA = ((-TILE, 0), (0, TILE), (TILE, 0), (0, -TILE))
 STATION = 1  # END_STATION; the game reclassifies begin/middle/end itself
-UNDERGROUND_CLEARANCE = 32  # rough track clearance used to call an element fully underground
 LIFT = 1  # trackPlaceFlags bit for chain lift
 
 
@@ -204,12 +203,9 @@ class Layout:
     area: tuple[int, int, int, int]  # x0, y0, x1, y1 tiles, inclusive-exclusive
     max_height: int  # max base z above ground, world units
     min_separation: int = 48  # vertical gap demanded between track on one tile
-    min_z: int | None = None  # lowest base z allowed; None keeps track above ground (no tunnels)
     cars: int | None = None  # cars per train; None keeps the game's default
-    park: str | None = None  # park file (relative to the repo) with this layout's terrain; None = flat fixture
-    ground_map: dict | None = None  # {(tile_x, tile_y): surface z} where it differs from ground_z
-    obstacles: dict | None = None  # {(tile_x, tile_y): top z} of trees; track must pass above
-    env: object | None = None  # env.Env read from the game; when set it replaces ground_map/obstacles
+    park: str | None = None  # park file with this layout's land; None = the flat fixture park
+    env: object | None = None  # env.Env read from the game (land, water, ownership, obstacles); None = flat land
     area_tiles: frozenset | None = None  # arbitrary-shape area; None = the `area` rectangle
     decor: str | None = None  # small scenery object planted around the track before rating (decor.py)
     theme: dict | None = None  # look of the park around the area (theme.py): tree species, path objects, colours
@@ -217,11 +213,8 @@ class Layout:
     paths: bool | str = False  # True or "v2" (queue targets, stations with free fronts): route the ride's exit path and queue line past the track before rating (paths.py)
 
     def to_record(self) -> dict:
-        """JSON-safe description for run configs (terrain maps keyed "x,y")."""
+        """JSON-safe description for run configs."""
         rec = dict(self.__dict__)
-        for key in ("ground_map", "obstacles"):
-            if rec[key] is not None:
-                rec[key] = {f"{x},{y}": z for (x, y), z in rec[key].items()}
         if self.env is not None:
             rec["env"] = {"sandbox": self.env.sandbox, "terraform": self.env.terraform,
                           "tunnels": self.env.tunnels, **self.env.summary(self.area_tiles)}
@@ -234,14 +227,6 @@ class Layout:
             return (tx, ty) in self.area_tiles
         x0, y0, x1, y1 = self.area
         return x0 <= tx < x1 and y0 <= ty < y1
-
-    def ground_at(self, tx: int, ty: int) -> int:
-        if self.env is not None:
-            info = self.env.tiles.get((tx, ty))
-            return info.floor if info else self.ground_z
-        if self.ground_map is None:
-            return self.ground_z
-        return self.ground_map.get((tx, ty), self.ground_z)
 
     def start(self) -> State:
         x, y = self.station_tile
@@ -343,37 +328,24 @@ def check_space_env(layout: Layout, placed: list[Placed]) -> tuple[list[str], di
 
 
 def check_space(layout: Layout, placed: list[Placed]) -> list[str]:
-    """Cheap pre-filter for area, ground, height and self-overlap. The game has the final say."""
+    """Cheap pre-filter on flat land: area, ground, height and self-overlap. The game has the final say."""
     x0, y0, x1, y1 = layout.area
     occupied: dict[tuple[int, int], list[tuple[int, int]]] = {}
     for (ax, ay, _) in layout.access_tiles():
         occupied[(ax, ay)] = [(layout.ground_z, -1)]
     problems = []
-    obstacles = layout.obstacles or {}
     for i, p in enumerate(placed):
         s = segments()[p.type]
         span = max(abs(s.end_z - s.begin_z), 0) if len(s.elements) == 1 else 0
         tiles = list(piece_tiles(p.x, p.y, p.z, p.d, p.type))
-        below = [(z, layout.ground_at(tx, ty)) for tx, ty, z in tiles if z < layout.ground_at(tx, ty)]
+        below = [z for _tx, _ty, z in tiles if z < layout.ground_z]
         if below:
-            lowest = min(z for z, _ in below)
-            if layout.min_z is None:
-                return [f"piece {i} below ground (z={lowest})"]
-            if lowest < layout.min_z:
-                return [f"piece {i} too low (z={lowest})"]
-            if s.only_above_ground:
-                return [f"piece {i} type {p.type} must stay above ground"]
-            # A multi-tile piece cannot be partly above and partly below the surface.
-            if len(tiles) > 1 and any(z + UNDERGROUND_CLEARANCE > layout.ground_at(tx, ty) for tx, ty, z in tiles):
-                return [f"piece {i} straddles the surface"]
+            return [f"piece {i} below ground (z={min(below)})"]
         for tx, ty, z in tiles:
             if not (x0 <= tx < x1 and y0 <= ty < y1):
                 return [f"piece {i} leaves area at tile ({tx},{ty})"]
-            if z + span - layout.ground_at(tx, ty) > layout.max_height:
+            if z + span - layout.ground_z > layout.max_height:
                 return [f"piece {i} too high (z={z})"]
-            top = obstacles.get((tx, ty))
-            if top is not None and z < top:
-                return [f"piece {i} hits a tree at tile ({tx},{ty})"]
             for oz, oi in occupied.get((tx, ty), ()):
                 if oi != i and abs(oz - z) < layout.min_separation:
                     return [f"piece {i} overlaps piece {oi} at tile ({tx},{ty})"]

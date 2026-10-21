@@ -20,11 +20,11 @@ from pathlib import Path
 
 from .env import Env
 from .game import RUNTIME, Game, rct2_path, wait_ready
-from .terrain import TREE
 
 ROOT = Path(__file__).resolve().parents[2]
 BENCH = ROOT / "data" / "bench"
 ORIGIN = (100, 100)  # top-left of synthetic areas on the 266x266 fixture
+TREE = "rct2.scenery_small.tco"  # Common Oak, full tile
 SIZES = (12, 16, 20, 24, 28, 32)
 SHAPES = ("rect", "L", "cross")
 
@@ -154,6 +154,8 @@ def best_window(env: Env, size: int) -> tuple[int, int, set]:
 
 
 def make_real(name: str, scenario: Path, size: int, min_free: float = 0.6) -> dict | None:
+    """A window of a scenario shipped with RCT2. The condition names the scenario file; the park is
+    loaded from the local game data (design.load_condition)."""
     with Game(park=scenario) as g:
         wait_ready(g)
         g.call("setup", {"sandbox": False})
@@ -162,63 +164,57 @@ def make_real(name: str, scenario: Path, size: int, min_free: float = 0.6) -> di
     n, origin, area = best_window(env, size)
     if n < min_free * size * size:
         return None
-    return {"name": name, "kind": "real", "scenario": scenario.name, "park": str(scenario),
-            "window": [*origin, size], "free_tiles": n, "area_tiles": sorted(map(list, area)),
-            "sandbox": False, "terraform": True}
+    return {"name": name, "kind": "real", "scenario": scenario.name, "window": [*origin, size], "free_tiles": n,
+            "area_tiles": sorted(map(list, area)), "sandbox": False, "terraform": True}
 
 
-def generate_all(log=print) -> None:
-    """Freeze the development and held-out condition lists (run once, before any held-out run)."""
-    for split, seeds in (("dev", range(100, 106)), ("heldout", range(200, 210))):
-        out = BENCH / split
-        out.mkdir(parents=True, exist_ok=True)
-        for s in seeds:
-            cond = make_synthetic(f"syn{s}", s)
-            (out / f"syn{s}.json").write_text(json.dumps(cond))
-            log(f"{split} syn{s}: {cond['params']}")
-    rng = random.Random(2026)
-    files = scenario_files()
-    rng.shuffle(files)
-    want = {"dev": 4, "heldout": 10}
-    made = {"dev": 0, "heldout": 0}
+def write_synthetic(split: str, seeds, log=print) -> None:
+    out = BENCH / split
+    out.mkdir(parents=True, exist_ok=True)
+    for s in seeds:
+        cond = make_synthetic(f"syn{s}", s)
+        (out / f"syn{s}.json").write_text(json.dumps(cond))
+        log(f"{split} syn{s}: {cond['params']}")
+
+
+def write_real(quotas: list[tuple[str, int]], files: list[Path], rng: random.Random, log=print) -> None:
+    """Fill each split's quota in turn from the scenario files, in order, skipping maps without
+    enough free buildable land for the window size drawn for them."""
+    quotas = [list(q) for q in quotas]
     for f in files:
-        split = "dev" if made["dev"] < want["dev"] else "heldout"
-        if made[split] >= want[split]:
+        while quotas and quotas[0][1] == 0:
+            quotas.pop(0)
+        if not quotas:
             break
+        split = quotas[0][0]
         size = rng.choice((16, 20, 24))
         name = "real_" + "".join(c for c in f.stem.lower() if c.isalnum())[:28]
         cond = make_real(name, f, size)
         if cond is None:
             log(f"skip {f.name}: not enough free buildable land for {size}x{size}")
             continue
+        (BENCH / split).mkdir(parents=True, exist_ok=True)
         (BENCH / split / f"{name}.json").write_text(json.dumps(cond))
-        made[split] += 1
+        quotas[0][1] -= 1
         log(f"{split} {name}: {f.name} window {cond['window']} free {cond['free_tiles']}")
+
+
+def generate_all(log=print) -> None:
+    """Freeze the development and held-out condition lists (run once, before any held-out run)."""
+    write_synthetic("dev", range(100, 106), log)
+    write_synthetic("heldout", range(200, 210), log)
+    rng = random.Random(2026)
+    files = scenario_files()
+    rng.shuffle(files)
+    write_real([("dev", 4), ("heldout", 10)], files, rng, log)
 
 
 def generate_heldout_b(n_syn: int = 3, n_real: int = 3, log=print) -> None:
     """A second held-out split, frozen before any run, for measuring code changed after the first one.
     Synthetic seeds 300+; real maps from scenarios not used by dev or heldout, in a Random(2027) order."""
-    out = BENCH / "heldout_b"
-    out.mkdir(parents=True, exist_ok=True)
-    for s in range(300, 300 + n_syn):
-        cond = make_synthetic(f"syn{s}", s)
-        (out / f"syn{s}.json").write_text(json.dumps(cond))
-        log(f"heldout_b syn{s}: {cond['params']}")
+    write_synthetic("heldout_b", range(300, 300 + n_syn), log)
     used = {json.loads(p.read_text()).get("scenario") for split in ("dev", "heldout") for p in (BENCH / split).glob("real_*.json")}
     rng = random.Random(2027)
     files = [f for f in scenario_files() if f.name not in used]
     rng.shuffle(files)
-    made = 0
-    for f in files:
-        if made >= n_real:
-            break
-        size = rng.choice((16, 20, 24))
-        name = "real_" + "".join(c for c in f.stem.lower() if c.isalnum())[:28]
-        cond = make_real(name, f, size)
-        if cond is None:
-            log(f"skip {f.name}: not enough free buildable land for {size}x{size}")
-            continue
-        (out / f"{name}.json").write_text(json.dumps(cond))
-        made += 1
-        log(f"heldout_b {name}: {f.name} window {cond['window']} free {cond['free_tiles']}")
+    write_real([("heldout_b", n_real)], files, rng, log)

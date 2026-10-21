@@ -14,7 +14,7 @@ import json
 import shutil
 from pathlib import Path
 
-from .game import RUNTIME, Game, wait_ready
+from .game import RUNTIME, Game, rct2_path, wait_ready
 from .layouts import BASES
 from .search import SearchConfig, run
 from .site import bbox, find_start, scan_env
@@ -31,10 +31,6 @@ FIXED = {
     "slack": 0.05,
     "i_cap_start": 6.5,
     "i_cap_end": 7.5,
-    "priors": False,
-    "i_price_start": 0.0,
-    "i_price_end": 0.0,
-    "circuits": "1",
     "decor": "rct2.scenery_small.tco",  # trees around the station and beside the track (decor.py)
     "batch": 28,
     "workers": 14,
@@ -65,11 +61,27 @@ EXTREME = {
 CONFIGS = {"fixed": FIXED, "extreme": EXTREME}
 
 
+def repo_path(path: str | Path) -> Path:
+    """A path as stored in a condition or run file: absolute, or relative to the repository."""
+    path = Path(path)
+    return path if path.is_absolute() else ROOT / path
+
+
+def stored_path(path: Path) -> str:
+    """The inverse of repo_path: relative when the file is inside the repository."""
+    path = Path(path).resolve()
+    return str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path)
+
+
 def load_condition(path: Path) -> dict:
+    """A condition file: its area as a set of tiles and the park file to load. Real conditions name a
+    scenario shipped with RCT2, found in the local game data."""
     cond = json.loads(Path(path).read_text())
     cond["area"] = frozenset(tuple(t) for t in cond["area_tiles"])
-    park = Path(cond["park"])
-    cond["park_path"] = park if park.is_absolute() else ROOT / park
+    if cond.get("kind") == "real":
+        cond["park_path"] = rct2_path() / "Scenarios" / cond["scenario"]
+    else:
+        cond["park_path"] = repo_path(cond["park"])
     return cond
 
 
@@ -131,9 +143,9 @@ def height_cap(base, max_height_m: float | None) -> int:
     return min(base.max_height, int(round(max_height_m / 0.09 / 8)) * 8)
 
 
-def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | None = None,
-            cars: int | None = None, station_len: int | None = None, paths: bool = False,
-            reversed_trains: bool = False, use_theme: bool = False, max_height_m: float | None = None):
+def prepare(cond: dict, ride: str, log=print, decor: str | None = None, cars: int | None = None,
+            station_len: int | None = None, paths: bool | str = False, reversed_trains: bool = False,
+            use_theme: bool = False, max_height_m: float | None = None):
     """Scan the land and find a starting loop. Returns (layout, track, verdict)."""
     area = cond["area"]
     x0, y0, x1, y1 = bbox(area)
@@ -151,22 +163,27 @@ def prepare(cond: dict, ride: str, log=print, judge_factory=None, decor: str | N
     base = dataclasses.replace(BASES[ride], decor=decor, cars=cars, paths=paths, reversed=reversed_trains, theme=look)
     if station_len:
         base = dataclasses.replace(base, station_len=station_len)
-    if judge_factory is None:
-        from .judge import Judge
-
-        judge_factory = lambda lay: Judge(lay)  # noqa: E731
     cap = height_cap(base, max_height_m)
     ride_cap = base.max_height
     while True:
         try:
-            return find_start(dataclasses.replace(base, max_height=cap), env, area, str(cond["park_path"]),
-                              judge_factory=judge_factory, log=log)
+            return find_start(dataclasses.replace(base, max_height=cap), env, area, str(cond["park_path"]), log=log)
         except ValueError:
             if cap >= ride_cap:
                 raise
             # No starting loop fits under the cap: relax it rather than give up.
             cap = min(ride_cap, int(cap * 1.5) // 8 * 8)
             log(f"no starting loop under the height cap; relaxing it to {cap} z")
+
+
+def search_config(name: str, c: dict, seed: int, **changes) -> SearchConfig:
+    """The annealing settings of a design configuration (FIXED, EXTREME, or a run's stored one)."""
+    cfg = SearchConfig(
+        layout_name=name, workers=c["workers"], batch=c["batch"], max_evals=10**9, max_minutes=c["minutes"],
+        t0=c["t0"], t1=c["t1"], seed=seed, slack=c["slack"], chains=c["chains"], i_cap_start=c["i_cap_start"],
+        i_cap_end=c["i_cap_end"], goal=c["goal"], n_cap=c["n_cap"], height_price=c.get("height_price", 0.0),
+    )
+    return dataclasses.replace(cfg, **changes)
 
 
 def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, log=print,
@@ -183,32 +200,21 @@ def design(condition_path: Path, seed: int = 1, overrides: dict | None = None, l
                                 use_theme=cfg_values.get("theme", False), max_height_m=cfg_values.get("max_height_m"))
     log(f"start: station {layout.station_tile} dir {layout.station_dir} z {layout.ground_z}, "
         f"{len(track)} pieces, E{v0.excitement}/I{v0.intensity}/N{v0.nausea}")
-    cfg = SearchConfig(
-        layout_name=f"{cfg_values['ride']}@{cond['name']}",
-        workers=cfg_values["workers"], batch=cfg_values["batch"], max_evals=10**9,
-        max_minutes=cfg_values["minutes"], t0=cfg_values["t0"], t1=cfg_values["t1"], seed=seed,
-        slack=cfg_values["slack"], chains=cfg_values["chains"],
-        i_cap_start=cfg_values["i_cap_start"], i_cap_end=cfg_values["i_cap_end"],
-        priors=cfg_values["priors"], i_price_start=cfg_values["i_price_start"], i_price_end=cfg_values["i_price_end"],
-        circuits=cfg_values["circuits"], goal=cfg_values["goal"], n_cap=cfg_values["n_cap"],
-        height_price=cfg_values.get("height_price", 0.0),
-    )
+    cfg = search_config(f"{cfg_values['ride']}@{cond['name']}", cfg_values, seed)
     run_dir = run(cfg, layout, initial=track, log_print=log)
     meta = {"condition": str(condition_path), "condition_name": cond["name"], "kind": cond.get("kind"),
             "config": cfg_values, "seed": seed, "station": [*layout.station_tile, layout.station_dir, layout.ground_z],
-            "park": str(cond["park_path"]), "tunnels": bool(cond.get("tunnels")), "theme": layout.theme,
+            "park": stored_path(cond["park_path"]), "tunnels": bool(cond.get("tunnels")), "theme": layout.theme,
             "max_height": layout.max_height}
     (run_dir / "design.json").write_text(json.dumps(meta, indent=1))
     return run_dir
 
 
-
-def layout_from_run(run_dir: Path):
-    """Rebuild the layout a design run used (land re-scanned from its park). Returns (layout, meta)."""
-    meta = json.loads((Path(run_dir) / "design.json").read_text())
-    cond = load_condition(ROOT / meta["condition"] if not Path(meta["condition"]).is_absolute() else meta["condition"])
+def layout_from_meta(meta: dict):
+    """Rebuild the layout of a design run from its design.json (the land is scanned again from its park)."""
+    cond = load_condition(repo_path(meta["condition"]))
     if meta.get("park"):  # the landscaped park the run designed on
-        cond["park_path"] = Path(meta["park"])
+        cond["park_path"] = repo_path(meta["park"])
     cond["tunnels"] = meta.get("tunnels", cond.get("tunnels", False))
     area = cond["area"]
     x0, y0, x1, y1 = bbox(area)
@@ -224,7 +230,13 @@ def layout_from_run(run_dir: Path):
         layout = dataclasses.replace(layout, station_len=cfg["station_len"])
     if meta.get("max_height"):
         layout = dataclasses.replace(layout, max_height=meta["max_height"])
-    return layout, meta
+    return layout
+
+
+def layout_from_run(run_dir: Path):
+    """The layout a design run used, and its design.json."""
+    meta = json.loads((Path(run_dir) / "design.json").read_text())
+    return layout_from_meta(meta), meta
 
 
 def continue_run(run_dir: Path, minutes: float, seed: int = 2, t0: float = 0.1, log=print) -> Path:
@@ -241,16 +253,8 @@ def continue_run(run_dir: Path, minutes: float, seed: int = 2, t0: float = 0.1, 
                 best = r
     track = [tuple(p) for p in best["track"]]
     log(f"continue from {Path(run_dir).name} eval {best['eval']} E{best['verdict']['E']}")
-    cfg = SearchConfig(
-        layout_name=f"{cfg_values['ride']}@{meta['condition_name']}+",
-        workers=cfg_values["workers"], batch=cfg_values["batch"], max_evals=10**9,
-        max_minutes=minutes, t0=t0, t1=cfg_values["t1"], seed=seed,
-        slack=cfg_values["slack"], chains=cfg_values["chains"],
-        i_cap_start=cfg_values["i_cap_end"], i_cap_end=cfg_values["i_cap_end"],
-        priors=cfg_values["priors"], i_price_start=cfg_values["i_price_start"], i_price_end=cfg_values["i_price_end"],
-        circuits=cfg_values["circuits"], goal=cfg_values["goal"], n_cap=cfg_values["n_cap"],
-        height_price=cfg_values.get("height_price", 0.0),
-    )
+    cfg = search_config(f"{cfg_values['ride']}@{meta['condition_name']}+", cfg_values, seed,
+                        i_cap_start=cfg_values["i_cap_end"])
     out = run(cfg, layout, initial=track, log_print=log)
     meta = {**meta, "config": cfg_values, "seed": seed, "continued_from": str(run_dir), "from_eval": best["eval"]}
     (out / "design.json").write_text(json.dumps(meta, indent=1))

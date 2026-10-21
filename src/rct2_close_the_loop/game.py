@@ -127,7 +127,7 @@ class Game:
         threading.Thread(target=self._pump_logs, daemon=True).start()
         if not self._port_ready.wait(launch_timeout) or self._port is None:
             self.close()
-            raise GameError(f"rct2loop did not start; last logs:\n" + "\n".join(list(self.logs)[-15:]))
+            raise GameError("rct2loop did not start; last logs:\n" + "\n".join(list(self.logs)[-15:]))
         self.sock = socket.create_connection(("127.0.0.1", self._port), timeout=launch_timeout)
         self.sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
         self._rfile = self.sock.makefile("r", encoding="utf-8")

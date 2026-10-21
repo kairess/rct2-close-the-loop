@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import dataclasses
-
 from itertools import product
 
 from .track import Layout, trace
@@ -39,21 +38,6 @@ GIGA_24 = Layout(
     min_separation=24,
 )
 
-# Giga with tunnels allowed: track may dip below the land (z 112) down to z 32.
-# Only underground track counts as sheltered in the ratings (Vehicle.cpp shelter check).
-GIGA_24U = Layout(
-    ride_type_name="giga_rc",
-    ride_type=68,
-    ride_object="rct2.ride.intst",
-    station_tile=(104, 102),
-    station_dir=2,
-    station_len=4,
-    ground_z=GROUND_Z,
-    area=(100, 100, 124, 124),
-    max_height=680,
-    min_z=32,
-)
-
 # Twister with Floorless Twister trains (multipliers E+10/I+5/N+10 of 128): vertical loops,
 # corkscrews and rolls without cheats, and any inversion waives the drop/negative-G requirements.
 TWISTER_24 = Layout(
@@ -78,22 +62,11 @@ HYPERTWISTER_24 = dataclasses.replace(TWISTER_24, ride_type_name="HyperTwister",
 HYPERCOASTER_24 = dataclasses.replace(TWISTER_24, ride_type_name="Hypercoaster", ride_type=91,
                                       ride_object="rct2.ride.arrt2", max_height=440)
 
-LAYOUTS = {"wooden_24": WOODEN_24, "giga_24": GIGA_24, "giga_24u": GIGA_24U, "twister_24": TWISTER_24,
-           "hypertwister_24": HYPERTWISTER_24, "hypercoaster_24": HYPERCOASTER_24}
+# Ride bases by short name: the general pipeline (design.py) places one of these on any land.
 BASES = {"giga": GIGA_24, "twister": TWISTER_24, "wooden": WOODEN_24, "hypertwister": HYPERTWISTER_24,
          "hypercoaster": HYPERCOASTER_24}
-
-
-def get_layout(name: str) -> Layout:
-    """A named layout, or "<ride>@<terrain>" (e.g. "giga@hills24") for a baked S2 terrain."""
-    if name in LAYOUTS:
-        return LAYOUTS[name]
-    ride, _, terrain_name = name.partition("@")
-    if not terrain_name or ride not in BASES:
-        raise KeyError(f"unknown layout {name!r}")
-    from .terrain import layout_for
-
-    return layout_for(BASES[ride], terrain_name)
+# Flat 24x24 layouts for `rct2loop search`.
+LAYOUTS = {f"{name}_24": base for name, base in BASES.items()}
 
 LEFT3 = 42
 RIGHT3 = 43

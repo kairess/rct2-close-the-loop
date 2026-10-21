@@ -37,7 +37,7 @@ def main() -> None:
             best = r
     out = RESULTS / "extreme" / args.name
     track = [tuple(p) for p in best["track"]]
-    summary = render(layout, track, args.name, zoom=None, circuits=best.get("circuits", 1), out=out)
+    summary = render(layout, track, args.name, zoom=None, out=out)
     for k, shot in enumerate(summary["screenshots"]):
         img = crop_to_area(Image.open(out / shot).convert("RGB"), layout, k)
         img.resize((960, round(960 * img.height / img.width)), Image.LANCZOS).save(out / f"thumb_r{k}.jpg", quality=84)

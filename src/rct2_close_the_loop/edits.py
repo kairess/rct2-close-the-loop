@@ -11,13 +11,11 @@ long, keyed by the displacement it produces in its own frame.
 
 from __future__ import annotations
 
-import json
 import random
 from collections import defaultdict
 from dataclasses import dataclass
-from functools import cache
 
-from .track import DATA, Layout, State, ride_groups, rot, segments, step, trace
+from .track import Layout, State, ride_groups, rot, segments, step, trace
 
 COMPLETION_DEPTH = 4
 MAX_PER_KEY = 48
@@ -26,19 +24,6 @@ STEEP_UP = {4, 10}  # 60 and 90 degrees up
 LIFT_HILL_STEEP_GROUP = 4  # TrackGroup::liftHillSteep
 
 Piece = tuple[int, bool]
-
-
-# Laps the test actually measures for a ride's "number of circuits" setting (measured on
-# OpenRCT2 v0.5.6: 1 and 2 circuits measure one lap, 3 and 4 measure two).
-MEASURED_LAPS = {1: 1, 2: 1, 3: 2, 4: 2}
-
-
-@cache
-def rating_flags() -> tuple[frozenset[int], frozenset[int]]:
-    """Track types the game counts as an inversion (normalToInversion) and as a helix piece,
-    extracted from OpenRCT2's TrackData.cpp into data/track_flags.json."""
-    raw = json.loads((DATA / "track_flags.json").read_text())
-    return frozenset(raw["normalToInversion"]), frozenset(raw["helix"])
 
 
 @dataclass
@@ -67,16 +52,11 @@ def relative(a: State, b: State) -> tuple[int, int, int, int, int, int]:
 
 class EditGenerator:
     def __init__(self, layout: Layout, pieces: frozenset[int], seed: int | None = None,
-                 max_window: int = 8, max_walk: int = 6, max_inversions: int | None = None,
-                 max_helix: int | None = None):
+                 max_window: int = 8, max_walk: int = 6):
         self.layout = layout
         self.rng = random.Random(seed)
         self.max_window = max_window
         self.max_walk = max_walk
-        # Rating priors: excitement counts at most 6 inversions and 5 helix pieces; beyond
-        # that they only add intensity and nausea, so such candidates are not worth a test.
-        self.max_inversions = max_inversions
-        self.max_helix = max_helix
         # A chain lift on a steep-up piece needs the ride's liftHillSteep group (TrackPlaceAction:
         # "Too steep for lift hill"); Twister and Hyper-Twister lack it.
         self.steep_lift = LIFT_HILL_STEEP_GROUP in ride_groups(layout.ride_type_name)
@@ -109,9 +89,6 @@ class EditGenerator:
             frontier = nxt
         return dict(table)
 
-    def table_size(self) -> int:
-        return sum(len(v) for t in self.table.values() for v in t.values())
-
     # ------------------------------------------------------------ operators
 
     def states(self, track: list[Piece]) -> list[State]:
@@ -134,7 +111,7 @@ class EditGenerator:
     def _lifts(self, run: list[int], chain: bool) -> list[Piece]:
         return [(t, chain and self.can_lift(t)) for t in run]
 
-    def segment(self, track: list[Piece], tries: int = 200, laps: int = 1):
+    def segment(self, track: list[Piece], tries: int = 200):
         max_window, max_walk = self.max_window, self.max_walk
         n = len(track)
         sts = self.states(track)
@@ -162,8 +139,6 @@ class EditGenerator:
             chain = any(l for _, l in removed) if self.rng.random() < 0.7 else self.rng.random() < 0.5
             inserted = self._lifts(run, chain)
             cand = track[:i] + inserted + track[j:]
-            if not self.within_priors(cand, laps):
-                continue
             tr = trace(self.layout, cand)
             if not tr.closed:
                 raise AssertionError(f"segment edit broke closure at [{i},{j}): {tr.problems}")
@@ -171,15 +146,6 @@ class EditGenerator:
                 continue
             return cand, Edit("segment", i, j, removed, inserted)
         return None
-
-    def within_priors(self, track: list[Piece], laps: int = 1) -> bool:
-        """Caps apply to what the test counts, so a two-lap ride gets half per lap."""
-        inv, helix = rating_flags()
-        if self.max_inversions is not None and sum(t in inv for t, _ in track) * laps > self.max_inversions:
-            return False
-        if self.max_helix is not None and sum(t in helix for t, _ in track) * laps > self.max_helix:
-            return False
-        return True
 
     def lift_toggle(self, track: list[Piece]):
         """Flip the chain lift on one maximal run of lift-capable uphill pieces."""
@@ -200,9 +166,9 @@ class EditGenerator:
         inserted = [(t, flip) for t, _ in removed]
         return track[:i] + inserted + track[j:], Edit("lift", i, j, removed, inserted)
 
-    def propose(self, track: list[Piece], circuits: int = 1):
+    def propose(self, track: list[Piece]):
         if self.rng.random() < 0.1:
             r = self.lift_toggle(track)
             if r:
                 return r
-        return self.segment(track, laps=MEASURED_LAPS.get(circuits, 1))
+        return self.segment(track)

@@ -69,14 +69,14 @@ def crop_to_area(img, layout: Layout, rotation: int = 0, zoom: int | None = None
     return img.crop(box)
 
 
-def render(layout: Layout, track: list[tuple[int, bool]], name: str, zoom: int | None = 0, circuits: int = 1,
+def render(layout: Layout, track: list[tuple[int, bool]], name: str, zoom: int | None = 0,
            out: Path | None = None) -> dict:
     """Build the track in a fresh instance, save the park, re-rate it, and screenshot it."""
     out = out or RESULTS / name
     out.mkdir(parents=True, exist_ok=True)
     judge = Judge(layout)
     try:
-        verdict = judge.evaluate(track, keep=True, circuits=circuits)
+        verdict = judge.evaluate(track, keep=True)
         judge.game.call("save", {"filename": name})
     finally:
         judge.close()
@@ -88,7 +88,7 @@ def render(layout: Layout, track: list[tuple[int, bool]], name: str, zoom: int |
         img = out / f"{name}_r{rotation}.png"
         screenshot(park, img, layout, rotation, zoom)
         shots.append(img.name)
-    summary = {"name": name, "verdict": verdict.to_dict(), "track": [list(p) for p in track], "circuits": circuits,
+    summary = {"name": name, "verdict": verdict.to_dict(), "track": [list(p) for p in track],
                "park": park.name, "screenshots": shots}
     (out / "summary.json").write_text(json.dumps(summary, indent=1))
     return summary
@@ -105,8 +105,7 @@ def evolution_frames(run_dir: Path, frames: int = 24) -> list[dict]:
                 continue
             if best is None or v["E"] > best + 1e-9:
                 best = v["E"]
-                out.append({"eval": r["eval"], "t": r["t"], "track": r["track"], "verdict": v,
-                            "circuits": r.get("circuits", 1)})
+                out.append({"eval": r["eval"], "t": r["t"], "track": r["track"], "verdict": v})
     if len(out) <= frames:
         return out
     step = (len(out) - 1) / (frames - 1)
@@ -127,7 +126,7 @@ def animate(layout: Layout, run_dir: Path, name: str, frames: int = 24, rotation
     for k, fr in enumerate(picks):
         judge = Judge(layout)  # fresh instance per frame: kept rides and cut land do not carry over
         try:
-            judge.evaluate([tuple(p) for p in fr["track"]], keep=True, circuits=fr["circuits"])
+            judge.evaluate([tuple(p) for p in fr["track"]], keep=True)
             judge.game.call("save", {"filename": f"{name}_f{k}"})
         finally:
             judge.close()

@@ -31,7 +31,7 @@ def candidates(run: Path, limit: int = 12) -> list[dict]:
         v = r["verdict"]
         if v["stage"] != "rated" or v["I"] >= GOAL[1] or v["N"] >= GOAL[2]:
             continue
-        key = json.dumps([r["track"], r.get("circuits", 1)])
+        key = json.dumps(r["track"])
         if key not in best:
             best[key] = r
     return sorted(best.values(), key=lambda r: (-r["verdict"]["E"], r["eval"]))[:limit]
@@ -60,8 +60,7 @@ def main() -> None:
         tried = []
         for best in candidates(run):
             track = [tuple(p) for p in best["track"]]
-            circuits = best.get("circuits", 1)
-            summary = render(layout, track, name, zoom=None, circuits=circuits, out=out / name)
+            summary = render(layout, track, name, zoom=None, out=out / name)
             tried.append({"eval": best["eval"], "fresh": {k: summary["verdict"][k] for k in ("stage", "E", "I", "N")}})
             if reproduced(summary["verdict"], best["verdict"]):
                 break
@@ -71,7 +70,7 @@ def main() -> None:
                 continue
         judge = Judge(dataclasses.replace(layout, decor=None))
         try:
-            bare = judge.evaluate(track, circuits=circuits)
+            bare = judge.evaluate(track)
         finally:
             judge.close()
         summary.update({"condition": meta["condition_name"], "kind": meta.get("kind"), "run": run.name,
